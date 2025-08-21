@@ -1,3 +1,6 @@
+//NOTE: Reference the ADR001 - Appsettings Changes to understand why you should care about this file.
+//variables prefixed with ASPNETCORE_ or DOTNET_ are standards associated with the builder object. 
+//https://learn.microsoft.com/en-us/aspnet/core/fundamentals/configuration/?view=aspnetcore-9.0#hi2low
 {
   "profiles": {
     "Api (Local)": {
@@ -17,6 +20,17 @@
       "launchUrl": "appsettings",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Dev",
+        "SECRET": "DevSecret"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "https://localhost:7236;http://localhost:5031"
+    },
+    "Api (Test)": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "appsettings",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Test",
         "SECRET": "DevSecret"
       },
       "dotnetRunMessages": true,

@@ -23,7 +23,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "github", "github", "{26EF94
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Documentation", "Documentation\Documentation.shproj", "{F8072020-1B57-487B-9E12-03BD77658032}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asset Library", "Asset Library\Asset Library.csproj", "{05F1A8C6-D3F3-47D5-8D3A-D77B3D20B080}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,6 +35,9 @@ Global
 		{40D175FF-A9FF-4917-8CB4-FBEB4893D292}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{40D175FF-A9FF-4917-8CB4-FBEB4893D292}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{40D175FF-A9FF-4917-8CB4-FBEB4893D292}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05F1A8C6-D3F3-47D5-8D3A-D77B3D20B080}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05F1A8C6-D3F3-47D5-8D3A-D77B3D20B080}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05F1A8C6-D3F3-47D5-8D3A-D77B3D20B080}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -45,8 +48,5 @@ Global
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F4EF7FE6-B6E9-4EA7-AF55-19BA13EFAA77}
-	EndGlobalSection
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Documentation\Documentation.projitems*{f8072020-1b57-487b-9e12-03bd77658032}*SharedItemsImports = 13
 	EndGlobalSection
 EndGlobal
