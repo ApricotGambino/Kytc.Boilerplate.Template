@@ -6,9 +6,17 @@ https://github.com/othneildrew/Best-README-Template/blob/main/BLANK_README.md
 
 //TODO: Should we have a change log?
 
+ctrlf for //NOTE and //TODO
+
+//TODO: Add DDD diagram.
+
+//TODO: Handle appsettings....
+
+https://transportation.ky.gov/Pages/New-Team-Kentucky.aspx
+
 <br />
 <div align="center">  
-    <img src="Asset%20Library/Assets/Images/logo.png" height="80" alt="Logo">  
+    <img src="Asset%20Library/Assets/Images/logo.png" height="80" alt="Logo"> 
     <h3 align="center">Boilerplate Template</h3>
     <p align="center">
         This is the template project to generate all the resources needed to install the Boilerplate template to get started developing applications. 

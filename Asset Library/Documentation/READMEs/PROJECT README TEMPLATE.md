@@ -8,16 +8,22 @@
 </details>
 
 ## Getting Started
-Describe the project here
+//TODO: Describe the project here
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Placement in Domain Driven Design
 
-Describe why this project exists where it does in the DDD
+//TODO: Describe why this project exists where it does in the DDD
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Information
+//TODO: Add information here
 
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Project Files
+//TODO: Add project file descriptions here.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

@@ -26,13 +26,13 @@ specifics for the solution as a whole, and things that the `.sln` file uses.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Project Files
-### Hidden Folders
+### :ghost: Hidden Folders
 You may notice there are a few folders after creating the solution that are 'hidden'.
 These are just folders created by Visual Studio and other tools to do whatever they need to do, such as: [.vs](https://stackoverflow.com/questions/48897191/what-is-the-vs-folder-used-for-in-visual-studio-solutions) and [.git](https://stackoverflow.com/questions/29217859/what-is-the-git-folder) folders
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-### src test Folders
+### :file_folder: `src` `test` Folders
 
 You may have noticed the source code is hosted in a folder called src, and test at the root level. While there's no rule, there is something of a unspoken standard.
 If you look around in the software world, you're going to see this as a pretty common structure, and tooling follows conventions, so deviating really isn't bad, but not helpful either.
@@ -40,7 +40,7 @@ If you look around in the software world, you're going to see this as a pretty c
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-### Solution Items
+### :file_folder: `Solution Items`
 
 Solution items are things that help the solution, from building, to enforcement of rules, to package management. In addition, we're going to keep documentation here too. A 'Solution Item' is something that's either an artifact of the solution, or something that in someway enriches it through development, or documentation.
 
@@ -54,12 +54,13 @@ This is entirely because some of those files (often .something) files need to be
     [This stackexchange answer describes what and why.](https://webmasters.stackexchange.com/questions/86315/what-does-license-txt-belong-to-exactly)
 - :scroll: `README.md`:
     This should be the entry point for a developer to get started with a project
-- :file_folder: `github/`:  Github related files, your solution may not use Github, in which case, these don't matter to you.
-  - :scroll: `.gitattributes`: [Stackoverflow answer explaining what it really is.](https://stackoverflow.com/questions/73086622/is-a-gitattributes-file-really-necessary-for-git)\
-    Official ['Documentation'](https://git-scm.com/docs/gitattributes)
-  - :scroll: `.gitignore`: This is used to tell Git to ignore certain files (Like the NPM or build folder)
-    [Useful documentation](https://docs.github.com/en/get-started/git-basics/ignoring-files) \
-    Official [Documentation](https://git-scm.com/docs/gitignore)
+- :file_folder: `source-control/`:  
+    - :file_folder: `github/`:  Github related files, your solution may not use Github, in which case, these don't matter to you.
+      - :scroll: `.gitattributes`: [Stackoverflow answer explaining what it really is.](https://stackoverflow.com/questions/73086622/is-a-gitattributes-file-really-necessary-for-git)\
+        Official ['Documentation'](https://git-scm.com/docs/gitattributes)
+      - :scroll: `.gitignore`: This is used to tell Git to ignore certain files (Like the NPM or build folder)
+        [Useful documentation](https://docs.github.com/en/get-started/git-basics/ignoring-files) \
+        Official [Documentation](https://git-scm.com/docs/gitignore)
 
 - :file_folder: `visual-studio-configurations/`:  Here you're going to find those files that are used to configure Visual Studio.
   - :scroll: `.vsconfig`: This is a file that automatically suggests components and extensions. [Microsoft's 'documentation'](https://learn.microsoft.com/en-us/visualstudio/install/import-export-installation-configurations?view=vs-2022) \
@@ -69,7 +70,7 @@ This is entirely because some of those files (often .something) files need to be
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-### Asset Library
+### :briefcase: `Asset Library.csproj`
 This is just a C# project that you can add files to that aren't meant to be used to build the solution such as Documentation.
 Why is it a C# project?  Because Visual Studio still doesn't have a proper 'folder' that you can add to by wildcard...
 

@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2010/07/nuspec.xsd">
+  <metadata>
+    <id>Kytc.Boilerplate.Template</id>
+    <title>Kytc Boilerplate Template</title>
+    <version></version>
+    <authors>Kytc</authors>
+    <description>
+      Kytc Boilerplate Template Solution
+    </description>
+    <language>en-US</language>
+    <license type="expression">MIT</license>
+    <projectUrl>https://transportation.ky.gov/</projectUrl>
+    <packageTypes>
+      <packageType name="Template" />
+    </packageTypes>
+    <tags></tags>
+	<icon>./content/Asset Library/Assets/Images/logo.png</icon>
+  <readme>./content/README.md</readme>
+  </metadata>
+  <files>
+    <file src=".\..\..\**" 
+          target="content"
+          exclude="**\bin\**;**\obj\**;**\.git\**;**\.github\**;**\*.user;**\.vs\**;**\.vscode\**;**\.gitignore;"/>
+  </files>
+</package>
