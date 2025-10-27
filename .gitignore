@@ -361,4 +361,7 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
-/Asset Library/Solution Template/TestSolution/.vsconfig
+
+
+#Ignore TestSolution for templating
+/Asset Library/Root/Solution Template/TestSolution/

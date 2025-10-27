@@ -1,5 +1,4 @@
-﻿namespace Api.Configurations;
-
+namespace Api.Configurations;
 //NOTE: WebApplication.CreateBuilder does a lot of things by default: 
 //Such as appsetting loading, logging and DI.  But we're going to define those manually regardless. 
 //https://learn.microsoft.com/en-us/dotnet/api/microsoft.aspnetcore.builder.webapplication.createbuilder?view=aspnetcore-9.0
@@ -30,6 +29,7 @@ public static class WebApplicationBuilderConfigurations
     /// <returns></returns>
     private static WebApplicationBuilder AddAppSettingsJsonFile(this WebApplicationBuilder builder)
     {
+
         builder.Configuration.AddJsonFile("appsettings.json", optional: false);
         if (builder.Environment.EnvironmentName != "Local")
         {

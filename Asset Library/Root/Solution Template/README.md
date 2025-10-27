@@ -4,6 +4,18 @@
 
 //TODO: UPDATE THIS
 
+## Getting Started
+If you want to make changes to the boilerplate template, you're going to want to get started by building locally. 
+After making your changes there are a few ways to test your changes: 
+
+- `.\LocalTesting.ps1`
+    - will handle creating a local version of the template, and creating a solution using it. This is the fastest and easiest way to test locally.
+    - This script calls `.\CreateAndInstallNugetTemplate.ps1` then `.\CreateTemplateProjectForTesting.ps1`    
+- Using the `New Solution` dialogue
+    - If you want to not create a new project using the powershell script, you can execute `.\CreateAndInstallNugetTemplate.ps1` 
+
+For more information on the template: `dotnet new kytcbp --help`
+
 
 ## Actually Read this
 Templating is VERY hard to find documentation for. 

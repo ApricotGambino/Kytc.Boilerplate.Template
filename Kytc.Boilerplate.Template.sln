@@ -7,6 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "src\Api\Api.csproj",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
 	ProjectSection(SolutionItems) = preProject
+		Directory.Packages.props = Directory.Packages.props
 		LICENSE.txt = LICENSE.txt
 		README.md = README.md
 	EndProjectSection
@@ -27,6 +28,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asset Library", "Asset Libr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "source-control", "source-control", "{F342C33B-0994-4ECE-A20B-B4B249D70326}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "src\Infrastructure\Infrastructure.csproj", "{C03C0F93-DCC0-4116-895D-9423960A474B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "src\Domain\Domain.csproj", "{F675AEE3-BAC9-4A05-9008-576C8E5D5184}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{D8AF9C8E-7C32-46E1-B61C-5D6AE8CFF964}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Kytc.Boilerplate.Template.FunctionalTests", "Application.Kytc.Boilerplate.Template.FunctionalTests\Application.Kytc.Boilerplate.Template.FunctionalTests.csproj", "{01A0BE68-A78E-4D18-A457-E12F55126C43}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -40,6 +49,18 @@ Global
 		{05F1A8C6-D3F3-47D5-8D3A-D77B3D20B080}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{05F1A8C6-D3F3-47D5-8D3A-D77B3D20B080}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05F1A8C6-D3F3-47D5-8D3A-D77B3D20B080}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C03C0F93-DCC0-4116-895D-9423960A474B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C03C0F93-DCC0-4116-895D-9423960A474B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C03C0F93-DCC0-4116-895D-9423960A474B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C03C0F93-DCC0-4116-895D-9423960A474B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F675AEE3-BAC9-4A05-9008-576C8E5D5184}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F675AEE3-BAC9-4A05-9008-576C8E5D5184}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F675AEE3-BAC9-4A05-9008-576C8E5D5184}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F675AEE3-BAC9-4A05-9008-576C8E5D5184}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01A0BE68-A78E-4D18-A457-E12F55126C43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01A0BE68-A78E-4D18-A457-E12F55126C43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01A0BE68-A78E-4D18-A457-E12F55126C43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01A0BE68-A78E-4D18-A457-E12F55126C43}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -48,6 +69,7 @@ Global
 		{02EA681E-C7D8-13C7-8484-4AC65E1B71E8} = {8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}
 		{26EF9413-0093-49BC-92EC-FA0357E848DF} = {F342C33B-0994-4ECE-A20B-B4B249D70326}
 		{F342C33B-0994-4ECE-A20B-B4B249D70326} = {8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}
+		{01A0BE68-A78E-4D18-A457-E12F55126C43} = {D8AF9C8E-7C32-46E1-B61C-5D6AE8CFF964}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F4EF7FE6-B6E9-4EA7-AF55-19BA13EFAA77}

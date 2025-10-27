@@ -15,11 +15,11 @@
       <packageType name="Template" />
     </packageTypes>
     <tags></tags>
-	<icon>./content/Asset Library/Assets/Images/logo.png</icon>
+	<icon>./content/Asset Library/Root/Assets/Images/logo.png</icon>
   <readme>./content/README.md</readme>
   </metadata>
   <files>
-    <file src=".\..\..\**" 
+    <file src=".\..\..\..\**" 
           target="content"
           exclude="**\bin\**;**\obj\**;**\.git\**;**\.github\**;**\*.user;**\.vs\**;**\.vscode\**;**\.gitignore;"/>
   </files>

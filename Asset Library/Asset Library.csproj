@@ -26,9 +26,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Documentation\ADRs\" />
-    <Folder Include="Assets\" />
-    <Folder Include="Solution Template\" />
+    <Compile Remove="Assets\**" />
+    <Compile Remove="Documentation\**" />
+    <EmbeddedResource Remove="Assets\**" />
+    <EmbeddedResource Remove="Documentation\**" />
+    <None Remove="Assets\**" />
+    <None Remove="Documentation\**" />
   </ItemGroup>
 
 </Project>

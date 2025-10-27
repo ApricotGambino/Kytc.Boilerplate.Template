@@ -2,6 +2,8 @@
 
 # API Documentation
 
+//TODO: Pointout the ADR001 Appsettings
+
 <details>
   <summary>Table of Contents</summary>
   //TODO: Add ToC
