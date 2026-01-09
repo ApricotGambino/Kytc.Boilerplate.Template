@@ -20,6 +20,7 @@ public static class LoggerConfigurations
                     sinkOptions: new MSSqlServerSinkOptions { TableName = "Logs", SchemaName = "dbo" },
                     formatProvider: new CultureInfo("en-US")
                     )
+            //.MinimumLevel.Warning()
             //.Enrich.FromLogContext() //TODO: What is this for?
             );
 
