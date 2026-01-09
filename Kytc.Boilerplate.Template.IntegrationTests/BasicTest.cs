@@ -1,7 +1,9 @@
 namespace Kytc.Boilerplate.Template.IntegrationTests;
 
 using Domain.Entities.Admin;
+using Kytc.Boilerplate.Template.IntegrationTests.Configurations;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
 
 public class CreateTodoItemTests : BaseTestFixture
 {
@@ -19,7 +21,6 @@ public class CreateTodoItemTests : BaseTestFixture
         });
 
         var after = await TestContext.CountAsync<Log>();
-        var a = 1;
 
         Assert.That(after, Is.EqualTo(before + 1));
     }
@@ -37,7 +38,6 @@ public class CreateTodoItemTests : BaseTestFixture
         });
 
         var after = await TestContext.CountAsync<Log>();
-        var a = 1;
 
         Assert.That(after, Is.EqualTo(before + 1));
     }

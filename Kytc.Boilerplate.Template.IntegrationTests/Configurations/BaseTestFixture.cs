@@ -1,7 +1,6 @@
-namespace Kytc.Boilerplate.Template.IntegrationTests;
+namespace Kytc.Boilerplate.Template.IntegrationTests.Configurations;
 
 using NUnit.Framework;
-
 
 /// <summary>
 /// This is the base fixture for all tests.

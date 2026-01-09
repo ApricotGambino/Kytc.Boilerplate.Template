@@ -1,8 +1,9 @@
 namespace Kytc.Boilerplate.Template.IntegrationTests;
 
-
+using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Serilog;
 
 /// <summary>
 /// This class allows us to access the context of all testing needs.  
@@ -26,6 +27,9 @@ public static class TestContext
         var context = _scopeFactory.CreateScope().ServiceProvider.GetRequiredService<ApplicationDbContext>();
         await context.Database.EnsureDeletedAsync();
         await context.Database.EnsureCreatedAsync();
+        Log.Logger.Fatal("test?");
+
+
     }
 
 

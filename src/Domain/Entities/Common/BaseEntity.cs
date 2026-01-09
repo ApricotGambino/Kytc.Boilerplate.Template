@@ -15,6 +15,6 @@ public abstract class BaseEntity<T>
     public DateTimeOffset? UpdatedDate { get; set; }
     public bool IsActive { get; set; }
     [Timestamp]
-    public byte[] Version { get; set; }
+    public required byte[] Version { get; set; }
 
 }

@@ -1,50 +1,44 @@
 using Api;
 using Api.Configurations;
 using Microsoft.Extensions.Options;
+using Serilog;
 
-
-
-var builder = WebApplication.CreateBuilder(args);
-
-builder.AddAppSettings();
-
-var currentConfig = builder.Configuration.GetSection(nameof(AppSettings)).Get<AppSettings>();
-
-//builder.AddDbContext();
-builder.AddDbContext(currentConfig);
-
-// Add services to the container.
-
-//builder.Services.AddDbContext<ApplicationDbContext>((sp, options) =>
-//{
-//    options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
-
-//    options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=Kytc.Boilerplate.Template;Trusted_Connection=True;MultipleActiveResultSets=true");
-
-//    options.ConfigureWarnings(warnings => warnings.Ignore(RelationalEventId.PendingModelChangesWarning));
-//});
-
-
-var app = builder.Build();
-//builder.Services.AddDbContext<ApplicationDbContext>();
-
-
-
-//builder.Services.AddDbContext<ApplicationDbContext>(options =>
-//                options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=Kytc.Boilerplate.Template;Trusted_Connection=True;MultipleActiveResultSets=true",
-//                    opt => opt.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
-
-
-
-// Configure the HTTP request pipeline.
-
-app.UseHttpsRedirection();
-
-app.MapGet("/appsettings", () =>
+try
 {
-    var appSettings = app.Services.GetRequiredService<IOptions<AppSettings>>().Value;
-    return appSettings;
-});
+    var builder = WebApplication.CreateBuilder(args);
+    builder.AddAppSettings(); //Get the correct appsettings
 
-app.Run();
+    //Configure the appsettings in the IOptions pattern, converting the appsettings.json to a hardened AppSettings object. 
+    var appSettings = builder.Configuration.GetSection(nameof(AppSettings)).Get<AppSettings>();
 
+    if (appSettings == null)
+    {
+        //TODO: Consider using a guard here instead. 
+        throw new Exception("AppSettings could not be loaded correctly.");
+    }
+
+    builder
+        .AddLoggerConfigs(appSettings)
+        .AddDbContext(appSettings);
+
+    var app = builder.Build();
+
+    app.UseHttpsRedirection();
+
+    app.MapGet("/appsettings", () =>
+    {
+        var appSettings = app.Services.GetRequiredService<IOptions<AppSettings>>().Value;
+        Log.Fatal("testthing4");
+        return appSettings;
+    });
+
+    app.Run();
+}
+catch (Exception ex)
+{
+    Log.Fatal(ex, "Application terminated unexpectedly");
+}
+finally
+{
+    Log.CloseAndFlush();
+}
