@@ -1,4 +1,5 @@
 namespace Domain.Entities.Common;
+
 using System;
 using System.ComponentModel.DataAnnotations;
 

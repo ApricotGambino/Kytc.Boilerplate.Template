@@ -1,4 +1,4 @@
-﻿namespace Api;
+namespace Api;
 
 public class AppSettings
 {
@@ -12,4 +12,5 @@ public class AppSettings
 public class ConnectionStrings
 {
     public required string DefaultConnection { get; set; }
+
 }

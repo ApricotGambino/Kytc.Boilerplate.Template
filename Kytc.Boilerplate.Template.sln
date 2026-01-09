@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.13.35931.197
+# Visual Studio Version 18
+VisualStudioVersion = 18.3.11218.70
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "src\Api\Api.csproj", "{40D175FF-A9FF-4917-8CB4-FBEB4893D292}"
 EndProject
@@ -16,6 +16,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "visual-studio-configuration
 	ProjectSection(SolutionItems) = preProject
 		.editorconfig = .editorconfig
 		.vsconfig = .vsconfig
+		Nuget.Config = Nuget.Config
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "github", "github", "{26EF9413-0093-49BC-92EC-FA0357E848DF}"
@@ -34,7 +35,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "src\Domain\Domain
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{D8AF9C8E-7C32-46E1-B61C-5D6AE8CFF964}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Kytc.Boilerplate.Template.FunctionalTests", "Application.Kytc.Boilerplate.Template.FunctionalTests\Application.Kytc.Boilerplate.Template.FunctionalTests.csproj", "{01A0BE68-A78E-4D18-A457-E12F55126C43}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kytc.Boilerplate.Template.FunctionalTests", "Application.Kytc.Boilerplate.Template.FunctionalTests\Kytc.Boilerplate.Template.FunctionalTests.csproj", "{01A0BE68-A78E-4D18-A457-E12F55126C43}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kytc.Boilerplate.Template.IntegrationTests", "Kytc.Boilerplate.Template.IntegrationTests\Kytc.Boilerplate.Template.IntegrationTests.csproj", "{780CE023-CD3A-4B8F-A914-59459F38A6D9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -61,6 +64,10 @@ Global
 		{01A0BE68-A78E-4D18-A457-E12F55126C43}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{01A0BE68-A78E-4D18-A457-E12F55126C43}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{01A0BE68-A78E-4D18-A457-E12F55126C43}.Release|Any CPU.Build.0 = Release|Any CPU
+		{780CE023-CD3A-4B8F-A914-59459F38A6D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{780CE023-CD3A-4B8F-A914-59459F38A6D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{780CE023-CD3A-4B8F-A914-59459F38A6D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{780CE023-CD3A-4B8F-A914-59459F38A6D9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -70,6 +77,7 @@ Global
 		{26EF9413-0093-49BC-92EC-FA0357E848DF} = {F342C33B-0994-4ECE-A20B-B4B249D70326}
 		{F342C33B-0994-4ECE-A20B-B4B249D70326} = {8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}
 		{01A0BE68-A78E-4D18-A457-E12F55126C43} = {D8AF9C8E-7C32-46E1-B61C-5D6AE8CFF964}
+		{780CE023-CD3A-4B8F-A914-59459F38A6D9} = {D8AF9C8E-7C32-46E1-B61C-5D6AE8CFF964}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F4EF7FE6-B6E9-4EA7-AF55-19BA13EFAA77}

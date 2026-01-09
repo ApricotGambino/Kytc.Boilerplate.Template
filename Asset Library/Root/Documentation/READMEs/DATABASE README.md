@@ -17,7 +17,7 @@ To get started with modifying the schema, make sure you have the .net tools inst
 :warning:Change the version with your version of .NET :warning:
 
 ```sh 
-dotnet tool install --global dotnet-ef --version 9.*
+dotnet tool install --global dotnet-ef
 ```
 
 Once those are installed, you can add a new migration

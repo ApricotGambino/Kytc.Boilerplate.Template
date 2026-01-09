@@ -11,7 +11,7 @@
     "extensions": [
         //This allows us to view markdown (.md) files directly in Visual Studio.
         "https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor2",
-        //This ensures that .editorconfig rules are applied to the file upon saving
+        //This ensures that .editorconfig rules are applied to the file upon saving 
         "https://marketplace.visualstudio.com/items?itemName=MadsKristensen.CodeCleanupOnSave"
     ]
 }
