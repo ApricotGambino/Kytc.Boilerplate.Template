@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+    <CodeSnippet Format="1.0.0">
+        <Header>
+            <SnippetTypes>
+                <SnippetType>Expansion</SnippetType>
+            </SnippetTypes>
+            <Title>Empty NUnit Test method</Title>
+            <Shortcut>aaa</Shortcut>
+        </Header>
+        <Snippet>
+            <Imports>
+                <Import>
+                    <Namespace>NUnit.Framework</Namespace>
+                </Import>
+            </Imports>
+            <Declarations>
+                <Literal>
+                    <ID>methodName</ID>
+                    <Default>FunctionBeingTested_StateUnderTest_ExpectedBehavior</Default>
+                </Literal>
+            </Declarations>
+            <Code Language="CSharp">
+                <![CDATA[[Test]
+			public async Task $methodName$()
+			{
+                //Replace with the name of the test method.
+                //EX: GetUserRoles_UserHasNoRoles_ReturnsEmptyListOfRoles
+                //EX: GetUserRoles_UserIsAdmin_ReturnsListThatContainsAdminRole
+                //EX: GetUserRoles_UserDoesNotExist_ThrowsUserNotFoundException
+                
+				//Arrange
+                //EX: userService.Add(new User { Name = "Test User", Roles = ["Admin"] });
+				
+				//Act
+                //EX: var result = await userService.GetUserRoles("Test User");
+				
+				//Assert
+                //EX: Assert.Contains("Admin", result);
+			}]]>
+            </Code>
+        </Snippet>
+    </CodeSnippet>
+</CodeSnippets>

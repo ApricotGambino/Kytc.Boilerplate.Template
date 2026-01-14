@@ -1,7 +1,6 @@
 namespace Kytc.Boilerplate.Template.IntegrationTests;
 
 using Domain.Entities.Admin;
-using Kytc.Boilerplate.Template.IntegrationTests.Configurations;
 using NUnit.Framework;
 
 public class LoggingTests : BaseTestFixture
@@ -47,23 +46,6 @@ public class LoggingTests : BaseTestFixture
         var after = await TestContext.CountAsync<Log>();
 
         Serilog.Log.Logger.Fatal("Added log entry??");
-
-        Assert.That(after, Is.EqualTo(before + 1));
-    }
-
-    [Test]
-    public async Task AddLogEntry1()
-    {
-        var before = await TestContext.CountAsync<Log>();
-
-        await TestContext.AddAsync(new Log
-        {
-            Message = "Test Log Entry2",
-            Level = "bad",
-            MessageTemplate = "badbad"
-        });
-
-        var after = await TestContext.CountAsync<Log>();
 
         Assert.That(after, Is.EqualTo(before + 1));
     }

@@ -10,12 +10,23 @@ using Microsoft.AspNetCore.TestHost;
 /// </summary>
 public class TestCustomWebApplicationFactory : WebApplicationFactory<Program>
 {
-    public TestCustomWebApplicationFactory() { }
+    private readonly string _environmentName;
+    public TestCustomWebApplicationFactory(string? environmentName = null)
+    {
+        if (environmentName != null)
+        {
+            this._environmentName = environmentName;
+        }
+        else
+        {
+            this._environmentName = "UnitTest";
+        }
+    }
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
         //We're using environmental variables to ensure that the correct appsettings.json is used during build. 
-        builder.UseEnvironment("UnitTest");
+        builder.UseEnvironment(this._environmentName);
 
 
         //This is intentionally left blank, but you can use this to override configuration of services after the build.

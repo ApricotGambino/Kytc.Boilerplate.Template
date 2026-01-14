@@ -1,4 +1,4 @@
-namespace Kytc.Boilerplate.Template.IntegrationTests.Configurations;
+namespace Kytc.Boilerplate.Template.IntegrationTests;
 
 using NUnit.Framework;
 

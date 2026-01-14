@@ -8,6 +8,10 @@
 </details>
 
 ## Getting Started
+//TODO: Explain code coverage
+
+
+
 //TODO: Describe the project here
 
 Functional Testing:

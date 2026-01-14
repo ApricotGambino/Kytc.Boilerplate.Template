@@ -136,6 +136,8 @@ dotnet_diagnostic.IDE0270.severity = none
 dotnet_diagnostic.IDE0058.severity = none
 # Null-checking preferences
 dotnet_style_coalesce_expression = true:warning
+# CA1707: Identifiers should not contain underscores
+dotnet_diagnostic.CA1707.severity = none
 dotnet_style_null_propagation = true:warning
 dotnet_style_prefer_is_null_check_over_reference_equality_method = true:warning
 # File header preferences

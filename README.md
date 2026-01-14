@@ -31,7 +31,30 @@ https://github.com/othneildrew/Best-README-Template/blob/main/BLANK_README.md
 
 //TODO: How to update template?
 
+//TODO: Explain the 'aaa' snippet and how to import it
+
 //TODO: How to update my BP app without startin gnew?
+
+//TODO: Explain extensions, and how sometimes VS doesn't prompt you to install them.
+//TODO: Explain that you need enterprise for code coverage. 
+
+//TODO: Explain the testing setup for infrastruction. 
+//The execution works like this: 
+//TestingSetup 
+<!--	=> RunBeforeAnyTests
+TestContext
+	=> SetupTestContext
+TestCustomWebApplicationFactory
+	TestCustomWebApplicationFactory()
+	ConfigureWebHost()
+program
+	everything
+BaseTestFixture
+	=TestSetUp
+LoggingTests
+	=>AddLogEntry1-->
+//TODO: Explain testing categoryes [TestingFramework]
+
 
 https://transportation.ky.gov/Pages/New-Team-Kentucky.aspx
 
