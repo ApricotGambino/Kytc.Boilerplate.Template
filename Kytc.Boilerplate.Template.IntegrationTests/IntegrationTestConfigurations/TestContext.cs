@@ -1,4 +1,6 @@
+#pragma warning disable IDE0130 // Namespace does not match folder structure, supressing because this is intentional. 
 namespace Kytc.Boilerplate.Template.IntegrationTests;
+#pragma warning restore IDE0130 // Namespace does not match folder structure, supressing because this is intentional. 
 
 using System;
 using Infrastructure.Data;
@@ -11,7 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 public static class TestContext
 {
     //private static TestCustomWebApplicationFactory _factory = null!;
-    private static IServiceScopeFactory _scopeFactory = null!;
+    private static IServiceScopeFactory? _scopeFactory = null!;
 
     /// <summary>
     /// This method will setup the testing context.  This normally is ran at the beginning of test runs. But can be manually called if wanted. 
@@ -42,7 +44,7 @@ public static class TestContext
     /// This method returns the private scopeFactory.
     /// </summary>
     /// <returns></returns>
-    public static IServiceScopeFactory GetScopeFactory() =>
+    public static IServiceScopeFactory? GetScopeFactory() =>
         //We want this class to be static, but because of that we can't initialize scopeFactory in a constructor.
         //Because scopeFactory relies on the TestCustomWebApplicationFactory, we have to initialize it in the SetupTestContext method.
         //This prevents us from making the scopeFactory a constant.

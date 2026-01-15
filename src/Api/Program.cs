@@ -1,6 +1,7 @@
 using Api;
 using Api.Configurations;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Protocols.Configuration;
 using Serilog;
 
 try
@@ -14,7 +15,7 @@ try
     if (appSettings == null)
     {
         //TODO: Consider using a guard here instead. 
-        throw new Exception("AppSettings could not be loaded correctly.");
+        throw new InvalidConfigurationException("AppSettings could not be loaded correctly.");
     }
 
     builder

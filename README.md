@@ -54,7 +54,7 @@ BaseTestFixture
 LoggingTests
 	=>AddLogEntry1-->
 //TODO: Explain testing categoryes [TestingFramework]
-
+//TODO: Explain that the code coverage results suck and just say 'MoveNext()' for all async methods...
 
 https://transportation.ky.gov/Pages/New-Team-Kentucky.aspx
 

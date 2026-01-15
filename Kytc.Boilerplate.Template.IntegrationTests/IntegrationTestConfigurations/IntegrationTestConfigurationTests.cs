@@ -1,7 +1,14 @@
+#pragma warning disable IDE0130 // Namespace does not match folder structure, supressing because this is intentional. 
 namespace Kytc.Boilerplate.Template;
+#pragma warning restore IDE0130 // Namespace does not match folder structure, supressing because this is intentional. 
 
+using System.Diagnostics.CodeAnalysis;
 using Domain.Entities.Admin;
+using Kytc.Boilerplate.Template.IntegrationTests;
 using Microsoft.Data.SqlClient;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using NUnit.Framework;
 
 //NOTE: This is intentionally in a different namespace than the rest of the IntegrationTests, and also doesn't inherit from BaseTestFixture
@@ -10,6 +17,9 @@ using NUnit.Framework;
 //Also, this isn't a great place to look at testing best practices, since these tests test the testing framework, and
 //has to do some gross things.
 
+//Also, we SHOULD target to hit 100% code coverage on everything in the INtegrationTestConfigurations with this test suite, who watches the watchers and who tests the testers? 
+
+[ExcludeFromCodeCoverage]
 [Category("TestingFrameworkTests")]
 public class IntegrationTestConfiguration_TestContextTests
 {
@@ -43,6 +53,21 @@ public class IntegrationTestConfiguration_TestContextTests
     }
 
     [Test]
+    public async Task GetDbContext_TestContextGetsCorrectConnectionStringFromDefaultUnitTestAppSetting_ThrowsError()
+    {
+        //Arrange
+        await IntegrationTests.TestContext.TearDownTestContext();
+        await IntegrationTests.TestContext.SetupTestContext();
+
+        //Act
+        var dbContext = IntegrationTests.TestContext.GetDbContext();
+
+
+        //Arrange & Act
+        Assert.That(dbContext.Database.GetDbConnection().Database, Is.EqualTo("Kytc.Boilerplate.Template.UnitTest"));
+    }
+
+    [Test]
     public async Task TearDownTestContext_SetupContextThenTearDownAndAttempToAccessTheDbContext_ThrowsError()
     {
         //Arrange
@@ -73,7 +98,7 @@ public class IntegrationTestConfiguration_TestContextTests
         await IntegrationTests.TestContext.TearDownTestContext();
 
         //Assert
-        Assert.That(insertedRecord, Is.Not.EqualTo(null));
+        Assert.That(insertedRecord, Is.Not.Null);
         Assert.That(insertedRecord.Id, Is.GreaterThan(0));
     }
 
@@ -94,7 +119,7 @@ public class IntegrationTestConfiguration_TestContextTests
         await IntegrationTests.TestContext.TearDownTestContext();
 
         //Assert
-        Assert.That(foundRecord, Is.Not.EqualTo(null));
+        Assert.That(foundRecord, Is.Not.Null);
     }
 
     [Test]
@@ -171,12 +196,77 @@ public class IntegrationTestConfiguration_TestContextTests
         //Arrange & Act
         Assert.That(IntegrationTests.TestContext.GetScopeFactory(), Is.Not.Null);
     }
-
-    //TODO: Check that unittestalt works
-    //TODO: test that checks all entiteis are there.
-
 }
 
+[ExcludeFromCodeCoverage]
+[Category("TestingFrameworkTests")]
+public class IntegrationTestConfiguration_TestCustomWebApplicationFactoryTests()
+{
+    //NOTE: At this time I'm not sure how to get the builder from the WebApplicationFactory to test what it's doing. 
+    [Test]
+    public async Task TestCustomWebApplicationFactoryConstructor_ConstructorWithoutEnvironmentNameParameter_InstanceHasUnitTestAsEnvironmentName()
+    {
+        //Arrange & Act
+        var customWebFactory = new TestCustomWebApplicationFactory();
+
+        //Assert
+        Assert.That(customWebFactory._environmentName, Is.EqualTo("UnitTest"));
+        //Assert.That(customWebFactory. ._environmentName, Is.EqualTo("UnitTest"));
+    }
+
+    [Test]
+    public async Task TestCustomWebApplicationFactoryConstructor_ConstructorWithEnvironmentNameParameter_InstanceHasProvidedEnvironmentName()
+    {
+        //Arrange & Act
+        var environmentName = "CustomEnvironmentName";
+        var customWebFactory = new TestCustomWebApplicationFactory(environmentName: environmentName);
+
+        //Assert
+        Assert.That(customWebFactory._environmentName, Is.EqualTo(environmentName));
+    }
+
+    [Test]
+    public async Task TestCustomWebApplicationFactory_Initialized_HasDefaultEnviornmentNameInConfiguration()
+    {
+        //Arrange & Act
+        var customWebFactory = new TestCustomWebApplicationFactory();
+        var configuration = customWebFactory.Services.GetService<IConfiguration>();
+
+        //Assert
+        Assert.That(configuration, Is.Not.Null);
+        Assert.That(configuration.GetValue<string>("environment"), Is.EqualTo("UnitTest"));
+    }
+
+    [Test]
+    public async Task TestCustomWebApplicationFactory_Initialized_HasDefaultConnectionStringInConfiguration()
+    {
+        //Arrange & Act
+        var customWebFactory = new TestCustomWebApplicationFactory();
+        var configuration = customWebFactory.Services.GetService<IConfiguration>();
+        var defaultConnectionString = configuration!.GetSection("AppSettings:ConnectionStrings:DefaultConnection").Value;
+
+        //Act
+        Assert.That(defaultConnectionString, Is.EqualTo("Server=(localdb)\\mssqllocaldb;Database=Kytc.Boilerplate.Template.UnitTest;Trusted_Connection=True;MultipleActiveResultSets=true"));
+    }
+}
+
+[ExcludeFromCodeCoverage]
+[Category("TestingFrameworkTests")]
+public class IntegrationTestConfiguration_BaseTestFixture()
+{
+    //NOTE: At this time I'm not sure how to get the builder from the WebApplicationFactory to test what it's doing. 
+    [Test]
+    public async Task TestSetUp_Initialized_DoesNotThrowError()
+    {
+        //Arrange & Act
+        var baseTestFixture = new BaseTestFixture();
+
+        //Act & Assert
+        Assert.DoesNotThrowAsync(baseTestFixture.TestSetUp);
+    }
+}
+
+[ExcludeFromCodeCoverage]
 public static class IntegrationTestConfigurationTestUtilities
 {
     public static string GetUnitTestDatabaseName()
@@ -204,21 +294,21 @@ public static class IntegrationTestConfigurationTestUtilities
 
     public static int GetUnitTestDatabaseId()
     {
-        int unitTestDatabaseId = 0;
+        var unitTestDatabaseId = 0;
 
         using (var sqlConnection = GetLocalDbSqlConnection())
         {
-            using (SqlCommand sqlCmd = new SqlCommand(string.Format("SELECT database_id FROM sys.databases WHERE Name = '{0}'", GetUnitTestDatabaseName()), sqlConnection))
+            using (var sqlCmd = new SqlCommand(string.Format("SELECT database_id FROM sys.databases WHERE Name = '{0}'", GetUnitTestDatabaseName()), sqlConnection))
             {
                 sqlConnection.Open();
 
-                object resultObj = sqlCmd.ExecuteScalar();
+                var resultObj = sqlCmd.ExecuteScalar();
 
-                int databaseID = 0;
+                var databaseID = 0;
 
                 if (resultObj != null)
                 {
-                    int.TryParse(resultObj.ToString(), out databaseID);
+                    var _ = int.TryParse(resultObj.ToString(), out databaseID);
                 }
 
                 sqlConnection.Close();

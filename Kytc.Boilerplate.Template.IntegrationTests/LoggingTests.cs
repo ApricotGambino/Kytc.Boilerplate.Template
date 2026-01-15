@@ -1,8 +1,10 @@
 namespace Kytc.Boilerplate.Template.IntegrationTests;
 
+using System.Diagnostics.CodeAnalysis;
 using Domain.Entities.Admin;
 using NUnit.Framework;
 
+[ExcludeFromCodeCoverage]
 public class LoggingTests : BaseTestFixture
 {
     [Test]
