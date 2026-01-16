@@ -1,10 +1,7 @@
-#pragma warning disable IDE0130 // Namespace does not match folder structure, supressing because this is intentional. 
-namespace Kytc.Boilerplate.Template;
-#pragma warning restore IDE0130 // Namespace does not match folder structure, supressing because this is intentional. 
+namespace IntegrationTests.IntegrationTestConfigurations;
 
 using System.Diagnostics.CodeAnalysis;
 using Domain.Entities.Admin;
-using Kytc.Boilerplate.Template.IntegrationTests;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -33,9 +30,9 @@ public class IntegrationTestConfiguration_TestContextTests
         IntegrationTestConfigurationTestUtilities.DeleteUnitTestDatabase();
 
         //Act
-        await IntegrationTests.TestContext.SetupTestContext();
+        await TestContext.SetupTestContext();
         var databaseIdFromSql = IntegrationTestConfigurationTestUtilities.GetUnitTestDatabaseId();
-        await IntegrationTests.TestContext.TearDownTestContext();
+        await TestContext.TearDownTestContext();
 
         //Assert
         Assert.That(databaseIdFromSql, Is.GreaterThan(0));
@@ -45,22 +42,22 @@ public class IntegrationTestConfiguration_TestContextTests
     public async Task GetDbContext_TestingContextNotInitialized_ThrowsError()
     {
         //Arrange
-        await IntegrationTests.TestContext.TearDownTestContext();
+        await TestContext.TearDownTestContext();
 
         //Act & Assert
         Assert.Throws<InvalidOperationException>(
-            () => IntegrationTests.TestContext.GetDbContext());
+            () => TestContext.GetDbContext());
     }
 
     [Test]
     public async Task GetDbContext_TestContextGetsCorrectConnectionStringFromDefaultUnitTestAppSetting_ThrowsError()
     {
         //Arrange
-        await IntegrationTests.TestContext.TearDownTestContext();
-        await IntegrationTests.TestContext.SetupTestContext();
+        await TestContext.TearDownTestContext();
+        await TestContext.SetupTestContext();
 
         //Act
-        var dbContext = IntegrationTests.TestContext.GetDbContext();
+        var dbContext = TestContext.GetDbContext();
 
 
         //Arrange & Act
@@ -71,14 +68,14 @@ public class IntegrationTestConfiguration_TestContextTests
     public async Task TearDownTestContext_SetupContextThenTearDownAndAttempToAccessTheDbContext_ThrowsError()
     {
         //Arrange
-        await IntegrationTests.TestContext.SetupTestContext();
+        await TestContext.SetupTestContext();
 
         //Act
-        await IntegrationTests.TestContext.TearDownTestContext();
+        await TestContext.TearDownTestContext();
 
         //Assert
         Assert.Throws<InvalidOperationException>(
-            () => IntegrationTests.TestContext.GetDbContext());
+            () => TestContext.GetDbContext());
     }
 
 
@@ -86,16 +83,16 @@ public class IntegrationTestConfiguration_TestContextTests
     public async Task AddAsync_AddLogRecordToUnitTestDatabase_RecordIsInsertedWithId()
     {
         //Arrange
-        await IntegrationTests.TestContext.SetupTestContext();
+        await TestContext.SetupTestContext();
 
         //Act
-        var insertedRecord = await IntegrationTests.TestContext.AddAsync(new Log
+        var insertedRecord = await TestContext.AddAsync(new Log
         {
             Message = nameof(AddAsync_AddLogRecordToUnitTestDatabase_RecordIsInsertedWithId),
             Level = "UNITTEST",
             MessageTemplate = ""
         });
-        await IntegrationTests.TestContext.TearDownTestContext();
+        await TestContext.TearDownTestContext();
 
         //Assert
         Assert.That(insertedRecord, Is.Not.Null);
@@ -106,8 +103,8 @@ public class IntegrationTestConfiguration_TestContextTests
     public async Task FindAsync_AddLogRecordToUnitTestDatabaseThenFindInsertedRecord_FetchInsertedRecordExists()
     {
         //Arrange
-        await IntegrationTests.TestContext.SetupTestContext();
-        var insertedRecord = await IntegrationTests.TestContext.AddAsync(new Log
+        await TestContext.SetupTestContext();
+        var insertedRecord = await TestContext.AddAsync(new Log
         {
             Message = nameof(FindAsync_AddLogRecordToUnitTestDatabaseThenFindInsertedRecord_FetchInsertedRecordExists),
             Level = "UNITTEST",
@@ -115,8 +112,8 @@ public class IntegrationTestConfiguration_TestContextTests
         });
 
         //Act
-        var foundRecord = await IntegrationTests.TestContext.FindAsync<Log>(insertedRecord.Id);
-        await IntegrationTests.TestContext.TearDownTestContext();
+        var foundRecord = await TestContext.FindAsync<Log>(insertedRecord.Id);
+        await TestContext.TearDownTestContext();
 
         //Assert
         Assert.That(foundRecord, Is.Not.Null);
@@ -126,9 +123,9 @@ public class IntegrationTestConfiguration_TestContextTests
     public async Task CountAsync_AddLogRecordToUnitTestDatabaseThenFindInsertedRecord_CountOfLogIncreasedByOne()
     {
         //Arrange
-        await IntegrationTests.TestContext.SetupTestContext();
-        var countBeforeInsert = await IntegrationTests.TestContext.CountAsync<Log>();
-        var insertedRecord = await IntegrationTests.TestContext.AddAsync(new Log
+        await TestContext.SetupTestContext();
+        var countBeforeInsert = await TestContext.CountAsync<Log>();
+        var insertedRecord = await TestContext.AddAsync(new Log
         {
             Message = nameof(CountAsync_AddLogRecordToUnitTestDatabaseThenFindInsertedRecord_CountOfLogIncreasedByOne),
             Level = "UNITTEST",
@@ -136,8 +133,8 @@ public class IntegrationTestConfiguration_TestContextTests
         });
 
         //Act
-        var countAfterInsert = await IntegrationTests.TestContext.CountAsync<Log>();
-        await IntegrationTests.TestContext.TearDownTestContext();
+        var countAfterInsert = await TestContext.CountAsync<Log>();
+        await TestContext.TearDownTestContext();
 
         //Assert
         Assert.That(countAfterInsert, Is.EqualTo(countBeforeInsert + 1));
@@ -147,8 +144,8 @@ public class IntegrationTestConfiguration_TestContextTests
     public async Task SetupTestContext_TestContextHasTestingDatabase_DeletesOldTestDatabaseAndCreatesNewTestingDatabase()
     {
         //Arrange
-        await IntegrationTests.TestContext.SetupTestContext();
-        var recordInsertedIntoOldTestDatabase = await IntegrationTests.TestContext.AddAsync(new Log
+        await TestContext.SetupTestContext();
+        var recordInsertedIntoOldTestDatabase = await TestContext.AddAsync(new Log
         {
             Message = nameof(SetupTestContext_TestContextHasTestingDatabase_DeletesOldTestDatabaseAndCreatesNewTestingDatabase),
             Level = "UNITTEST",
@@ -157,9 +154,9 @@ public class IntegrationTestConfiguration_TestContextTests
 
         //Act
         //Reinitialize to delete and then create the database. 
-        await IntegrationTests.TestContext.SetupTestContext();
-        var foundRecord = await IntegrationTests.TestContext.FindAsync<Log>(recordInsertedIntoOldTestDatabase.Id);
-        await IntegrationTests.TestContext.TearDownTestContext();
+        await TestContext.SetupTestContext();
+        var foundRecord = await TestContext.FindAsync<Log>(recordInsertedIntoOldTestDatabase.Id);
+        await TestContext.TearDownTestContext();
 
         //Assert
         Assert.That(foundRecord, Is.Null);
@@ -169,32 +166,32 @@ public class IntegrationTestConfiguration_TestContextTests
     public async Task SetupTestContext_TestContextTriesToUseADatabaseOtherThanTheTestingOne_ThrowsError()
     {
         //Arrange
-        await IntegrationTests.TestContext.TearDownTestContext();
+        await TestContext.TearDownTestContext();
 
         //Arrange & Act
         var ex = Assert.ThrowsAsync<InvalidOperationException>(
-            () => IntegrationTests.TestContext.SetupTestContext("IntentionallyBadUnitTest"));
+            () => TestContext.SetupTestContext("IntentionallyBadUnitTest"));
     }
 
     [Test]
     public async Task GetScopeFactory_TestContextNotInitialized_ReturnsNull()
     {
         //Arrange
-        await IntegrationTests.TestContext.TearDownTestContext();
+        await TestContext.TearDownTestContext();
 
         //Arrange & Act
-        Assert.That(IntegrationTests.TestContext.GetScopeFactory(), Is.Null);
+        Assert.That(TestContext.GetScopeFactory(), Is.Null);
     }
 
     [Test]
     public async Task GetScopeFactory_TestContextInitialized_ReturnsFactory()
     {
         //Arrange
-        await IntegrationTests.TestContext.TearDownTestContext();
-        await IntegrationTests.TestContext.SetupTestContext();
+        await TestContext.TearDownTestContext();
+        await TestContext.SetupTestContext();
 
         //Arrange & Act
-        Assert.That(IntegrationTests.TestContext.GetScopeFactory(), Is.Not.Null);
+        Assert.That(TestContext.GetScopeFactory(), Is.Not.Null);
     }
 }
 
@@ -211,7 +208,6 @@ public class IntegrationTestConfiguration_TestCustomWebApplicationFactoryTests()
 
         //Assert
         Assert.That(customWebFactory._environmentName, Is.EqualTo("UnitTest"));
-        //Assert.That(customWebFactory. ._environmentName, Is.EqualTo("UnitTest"));
     }
 
     [Test]

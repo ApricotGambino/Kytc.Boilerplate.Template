@@ -1,12 +1,14 @@
-namespace Kytc.Boilerplate.Template.IntegrationTests;
+namespace IntegrationTests;
 
 using System.Diagnostics.CodeAnalysis;
 using Domain.Entities.Admin;
-using NUnit.Framework;
+using IntegrationTests.IntegrationTestConfigurations;
 
 [ExcludeFromCodeCoverage]
 public class LoggingTests : BaseTestFixture
 {
+
+
     [Test]
     public async Task AddLogEntry1()
     {
@@ -36,6 +38,11 @@ public class LoggingTests : BaseTestFixture
     public async Task AddLogEntry()
     {
         var before = await TestContext.CountAsync<Log>();
+
+        var client = TestContext.GetTestCustomWebApplicationFactory().CreateClient();
+
+        // Act
+        var response = await client.GetAsync("/appSettings");
 
 
         await TestContext.AddAsync(new Log

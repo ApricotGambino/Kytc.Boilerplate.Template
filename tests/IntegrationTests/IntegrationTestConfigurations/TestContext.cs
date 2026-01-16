@@ -1,6 +1,4 @@
-#pragma warning disable IDE0130 // Namespace does not match folder structure, supressing because this is intentional. 
-namespace Kytc.Boilerplate.Template.IntegrationTests;
-#pragma warning restore IDE0130 // Namespace does not match folder structure, supressing because this is intentional. 
+namespace IntegrationTests.IntegrationTestConfigurations;
 
 using System;
 using Infrastructure.Data;
@@ -12,7 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 /// </summary>
 public static class TestContext
 {
-    //private static TestCustomWebApplicationFactory _factory = null!;
+    private static TestCustomWebApplicationFactory _webApplicationfactory = null!;
     private static IServiceScopeFactory? _scopeFactory = null!;
 
     /// <summary>
@@ -21,9 +19,9 @@ public static class TestContext
     /// <returns></returns>
     public static async Task SetupTestContext(string? environmentName = null)
     {
-        var factory = new TestCustomWebApplicationFactory(environmentName);
+        _webApplicationfactory = new TestCustomWebApplicationFactory(environmentName);
 
-        _scopeFactory = factory.Services.GetRequiredService<IServiceScopeFactory>();
+        _scopeFactory = _webApplicationfactory.Services.GetRequiredService<IServiceScopeFactory>();
 
         //Delete the testing database, then create it so it's always new and fresh. 
         var context = _scopeFactory.CreateScope().ServiceProvider.GetRequiredService<ApplicationDbContext>();
@@ -53,6 +51,13 @@ public static class TestContext
         //We really only ever want to set this once in the SetupTestContext method, but in order to make the SetupTestContext method testable,
         //We need to expose it somehow.  This was a lot of text to explain this, and hopefully someone has a better idea than this. 
         _scopeFactory;
+
+    /// <summary>
+    /// This method returns the private scopeFactory.
+    /// </summary>
+    /// <returns></returns>
+    public static TestCustomWebApplicationFactory? GetTestCustomWebApplicationFactory() =>
+        _webApplicationfactory;
 
     /// <summary>
     /// Get's the database context.  We do this so the DB context is grabbed fresh every time, since storing it as a static would lead to issues. 

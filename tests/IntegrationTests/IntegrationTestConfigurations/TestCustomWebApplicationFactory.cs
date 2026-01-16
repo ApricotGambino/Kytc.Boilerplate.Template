@@ -1,6 +1,4 @@
-#pragma warning disable IDE0130 // Namespace does not match folder structure, supressing because this is intentional. 
-namespace Kytc.Boilerplate.Template.IntegrationTests;
-#pragma warning restore IDE0130 // Namespace does not match folder structure, supressing because this is intentional. 
+namespace IntegrationTests.IntegrationTestConfigurations;
 
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
