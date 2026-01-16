@@ -9,7 +9,7 @@ using NUnit.Framework.Internal;
 /// This class' scope is applied to all tests within the namespace within the assembly.
 /// https://docs.nunit.org/articles/nunit/writing-tests/attributes/setupfixture.html
 /// </summary>
-[ExcludeFromCodeCoverage]
+
 [SetUpFixture]
 public class TestingSetup
 {

@@ -1,12 +1,11 @@
 namespace IntegrationTests.WebApplicationTests;
 
-using System.Diagnostics.CodeAnalysis;
 using Domain.Entities.Admin;
 using IntegrationTests.IntegrationTestConfigurations;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-[ExcludeFromCodeCoverage]
+
 public class ProgramTests : BaseTestFixture
 {
     //NOTE:TODO UPDATE THIS UPDATE
@@ -44,7 +43,7 @@ public class ProgramTests : BaseTestFixture
     }
 }
 
-[ExcludeFromCodeCoverage]
+
 [Category("ConfigurationTests")]
 public class WebApplicationBuilderConfigurationsTests
 {

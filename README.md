@@ -55,7 +55,7 @@ LoggingTests
 	=>AddLogEntry1-->
 //TODO: Explain testing categoryes [TestingFramework]
 //TODO: Explain that the code coverage results suck and just say 'MoveNext()' for all async methods...
-
+//TODO: Central Package Management ui doesn't remove it from Directory.Packages.props, also, explain what these are. https://ryanbuening.com/posts/central-package-management/ 
 https://transportation.ky.gov/Pages/New-Team-Kentucky.aspx
 
 <br />

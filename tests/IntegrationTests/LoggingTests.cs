@@ -1,10 +1,9 @@
 namespace IntegrationTests;
 
-using System.Diagnostics.CodeAnalysis;
 using Domain.Entities.Admin;
 using IntegrationTests.IntegrationTestConfigurations;
 
-[ExcludeFromCodeCoverage]
+
 public class LoggingTests : BaseTestFixture
 {
 

@@ -1,11 +1,9 @@
 namespace FunctionalTests;
 
-using System.Diagnostics.CodeAnalysis;
 using Api.Configurations;
 using Microsoft.AspNetCore.Builder;
 using NUnit.Framework;
 
-[ExcludeFromCodeCoverage]
 [Category("WebApplicationBuilderConfigurationTests")]
 public class UnitTest1 : BaseTestFixture
 {

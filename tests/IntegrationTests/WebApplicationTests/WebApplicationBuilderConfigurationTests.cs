@@ -1,9 +1,8 @@
 namespace IntegrationTests.WebApplicationTests;
 
-using System.Diagnostics.CodeAnalysis;
 using IntegrationTests.IntegrationTestConfigurations;
 
-[ExcludeFromCodeCoverage]
+
 public class WebApplicationBuilderConfigurationTests : BaseTestFixture
 {
     //NOTE:TODO UPDATE THIS UPDATE

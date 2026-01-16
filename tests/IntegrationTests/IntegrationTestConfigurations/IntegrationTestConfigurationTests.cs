@@ -1,6 +1,5 @@
 namespace IntegrationTests.IntegrationTestConfigurations;
 
-using System.Diagnostics.CodeAnalysis;
 using Domain.Entities.Admin;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -16,7 +15,6 @@ using NUnit.Framework;
 
 //Also, we SHOULD target to hit 100% code coverage on everything in the INtegrationTestConfigurations with this test suite, who watches the watchers and who tests the testers? 
 
-[ExcludeFromCodeCoverage]
 [Category("TestingFrameworkTests")]
 public class IntegrationTestConfiguration_TestContextTests
 {
@@ -195,7 +193,7 @@ public class IntegrationTestConfiguration_TestContextTests
     }
 }
 
-[ExcludeFromCodeCoverage]
+
 [Category("TestingFrameworkTests")]
 public class IntegrationTestConfiguration_TestCustomWebApplicationFactoryTests()
 {
@@ -246,7 +244,7 @@ public class IntegrationTestConfiguration_TestCustomWebApplicationFactoryTests()
     }
 }
 
-[ExcludeFromCodeCoverage]
+
 [Category("TestingFrameworkTests")]
 public class IntegrationTestConfiguration_BaseTestFixture()
 {
@@ -262,7 +260,7 @@ public class IntegrationTestConfiguration_BaseTestFixture()
     }
 }
 
-[ExcludeFromCodeCoverage]
+
 public static class IntegrationTestConfigurationTestUtilities
 {
     public static string GetUnitTestDatabaseName()
