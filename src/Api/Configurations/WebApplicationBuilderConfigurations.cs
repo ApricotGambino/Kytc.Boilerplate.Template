@@ -4,6 +4,7 @@ using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Protocols.Configuration;
 
 //NOTE: WebApplication.CreateBuilder does a lot of things by default: 
 //Such as appsetting loading, logging and DI.  But we're going to define those manually regardless. 
@@ -44,7 +45,8 @@ public static class WebApplicationBuilderConfigurations
     {
 
         builder.Configuration.AddJsonFile("appsettings.json", optional: false);
-        //TODO: REmove environment variables, we won't use them. 
+
+        //NOTE: This is only used for local development.
         if (builder.Environment.EnvironmentName != "Local")
         {
             //Override the default appsettings with the environment version only if we're not running the 'local' version.
@@ -53,6 +55,37 @@ public static class WebApplicationBuilderConfigurations
 
         return builder;
     }
+
+    /// <summary>
+    /// Add the 'options pattern' to map the appsetting.json file to the AppSetting.cs class. 
+    /// </summary>
+    /// <param name="builder"></param>
+    /// <returns></returns>
+    public static WebApplicationBuilder AddAppSettingsClassBinding(this WebApplicationBuilder builder)
+    {
+        builder.Services.Configure<AppSettings>(builder.Configuration.GetSection(nameof(AppSettings)));
+
+        return builder;
+    }
+
+    /// <summary>
+    /// Returns the bound AppSettings class instance.
+    /// </summary>
+    /// <param name="builder"></param>
+    /// <returns></returns>
+    public static AppSettings GetAppSettings(this WebApplicationBuilder builder)
+    {
+        builder.Services.Configure<AppSettings>(builder.Configuration.GetSection(nameof(AppSettings)));
+        var appSettings = builder.Configuration.GetSection(nameof(AppSettings)).Get<AppSettings>();
+
+        if (appSettings == null)
+        {
+            throw new InvalidConfigurationException("Could not get an AppSetting object from the appsettings.json, is the appsetting.json file formatted correctly?");
+        }
+
+        return appSettings;
+    }
+
     public static WebApplicationBuilder AddDbContext(this WebApplicationBuilder builder, AppSettings appSettings)
     {
         builder.Services.AddDbContext<ApplicationDbContext>((sp, options) =>

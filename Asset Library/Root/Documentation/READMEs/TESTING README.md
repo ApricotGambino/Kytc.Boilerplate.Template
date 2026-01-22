@@ -10,7 +10,13 @@
 ## Getting Started
 //TODO: Explain code coverage
 
+unit: duh
 
+functiona: what can a user do? assumes the system is 'done' and you're calling api endpoints.
+
+integration: non-functional, the workings of the methods. 
+
+should go: unit -> integration -> functional
 
 //TODO: Describe the project here
 
