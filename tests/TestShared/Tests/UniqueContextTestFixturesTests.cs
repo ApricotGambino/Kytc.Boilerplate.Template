@@ -21,8 +21,8 @@ public class UniqueContextTestFixturesContextTests : UniqueContextTestFixture
     {
         //Arrange, Act & Assert
         this._firstTestHasBeenRan = true;
-        await TestingContext.SetupTestContext(_environmentNameUsedInFirstUnitTest);
-        Assert.That(TestingContext.EnvironmentName, Is.EqualTo(_environmentNameUsedInFirstUnitTest));
+        await TestingContext.SetupTestContext(TestingConstants.IntentionallyBadEnvironmentName);
+        Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.IntentionallyBadEnvironmentName));
     }
 
     [Order(2)]

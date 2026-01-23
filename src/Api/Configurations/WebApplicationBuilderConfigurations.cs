@@ -2,7 +2,6 @@ namespace Api.Configurations;
 
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Protocols.Configuration;
 
@@ -43,14 +42,15 @@ public static class WebApplicationBuilderConfigurations
     /// <returns></returns>
     public static WebApplicationBuilder AddAppSettingsJsonFile(this WebApplicationBuilder builder)
     {
-
         builder.Configuration.AddJsonFile("appsettings.json", optional: false);
 
-        //NOTE: This is only used for local development.
+        //NOTE: This is only used for local development
+        //TODO: Explain that this is set from Api/Properties/launchSettings
+        //TODO: Also test to see if we can run the application as a 'unit test user' 
         if (builder.Environment.EnvironmentName != "Local")
         {
             //Override the default appsettings with the environment version only if we're not running the 'local' version.
-            builder.Configuration.AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: false);
+            builder.Configuration.AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true);
         }
 
         return builder;
@@ -90,12 +90,9 @@ public static class WebApplicationBuilderConfigurations
     {
         builder.Services.AddDbContext<ApplicationDbContext>((sp, options) =>
         {
-            options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
+            //TODO: options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
 
-            //options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=Kytc.Boilerplate.Template;Trusted_Connection=True;MultipleActiveResultSets=true");
             options.UseSqlServer(appSettings.ConnectionStrings.DefaultConnection);
-
-            options.ConfigureWarnings(warnings => warnings.Ignore(RelationalEventId.PendingModelChangesWarning));
         });
 
         return builder;

@@ -5,6 +5,7 @@ namespace TestShared.Fixtures;
 /// https://docs.nunit.org/articles/nunit/writing-tests/attributes/testfixture.html
 /// </summary>
 [TestFixture]
+
 public abstract class BaseTestFixture
 {
     //NOTE: This class is abstract so we can override methods, since not all tests want to be ran the same way, but most want to be ran a certain way. An example of this would
@@ -28,5 +29,21 @@ public abstract class BaseTestFixture
     public virtual async Task TestTearDown()
     {
         //Intentionally left blank, feel free to add whatever you like, this is ran after every test.         
+    }
+
+    [OneTimeSetUp]
+    public virtual async Task RunBeforeAnyTests()
+    {
+        //Intentionally left blank, feel free to add whatever you like, this is ran after every test.
+    }
+
+    /// <summary>
+    /// This will be ran once after any tests are ran.  This is not ran for every test. 
+    /// </summary>
+    /// <returns></returns>
+    [OneTimeTearDown]
+    public virtual async Task RunAfterAnyTests()
+    {
+        //Intentionally left blank, feel free to add whatever you like, this is ran after every test.
     }
 }

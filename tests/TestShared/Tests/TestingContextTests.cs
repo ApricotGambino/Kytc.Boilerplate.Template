@@ -27,9 +27,8 @@ public class TestingContextTests
     // 2) Teardown makes everything in the context null. 
     // 3) Reset calls the Teardown, then the Setup. 
     //This ensures that the context works as you'd expect throughout all the testing you man do. 
-
     [OneTimeSetUp]
-    public async Task RunBeforeAnyTests()
+    public async Task RunBeforeTheseTests()
     {
         this.metadataNumberOfSetupTestContextCallsBeforeTestsAreRan = TestingContext.__metadata_NumberOfSetupTestContextCalls;
         this.metadataNumberOfTearDownTestContextCallsBeforeTestsAreRan = TestingContext.__metadata_NumberOfTearDownTestContextCalls;

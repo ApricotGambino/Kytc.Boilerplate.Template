@@ -1,4 +1,9 @@
 namespace TestShared;
+
+using Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+
 //using System;
 //using Infrastructure.Data;
 //using Microsoft.EntityFrameworkCore;
@@ -17,7 +22,10 @@ public static class TestingContext
     public static int __metadata_NumberOfTearDownTestContextCalls { get; private set; }
     public static int __metadata_NumberOfResetTestContextCalls { get; private set; }
     public static bool __metadata_IsContextSetup { get; private set; }
-    public static string EnvironmentName { get; private set; } = TestingConstants.EnvironmentName;
+    public static string? EnvironmentName { get; private set; }
+
+    public static TestCustomWebApplicationFactory? WebApplicationFactory { get; private set; }
+    public static IServiceScopeFactory? ScopeFactory { get; private set; }
 
     /// <summary>
     /// This method will setup the testing context.  This normally is ran at the beginning of test runs. But can be manually called if wanted. 
@@ -38,23 +46,34 @@ public static class TestingContext
             {
                 EnvironmentName = environmentName;
             }
-            //_webApplicationfactory = new TestCustomWebApplicationFactory(environmentName);
+            else
+            {
+                EnvironmentName = TestingConstants.EnvironmentName;
+            }
 
-            //_scopeFactory = _webApplicationfactory.Services.GetRequiredService<IServiceScopeFactory>();
+            WebApplicationFactory = new TestCustomWebApplicationFactory(EnvironmentName);
 
-            ////Delete the testing database, then create it so it's always new and fresh. 
-            //var context = _scopeFactory.CreateScope().ServiceProvider.GetRequiredService<ApplicationDbContext>();
-            //var databaseConnection = context.Database.GetDbConnection();
+            ScopeFactory = WebApplicationFactory.Services.GetRequiredService<IServiceScopeFactory>();
 
-            //if (databaseConnection.Database != "Kytc.Boilerplate.Template.UnitTest")
-            //{
-            //    //This is only a santity check, since we're about to delete the configured database, we want to make doubly sure that we're only
-            //    //deleting the testing database.
-            //    throw new InvalidOperationException($"While setting up the testing context, the database {databaseConnection.Database} was set to be deleted instead of the expected Kytc.Boilerplate.Template.UnitTest database.");
-            //}
+            //Delete the testing database, then create it so it's always new and fresh. 
+            var context = ScopeFactory.CreateScope().ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            var databaseConnection = context.Database.GetDbConnection();
 
-            //await context.Database.EnsureDeletedAsync();
-            //await context.Database.EnsureCreatedAsync();
+            //NOTE: Not using the TestingConstants.UnitTestDatabaseName here because I want to make sure that you're really sure if you're going to modify the expected database name for unit tests.
+            if (databaseConnection.Database != "Kytc.Boilerplate.Template.UnitTest")
+            {
+                //This is only a santity check, since we're about to delete the configured database, we want to make doubly sure that we're only
+                //deleting the testing database.
+                throw new InvalidOperationException($"While setting up the testing context, the database {databaseConnection.Database} was set to be deleted instead of the expected Kytc.Boilerplate.Template.UnitTest database.");
+            }
+
+            await context.Database.EnsureDeletedAsync();
+            await context.Database.EnsureCreatedAsync();
+        }
+        catch (Exception)
+        {
+            await TearDownTestContext();
+            throw;
         }
         finally
         {

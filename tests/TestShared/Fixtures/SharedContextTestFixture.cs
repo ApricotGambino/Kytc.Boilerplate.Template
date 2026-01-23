@@ -4,18 +4,16 @@ namespace TestShared.Fixtures;
 /// That means these tests are going to be slow, because they are going to create and delete
 /// the database for each test.  Sorry about that, but that's what we're testing. 
 /// </summary>
-[Category(TestingCategoryConstants.UniqueContextTests)]
-public class UniqueContextTestFixture : BaseTestFixture
+public class SharedContextTestFixture : BaseTestFixture
 {
     public override async Task TestSetUp()
     {
-        //We want to make sure that the context is fresh prior to each test here. 
-        await TestingContext.TearDownTestContext();
+        //Intentionally left blank, feel free to add whatever you like, this is ran after every test.
     }
 
     public override async Task RunBeforeAnyTests()
     {
-        //Intentionally left blank, feel free to add whatever you like, this is ran after every test.
+        await TestingContext.SetupTestContext();
     }
 
     public override async Task RunAfterAnyTests()

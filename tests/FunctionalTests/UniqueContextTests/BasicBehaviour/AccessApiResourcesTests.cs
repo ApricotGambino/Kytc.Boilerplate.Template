@@ -1,8 +1,8 @@
-namespace FunctionalTests.BasicBehaviour;
+namespace FunctionalTests.UniqueContextTests.BasicBehaviour;
 
 using TestShared.Fixtures;
 
-public class AccessApiResourcesTests : BaseTestFixture
+public class AccessApiResourcesTests : SharedContextTestFixture
 {
     [Test]
     public async Task AccessApiResourcesTests1()

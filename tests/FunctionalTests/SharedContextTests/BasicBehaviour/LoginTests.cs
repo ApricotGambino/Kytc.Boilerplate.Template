@@ -1,8 +1,8 @@
-namespace FunctionalTests.BasicBehaviour;
+namespace FunctionalTests.SharedContextTests.BasicBehaviour;
 
 using TestShared.Fixtures;
 
-public class LoginTests : BaseTestFixture
+public class LoginTests : SharedContextTestFixture
 {
     [Test]
     public async Task LoginTests1()

@@ -2,7 +2,7 @@ namespace IntegrationTests.SharedContextTests.InfrastructureTests;
 
 using TestShared.Fixtures;
 
-public class DatabaseTests : BaseTestFixture
+public class DatabaseTests : SharedContextTestFixture
 {
     [Test]
     public async Task DatabaseTests1()

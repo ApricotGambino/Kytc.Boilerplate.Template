@@ -2,7 +2,7 @@ namespace IntegrationTests.SharedContextTests.ApiTests;
 
 using TestShared.Fixtures;
 
-public class ApiRequestTests : BaseTestFixture
+public class ApiRequestTests : SharedContextTestFixture
 {
     [Test]
     public async Task ApiRequestTests1()

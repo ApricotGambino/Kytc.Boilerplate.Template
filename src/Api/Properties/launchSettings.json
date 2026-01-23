@@ -14,6 +14,17 @@
       "dotnetRunMessages": true,
       "applicationUrl": "https://localhost:7236;http://localhost:5031"
     },
+    "Api (UnitTest)": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "launchUrl": "appsettings",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Local",
+        "SECRET": "LocalSecret"
+      },
+      "dotnetRunMessages": true,
+      "applicationUrl": "https://localhost:7236;http://localhost:5031"
+    },
     "Api (Dev)": {
       "commandName": "Project",
       "launchBrowser": true,
