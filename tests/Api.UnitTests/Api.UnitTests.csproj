@@ -23,7 +23,7 @@
 
   <ItemGroup>
     <Using Include="NUnit.Framework" />
-    <Using Include="TestShared"/>
+    <Using Include="TestShared" />
   </ItemGroup>
 
 </Project>

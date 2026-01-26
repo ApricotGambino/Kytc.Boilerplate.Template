@@ -5,4 +5,10 @@
     <AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute" />
   </ItemGroup>
 
+	<PropertyGroup>
+		<NoWarn>VSTHRD200</NoWarn>
+	</PropertyGroup>
+
+
+
 </Project>

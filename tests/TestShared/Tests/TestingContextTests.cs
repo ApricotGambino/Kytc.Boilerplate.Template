@@ -34,7 +34,7 @@ public class TestingContextTests
         this.metadataNumberOfTearDownTestContextCallsBeforeTestsAreRan = TestingContext.__metadata_NumberOfTearDownTestContextCalls;
         this.metadataNumberOfResetTestContextCallsBeforeTestsAreRan = TestingContext.__metadata_NumberOfResetTestContextCalls;
 
-        await TestingContext.TearDownTestContext();
+        await TestingContext.TearDownTestContextAsync();
         this.numberOfTimesTheseTestsHaveCalledTeardown++;
     }
 
@@ -90,7 +90,7 @@ public class TestingContextTests
     public async Task TestingContext_Test03SetupContext_ContextHasDefaultEnvironmentName()
     {
         //Arrange
-        await TestingContext.SetupTestContext();
+        await TestingContext.SetupTestContextAsync();
         this.numberOfTimesTheseTestsHaveCalledSetup++;
 
         //Act & Assert
@@ -111,7 +111,7 @@ public class TestingContextTests
     public async Task TestingContext_Test05AttemptToSetupContextAgainWithoutTeardown_ThrowsError()
     {
         //Arrange, Act & Assert
-        Assert.ThrowsAsync<InvalidOperationException>(() => TestingContext.SetupTestContext());
+        Assert.ThrowsAsync<InvalidOperationException>(() => TestingContext.SetupTestContextAsync());
     }
 
     [Test]
@@ -119,7 +119,7 @@ public class TestingContextTests
     public async Task TestingContext_Test06TearsDownContext_ContextHasDefaultEnvironmentName()
     {
         //Arrange
-        await TestingContext.TearDownTestContext();
+        await TestingContext.TearDownTestContextAsync();
         this.numberOfTimesTheseTestsHaveCalledTeardown++;
 
         //Act & Assert
@@ -131,7 +131,7 @@ public class TestingContextTests
     public async Task TestingContext_Test07SetupContextAfterTeardown_ContextSetupShouldNotThrowError()
     {
         //Arrange
-        await TestingContext.SetupTestContext();
+        await TestingContext.SetupTestContextAsync();
         this.numberOfTimesTheseTestsHaveCalledSetup++;
 
         //Act & Assert
@@ -143,7 +143,7 @@ public class TestingContextTests
     public async Task TestingContext_Test08ResetContext_ContextShouldBeResetWithAlreadyInitializedContext()
     {
         //Arrange
-        await TestingContext.ResetTestContext();
+        await TestingContext.ResetTestContextAsync();
         this.numberOfTimesTheseTestsHaveCalledReset++;
 
         //Act & Assert
@@ -155,8 +155,8 @@ public class TestingContextTests
     public async Task TestingContext_Test09TearDownContextPriorToResetting_ContextShouldBeResetEvenIfTheContextIsToreDown()
     {
         //Arrange
-        await TestingContext.TearDownTestContext();
-        await TestingContext.ResetTestContext();
+        await TestingContext.TearDownTestContextAsync();
+        await TestingContext.ResetTestContextAsync();
         this.numberOfTimesTheseTestsHaveCalledTeardown++;
         this.numberOfTimesTheseTestsHaveCalledReset++;
 
@@ -169,8 +169,8 @@ public class TestingContextTests
     public async Task TestingContext_Test10SetupContextWithSpecificEnvironmentName_ContextHasSpecificEnvironmentName()
     {
         //Arrange
-        await TestingContext.TearDownTestContext();
-        await TestingContext.SetupTestContext(nameof(TestingContext_Test10SetupContextWithSpecificEnvironmentName_ContextHasSpecificEnvironmentName));
+        await TestingContext.TearDownTestContextAsync();
+        await TestingContext.SetupTestContextAsync(nameof(TestingContext_Test10SetupContextWithSpecificEnvironmentName_ContextHasSpecificEnvironmentName));
         this.numberOfTimesTheseTestsHaveCalledTeardown++;
         this.numberOfTimesTheseTestsHaveCalledSetup++;
 
@@ -192,7 +192,7 @@ public class TestingContextTests
     {
         //Act & Assert
         Assert.That(TestingContext.EnvironmentName, Is.EqualTo(nameof(TestingContext_Test10SetupContextWithSpecificEnvironmentName_ContextHasSpecificEnvironmentName)));
-        await TestingContext.ResetTestContext();
+        await TestingContext.ResetTestContextAsync();
         this.numberOfTimesTheseTestsHaveCalledReset++;
         Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.EnvironmentName));
     }
@@ -204,7 +204,7 @@ public class TestingContextTests
         //Act
         var setupCountBeforeReset = TestingContext.__metadata_NumberOfSetupTestContextCalls;
         var teardownCountBeforeReset = TestingContext.__metadata_NumberOfTearDownTestContextCalls;
-        await TestingContext.ResetTestContext();
+        await TestingContext.ResetTestContextAsync();
         this.numberOfTimesTheseTestsHaveCalledReset++;
         var setupCountAfterReset = TestingContext.__metadata_NumberOfSetupTestContextCalls;
         var teardownCountAfterReset = TestingContext.__metadata_NumberOfTearDownTestContextCalls;
@@ -223,7 +223,7 @@ public class TestingContextTests
         ////Arrange, Act & Assert
         ////NOTE: At this point the context should still be active, so setting it up again should fail.
         var setupCallsPriorToError = TestingContext.__metadata_NumberOfSetupTestContextCalls;
-        Assert.ThrowsAsync<InvalidOperationException>(() => TestingContext.SetupTestContext());
+        Assert.ThrowsAsync<InvalidOperationException>(() => TestingContext.SetupTestContextAsync());
         Assert.That(setupCallsPriorToError, Is.EqualTo(TestingContext.__metadata_NumberOfSetupTestContextCalls));
 
     }

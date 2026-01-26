@@ -5,6 +5,7 @@ public static class TestingConstants
 {
     public const string EnvironmentName = "UnitTest";
     public const string IntentionallyBadEnvironmentName = "IntentionallyBadUnitTest";
+    public const string AlternativeUnitTestEnvironmentName = "AlternativeUnitTest";
     public const string AppSettingKey = "ValueUsedOnlyForAUnitTest";
     public const string AppSettingValue = "Leave this value alone, I am just here for a unit test";
     public const string UnitTestDatabaseName = "Kytc.Boilerplate.Template.UnitTest";

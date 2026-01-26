@@ -6,18 +6,18 @@ namespace TestShared.Fixtures;
 /// </summary>
 public class SharedContextTestFixture : BaseTestFixture
 {
-    public override async Task TestSetUp()
+    public override async Task TestSetUpAsync()
     {
         //Intentionally left blank, feel free to add whatever you like, this is ran after every test.
     }
 
-    public override async Task RunBeforeAnyTests()
+    public override Task RunBeforeAnyTestsAsync()
     {
-        await TestingContext.SetupTestContext();
+        return TestingContext.SetupTestContextAsync();
     }
 
-    public override async Task RunAfterAnyTests()
+    public override Task RunAfterAnyTestsAsync()
     {
-        await TestingContext.TearDownTestContext();
+        return TestingContext.TearDownTestContextAsync();
     }
 }

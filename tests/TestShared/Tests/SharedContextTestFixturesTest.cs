@@ -14,12 +14,11 @@ public class SharedContextTestFixturesTest : SharedContextTestFixture
     //at the start, and always shares the context unless intentionally reset. Using the EnvironmentName here proves that if we create
     //a context with an environment name, that name should persist through tests, since that is only established in the setup. 
     private bool _firstTestHasBeenRan;
-    private const string _environmentNameUsedInFirstUnitTest = $"The Environment Name for the test context was applied in :{nameof(SharedContextTestFixtureTestSetUp_Test1SetupContext_HasSpecificEnvironmentName)}";
 
     [OneTimeSetUp]
-    public async Task RunBeforeTheseTests()
+    public Task RunBeforeTheseTestsAsync()
     {
-        await TestingContext.TearDownTestContext();
+        return TestingContext.TearDownTestContextAsync();
     }
 
     [Order(1)]
@@ -29,8 +28,8 @@ public class SharedContextTestFixturesTest : SharedContextTestFixture
         //Arrange, Act & Assert
 
         this._firstTestHasBeenRan = true;
-        await TestingContext.SetupTestContext(_environmentNameUsedInFirstUnitTest);
-        Assert.That(TestingContext.EnvironmentName, Is.EqualTo(_environmentNameUsedInFirstUnitTest));
+        await TestingContext.SetupTestContextAsync(TestingConstants.AlternativeUnitTestEnvironmentName);
+        Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.AlternativeUnitTestEnvironmentName));
     }
 
     [Order(2)]
@@ -40,7 +39,7 @@ public class SharedContextTestFixturesTest : SharedContextTestFixture
         if (this._firstTestHasBeenRan)
         {
             //Arrange, Act & Assert
-            Assert.That(TestingContext.EnvironmentName, Is.EqualTo(_environmentNameUsedInFirstUnitTest));
+            Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.AlternativeUnitTestEnvironmentName));
         }
         else
         {
@@ -138,7 +137,7 @@ public class SharedContextTestFixtureSetupAndTearDownTests : SharedContextTestFi
         {
             //Arrange, Act & Assert
             //NOTE: ResetTest should call teardown and setup, along with the base test calling setup
-            await TestingContext.ResetTestContext();
+            await TestingContext.ResetTestContextAsync();
             var numberOfTimesSetupHasBeenCalledSinceFirstTest = TestingContext.__metadata_NumberOfSetupTestContextCalls - this._timesContextSetupHasBeenCalled;
             var numberOfTimesTearDownHasBeenCalledSinceFirstTest = TestingContext.__metadata_NumberOfTearDownTestContextCalls - this._timesContextTeardownHasBeenCalled;
             var numberOfTimesResetHasBeenCalledSinceFirstTest = TestingContext.__metadata_NumberOfResetTestContextCalls - this._timesContextResetHasBeenCalled;

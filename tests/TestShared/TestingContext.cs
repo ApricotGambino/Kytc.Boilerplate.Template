@@ -1,4 +1,4 @@
-namespace TestShared;
+﻿namespace TestShared;
 
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -31,13 +31,13 @@ public static class TestingContext
     /// This method will setup the testing context.  This normally is ran at the beginning of test runs. But can be manually called if wanted. 
     /// </summary>
     /// <returns></returns>
-    public static async Task SetupTestContext(string? environmentName = null)
+    public static async Task SetupTestContextAsync(string? environmentName = null)
     {
         if (__metadata_IsContextSetup)
         {
             //NOTE: We want to make sure that if setup is being called, it's in the context of it being 'fresh', this
             //helps prevent tests from setting up context without intentionality. 
-            throw new InvalidOperationException($"Testing Context setup was attempted without ensuring teardown, make sure to teardown context prior to setting up, this can be easily done by using the {nameof(ResetTestContext)} method.");
+            throw new InvalidOperationException($"Testing Context setup was attempted without ensuring teardown, make sure to teardown context prior to setting up, this can be easily done by using the {nameof(ResetTestContextAsync)} method.");
         }
 
         try
@@ -72,7 +72,7 @@ public static class TestingContext
         }
         catch (Exception)
         {
-            await TearDownTestContext();
+            await TearDownTestContextAsync();
             throw;
         }
         finally
@@ -86,7 +86,7 @@ public static class TestingContext
     /// This method will tear down the testing context.  This normally is ran only after all tests are complete. But can be manually called if wanted. 
     /// </summary>
     /// <returns></returns>
-    public static async Task TearDownTestContext()
+    public static async Task TearDownTestContextAsync()
     {
         try
         {
@@ -104,12 +104,12 @@ public static class TestingContext
     /// </summary>
     /// <param name="environmentName"></param>
     /// <returns></returns>
-    public static async Task ResetTestContext(string? environmentName = null)
+    public static async Task ResetTestContextAsync(string? environmentName = null)
     {
         try
         {
-            await TearDownTestContext();
-            await SetupTestContext(environmentName);
+            await TearDownTestContextAsync();
+            await SetupTestContextAsync(environmentName);
         }
         finally
         {

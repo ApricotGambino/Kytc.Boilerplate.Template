@@ -7,19 +7,19 @@ namespace TestShared.Fixtures;
 [Category(TestingCategoryConstants.UniqueContextTests)]
 public class UniqueContextTestFixture : BaseTestFixture
 {
-    public override async Task TestSetUp()
+    public override Task TestSetUpAsync()
     {
         //We want to make sure that the context is fresh prior to each test here. 
-        await TestingContext.TearDownTestContext();
+        return TestingContext.TearDownTestContextAsync();
     }
 
-    public override async Task RunBeforeAnyTests()
+    public override async Task RunBeforeAnyTestsAsync()
     {
         //Intentionally left blank, feel free to add whatever you like, this is ran after every test.
     }
 
-    public override async Task RunAfterAnyTests()
+    public override Task RunAfterAnyTestsAsync()
     {
-        await TestingContext.TearDownTestContext();
+        return TestingContext.TearDownTestContextAsync();
     }
 }

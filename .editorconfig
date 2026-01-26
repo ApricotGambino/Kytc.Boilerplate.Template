@@ -407,7 +407,6 @@ dotnet_naming_rule.sanity_check_uncovered_field_case_rule.symbols  = sanity_chec
 dotnet_naming_rule.sanity_check_uncovered_field_case_rule.style = internal_error_style
 dotnet_naming_rule.sanity_check_uncovered_field_case_rule.severity = error
 
-
 ##########################################
 # Other Naming Rules
 ##########################################
@@ -448,6 +447,10 @@ dotnet_naming_symbols.parameters_group.applicable_kinds = parameter
 dotnet_naming_rule.parameters_rule.symbols              = parameters_group
 dotnet_naming_rule.parameters_rule.style = camel_case_style
 dotnet_naming_rule.parameters_rule.severity = warning
+
+
+
+
 
 ##########################################
 # License
@@ -492,3 +495,17 @@ end_of_line = crlf
 
 # IDE0032: Use auto property
 dotnet_diagnostic.IDE0032.severity = silent
+
+# VSTHRD200: Use "Async" suffix for async methods
+dotnet_diagnostic.VSTHRD200.severity = error
+
+
+# AsyncFixer01: Unnecessary async/await usage
+dotnet_diagnostic.AsyncFixer01.severity = error
+
+# VSTHRD111: Use ConfigureAwait(bool)
+# since 99% of the time we're writing code that relies on the UI at some point, so
+# we really don't need to ever use ConfigureAwait(false), and the default (true) works fine.
+# this is a really confusing topic, and frankly I'm just silencing the warnings because
+# the threading checker does good work, but here it's really annoying without a super clear path forward. 
+dotnet_diagnostic.VSTHRD111.severity = none

@@ -16,7 +16,7 @@ public abstract class BaseTestFixture
     /// </summary>
     /// <returns></returns>
     [SetUp]
-    public virtual async Task TestSetUp()
+    public virtual async Task TestSetUpAsync()
     {
         //Intentionally left blank, feel free to add whatever you like, this is ran before every test. 
     }
@@ -26,13 +26,13 @@ public abstract class BaseTestFixture
     /// </summary>
     /// <returns></returns>
     [TearDown]
-    public virtual async Task TestTearDown()
+    public virtual async Task TestTearDownAsync()
     {
         //Intentionally left blank, feel free to add whatever you like, this is ran after every test.         
     }
 
     [OneTimeSetUp]
-    public virtual async Task RunBeforeAnyTests()
+    public virtual async Task RunBeforeAnyTestsAsync()
     {
         //Intentionally left blank, feel free to add whatever you like, this is ran after every test.
     }
@@ -42,7 +42,7 @@ public abstract class BaseTestFixture
     /// </summary>
     /// <returns></returns>
     [OneTimeTearDown]
-    public virtual async Task RunAfterAnyTests()
+    public virtual async Task RunAfterAnyTestsAsync()
     {
         //Intentionally left blank, feel free to add whatever you like, this is ran after every test.
     }

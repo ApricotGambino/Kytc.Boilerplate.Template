@@ -13,7 +13,6 @@ public class UniqueContextTestFixturesContextTests : UniqueContextTestFixture
     //try to create a context at any point, and always tears the context down. Using the EnvironmentName here proves that if we create
     //a context with an environment name, that name should not persist through tests, since that is only established in the setup, which needs to be manually called. 
     private bool _firstTestHasBeenRan;
-    private const string _environmentNameUsedInFirstUnitTest = $"The Environment Name for the test context was applied in :{nameof(UniqueContextTestFixtureTestSetUp_Test1SetupContext_HasSpecificEnvironmentName)}";
 
     [Order(1)]
     [Test]
@@ -21,8 +20,8 @@ public class UniqueContextTestFixturesContextTests : UniqueContextTestFixture
     {
         //Arrange, Act & Assert
         this._firstTestHasBeenRan = true;
-        await TestingContext.SetupTestContext(TestingConstants.IntentionallyBadEnvironmentName);
-        Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.IntentionallyBadEnvironmentName));
+        await TestingContext.SetupTestContextAsync(TestingConstants.AlternativeUnitTestEnvironmentName);
+        Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.AlternativeUnitTestEnvironmentName));
     }
 
     [Order(2)]
@@ -32,7 +31,8 @@ public class UniqueContextTestFixturesContextTests : UniqueContextTestFixture
         if (this._firstTestHasBeenRan)
         {
             //Arrange, Act & Assert
-            Assert.That(TestingContext.EnvironmentName, Is.Not.EqualTo(_environmentNameUsedInFirstUnitTest));
+            Assert.That(TestingContext.EnvironmentName, Is.Not.EqualTo(TestingConstants.AlternativeUnitTestEnvironmentName));
+            Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.EnvironmentName));
         }
         else
         {
