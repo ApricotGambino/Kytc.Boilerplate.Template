@@ -4,14 +4,9 @@ using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-//using System;
-//using Infrastructure.Data;
-//using Microsoft.EntityFrameworkCore;
-//using Microsoft.Extensions.DependencyInjection;
-
 /// <summary>
 /// This class allows us to access the context of all testing needs.  
-/// </summary>
+/// </summary> 
 
 public static class TestingContext
 {
@@ -27,10 +22,14 @@ public static class TestingContext
     public static TestCustomWebApplicationFactory? WebApplicationFactory { get; private set; }
     public static IServiceScopeFactory? ScopeFactory { get; private set; }
 
+
+
     /// <summary>
     /// This method will setup the testing context.  This normally is ran at the beginning of test runs. But can be manually called if wanted. 
     /// </summary>
+    /// <param name="environmentName"></param>
     /// <returns></returns>
+    /// <exception cref="InvalidOperationException"></exception>
     public static async Task SetupTestContextAsync(string? environmentName = null)
     {
         if (__metadata_IsContextSetup)

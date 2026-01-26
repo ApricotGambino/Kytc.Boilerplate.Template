@@ -41,7 +41,13 @@ using Serilog;
 //About time to work on creating the template proper. 
 //  And now it's time to think about how to add these 'BP' files, since they ar ecritical, should they be uh..
 //  Put in a way that's easy to know 'dont mess with these?'
-//Eventually, you can work on the front end. 
+//Eventually, you can work on the front end.  
+
+
+
+//TODO: Explain all the anlyzizsers I've installed
+//  Also, that for VS, it only analysis open files unless you change your setting: 
+// https://stackoverflow.com/questions/49592058/roslyn-analyzer-only-runs-for-open-files
 
 try
 {
@@ -75,15 +81,15 @@ try
         return appSettings;
     });
 
-    app.Run();
+    await app.RunAsync();
 }
 catch (Exception ex)
 {
+    //TODO: Test how exceptions bubble up with this. 
     Log.Fatal(ex, "Application terminated unexpectedly");
-    throw;
 }
 finally
 {
-    Log.CloseAndFlush();
+    await Log.CloseAndFlushAsync();
 }
 //public partial class Program { }

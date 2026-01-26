@@ -15,7 +15,7 @@ public static class InfrastructureServiceExtensions
         ILogger logger)
     {
         //string? connectionString = config.GetConnectionString("SqliteConnection");
-        var connectionString = config.GetConnectionString("DefaultConnection");
+        //var connectionString = config.GetConnectionString("DefaultConnection");
         //Guard.Against.Null(connectionString, message: "Connection string 'CleanArchitectureDb' not found.");
 
         //services.AddDbContext<ApplicationDbContext>((sp, options) =>

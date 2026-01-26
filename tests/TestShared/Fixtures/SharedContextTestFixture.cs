@@ -4,7 +4,7 @@ namespace TestShared.Fixtures;
 /// That means these tests are going to be slow, because they are going to create and delete
 /// the database for each test.  Sorry about that, but that's what we're testing. 
 /// </summary>
-public class SharedContextTestFixture : BaseTestFixture
+public abstract class SharedContextTestFixture : BaseTestFixture
 {
     public override async Task TestSetUpAsync()
     {

@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 /// </summary>
 public class TestCustomWebApplicationFactory : WebApplicationFactory<Program>
 {
-    public string EnvironmentName { get; private set; }
+    public string EnvironmentName { get; }
     public TestCustomWebApplicationFactory(string environmentName)
     {
         if (string.IsNullOrWhiteSpace(environmentName))

@@ -7,3 +7,15 @@ public interface ILoggerService
 
 
 
+internal interface IBankAccount
+{
+    public void AddMoney(int money);
+}
+
+internal class BankAccount : IBankAccount
+{
+    public void AddMoney(int amount) // Noncompliant: parameter's name differs from base
+    {
+        // ...
+    }
+}

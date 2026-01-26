@@ -60,7 +60,7 @@ public class WebApplicationBuilderConfigurationTests : BaseTestFixture
         Assert.That(appSettings, Is.Not.Null);
         Assert.That(appSettings.ConnectionStrings.DefaultConnection, Is.EqualTo("Server=(localdb)\\mssqllocaldb;Database=Kytc.Boilerplate.Template.UnitTest;Trusted_Connection=True;MultipleActiveResultSets=true"));
     }
-    #endregion
+    #endregion AddAppSettingsJsonFile
 
     #region GetAppSetting
     [Test]
@@ -109,7 +109,7 @@ public class WebApplicationBuilderConfigurationTests : BaseTestFixture
         Assert.That(appSettings.ConnectionStrings.DefaultConnection, Is.Not.EqualTo("Server=(localdb)\\mssqllocaldb;Database=Kytc.Boilerplate.Template.UnitTest;Trusted_Connection=True;MultipleActiveResultSets=true"));
         Assert.That(appSettings.ConnectionStrings.DefaultConnection, Is.EqualTo("Server=(localdb)\\mssqllocaldb;Database=ThisDatabaseShouldntExistAndShouldFailTesting;Trusted_Connection=True;MultipleActiveResultSets=true"));
     }
-    #endregion
+    #endregion GetAppSetting
 
     #region AddDbContext
 
@@ -152,5 +152,5 @@ public class WebApplicationBuilderConfigurationTests : BaseTestFixture
         //Act
         Assert.That(databaseConnection.Database, Is.Not.EqualTo(TestingConstants.UnitTestDatabaseName));
     }
-    #endregion
+    #endregion AddDbContext
 }

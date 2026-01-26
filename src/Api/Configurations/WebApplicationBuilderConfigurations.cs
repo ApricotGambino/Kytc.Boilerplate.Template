@@ -73,6 +73,7 @@ public static class WebApplicationBuilderConfigurations
     /// </summary>
     /// <param name="builder"></param>
     /// <returns></returns>
+    /// <exception cref="InvalidConfigurationException"></exception>
     public static AppSettings GetAppSettings(this WebApplicationBuilder builder)
     {
         builder.Services.Configure<AppSettings>(builder.Configuration.GetSection(nameof(AppSettings)));

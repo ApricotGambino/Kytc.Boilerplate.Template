@@ -101,7 +101,6 @@ public class TestingContextTests
     [Order(4)]
     public async Task TestingContext_Test04DoNothing_ContextStillHasDefaultEnvironmentName()
     {
-        ;
         //Arrange, Act & Assert
         Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.EnvironmentName));
     }
@@ -128,7 +127,9 @@ public class TestingContextTests
 
     [Test]
     [Order(7)]
+#pragma warning disable S4144 // Methods should not have identical implementations
     public async Task TestingContext_Test07SetupContextAfterTeardown_ContextSetupShouldNotThrowError()
+#pragma warning restore S4144 // Methods should not have identical implementations
     {
         //Arrange
         await TestingContext.SetupTestContextAsync();
@@ -163,7 +164,6 @@ public class TestingContextTests
         //Act & Assert
         Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.EnvironmentName));
     }
-
     [Test]
     [Order(10)]
     public async Task TestingContext_Test10SetupContextWithSpecificEnvironmentName_ContextHasSpecificEnvironmentName()
@@ -238,9 +238,9 @@ public class TestingContextTests
         //Setup was called technically 5 times, but two of them was an intentional error,
         //so we didn't really initialize, and won't count those, and because of Test: TestingContext_Test14ContextAlreadySetupButCallSetupAgainToError_MetadataSetupCallsShouldNotIncrementFromError,
         //we know the context won't count it either. 
-        var numberOfTimesSetupTestContextWasSuccessfullyCalledInthisTestSuite = 3;
-        var numberOfTimesTearDownTestContextMethodWasCalledInthisTestSuite = 4;
-        var numberOfTimesResetMethodWasCalledInthisTestSuite = 4;
+        const int numberOfTimesSetupTestContextWasSuccessfullyCalledInthisTestSuite = 3;
+        const int numberOfTimesTearDownTestContextMethodWasCalledInthisTestSuite = 4;
+        const int numberOfTimesResetMethodWasCalledInthisTestSuite = 4;
         using (Assert.EnterMultipleScope())
         {
             //This tells us that the number of times we found calls to these methods is the same as the number

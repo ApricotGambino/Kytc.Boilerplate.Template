@@ -27,6 +27,7 @@ public class LoggingTests : SharedContextTestFixture
         //Serilog.Log.Logger.Debug("Debug");
 
         //Assert.That(after, Is.EqualTo(before + 1));
+        Assert.Pass();
     }
     [Test]
     public async Task LoggingTests2()

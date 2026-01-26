@@ -5,7 +5,7 @@ namespace TestShared.Fixtures;
 /// the database for each test.  Sorry about that, but that's what we're testing. 
 /// </summary>
 [Category(TestingCategoryConstants.UniqueContextTests)]
-public class UniqueContextTestFixture : BaseTestFixture
+public abstract class UniqueContextTestFixture : BaseTestFixture
 {
     public override Task TestSetUpAsync()
     {

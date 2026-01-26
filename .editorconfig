@@ -509,3 +509,15 @@ dotnet_diagnostic.AsyncFixer01.severity = error
 # this is a really confusing topic, and frankly I'm just silencing the warnings because
 # the threading checker does good work, but here it's really annoying without a super clear path forward. 
 dotnet_diagnostic.VSTHRD111.severity = none
+
+# RCS1037: Remove trailing white-space
+dotnet_diagnostic.RCS1037.severity = none
+
+# RCS1228: Unused element in a documentation comment
+dotnet_diagnostic.RCS1228.severity = none
+
+# RCS1181: Convert comment to documentation comment
+dotnet_diagnostic.RCS1181.severity = none
+
+# S125: Sections of code should not be commented out
+dotnet_diagnostic.S125.severity = none
