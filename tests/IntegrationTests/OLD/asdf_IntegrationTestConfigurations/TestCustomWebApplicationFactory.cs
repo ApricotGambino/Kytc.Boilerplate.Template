@@ -15,11 +15,11 @@
 //    {
 //        if (environmentName != null)
 //        {
-//            this._environmentName = environmentName;
+//            _environmentName = environmentName;
 //        }
 //        else
 //        {
-//            this._environmentName = "UnitTest";
+//            _environmentName = "UnitTest";
 //        }
 //    }
 
@@ -29,7 +29,7 @@
 //        //something like: customWebFactory.Services.GetRequiredService<IServiceScopeFactory>();
 
 //        //We're using environmental variables to ensure that the correct appsettings.json is used during build. 
-//        builder.UseEnvironment(this._environmentName);
+//        builder.UseEnvironment(_environmentName);
 
 
 //        //This is intentionally left blank, but you can use this to override configuration of services after the build.

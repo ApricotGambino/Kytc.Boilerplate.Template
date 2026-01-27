@@ -19,7 +19,7 @@ public class UniqueContextTestFixturesContextTests : UniqueContextTestFixture
     public async Task UniqueContextTestFixtureTestSetUp_Test1SetupContext_HasSpecificEnvironmentName()
     {
         //Arrange, Act & Assert
-        this._firstTestHasBeenRan = true;
+        _firstTestHasBeenRan = true;
         await TestingContext.SetupTestContextAsync(TestingConstants.AlternativeUnitTestEnvironmentName);
         Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.AlternativeUnitTestEnvironmentName));
     }
@@ -28,7 +28,7 @@ public class UniqueContextTestFixturesContextTests : UniqueContextTestFixture
     [Test]
     public async Task UniqueContextTestFixtureTestSetUp_Test2DoNothing_EnvironmentNameIsNotTheSameAsPriorTest()
     {
-        if (this._firstTestHasBeenRan)
+        if (_firstTestHasBeenRan)
         {
             //Arrange, Act & Assert
             Assert.That(TestingContext.EnvironmentName, Is.Not.EqualTo(TestingConstants.AlternativeUnitTestEnvironmentName));
@@ -60,10 +60,10 @@ public class UniqueContextTestFixtureSetupAndTearDownTests : UniqueContextTestFi
     public async Task UniqueContextTestFixtureSetupAndTearDownTests_Test1_DoNothing()
     {
         //Arrange, Act & Assert
-        this._timesContextSetupHasBeenCalled = TestingContext.__metadata_NumberOfSetupTestContextCalls;
-        this._timesContextTeardownHasBeenCalled = TestingContext.__metadata_NumberOfTearDownTestContextCalls;
+        _timesContextSetupHasBeenCalled = TestingContext.__metadata_NumberOfSetupTestContextCalls;
+        _timesContextTeardownHasBeenCalled = TestingContext.__metadata_NumberOfTearDownTestContextCalls;
 
-        this._firstTestHasBeenRan = true;
+        _firstTestHasBeenRan = true;
 
         Assert.Pass();
     }
@@ -73,12 +73,12 @@ public class UniqueContextTestFixtureSetupAndTearDownTests : UniqueContextTestFi
     public async Task UniqueContextTestFixtureSetupAndTearDownTests_Test2_SetupCalledZeroTimesAndTearDownCalledOnce()
     {
 
-        if (this._firstTestHasBeenRan)
+        if (_firstTestHasBeenRan)
         {
             //Arrange, Act & Assert
-            this._secondTestHasBeenRan = true;
-            var numberOfTimesSetupHasBeenCalledSinceFirstTest = TestingContext.__metadata_NumberOfSetupTestContextCalls - this._timesContextSetupHasBeenCalled;
-            var numberOfTimesTearDownHasBeenCalledSinceFirstTest = TestingContext.__metadata_NumberOfTearDownTestContextCalls - this._timesContextTeardownHasBeenCalled;
+            _secondTestHasBeenRan = true;
+            var numberOfTimesSetupHasBeenCalledSinceFirstTest = TestingContext.__metadata_NumberOfSetupTestContextCalls - _timesContextSetupHasBeenCalled;
+            var numberOfTimesTearDownHasBeenCalledSinceFirstTest = TestingContext.__metadata_NumberOfTearDownTestContextCalls - _timesContextTeardownHasBeenCalled;
             using (Assert.EnterMultipleScope())
             {
                 Assert.That(numberOfTimesSetupHasBeenCalledSinceFirstTest, Is.Zero);
@@ -96,11 +96,11 @@ public class UniqueContextTestFixtureSetupAndTearDownTests : UniqueContextTestFi
     public async Task UniqueContextTestFixtureSetupAndTearDownTests_Test3_SetupCalledZeroTimesAndTearDownCalledTwice()
     {
 
-        if (this._secondTestHasBeenRan)
+        if (_secondTestHasBeenRan)
         {
             //Arrange, Act & Assert
-            var numberOfTimesSetupHasBeenCalledSinceFirstTest = TestingContext.__metadata_NumberOfSetupTestContextCalls - this._timesContextSetupHasBeenCalled;
-            var numberOfTimesTearDownHasBeenCalledSinceFirstTest = TestingContext.__metadata_NumberOfTearDownTestContextCalls - this._timesContextTeardownHasBeenCalled;
+            var numberOfTimesSetupHasBeenCalledSinceFirstTest = TestingContext.__metadata_NumberOfSetupTestContextCalls - _timesContextSetupHasBeenCalled;
+            var numberOfTimesTearDownHasBeenCalledSinceFirstTest = TestingContext.__metadata_NumberOfTearDownTestContextCalls - _timesContextTeardownHasBeenCalled;
             using (Assert.EnterMultipleScope())
             {
                 Assert.That(numberOfTimesSetupHasBeenCalledSinceFirstTest, Is.Zero);

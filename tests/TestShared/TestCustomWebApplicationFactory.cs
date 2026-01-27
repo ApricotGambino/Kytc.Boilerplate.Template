@@ -16,7 +16,7 @@ public class TestCustomWebApplicationFactory : WebApplicationFactory<Program>
         {
             throw new ArgumentNullException(environmentName, "An environment name must be provided when creating this class to avoid unexpected functionality.");
         }
-        this.EnvironmentName = environmentName;
+        EnvironmentName = environmentName;
     }
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
@@ -25,7 +25,7 @@ public class TestCustomWebApplicationFactory : WebApplicationFactory<Program>
         //something like: customWebFactory.Services.GetRequiredService<IServiceScopeFactory>();
 
         //We're using environmental variables to ensure that the correct appsettings.json is used during build. 
-        builder.UseEnvironment(this.EnvironmentName);
+        builder.UseEnvironment(EnvironmentName);
 
 
         //This is intentionally left blank, but you can use this to override configuration of services after the build.

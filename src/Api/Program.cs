@@ -1,5 +1,7 @@
 using Api;
 using Api.Configurations;
+using Domain.Interfaces.Features.Logging;
+using Infrastructure.Features.Logging.Services;
 using Microsoft.Extensions.Options;
 using Serilog;
 
@@ -49,6 +51,8 @@ using Serilog;
 //  Also, that for VS, it only analysis open files unless you change your setting: 
 // https://stackoverflow.com/questions/49592058/roslyn-analyzer-only-runs-for-open-files
 
+//TODO: Make service calls and API calls paginated. Somehow.
+
 try
 {
     var builder = WebApplication.CreateBuilder(args);
@@ -70,7 +74,12 @@ try
         .AddLoggerConfigs(appSettings)
         .AddDbContext(appSettings);
 
+    //TODO: Figure out where to put service registrations.
+    builder.Services.AddScoped<ILoggingService, LoggingService>();
+
     var app = builder.Build();
+
+
 
     app.UseHttpsRedirection();
 

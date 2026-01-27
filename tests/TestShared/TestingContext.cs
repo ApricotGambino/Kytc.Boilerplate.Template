@@ -21,6 +21,7 @@ public static class TestingContext
 
     public static TestCustomWebApplicationFactory? WebApplicationFactory { get; private set; }
     public static IServiceScopeFactory? ScopeFactory { get; private set; }
+    public static IServiceProvider ServiceProvider { get; private set; }
 
 
 
@@ -32,6 +33,7 @@ public static class TestingContext
     /// <exception cref="InvalidOperationException"></exception>
     public static async Task SetupTestContextAsync(string? environmentName = null)
     {
+        //TODO: Make sure everything is tore down
         if (__metadata_IsContextSetup)
         {
             //NOTE: We want to make sure that if setup is being called, it's in the context of it being 'fresh', this
@@ -55,7 +57,10 @@ public static class TestingContext
             ScopeFactory = WebApplicationFactory.Services.GetRequiredService<IServiceScopeFactory>();
 
             //Delete the testing database, then create it so it's always new and fresh. 
-            var context = ScopeFactory.CreateScope().ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            //var a = ScopeFactory.CreateScope().ServiceProvider;
+            //var test = ScopeFactory.CreateScope().ServiceProvider.GetRequiredService<ILoggingService>();
+            ServiceProvider = ScopeFactory.CreateScope().ServiceProvider;
+            var context = ServiceProvider.GetRequiredService<ApplicationDbContext>();
             var databaseConnection = context.Database.GetDbConnection();
 
             //NOTE: Not using the TestingConstants.UnitTestDatabaseName here because I want to make sure that you're really sure if you're going to modify the expected database name for unit tests.
@@ -114,6 +119,16 @@ public static class TestingContext
         {
             __metadata_NumberOfResetTestContextCalls++;
         }
+    }
+
+    //public static GetService<T>()
+    //{
+    //    return _serviceProvider.GetRequiredService<ApplicationDbContext>();
+    //}
+
+    public static T GetService<T>() where T : notnull
+    {
+        return ServiceProvider.GetRequiredService<T>();
     }
 
     //private static TestCustomWebApplicationFactory _webApplicationfactory = null!;

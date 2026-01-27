@@ -13,7 +13,7 @@
 //    [Test]
 //    public async Task BaseSetUpFixtureOneTimeSetUp_ResetContext_HasSpecificEnvironmentName()
 //    {
-//        this._firstTestHasBeenRan = true;
+//        _firstTestHasBeenRan = true;
 //        Assert.That(TestingContext._environmentName, Is.EqualTo(TestingConstants.EnvironmentName));
 //        await TestingContext.ResetTestContext(_environmentNameUsedInFirstUnitTest);
 //        Assert.That(TestingContext._environmentName, Is.EqualTo(_environmentNameUsedInFirstUnitTest));
@@ -23,7 +23,7 @@
 //    [Test]
 //    public async Task BaseSetUpFixtureOneTimeSetUp_DoNothing_HasSpecificEnvironmentNameSetFromFirstTest()
 //    {
-//        if (this._firstTestHasBeenRan)
+//        if (_firstTestHasBeenRan)
 //        {
 //            Assert.That(TestingContext._environmentName, Is.EqualTo(_environmentNameUsedInFirstUnitTest));
 //        }
