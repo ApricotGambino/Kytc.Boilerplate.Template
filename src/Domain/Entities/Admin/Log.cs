@@ -1,8 +1,9 @@
 namespace Domain.Entities.Admin;
 
-public class Log
+using Domain.Entities.Common;
+
+public class Log : BaseEntity
 {
-    public int Id { get; set; }
     public required string Message { get; set; }
     public required string MessageTemplate { get; set; }
     public required string Level { get; set; }

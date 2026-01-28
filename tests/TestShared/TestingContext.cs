@@ -64,11 +64,12 @@ public static class TestingContext
             var databaseConnection = context.Database.GetDbConnection();
 
             //NOTE: Not using the TestingConstants.UnitTestDatabaseName here because I want to make sure that you're really sure if you're going to modify the expected database name for unit tests.
-            if (databaseConnection.Database != "Kytc.Boilerplate.Template.UnitTest")
+            if (databaseConnection.Database != "Kytc.Boilerplate.Template.UnitTest"
+                && databaseConnection.Database != "Kytc.Boilerplate.Template.PerformanceUnitTest")
             {
                 //This is only a santity check, since we're about to delete the configured database, we want to make doubly sure that we're only
                 //deleting the testing database.
-                throw new InvalidOperationException($"While setting up the testing context, the database {databaseConnection.Database} was set to be deleted instead of the expected Kytc.Boilerplate.Template.UnitTest database.");
+                throw new InvalidOperationException($"While setting up the testing context, the database {databaseConnection.Database} was set to be deleted instead of an exepected UnitTest database.");
             }
 
             await context.Database.EnsureDeletedAsync();

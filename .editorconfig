@@ -522,3 +522,6 @@ dotnet_diagnostic.S125.severity = none
 
 # IDE0009: Member access should be qualified.
 dotnet_diagnostic.IDE0009.severity = none
+
+# IDE0078: Use pattern matching
+dotnet_diagnostic.IDE0078.severity = none

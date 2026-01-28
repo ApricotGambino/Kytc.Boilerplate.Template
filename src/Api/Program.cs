@@ -9,6 +9,14 @@ using Serilog;
 //[DONE]Create compiler error for methods that are async to be named _async
 //[DONE]Create compiler error for methods that are async to not return void.
 
+//TODO: Use .AsNoTracking for readonly DB. stuff. 
+//This would work on a repo class: 
+//public IQueryable<T> GetQuery<T>() where T : class
+//{
+//    return this.Set<T>().AsNoTracking();
+//}
+
+
 //Creating a logging service that writes and reads from the DB.
 //  NOTE: This service isn't a replacment for using the .net logging feature, it gets
 //  data that we may want specifically for logging on the admin screen.

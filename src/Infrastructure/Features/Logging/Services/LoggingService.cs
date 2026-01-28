@@ -25,4 +25,21 @@ public class LoggingService(ApplicationDbContext context) : ILoggingService
 
         return logQuery.ToListAsync();
     }
+
+    //public Task<List<Log>> GetLogs(int pageSize, int skip)
+    //{
+
+    //    var logQuery = _context.Logs
+    //            //.Where(p => p.TimeStamp >= DateTime.Now.AddDays(-30))
+    //            .OrderByDescending(p => p.TimeStamp)
+    //            .Skip(skip)
+    //            .Take(pageSize);
+
+    //    //if (!includeInformationLevel)
+    //    //{
+    //    //    logQuery = logQuery.Where(p => p.Level != LogLevel.Information.ToString());
+    //    //}
+
+    //    return logQuery.ToListAsync();
+    //}
 }
