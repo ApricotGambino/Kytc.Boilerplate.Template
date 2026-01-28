@@ -30,9 +30,11 @@ public class EntityFrameworkPerformanceTests : SharedContextPerformanceTestFixtu
 
 
         //Microsoft.AspNetCore.Identity.EntityFrameworkCore Version="10.0.2.0"
-        var efCoreVersion = Assembly.GetAssembly(typeof(Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext)).GetName().Version.ToString();
+        var efCoreVersion = Assembly.GetAssembly(typeof(Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityDbContext))!.GetName().Version!.ToString();
         //Microsoft.EntityFrameworkCore.SqlServer" Version="10.0.2.0" />
-        var sqlVersion = Assembly.GetAssembly(typeof(Microsoft.EntityFrameworkCore.SqlServer.Internal.SqlServerResources)).GetName().Version.ToString();
+#pragma warning disable EF1001 // Internal EF Core API usage.
+        var sqlVersion = Assembly.GetAssembly(typeof(Microsoft.EntityFrameworkCore.SqlServer.Internal.SqlServerResources))!.GetName().Version!.ToString();
+#pragma warning restore EF1001 // Internal EF Core API usage.
 
         Assume.That(efCoreVersion, Is.EqualTo("10.0.2.0"));
         Assume.That(sqlVersion, Is.EqualTo("10.0.2.0"));
