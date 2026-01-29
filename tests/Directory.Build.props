@@ -9,6 +9,7 @@
 		<NoWarn>VSTHRD200</NoWarn>
 	</PropertyGroup>
 
-
-
+	<ItemGroup>
+		<Using Include="Domain.Extensions"/>
+	</ItemGroup>
 </Project>

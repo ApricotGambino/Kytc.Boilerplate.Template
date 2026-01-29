@@ -99,7 +99,6 @@ public class EntityFrameworkPerformanceTests : SharedContextPerformanceTestFixtu
         return watch.ElapsedMilliseconds;
     }
 
-
     [Order(1)]
     [Test]
     public async Task AddAsyncInALoopRoughlyTheSameSpeedAsAddRangeAsync()
