@@ -20,10 +20,12 @@ public static class PaginationExtensions
         //and using this keyset pagination method to get subsequent pages is going to be more efficient than constantly using offset pagination.
 
         var result = list
-          //.Where(t => keySelector(t).CompareTo(value) < 0)//negative = before, zero = this one, positive = next one
-          .Where(p => keySelector(p).CompareTo(lastValue) > 0 || (keySelector(p).CompareTo(lastValue) == 0 && p.Id > lastId))
+          .Where(p => (keySelector(p).CompareTo(lastValue) == 0 && p.Id > lastId) || keySelector(p).CompareTo(lastValue) > 0)
+          .OrderBy(keySelector)
           .Take(pageSize)
           .ToList();
         return result.ToList();
     }
+
+
 }
