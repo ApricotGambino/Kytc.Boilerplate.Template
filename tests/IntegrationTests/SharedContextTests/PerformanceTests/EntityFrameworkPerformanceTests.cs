@@ -1,4 +1,4 @@
-﻿namespace IntegrationTests.SharedContextTests.FeatureTests.ServiceTests.LoggingTests;
+namespace IntegrationTests.SharedContextTests.PerformanceTests;
 
 using System.Reflection;
 using Domain.Entities.Admin;
@@ -49,7 +49,7 @@ public class EntityFrameworkPerformanceTests : SharedContextPerformanceTestFixtu
         {
             listOfLogs.Add(new Log
             {
-                Message = $"EF Performance Test",
+                Message = "EF Performance Test",
                 Level = "Information",
                 MessageTemplate = $"{random.Next(0, numberOfLogsToCreate)}"
             });

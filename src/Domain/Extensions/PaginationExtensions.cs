@@ -1,4 +1,4 @@
-﻿namespace Domain.Extensions;
+namespace Domain.Extensions;
 
 using System;
 using System.Collections.Generic;
@@ -19,13 +19,10 @@ public static class PaginationExtensions
         //But if that's the situation you're in (which is most common), then getting your dataset with Offset pagination, 
         //and using this keyset pagination method to get subsequent pages is going to be more efficient than constantly using offset pagination.
 
-        var result = list
+        return list
           .Where(p => (keySelector(p).CompareTo(lastValue) == 0 && p.Id > lastId) || keySelector(p).CompareTo(lastValue) > 0)
           .OrderBy(keySelector)
           .Take(pageSize)
           .ToList();
-        return result.ToList();
     }
-
-
 }

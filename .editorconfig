@@ -525,3 +525,15 @@ dotnet_diagnostic.IDE0009.severity = none
 
 # IDE0078: Use pattern matching
 dotnet_diagnostic.IDE0078.severity = none
+
+# IDE0021: Use expression body for constructor
+dotnet_diagnostic.IDE0021.severity = none
+
+
+#IDE0305: Simplify collection initialization
+# This really makes the code unreadable IMO, it would have us do:
+# return [.. result];
+#instead of:
+# return result.ToList();
+dotnet_diagnostic.IDE0305.severity = none
+

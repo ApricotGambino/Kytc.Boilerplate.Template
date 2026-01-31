@@ -1,4 +1,4 @@
-namespace Infrastructure.Data.EntityConfigurations.Admin;
+//namespace Infrastructure.Data.EntityConfigurations.Admin;
 
 //public class LogConfiguration : IEntityTypeConfiguration<Log>
 //{

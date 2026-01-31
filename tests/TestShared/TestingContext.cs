@@ -1,4 +1,4 @@
-﻿namespace TestShared;
+namespace TestShared;
 
 using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -21,7 +21,7 @@ public static class TestingContext
 
     public static TestCustomWebApplicationFactory? WebApplicationFactory { get; private set; }
     public static IServiceScopeFactory? ScopeFactory { get; private set; }
-    public static IServiceProvider ServiceProvider { get; private set; }
+    public static IServiceProvider? ServiceProvider { get; private set; }
 
 
 
@@ -129,6 +129,10 @@ public static class TestingContext
 
     public static T GetService<T>() where T : notnull
     {
+        if (ServiceProvider == null)
+        {
+            throw new InvalidOperationException($"The ServiceProvider is null, make sure you've initialized the TestingContext using {nameof(SetupTestContextAsync)}");
+        }
         return ServiceProvider.GetRequiredService<T>();
     }
 
