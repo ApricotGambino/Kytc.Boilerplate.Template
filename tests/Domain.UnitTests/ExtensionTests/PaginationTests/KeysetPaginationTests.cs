@@ -7,19 +7,19 @@ using System.Linq;
 using NUnit.Framework;
 
 using TestShared.TestObjects;
+using static Domain.UnitTests.ExtensionTests.PaginationTests.OffsetKeysetCommonPaginationTestCases;
 
-//using Domain.Extensions.List;
 
 public class KeysetPaginationTests : PaginationTestFixture
 {
     [Test]
-    public async Task KeySetPagination_GetFirstPageOfDataOrderedByOldestFirst_ResultsMatchKnownOrder()
+    public async Task GetNextPageUsingKeysetPagination_GetFirstPageOfDataOrderedByOldestFirst_ResultsMatchKnownOrder()
     {
         //Arrange
         var expectedOldestFirstPageOfRecords = _paginationTestRecords.OrderBy(o => o.CreatedDateTimeOffset).Take(_pageSize).ToList();
 
         //Act
-        var keysetPaginatedOldestFirstPageOfRecords = _paginationTestRecords.KeysetPagination(item => item.CreatedDateTimeOffset, DateTime.MinValue, int.MinValue, pageSize: _pageSize);
+        var keysetPaginatedOldestFirstPageOfRecords = _paginationTestRecords.GetNextPageUsingKeysetPagination(property => property.CreatedDateTimeOffset, DateTime.MinValue, int.MinValue, pageSize: _pageSize);
 
         //Assert
         using (Assert.EnterMultipleScope())
@@ -31,7 +31,7 @@ public class KeysetPaginationTests : PaginationTestFixture
         }
     }
     [Test]
-    public async Task KeySetPagination_GetSecondPageOfDataOrderedByOldestFirst_ResultsMatchKnownOrder()
+    public async Task GetNextPageUsingKeysetPagination_GetSecondPageOfDataOrderedByOldestFirst_ResultsMatchKnownOrder()
     {
         //Arrange
         var expectedOldestFirstPageOfRecords = _paginationTestRecords.OrderBy(o => o.CreatedDateTimeOffset).Take(_pageSize).ToList();
@@ -39,7 +39,7 @@ public class KeysetPaginationTests : PaginationTestFixture
         var expectedLastRecordFromOldestFirstPageOfRecords = expectedOldestFirstPageOfRecords[^1];
 
         //Act
-        var keysetPaginatedOldestSecondPageOfRecords = _paginationTestRecords.KeysetPagination(item => item.CreatedDateTimeOffset, expectedLastRecordFromOldestFirstPageOfRecords.CreatedDateTimeOffset, expectedLastRecordFromOldestFirstPageOfRecords.Id, pageSize: _pageSize);
+        var keysetPaginatedOldestSecondPageOfRecords = _paginationTestRecords.GetNextPageUsingKeysetPagination(property => property.CreatedDateTimeOffset, expectedLastRecordFromOldestFirstPageOfRecords.CreatedDateTimeOffset, expectedLastRecordFromOldestFirstPageOfRecords.Id, pageSize: _pageSize);
 
         //Assert
         using (Assert.EnterMultipleScope())
@@ -51,14 +51,14 @@ public class KeysetPaginationTests : PaginationTestFixture
         }
     }
     [Test]
-    public async Task KeySetPagination_GetLastPageOfOrderedDataByOldestFirst_ResultsMatchKnownOrder()
+    public async Task GetNextPageUsingKeysetPagination_GetLastPageOfOrderedDataByOldestFirst_ResultsMatchKnownOrder()
     {
         //Arrange
         var expectedOldestLastPageOfRecords = _paginationTestRecords.OrderBy(o => o.CreatedDateTimeOffset).TakeLast(_pageSize).ToList();
         var expectedOldestRecordBeforeLastPage = _paginationTestRecords.OrderBy(o => o.CreatedDateTimeOffset).TakeLast(_pageSize + 1).First();
 
         //Act
-        var keysetPaginatedOldestLastPageOfRecords = _paginationTestRecords.KeysetPagination(item => item.CreatedDateTimeOffset, expectedOldestRecordBeforeLastPage.CreatedDateTimeOffset, expectedOldestRecordBeforeLastPage.Id, pageSize: _pageSize);
+        var keysetPaginatedOldestLastPageOfRecords = _paginationTestRecords.GetNextPageUsingKeysetPagination(property => property.CreatedDateTimeOffset, expectedOldestRecordBeforeLastPage.CreatedDateTimeOffset, expectedOldestRecordBeforeLastPage.Id, pageSize: _pageSize);
 
         //Assert
         using (Assert.EnterMultipleScope())
@@ -70,7 +70,7 @@ public class KeysetPaginationTests : PaginationTestFixture
         }
     }
     [Test]
-    public async Task KeySetPagination_PaginateForwardByOldestWithPageSizeGreaterThanRemainingData_ReturnsASmallerPage()
+    public async Task GetNextPageUsingKeysetPagination_PaginateForwardByOldestWithPageSizeGreaterThanRemainingData_ReturnsASmallerPage()
     {
         //Arrange
         var oldestLastPageOfRecords = _paginationTestRecords.OrderBy(o => o.CreatedDateTimeOffset).TakeLast(_pageSize).ToList();
@@ -78,7 +78,7 @@ public class KeysetPaginationTests : PaginationTestFixture
         var expectedOldestLastPageOfRecords = oldestLastPageOfRecords.OrderBy(o => o.CreatedDateTimeOffset).Skip(1).ToList();
 
         //Act
-        var keysetPaginatedOldestLastPageOfRecords = _paginationTestRecords.KeysetPagination(item => item.CreatedDateTimeOffset, expectedOldestRecordInLastPageOfRecords.CreatedDateTimeOffset, expectedOldestRecordInLastPageOfRecords.Id, pageSize: _pageSize);
+        var keysetPaginatedOldestLastPageOfRecords = _paginationTestRecords.GetNextPageUsingKeysetPagination(property => property.CreatedDateTimeOffset, expectedOldestRecordInLastPageOfRecords.CreatedDateTimeOffset, expectedOldestRecordInLastPageOfRecords.Id, pageSize: _pageSize);
 
         //Assert
         using (Assert.EnterMultipleScope())
@@ -90,15 +90,34 @@ public class KeysetPaginationTests : PaginationTestFixture
         }
     }
 
+    [TestCaseSource(typeof(OffsetKeysetCommonPaginationTestCases), nameof(CustomPageSizeCases))]
+    public async Task GetNextPageUsingKeysetPagination_GetEveryPageOfDataByAStringAscendingByPageSize_ResultsMatchKnownOrder(int customPageSize)
+    {
+        //Arrange
+        var previousExpectedRecords = new List<TestObjectUsingBaseEntity>();
+        var previousKeysetPaginatedRecords = new List<TestObjectUsingBaseEntity>();
+        var previousKeysetPaginatedRecord = new TestObjectUsingBaseEntity();
 
+        //Act & Assert
+        for (var i = 0; i < _paginationTestRecords.Count / customPageSize; i++)
+        {
+            previousExpectedRecords = _paginationTestRecords.OrderBy(o => o.AString).Skip(customPageSize * i).Take(customPageSize).ToList();
 
+            if (previousKeysetPaginatedRecord == null)
+            {
+                throw new InvalidOperationException("Could not find previous paginated record.");
+            }
 
+            previousKeysetPaginatedRecords = _paginationTestRecords.GetNextPageUsingKeysetPagination(property => property.AString, previousKeysetPaginatedRecord.AString, previousKeysetPaginatedRecord.Id, pageSize: customPageSize);
+            previousKeysetPaginatedRecord = previousKeysetPaginatedRecords.LastOrDefault();
+            Assert.That(previousExpectedRecords.ConvertAll(s => s.Id), Is.EqualTo(previousKeysetPaginatedRecords.ConvertAll(s => s.Id)).AsCollection);
+        }
 
+        Assert.That(previousExpectedRecords.ConvertAll(s => s.Id), Is.EqualTo(previousKeysetPaginatedRecords.ConvertAll(s => s.Id)).AsCollection);
+    }
 
-
-
-    [TestCaseSource(nameof(GetFirstPageOfDataOrderedByProperAscendingCases))]
-    public async Task KeySetPagination_GetFirstPageOfDataOrderedByPropertyAscending_ResultsMatchKnownOrder(string orderByProperty, string lastValue, string[] expectedFirstThreeValues)
+    [TestCaseSource(nameof(GetFirstPageOfKeysetPaginatedDataOrderedByProperAscendingCases))]
+    public async Task GetNextPageUsingKeysetPagination_GetFirstPageOfDataOrderedByPropertyAscending_ResultsMatchKnownOrder(string orderByProperty, string lastValue, string[] expectedFirstThreeValues)
     {
         IComparable orderByPropertyFunction(TestObjectUsingBaseEntity s)
         {
@@ -135,7 +154,7 @@ public class KeysetPaginationTests : PaginationTestFixture
 
         //Act
         var keysetPaginatedOldestFirstPageOfRecords =
-            _paginationTestRecords.KeysetPagination(orderByPropertyFunction, (IComparable)orderByLastValue, lastId: int.MinValue, pageSize: _pageSize);
+            _paginationTestRecords.GetNextPageUsingKeysetPagination(orderByPropertyFunction, (IComparable)orderByLastValue, lastId: int.MinValue, pageSize: _pageSize);
 
 
         //Assert
@@ -150,7 +169,6 @@ public class KeysetPaginationTests : PaginationTestFixture
                 //var record = expectedOldestFirstPageOfRecords.Skip(i).Take(1).First();
                 var record = keysetPaginatedOldestFirstPageOfRecords.Skip(i).Take(1).First();
                 var expectedParameterValue = expectedFirstThreeValues[i];
-                //var orderByLastValue = TypeDescriptor.GetConverter(orderByPropertyAsType).ConvertFromString(lastValue);
                 var recordOrderByPropertyValue = record.GetType().GetProperty(orderByProperty)!.GetValue(record);
 
                 if (recordOrderByPropertyValue != null)
@@ -170,10 +188,11 @@ public class KeysetPaginationTests : PaginationTestFixture
         }
     }
 
-    private static readonly object[] GetFirstPageOfDataOrderedByProperAscendingCases =
+    /// <summary>
+    /// The tests are meant to be used on keyset pagination tests that order by ascending given a property, last parameter represents what we expect the first three results as the ordered type to be.
+    /// </summary>
+    private static readonly object[] GetFirstPageOfKeysetPaginatedDataOrderedByProperAscendingCases =
     [
-        //NOTE: These tests are parameterized, and the last parameter represents what we expect the first three results as the ordered type to be.
-        //Also, pulled all these cases into this TestCaseSource, because there's a lot of them, and they clutter up the Test method horribly.
         //==========ABool Cases==========
         new object [] {nameof(TestObjectUsingBaseEntity.ABool), "False", new string[] { "False", "False", "False" }},
         new object [] {nameof(TestObjectUsingBaseEntity.ABool), "True", new string[] { "True", "True", "True" }},

@@ -34,7 +34,7 @@ public abstract class BaseTestFixture
     [OneTimeSetUp]
     public virtual async Task RunBeforeAnyTestsAsync()
     {
-        //Intentionally left blank, feel free to add whatever you like, this is ran after every test.
+        //Intentionally left blank, feel free to add whatever you like, this is ran before any test.
     }
 
     /// <summary>
