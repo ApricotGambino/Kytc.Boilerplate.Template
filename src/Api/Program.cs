@@ -1,9 +1,11 @@
 using Api;
 using Api.Configurations;
-using Domain.Interfaces.Features.Logging;
-using Infrastructure.Features.Logging.Services;
 using Microsoft.Extensions.Options;
 using Serilog;
+
+//This is a good resource for async.
+//https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/
+
 
 //TODO:
 //[DONE]Create compiler error for methods that are async to be named _async
@@ -16,7 +18,6 @@ using Serilog;
 //    return this.Set<T>().AsNoTracking();
 //}
 
-
 //Creating a logging service that writes and reads from the DB.
 //  NOTE: This service isn't a replacment for using the .net logging feature, it gets
 //  data that we may want specifically for logging on the admin screen.
@@ -25,6 +26,7 @@ using Serilog;
 //  Create an integration test for it.
 //  Create a SUT unit test for it.
 //  Create a functional test for it. This test will probably break after you do the API format stuff. 
+//TODO: Create tests that showcase how Async with deadlock and blocking works. 
 //Create ISaveChangesInterceptor thing
 //Create tests for ISaveChangesInterceptor thing
 //Create tests for DB context setup
@@ -59,7 +61,8 @@ using Serilog;
 //  Also, that for VS, it only analysis open files unless you change your setting: 
 // https://stackoverflow.com/questions/49592058/roslyn-analyzer-only-runs-for-open-files
 
-//TODO: Make service calls and API calls paginated. Somehow.
+
+//TODO: Make service calls and API calls paginated. Somehow. UPDATE: Keyset isn't faster, and harder to do. 
 
 try
 {
@@ -83,7 +86,7 @@ try
         .AddDbContext(appSettings);
 
     //TODO: Figure out where to put service registrations.
-    builder.Services.AddScoped<ILoggingService, LoggingService>();
+    //builder.Services.AddScoped<ILoggingService, LoggingService>();
 
     var app = builder.Build();
 

@@ -1,7 +1,6 @@
-﻿namespace IntegrationTests.SharedContextTests.FeatureTests.ServiceTests.LoggingTests;
+namespace IntegrationTests.SharedContextTests.FeatureTests.ServiceTests.LoggingTests;
 
 using Domain.Entities.Admin;
-using Domain.Interfaces.Features.Logging;
 using Infrastructure.Data;
 using TestShared.Fixtures;
 
@@ -21,8 +20,8 @@ public class LoggingServiceTests : SharedContextTestFixture
 
         await thing.SaveChangesAsync();
 
-        var thing2 = TestingContext.GetService<ILoggingService>();
-        var a = await thing2.GetMostRecentLogsAsync();
+        //var thing2 = TestingContext.GetService<ILoggingService>();
+        //var a = await thing2.GetMostRecentLogsAsync();
         var b = 1;
 
         //var before = await TestContext.CountAsync<Log>();

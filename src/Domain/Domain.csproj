@@ -10,5 +10,9 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
     <PackageReference Include="Microsoft.Extensions.Configuration" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Interfaces\Features\Logging\" />
+  </ItemGroup>
 </Project>
 
