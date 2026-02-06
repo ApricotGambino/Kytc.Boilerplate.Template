@@ -11,9 +11,6 @@ public static class TestingConstants
     public const string AppSettingValue = "Leave this value alone, I am just here for a unit test";
     public const string UnitTestDatabaseName = "Kytc.Boilerplate.Template.UnitTest";
     public const string PerformanceUnitTestDatabaseName = "Kytc.Boilerplate.Template.PerformanceUnitTest";
-
-
-
 }
 
 public static class TestingCategoryConstants

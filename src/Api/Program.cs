@@ -1,10 +1,15 @@
 using Api;
 using Api.Configurations;
+using Domain.Interfaces.Features.Logging;
+using Infrastructure.Features.Logging.Services;
 using Microsoft.Extensions.Options;
 using Serilog;
 
 //This is a good resource for async.
 //https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/
+
+
+//TODO: fix the testing fixtures for documentation, maybe <inheritdoc/>?
 
 
 //TODO:
@@ -86,7 +91,7 @@ try
         .AddDbContext(appSettings);
 
     //TODO: Figure out where to put service registrations.
-    //builder.Services.AddScoped<ILoggingService, LoggingService>();
+    builder.Services.AddScoped<ILoggingService, LoggingService>();
 
     var app = builder.Build();
 

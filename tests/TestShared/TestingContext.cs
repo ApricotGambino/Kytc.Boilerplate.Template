@@ -1,6 +1,5 @@
 namespace TestShared;
 
-using Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -60,7 +59,7 @@ public static class TestingContext
             //var a = ScopeFactory.CreateScope().ServiceProvider;
             //var test = ScopeFactory.CreateScope().ServiceProvider.GetRequiredService<ILoggingService>();
             ServiceProvider = ScopeFactory.CreateScope().ServiceProvider;
-            var context = ServiceProvider.GetRequiredService<ApplicationDbContext>();
+            var context = ServiceProvider.GetRequiredService<TestingDatabaseContext>();
             var databaseConnection = context.Database.GetDbConnection();
 
             //NOTE: Not using the TestingConstants.UnitTestDatabaseName here because I want to make sure that you're really sure if you're going to modify the expected database name for unit tests.
