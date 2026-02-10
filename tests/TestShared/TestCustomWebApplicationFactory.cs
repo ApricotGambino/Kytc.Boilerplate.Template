@@ -24,30 +24,23 @@ public class TestCustomWebApplicationFactory : WebApplicationFactory<Program>
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
+
         //This is called internally through .net's magic when this factory's asked to get services.
         //something like: customWebFactory.Services.GetRequiredService<IServiceScopeFactory>();
 
         //We're using environmental variables to ensure that the correct appsettings.json is used during build. 
         builder.UseEnvironment(EnvironmentName);
 
-
-        //TODO: Make this where if the real version changes, this version gets those changes
-        //but we can use a different context. 
+        //TODO: Explain this better, but evidnetly this gets called after the app is built,
+        //and also you don't have to remove the old DB context, somehow adding a new one
+        //just like...Overwrites it?
         builder.ConfigureTestServices(services =>
         {
             services
                 //.RemoveAll<DbContextOptions<ApplicationDbContext>>()
-                .AddDbContext<TestingDatabaseContext>((sp, options) =>
-                {
-                    //TODO: options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
-
-                    //TODO: How do I make this read from the appsettings again?
-                    //options.UseSqlServer(appSettings.ConnectionStrings.DefaultConnection);
-                    options.UseSqlServer("Server=(localdb)\\mssqllocaldb;Database=Kytc.Boilerplate.Template.UnitTest;Trusted_Connection=True;MultipleActiveResultSets=true");
-                });
+                .AddDbContext<TestingDatabaseContext>();
         }
-        );
-
+       );
 
 
 

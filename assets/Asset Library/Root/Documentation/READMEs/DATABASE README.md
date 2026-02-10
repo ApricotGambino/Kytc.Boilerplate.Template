@@ -43,6 +43,10 @@ dotnet ef database update
  dotnet ef --verbose --project src/Infrastructure/Infrastructure.csproj --startup-project src/Api/Api.csproj database update -- --environment Local
 ## Auto Migration
 //TODO: Explain
+ACCCTLUALLY THIS:
+
+dotnet ef --verbose --project src/Infrastructure/Infrastructure.csproj --startup-project src/Api/Api.csproj  migrations add Initial -- --environment Local --context ApplicationDbContext 
+dotnet ef --verbose --project src/Infrastructure/Infrastructure.csproj --startup-project src/Api/Api.csproj  database update -- --environment Local --context ApplicationDbContext 
 
 ## Placement in Domain Driven Design
 

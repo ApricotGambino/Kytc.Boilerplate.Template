@@ -1,7 +1,7 @@
 namespace Infrastructure.Repositories;
 
-using Domain.Entities.Common;
-using Infrastructure.Data;
+using Data.EntityFramework;
+using Data.Kernel.Entities;
 using Microsoft.EntityFrameworkCore;
 
 public class ReadOnlyEntityRepo<TEntity>(ApplicationDbContext context)

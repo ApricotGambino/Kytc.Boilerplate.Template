@@ -8,6 +8,9 @@ using TestShared.TestObjects;
 [MemoryDiagnoser]
 [DisassemblyDiagnoser]
 [ThreadingDiagnoser]
+[ShortRunJob]
+
+//TODO: Explain how to run these tests, you need to be in this directory and run 'dotnet run -c Release'
 public class EFCore_TakeVsNoTake
 {
 

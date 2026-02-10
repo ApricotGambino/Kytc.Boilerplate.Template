@@ -1,17 +1,11 @@
 namespace Api;
 
-public class AppSettings
+using Kernel.Api;
+
+/// <summary>
+/// AppSettings specific to your application, inherits from  <see cref="BaseAppSettings"/>
+/// </summary>
+public class AppSettings : BaseAppSettings
 {
-    public required ConnectionStrings ConnectionStrings { get; set; }
     public bool FeatureToggle { get; set; }
-    public required string ApplicationName { get; set; }
-    public int MaxUsers { get; set; }
-    public required string Secret { get; set; }
-    public required string Password { get; set; }
-}
-
-public class ConnectionStrings
-{
-    public required string DefaultConnection { get; set; }
-
 }

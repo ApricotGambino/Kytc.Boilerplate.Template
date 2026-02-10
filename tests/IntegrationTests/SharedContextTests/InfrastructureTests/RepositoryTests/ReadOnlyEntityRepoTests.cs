@@ -47,6 +47,10 @@ public class ReadOnlyEntityRepoTests : SharedContextTestFixture
         var dbContextResults = await dbContext.TestEntities.ToListAsync();
         var readonlyContextResults = await readonlyContext.GetEntityQueryable().ToListAsync();
 
-        Assert.That(dbContextResults.Select(s => s.Id), Is.EquivalentTo(expected.Select(s => s.Id)));
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(expected.Select(s => s.Id), Is.SubsetOf(dbContextResults.Select(s => s.Id)));
+            Assert.That(expected.Select(s => s.Id), Is.SubsetOf(readonlyContextResults.Select(s => s.Id)));
+        }
     }
 }

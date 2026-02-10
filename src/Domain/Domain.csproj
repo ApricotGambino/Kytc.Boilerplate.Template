@@ -10,5 +10,9 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" />
     <PackageReference Include="Microsoft.Extensions.Configuration" />
   </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Kernel\Domain.Kernel\Domain.Kernel.csproj" />
+  </ItemGroup>
 </Project>
 

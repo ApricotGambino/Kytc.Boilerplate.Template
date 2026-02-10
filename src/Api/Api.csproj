@@ -8,11 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj" />
+    <ProjectReference Include="..\Application\Application.csproj" />
+    <ProjectReference Include="..\Data\Data.csproj" />
+    <ProjectReference Include="..\Kernel\Kernel.Api\Kernel.Api.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Serilog.AspNetCore" />
-    <PackageReference Include="Serilog.Sinks.MSSqlServer" />
-  </ItemGroup>
+  
 </Project>
