@@ -1,11 +1,13 @@
 namespace TestShared;
 
-using Infrastructure.Data;
+using Data.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 using TestShared.TestObjects;
 
-public class TestingDatabaseContext : ApplicationDbContext
+public class TestingDatabaseContext(DbContextOptions<ApplicationDbContext> options) : ApplicationDbContext(options)
 {
-    public TestingDatabaseContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
+    /// <summary>
+    /// These entities are used only in the Testing Database Context, this entity should not be added to the ApplicationDBContext.
+    /// </summary>
     public DbSet<TestEntity> TestEntities { get; set; }
 }

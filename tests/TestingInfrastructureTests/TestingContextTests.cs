@@ -1,4 +1,7 @@
-﻿namespace TestShared.Tests;
+namespace TestingInfrastructureTests;
+
+using TestShared;
+
 //NOTE: These tests ensure that TestingContext Setup/Teardown/Reset all work as expected. 
 //Because the TestingContext is a static class, we need to make sure these actually work, and can't rely on letting the 
 //class become null, or constructors to build it up as expected.  Also, it's static because it's funtionally a singleton
@@ -94,7 +97,7 @@ public class TestingContextTests
         numberOfTimesTheseTestsHaveCalledSetup++;
 
         //Act & Assert
-        Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.EnvironmentName));
+        Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.TestingEnvironmentName));
     }
 
     [Test]
@@ -102,7 +105,7 @@ public class TestingContextTests
     public async Task TestingContext_Test04DoNothing_ContextStillHasDefaultEnvironmentName()
     {
         //Arrange, Act & Assert
-        Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.EnvironmentName));
+        Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.TestingEnvironmentName));
     }
 
     [Test]
@@ -122,7 +125,7 @@ public class TestingContextTests
         numberOfTimesTheseTestsHaveCalledTeardown++;
 
         //Act & Assert
-        Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.EnvironmentName));
+        Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.TestingEnvironmentName));
     }
 
     [Test]
@@ -136,7 +139,7 @@ public class TestingContextTests
         numberOfTimesTheseTestsHaveCalledSetup++;
 
         //Act & Assert
-        Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.EnvironmentName));
+        Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.TestingEnvironmentName));
     }
 
     [Test]
@@ -148,7 +151,7 @@ public class TestingContextTests
         numberOfTimesTheseTestsHaveCalledReset++;
 
         //Act & Assert
-        Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.EnvironmentName));
+        Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.TestingEnvironmentName));
     }
 
     [Test]
@@ -162,7 +165,7 @@ public class TestingContextTests
         numberOfTimesTheseTestsHaveCalledReset++;
 
         //Act & Assert
-        Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.EnvironmentName));
+        Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.TestingEnvironmentName));
     }
     [Test]
     [Order(10)]
@@ -194,7 +197,7 @@ public class TestingContextTests
         Assert.That(TestingContext.EnvironmentName, Is.EqualTo(nameof(TestingContext_Test10SetupContextWithSpecificEnvironmentName_ContextHasSpecificEnvironmentName)));
         await TestingContext.ResetTestContextAsync();
         numberOfTimesTheseTestsHaveCalledReset++;
-        Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.EnvironmentName));
+        Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.TestingEnvironmentName));
     }
 
     [Test]

@@ -23,6 +23,7 @@ try
 
     app.AddKernelWebApplicationConfigurations();
 
+    //TODO: Is this a replacement for Guards?
     //ArgumentNullException.ThrowIfNull(app);
 
     app.MapGet("/appsettings", () =>

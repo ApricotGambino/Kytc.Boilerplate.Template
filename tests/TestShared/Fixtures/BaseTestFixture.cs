@@ -5,7 +5,6 @@ namespace TestShared.Fixtures;
 /// https://docs.nunit.org/articles/nunit/writing-tests/attributes/testfixture.html
 /// </summary>
 [TestFixture]
-
 public abstract class BaseTestFixture
 {
     //NOTE: This class is abstract so we can override methods, since not all tests want to be ran the same way, but most want to be ran a certain way. An example of this would
@@ -18,32 +17,36 @@ public abstract class BaseTestFixture
     [SetUp]
     public virtual async Task TestSetUpAsync()
     {
-        //Intentionally left blank, feel free to add whatever you like, this is ran before every test. 
+        //Intentionally left blank, feel free to add whatever you like. 
     }
 
     /// <summary>
-    /// This method is ran before every test. 
+    /// This method is ran after every test. 
     /// </summary>
     /// <returns></returns>
     [TearDown]
     public virtual async Task TestTearDownAsync()
     {
-        //Intentionally left blank, feel free to add whatever you like, this is ran after every test.         
-    }
-
-    [OneTimeSetUp]
-    public virtual async Task RunBeforeAnyTestsAsync()
-    {
-        //Intentionally left blank, feel free to add whatever you like, this is ran before any test.
+        //Intentionally left blank, feel free to add whatever you like.         
     }
 
     /// <summary>
-    /// This will be ran once after any tests are ran.  This is not ran for every test. 
+    /// This method is ran before any test is ran, but only once. 
+    /// </summary>
+    /// <returns></returns>
+    [OneTimeSetUp]
+    public virtual async Task RunBeforeAnyTestsAsync()
+    {
+        //Intentionally left blank, feel free to add whatever you like.
+    }
+
+    /// <summary>
+    /// This method is ran after any test is ran, but only once. 
     /// </summary>
     /// <returns></returns>
     [OneTimeTearDown]
     public virtual async Task RunAfterAnyTestsAsync()
     {
-        //Intentionally left blank, feel free to add whatever you like, this is ran after every test.
+        //Intentionally left blank, feel free to add whatever you like.
     }
 }

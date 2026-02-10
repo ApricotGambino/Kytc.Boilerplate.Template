@@ -1,4 +1,4 @@
-namespace TestShared.Tests;
+namespace TestingInfrastructureTests;
 
 using TestShared;
 using TestShared.Fixtures;
@@ -20,8 +20,8 @@ public class TestCustomWebApplicationFactoryTests : UniqueContextTestFixture
     public void TestCustomWebApplicationFactoryConstructor_DefaultEnvironmentName_FactoryHasEnvironmentName()
     {
         //Act
-        var factory = new TestCustomWebApplicationFactory(TestingConstants.EnvironmentName);
+        var factory = new TestCustomWebApplicationFactory(TestingConstants.TestingEnvironmentName);
         //Assert
-        Assert.That(factory.EnvironmentName, Is.EqualTo(TestingConstants.EnvironmentName));
+        Assert.That(factory.EnvironmentName, Is.EqualTo(TestingConstants.TestingEnvironmentName));
     }
 }

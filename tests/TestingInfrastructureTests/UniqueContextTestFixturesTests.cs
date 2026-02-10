@@ -1,5 +1,6 @@
-namespace TestShared.Tests;
+namespace TestingInfrastructureTests;
 
+using TestShared;
 using TestShared.Fixtures;
 
 //NOTE: These tests ensure that Testing Setup and Teardown calls are called the correct and expected number of times between runs. 
@@ -32,7 +33,7 @@ public class UniqueContextTestFixturesContextTests : UniqueContextTestFixture
         {
             //Arrange, Act & Assert
             Assert.That(TestingContext.EnvironmentName, Is.Not.EqualTo(TestingConstants.AlternativeUnitTestEnvironmentName));
-            Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.EnvironmentName));
+            Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.TestingEnvironmentName));
         }
         else
         {

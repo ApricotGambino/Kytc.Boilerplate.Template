@@ -1,4 +1,4 @@
-namespace TestShared.Tests;
+namespace TestingInfrastructureTests;
 
 using TestShared;
 using TestShared.Fixtures;

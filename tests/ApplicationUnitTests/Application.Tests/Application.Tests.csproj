@@ -17,8 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Api\Api.csproj" />
-    <ProjectReference Include="..\TestShared\TestShared.csproj" />
+    <ProjectReference Include="..\..\..\src\Application\Application.csproj" />
+    <ProjectReference Include="..\..\TestShared\TestShared.csproj" />
   </ItemGroup>
 
   <ItemGroup>
