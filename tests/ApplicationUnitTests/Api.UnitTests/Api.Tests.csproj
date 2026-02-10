@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\Api\Api.csproj" />
     <ProjectReference Include="..\..\TestShared\TestShared.csproj" />
   </ItemGroup>
 

@@ -13,7 +13,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Kernel.Infrastructure\Kernel.Infrastructure.csproj" />
+    <InternalsVisibleTo Include="KernelApi.Tests" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Kernel.Infrastructure\KernelInfrastructure.csproj" />
   </ItemGroup>
 
 </Project>

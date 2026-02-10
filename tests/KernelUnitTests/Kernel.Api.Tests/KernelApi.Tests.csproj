@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\Kernel\Domain.Kernel\Kernel.Data.csproj" />
     <ProjectReference Include="..\..\TestShared\TestShared.csproj" />
   </ItemGroup>
 

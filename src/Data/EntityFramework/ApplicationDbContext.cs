@@ -1,7 +1,7 @@
 namespace Data.EntityFramework;
 
 using Data.Entities.Example;
-using Kernel.Data.EntityFramework;
+using KernelData.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 
 public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : BaseDbContext(options)

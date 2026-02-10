@@ -3,7 +3,7 @@ namespace Application.Features.ExampleFeature.Services;
 using System.Collections.Generic;
 using Data.Entities.Example;
 using Data.EntityFramework;
-using Kernel.Infrastructure.Repositories;
+using KernelInfrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 

@@ -1,11 +1,12 @@
-namespace Kernel.Api.Configurations;
+namespace KernelApi.Configurations;
 
+using KernelApi;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
 
-public static class DatabaseConfiguration
+internal static class DatabaseConfiguration
 {
     /// <summary>
     /// Adds the DB context with configurations
@@ -14,7 +15,7 @@ public static class DatabaseConfiguration
     /// <param name="builder"></param>
     /// <param name="appSettings"></param>
     /// <returns></returns>
-    public static WebApplicationBuilder AddDbContextConfiguration<TDatabaseContext>(this WebApplicationBuilder builder, BaseAppSettings appSettings)
+    internal static WebApplicationBuilder AddDbContextConfiguration<TDatabaseContext>(this WebApplicationBuilder builder, BaseAppSettings appSettings)
     where TDatabaseContext : DbContext
     {
         builder.Services.AddDbContext<TDatabaseContext>((sp, options) =>

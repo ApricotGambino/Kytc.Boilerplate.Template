@@ -9,15 +9,15 @@ public static class TestingConstants
     public const string BenchmarkTestsEnvironmentName = "BenchmarkTests";
     public const string BenchmarkTestsDatabaseName = "Kytc.Boilerplate.Template.BenchmarkTests";
 
-
+    public const string ApplicationName = "Kytc.Boilerplate.Template.Testing";
 
 
     public const string IntentionallyBadEnvironmentName = "IntentionallyBadUnitTest";
     public const string AlternativeUnitTestEnvironmentName = "AlternativeUnitTest";
-    public const string AppSettingKey = "ValueUsedOnlyForAUnitTest";
-    public const string AppSettingValue = "Leave this value alone, I am just here for a unit test";
 
 
+    public const string TestingAppSettingKey = "TestKey";
+    public const string TestingAppSettingValue = "I am a testing key.";
 }
 
 public static class TestingCategoryConstants

@@ -1,7 +1,7 @@
 namespace Data.Entities.Example;
 
 using System;
-using Kernel.Data.Entities;
+using KernelData.Entities;
 
 public class ExampleEntity : BaseEntity
 {

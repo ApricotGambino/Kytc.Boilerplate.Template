@@ -1,6 +1,6 @@
 namespace TestShared.TestObjects;
 
-using Kernel.Data.Entities;
+using KernelData.Entities;
 
 public class TestEntity : BaseEntity
 {

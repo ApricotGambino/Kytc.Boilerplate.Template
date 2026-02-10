@@ -1,4 +1,4 @@
-namespace Kernel.Infrastructure.Interceptors;
+namespace KernelInfrastructure.Interceptors;
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;

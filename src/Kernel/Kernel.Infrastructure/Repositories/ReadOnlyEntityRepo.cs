@@ -1,6 +1,6 @@
-namespace Kernel.Infrastructure.Repositories;
+namespace KernelInfrastructure.Repositories;
 
-using Kernel.Data.Entities;
+using KernelData.Entities;
 using Microsoft.EntityFrameworkCore;
 
 public class ReadOnlyEntityRepo<TEntity>(DbContext context)

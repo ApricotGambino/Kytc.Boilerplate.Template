@@ -1,8 +1,7 @@
 using Api;
 using Application.Features.ExampleFeature.Services;
 using Data.EntityFramework;
-using Kernel.Api;
-using Kernel.Api.Configurations;
+using KernelApi;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 

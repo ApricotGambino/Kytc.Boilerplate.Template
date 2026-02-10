@@ -10,7 +10,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Application\Application.csproj" />
     <ProjectReference Include="..\Data\Data.csproj" />
-    <ProjectReference Include="..\Kernel\Kernel.Api\Kernel.Api.csproj" />
+    <ProjectReference Include="..\Kernel\Kernel.Api\KernelApi.csproj" />
   </ItemGroup>
 
   

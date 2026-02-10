@@ -1,4 +1,4 @@
-namespace Kernel.Data.Entities.Kernel;
+namespace KernelData.Entities.Kernel;
 
 public class Log : BaseEntity
 {

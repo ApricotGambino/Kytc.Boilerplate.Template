@@ -1,6 +1,6 @@
-namespace Kernel.Data.EntityFramework;
+namespace KernelData.EntityFramework;
 
-using Kernel.Data.Entities.Kernel;
+using KernelData.Entities.Kernel;
 using Microsoft.EntityFrameworkCore;
 
 public abstract class BaseDbContext : DbContext

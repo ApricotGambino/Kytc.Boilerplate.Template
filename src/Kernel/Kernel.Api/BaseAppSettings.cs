@@ -1,5 +1,4 @@
-namespace Kernel.Api;
-
+namespace KernelApi;
 /// <summary>
 /// This is the base app settings in which all the application must inherit from,
 /// these are the configurations that the kernel depends on.

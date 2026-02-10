@@ -1,4 +1,4 @@
-namespace Kernel.Api;
+namespace KernelApi;
 
 using Microsoft.AspNetCore.Builder;
 

@@ -1,4 +1,4 @@
-namespace Kernel.Data.Entities;
+namespace KernelData.Entities;
 
 using System;
 using System.ComponentModel.DataAnnotations;

@@ -24,30 +24,19 @@ public class TestCustomWebApplicationFactory : WebApplicationFactory<Program>
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
+        //This method hooks into the webhost build prior to actually being built. 
 
-        //This is called internally through .net's magic when this factory's asked to get services.
-        //something like: customWebFactory.Services.GetRequiredService<IServiceScopeFactory>();
-
-        //We're using environmental variables to ensure that the correct appsettings.json is used during build. 
+        //We're using environmental variables to ensure that the correct appsettings.json is used during build.
         builder.UseEnvironment(EnvironmentName);
 
-        //TODO: Explain this better, but evidnetly this gets called after the app is built,
-        //and also you don't have to remove the old DB context, somehow adding a new one
-        //just like...Overwrites it?
+        //NOTE: This is called after the build completes it allows us to remove, or add services afterwards,
+        //which is perfect for adding Test specific services that we don't normally want for our application.
         builder.ConfigureTestServices(services =>
         {
             services
-                //.RemoveAll<DbContextOptions<ApplicationDbContext>>()
                 .AddDbContext<TestingDatabaseContext>();
         }
        );
-
-
-
-        //This is intentionally left blank, but you can use this to override configuration of services after the build.
-        //This could allow you to mock or replace services based on your needs for testing.
-        //https://blog.markvincze.com/overriding-configuration-in-asp-net-core-integration-tests/
-        //builder.ConfigureTestServices(services => { });
     }
 }
 

@@ -21,8 +21,6 @@
   </ItemGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Api\Api.csproj" />
-    <ProjectReference Include="..\Sandbox\Sandbox.csproj" />
     <ProjectReference Include="..\TestShared\TestShared.csproj" />
   </ItemGroup>
 

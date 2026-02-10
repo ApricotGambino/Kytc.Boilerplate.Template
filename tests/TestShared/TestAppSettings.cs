@@ -1,11 +1,11 @@
-namespace Api;
+namespace TestShared;
 
 using KernelApi;
 
 /// <summary>
 /// AppSettings specific to your application, inherits from  <see cref="BaseAppSettings"/>
 /// </summary>
-public class AppSettings : BaseAppSettings
+public class TestAppSettings : BaseAppSettings
 {
-    public bool FeatureToggle { get; set; }
+    public string TestKey { get; set; }
 }

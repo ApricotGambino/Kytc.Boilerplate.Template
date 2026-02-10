@@ -55,11 +55,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Benchmarks", "tests\Benchma
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kernel", "Kernel", "{EDFB1408-91BB-49D8-A983-DC958CDE9FB1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kernel.Api", "src\Kernel\Kernel.Api\Kernel.Api.csproj", "{8EDD7C0B-40F4-9D06-B563-BFCC287422B3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KernelApi", "src\Kernel\Kernel.Api\KernelApi.csproj", "{8EDD7C0B-40F4-9D06-B563-BFCC287422B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kernel.Infrastructure", "src\Kernel\Kernel.Infrastructure\Kernel.Infrastructure.csproj", "{40A2C328-BB39-F0C6-2102-D4DEA87B8236}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KernelInfrastructure", "src\Kernel\Kernel.Infrastructure\KernelInfrastructure.csproj", "{40A2C328-BB39-F0C6-2102-D4DEA87B8236}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kernel.Data", "src\Kernel\Domain.Kernel\Kernel.Data.csproj", "{70766927-62C1-42A3-9E95-0041DF7DD93F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KernelData", "src\Kernel\Domain.Kernel\KernelData.csproj", "{70766927-62C1-42A3-9E95-0041DF7DD93F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data", "src\Data\Data.csproj", "{59CCD1C7-D1F0-4605-A107-1526FFDD48AC}"
 EndProject
@@ -77,11 +77,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.Tests", "tests\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Tests", "tests\ApplicationUnitTests\Data.Tests\Data.Tests.csproj", "{31701DFA-88C6-C5EF-B8CB-A1C6740E6852}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kernel.Api.Tests", "tests\KernelUnitTests\Kernel.Api.Tests\Kernel.Api.Tests.csproj", "{7CE5642A-A3D6-B7E9-F984-576F2A40EDDF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KernelApi.Tests", "tests\KernelUnitTests\Kernel.Api.Tests\KernelApi.Tests.csproj", "{7CE5642A-A3D6-B7E9-F984-576F2A40EDDF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kernel.Data.Tests", "tests\KernelUnitTests\Kernel.Data.Tests\Kernel.Data.Tests.csproj", "{37F2965C-686D-3CCD-2096-C0FD72E9045A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KernelData.Tests", "tests\KernelUnitTests\Kernel.Data.Tests\KernelData.Tests.csproj", "{37F2965C-686D-3CCD-2096-C0FD72E9045A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kernel.Infrastructure.Tests", "tests\KernelUnitTests\Kernel.Infrastructure.Tests\Kernel.Infrastructure.Tests.csproj", "{5D39A23C-54F4-9C03-C357-9FE934386C61}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KernelInfrastructure.Tests", "tests\KernelUnitTests\Kernel.Infrastructure.Tests\KernelInfrastructure.Tests.csproj", "{5D39A23C-54F4-9C03-C357-9FE934386C61}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

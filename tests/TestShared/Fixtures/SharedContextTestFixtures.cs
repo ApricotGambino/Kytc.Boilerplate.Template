@@ -1,7 +1,7 @@
 namespace TestShared.Fixtures;
 
 using System.Threading.Tasks;
-using Kernel.Data.Entities;
+using KernelData.Entities;
 using NUnit.Framework;
 
 /// <summary>

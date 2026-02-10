@@ -1,11 +1,15 @@
-namespace Kernel.Api.Configurations;
+namespace KernelApi.Configurations;
+
+using KernelApi;
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Protocols.Configuration;
 
-public static class AppSettingConfigurations
+
+
+
+internal static class AppSettingConfigurations
 {
     /// <summary>
     /// Adds AppSetting functionality 
@@ -13,7 +17,7 @@ public static class AppSettingConfigurations
     /// <typeparam name="TAppSettings"></typeparam>
     /// <param name="builder"></param>
     /// <returns></returns>
-    public static WebApplicationBuilder AddAppSettings<TAppSettings>(this WebApplicationBuilder builder)
+    internal static WebApplicationBuilder AddAppSettings<TAppSettings>(this WebApplicationBuilder builder)
         where TAppSettings : BaseAppSettings
     {
         builder.AddAppSettingsJsonFile();
@@ -57,24 +61,5 @@ public static class AppSettingConfigurations
         return builder;
     }
 
-    /// <summary>
-    /// Gets the AppSettings object configured and populated with values from appsettings.json
-    /// </summary>
-    /// <typeparam name="TAppSettings"></typeparam>
-    /// <param name="builder"></param>
-    /// <returns></returns>
-    /// <exception cref="InvalidConfigurationException"></exception>
-    public static TAppSettings GetAppSettings<TAppSettings>(this WebApplicationBuilder builder)
-        where TAppSettings : BaseAppSettings
-    {
-        //builder.Services.Configure<TAppSettings>(builder.Configuration.GetSection("AppSettings"));
-        var appSettings = builder.Configuration.GetSection("AppSettings").Get<TAppSettings>();
 
-        if (appSettings == null)
-        {
-            throw new InvalidConfigurationException($"Could not get an {nameof(TAppSettings)} object, is this object configured correctly and the appsettings.json file valid and formatted as expected?");
-        }
-
-        return appSettings;
-    }
 }

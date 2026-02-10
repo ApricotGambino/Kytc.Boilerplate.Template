@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj" />
-    <ProjectReference Include="..\Kernel\Kernel.Infrastructure\Kernel.Infrastructure.csproj" />
+    <ProjectReference Include="..\Kernel\Kernel.Infrastructure\KernelInfrastructure.csproj" />
   </ItemGroup>
 
 </Project>
