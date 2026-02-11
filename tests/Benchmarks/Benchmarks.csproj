@@ -7,8 +7,9 @@
     <Nullable>enable</Nullable>
     <IsPackable>false</IsPackable>
     <!-- Disable entry point generation as this project has it's own entry point -->
-    <GenerateProgramFile>false</GenerateProgramFile>
+    <GenerateProgramFile>false</GenerateProgramFile>    
   </PropertyGroup>
+
 
   <ItemGroup>
     <PackageReference Include="BenchmarkDotNet" />

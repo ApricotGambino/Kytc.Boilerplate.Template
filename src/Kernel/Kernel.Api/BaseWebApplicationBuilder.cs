@@ -17,20 +17,11 @@ public static class BaseWebApplicationBuilder
     /// <param name="args"></param>
     /// <param name="environmentName"></param>
     /// <returns></returns>
-    public static WebApplicationBuilder CreateBaseWebApplicationBuilder<TDatabaseContext, TAppSettings>(string[] args, string environmentName = null)
+    public static WebApplicationBuilder CreateBaseWebApplicationBuilder<TDatabaseContext, TAppSettings>(string[] args)
         where TDatabaseContext : DbContext
          where TAppSettings : BaseAppSettings
     {
         var builder = WebApplication.CreateBuilder(args);
-
-        if (!string.IsNullOrWhiteSpace(environmentName))
-        {
-            //Normally the environment name is provided by the entity running this code,
-            //that might be an Environment defined by a server, or a dockerfile build, using dotnet run -e NameOfEnvironment, or even
-            //visual studio's launchSettings.json.  But we expose an easy way to set that through the
-            //method signature for unit testing. 
-            builder.Environment.EnvironmentName = environmentName;
-        }
 
         builder.AddAppSettings<TAppSettings>();
         var appSettings = builder.GetAppSettings<TAppSettings>();

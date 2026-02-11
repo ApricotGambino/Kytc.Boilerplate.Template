@@ -1,5 +1,6 @@
 namespace KernelInfrastructure.Interceptors;
 
+using KernelData.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
@@ -23,10 +24,27 @@ public class AuditableEntityInterceptor : SaveChangesInterceptor
         return base.SavingChangesAsync(eventData, result, cancellationToken);
     }
 
-    public void UpdateEntities(DbContext? context)
+    public static void UpdateEntities(DbContext? context)
     {
+        //TODO: Update this to do what you want. 
         if (context == null)
             return;
+
+        foreach (var entry in context.ChangeTracker.Entries<BaseEntity>())
+        {
+            entry.Entity.UpdatedDateTimeOffset = DateTimeOffset.UtcNow;
+            //if (entry.State is EntityState.Added or EntityState.Modified || entry.HasChangedOwnedEntities())
+            //{
+            //    var utcNow = _dateTime.GetUtcNow();
+            //    if (entry.State == EntityState.Added)
+            //    {
+            //        entry.Entity.CreatedBy = _user.Id;
+            //        entry.Entity.Created = utcNow;
+            //    }
+            //    entry.Entity.LastModifiedBy = _user.Id;
+            //    entry.Entity.LastModified = utcNow;
+            //}
+        }
     }
 }
 

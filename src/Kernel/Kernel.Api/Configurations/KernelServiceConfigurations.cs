@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
+using Serilog.Sinks.MSSqlServer;
 
 internal static class KernelServiceConfigurations
 {
@@ -40,7 +41,7 @@ internal static class KernelServiceConfigurations
             .WriteTo
                 .MSSqlServer(
                     connectionString: appSettings.ConnectionStrings.DefaultConnection,
-                    //sinkOptions: new MSSqlServerSinkOptions { TableName = "Logs", SchemaName = "dbo" },
+                    sinkOptions: new MSSqlServerSinkOptions { TableName = "Logs", SchemaName = "dbo" },
                     formatProvider: new CultureInfo("en-US")
                     )
             //.MinimumLevel.Warning()

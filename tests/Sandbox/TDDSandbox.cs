@@ -3,5 +3,8 @@ namespace Sandbox;
 //TODO: Update this so it's clear how/what I do. 
 public class TddSandbox
 {
-
+    public static void dowork()
+    {
+        throw new NotImplementedException();
+    }
 }

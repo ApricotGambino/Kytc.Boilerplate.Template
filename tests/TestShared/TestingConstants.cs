@@ -6,13 +6,12 @@ public static class TestingConstants
     public const string TestingEnvironmentName = "Testing";
     public const string TestingDatabaseName = "Kytc.Boilerplate.Template.Testing";
 
-    public const string BenchmarkTestsEnvironmentName = "BenchmarkTests";
+    public const string BenchmarkTestsEnvironmentName = "Benchmark";
     public const string BenchmarkTestsDatabaseName = "Kytc.Boilerplate.Template.BenchmarkTests";
 
     public const string ApplicationName = "Kytc.Boilerplate.Template.Testing";
 
 
-    public const string IntentionallyBadEnvironmentName = "IntentionallyBadUnitTest";
     public const string AlternativeUnitTestEnvironmentName = "AlternativeUnitTest";
 
 

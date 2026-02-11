@@ -24,9 +24,10 @@ public static class BreakfastShared
         internal void ApplyButter(Toast toast) =>
             Messages.Add("Putting butter on the toast");
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "VSTHRD002:Avoid problematic synchronous waits", Justification = "<Pending>")]
         internal Toast ToastBread(int slices)
         {
-            for (int slice = 0; slice < slices; slice++)
+            for (var slice = 0; slice < slices; slice++)
             {
                 Messages.Add("Putting a slice of bread in the toaster");
             }
@@ -68,6 +69,7 @@ public static class BreakfastShared
 
 
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "VSTHRD002:Avoid problematic synchronous waits", Justification = "<Pending>")]
         internal HashBrown FryHashBrowns(int patties)
         {
             Messages.Add($"putting {patties} hash brown patties in the pan");
@@ -118,6 +120,7 @@ public static class BreakfastShared
         }
 
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "VSTHRD002:Avoid problematic synchronous waits", Justification = "<Pending>")]
         internal Egg FryEggs(int howMany)
         {
             Messages.Add("Warming the egg pan...");

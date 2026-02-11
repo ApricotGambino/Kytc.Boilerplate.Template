@@ -14,6 +14,7 @@ public class UniqueContextTestFixturesContextTests : UniqueContextTestFixture
     //try to create a context at any point, and always tears the context down. Using the EnvironmentName here proves that if we create
     //a context with an environment name, that name should not persist through tests, since that is only established in the setup, which needs to be manually called. 
     private bool _firstTestHasBeenRan;
+    private readonly string _environmentNameUsedInFirstTest = TestingConstants.BenchmarkTestsEnvironmentName;
 
     [Order(1)]
     [Test]
@@ -21,8 +22,8 @@ public class UniqueContextTestFixturesContextTests : UniqueContextTestFixture
     {
         //Arrange, Act & Assert
         _firstTestHasBeenRan = true;
-        await TestingContext.SetupTestContextAsync(TestingConstants.AlternativeUnitTestEnvironmentName);
-        Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.AlternativeUnitTestEnvironmentName));
+        await TestingContext.ResetTestContextAsync(_environmentNameUsedInFirstTest);
+        Assert.That(TestingContext.EnvironmentName, Is.EqualTo(_environmentNameUsedInFirstTest));
     }
 
     [Order(2)]
@@ -32,7 +33,9 @@ public class UniqueContextTestFixturesContextTests : UniqueContextTestFixture
         if (_firstTestHasBeenRan)
         {
             //Arrange, Act & Assert
-            Assert.That(TestingContext.EnvironmentName, Is.Not.EqualTo(TestingConstants.AlternativeUnitTestEnvironmentName));
+            Assert.That(TestingContext.EnvironmentName, Is.Not.EqualTo(_environmentNameUsedInFirstTest));
+
+            //The Unique Context should reset on each test run and that defaults to the 'Testing' environment. 
             Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.TestingEnvironmentName));
         }
         else
@@ -71,7 +74,7 @@ public class UniqueContextTestFixtureSetupAndTearDownTests : UniqueContextTestFi
 
     [Order(2)]
     [Test]
-    public async Task UniqueContextTestFixtureSetupAndTearDownTests_Test2_SetupCalledZeroTimesAndTearDownCalledOnce()
+    public async Task UniqueContextTestFixtureSetupAndTearDownTests_Test2_SetupCalledOnce_TearDownCalledOnce()
     {
 
         if (_firstTestHasBeenRan)
@@ -82,7 +85,7 @@ public class UniqueContextTestFixtureSetupAndTearDownTests : UniqueContextTestFi
             var numberOfTimesTearDownHasBeenCalledSinceFirstTest = TestingContext.__metadata_NumberOfTearDownTestContextCalls - _timesContextTeardownHasBeenCalled;
             using (Assert.EnterMultipleScope())
             {
-                Assert.That(numberOfTimesSetupHasBeenCalledSinceFirstTest, Is.Zero);
+                Assert.That(numberOfTimesSetupHasBeenCalledSinceFirstTest, Is.EqualTo(1));
                 Assert.That(numberOfTimesTearDownHasBeenCalledSinceFirstTest, Is.EqualTo(1));
             }
         }
@@ -94,7 +97,7 @@ public class UniqueContextTestFixtureSetupAndTearDownTests : UniqueContextTestFi
 
     [Order(3)]
     [Test]
-    public async Task UniqueContextTestFixtureSetupAndTearDownTests_Test3_SetupCalledZeroTimesAndTearDownCalledTwice()
+    public async Task UniqueContextTestFixtureSetupAndTearDownTests_Test3_SetupCalledTwoTimesAndTearDownCalledTwice()
     {
 
         if (_secondTestHasBeenRan)
@@ -104,13 +107,13 @@ public class UniqueContextTestFixtureSetupAndTearDownTests : UniqueContextTestFi
             var numberOfTimesTearDownHasBeenCalledSinceFirstTest = TestingContext.__metadata_NumberOfTearDownTestContextCalls - _timesContextTeardownHasBeenCalled;
             using (Assert.EnterMultipleScope())
             {
-                Assert.That(numberOfTimesSetupHasBeenCalledSinceFirstTest, Is.Zero);
+                Assert.That(numberOfTimesSetupHasBeenCalledSinceFirstTest, Is.EqualTo(2));
                 Assert.That(numberOfTimesTearDownHasBeenCalledSinceFirstTest, Is.EqualTo(2));
             }
         }
         else
         {
-            Assert.Inconclusive($"This test must be ran immediately after {nameof(UniqueContextTestFixtureSetupAndTearDownTests_Test2_SetupCalledZeroTimesAndTearDownCalledOnce)}.");
+            Assert.Inconclusive($"This test must be ran immediately after {nameof(UniqueContextTestFixtureSetupAndTearDownTests_Test2_SetupCalledOnce_TearDownCalledOnce)}.");
         }
     }
 }

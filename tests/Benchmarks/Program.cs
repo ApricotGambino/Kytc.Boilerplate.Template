@@ -1,3 +1,4 @@
 using BenchmarkDotNet.Running;
+using Benchmarks.Data;
 
-BenchmarkSwitcher.FromAssembly(typeof(Program).Assembly).Run(args);
+BenchmarkSwitcher.FromAssembly(assembly: typeof(BenchmarkDbContext).Assembly).Run(args);

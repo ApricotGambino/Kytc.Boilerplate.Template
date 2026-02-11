@@ -15,7 +15,7 @@ public class BaseWebApplicationBuilderTests : BaseTestFixture
     public async Task GetAppSettings_GetAppSettingObject_FindsExpectedValue()
     {
         //Arrange
-        var builder = BaseWebApplicationBuilder.CreateBaseWebApplicationBuilder<TestingDatabaseContext, AppSettings>(null, TestingConstants.TestingEnvironmentName);
+        var builder = BaseWebApplicationBuilder.CreateBaseWebApplicationBuilder<TestingDatabaseContext, AppSettings>(new string[] { "--environment=Testing" });
 
         //Act
         var appSettings = builder.GetAppSettings<TestAppSettings>();

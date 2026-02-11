@@ -33,13 +33,6 @@ try
 
     await app.RunAsync();
 }
-catch (Exception ex)
-{
-    //TODO: Test how exceptions bubble up with this. 
-    //Log.Fatal(ex, "Application terminated unexpectedly");
-    var a = 1;
-    throw;
-}
 finally
 {
     await Log.CloseAndFlushAsync();

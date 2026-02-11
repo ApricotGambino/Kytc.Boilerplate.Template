@@ -28,8 +28,8 @@ public class SharedContextTestFixturesTest : SharedContextTestFixture
         //Arrange, Act & Assert
 
         _firstTestHasBeenRan = true;
-        await TestingContext.SetupTestContextAsync(TestingConstants.AlternativeUnitTestEnvironmentName);
-        Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.AlternativeUnitTestEnvironmentName));
+        await TestingContext.SetupTestContextAsync(TestingConstants.TestingEnvironmentName);
+        Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.TestingEnvironmentName));
     }
 
     [Order(2)]
@@ -39,7 +39,7 @@ public class SharedContextTestFixturesTest : SharedContextTestFixture
         if (_firstTestHasBeenRan)
         {
             //Arrange, Act & Assert
-            Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.AlternativeUnitTestEnvironmentName));
+            Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.TestingEnvironmentName));
         }
         else
         {
@@ -137,7 +137,7 @@ public class SharedContextTestFixtureSetupAndTearDownTests : SharedContextTestFi
         {
             //Arrange, Act & Assert
             //NOTE: ResetTest should call teardown and setup, along with the base test calling setup
-            await TestingContext.ResetTestContextAsync();
+            await TestingContext.ResetTestContextAsync(TestingContext.EnvironmentName);
             var numberOfTimesSetupHasBeenCalledSinceFirstTest = TestingContext.__metadata_NumberOfSetupTestContextCalls - _timesContextSetupHasBeenCalled;
             var numberOfTimesTearDownHasBeenCalledSinceFirstTest = TestingContext.__metadata_NumberOfTearDownTestContextCalls - _timesContextTeardownHasBeenCalled;
             var numberOfTimesResetHasBeenCalledSinceFirstTest = TestingContext.__metadata_NumberOfResetTestContextCalls - _timesContextResetHasBeenCalled;
