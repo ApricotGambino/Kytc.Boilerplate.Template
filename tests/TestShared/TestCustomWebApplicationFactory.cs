@@ -8,7 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 
 /// <summary>
-/// This is a custom web application factory, this calls our program.cs, but has the ability to modified outside normal execution that may be useful for running tests. 
+/// This is a custom web application factory, this calls our program.cs, but has the ability to modified outside normal execution that may be useful for running tests.
 /// </summary>
 public class TestCustomWebApplicationFactory : WebApplicationFactory<Program>
 {
@@ -24,7 +24,7 @@ public class TestCustomWebApplicationFactory : WebApplicationFactory<Program>
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
     {
-        //This method hooks into the webhost build prior to actually being built. 
+        //This method hooks into the webhost build prior to actually being built.
 
         //We're using environmental variables to ensure that the correct appsettings.json is used during build.
         builder.UseEnvironment(EnvironmentName);

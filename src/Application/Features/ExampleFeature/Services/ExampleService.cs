@@ -24,20 +24,20 @@ public interface IExampleService
 
 public class ExampleService(ApplicationDbContext context) : IExampleService
 {
-    private readonly ApplicationDbContext _context = context;
+    private readonly ApplicationDbContext _Context = context;
 
     public List<ExampleEntity> DoSomeExampleAction()
     {
-        return new List<ExampleEntity>();
+        return [];
     }
     public Task<List<ExampleEntity>> GetMostRecentEntitiesUsingContextAsync()
     {
-        return _context.ExampleEntities.OrderByDescending(o => o.Id).ToListAsync();
+        return _Context.ExampleEntities.OrderByDescending(o => o.Id).ToListAsync();
     }
 
     public Task<List<ExampleEntity>> GetMostRecentEntitiesUsingReadOnlyRepoAsync()
     {
-        var logContext = new ReadOnlyEntityRepo<ExampleEntity>(_context);
+        var logContext = new ReadOnlyEntityRepo<ExampleEntity>(_Context);
         return logContext.GetEntityQueryable().OrderByDescending(o => o.Id).ToListAsync();
     }
 

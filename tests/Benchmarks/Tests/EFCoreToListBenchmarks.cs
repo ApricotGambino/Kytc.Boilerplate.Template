@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore;
 [ThreadingDiagnoser]
 [ShortRunJob]
 [Category(TestingCategoryConstants.BenchmarkTests)]
-public class EFCore_ToList
+public class EFCoreToListBenchmarks
 {
     #region Setup
 
@@ -65,7 +65,7 @@ public class EFCore_ToList
         //NOTE: even though we're not using the numberOfRecordsToTake,
         //because we're getting all of them every time, in order to make this
         //the baseline benchmark in which we compare all results we have to follow the same
-        //benchmark structure of all other tests. 
+        //benchmark structure of all other tests.
         _ = numberOfRecordsToTake;
         await using var context = new BenchmarkDbContext();
         var results = await context.TestObjects.ToListAsync();

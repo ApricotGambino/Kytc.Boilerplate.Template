@@ -11,7 +11,7 @@ using TestShared.TestObjects;
 [ThreadingDiagnoser]
 [ShortRunJob]
 [Category(TestingCategoryConstants.BenchmarkTests)]
-public class EFCore_Add
+public class EFCoreAddBenchmarks
 {
     #region Setup
 
@@ -63,9 +63,7 @@ public class EFCore_Add
     public async Task<int> EFCore_AddInLoop(int numberOfRecordsToCreate)
     {
         await using var context = new BenchmarkDbContext();
-        var entities = TestEntityHelper.CreateTestEntityList(numberOfRecordsToCreate);
-
-        foreach (var entity in entities)
+        foreach (var entity in TestEntityHelper.CreateTestEntityList(numberOfRecordsToCreate))
         {
             context.Add(entity);
         }
@@ -81,22 +79,6 @@ public class EFCore_Add
         await using var context = new BenchmarkDbContext();
         var entities = TestEntityHelper.CreateTestEntityList(numberOfRecordsToCreate);
         context.AddRange(entities);
-        return await context.SaveChangesAsync();
-    }
-
-    [Benchmark]
-    [TestCaseSource(typeof(NumberOfRecordsToCreateTestCase), nameof(NumberOfRecordsToCreateTestCase.TestCases))]
-    [ArgumentsSource(nameof(NumberOfRecordsToCreateBenchmark))]
-    public async Task<int> EFCore_AddInLoopAsync(int numberOfRecordsToCreate)
-    {
-        await using var context = new BenchmarkDbContext();
-        var entities = TestEntityHelper.CreateTestEntityList(numberOfRecordsToCreate);
-
-        foreach (var entity in entities)
-        {
-            await context.AddAsync(entity);
-        }
-
         return await context.SaveChangesAsync();
     }
 

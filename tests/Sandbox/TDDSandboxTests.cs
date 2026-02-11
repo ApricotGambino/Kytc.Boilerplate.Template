@@ -7,7 +7,7 @@ public class TddSandboxTests : SharedContextTestFixture
     [Test]
     public async Task LoggingTests1()
     {
-        //var dbContext = TestingContext.GetService<TestingDatabaseContext>();
+        ////var dbContext = TestingContext.GetService<TestingDatabaseContext>();
         Assert.Pass();
     }
 }

@@ -3,11 +3,12 @@ namespace TestingInfrastructureTests;
 using TestShared;
 using TestShared.Fixtures;
 
-[Category(TestingCategoryConstants.nUnitFrameworkTests)]
+/// <summary>
+/// These tests ensure the functionality for <see cref="TestCustomWebApplicationFactory"/>
+/// </summary>
+[Category(TestingCategoryConstants.NUnitFrameworkTests)]
 public class TestCustomWebApplicationFactoryTests : UniqueContextTestFixture
 {
-    //NOTE: These tests ONLY test the functionality that the TestCustomWebApplicationFactory provides.
-    //This distinction exists because this webapplicationfactory uses Program.cs, and we'll test elsewhere.
     [Test]
     public void TestCustomWebApplicationFactoryConstructor_EmptyEnvironmentName_ThrowsError()
     {

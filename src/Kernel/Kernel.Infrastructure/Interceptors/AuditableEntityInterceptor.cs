@@ -26,9 +26,11 @@ public class AuditableEntityInterceptor : SaveChangesInterceptor
 
     public static void UpdateEntities(DbContext? context)
     {
-        //TODO: Update this to do what you want. 
+        //TODO: Update this to do what you want.
         if (context == null)
+        {
             return;
+        }
 
         foreach (var entry in context.ChangeTracker.Entries<BaseEntity>())
         {

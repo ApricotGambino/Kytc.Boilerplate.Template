@@ -3,71 +3,64 @@ namespace TestingInfrastructureTests;
 using TestShared;
 using TestShared.Fixtures;
 
-//NOTE: These tests ensure that Testing Setup and Teardown calls are called the correct and expected number of times between runs. 
-//And verify that the UniqueContextTestTestFixture actually creates a new context each time.
-//These are strange tests, and are not good examples of how to write tests, but, we're testing the testing framework, 
-//And who tests the tests?  This test.
-[Category(TestingCategoryConstants.nUnitFrameworkTests)]
+/// <summary>
+/// These tests ensure that <see cref="UniqueContextTestFixture"/> creates a TestingContext at the start of each test,
+/// and always shares the context unless intentionally reset.
+/// If all these tests pass, that means that using the uniquecontext test fixture on future tests ensures that the fixture doesn't
+/// try to create a context at any point, and always tears the context down.
+/// since that is only established in the setup, which needs to be manually called.
+/// </summary>
+[Category(TestingCategoryConstants.NUnitFrameworkTests)]
 public class UniqueContextTestFixturesContextTests : UniqueContextTestFixture
 {
-    //If all these tests pass, that means that using the uniquecontext test fixture on future tests ensures that the fixture doesn't 
-    //try to create a context at any point, and always tears the context down. Using the EnvironmentName here proves that if we create
-    //a context with an environment name, that name should not persist through tests, since that is only established in the setup, which needs to be manually called. 
-    private bool _firstTestHasBeenRan;
-    private readonly string _environmentNameUsedInFirstTest = TestingConstants.BenchmarkTestsEnvironmentName;
+    private bool _FirstTestHasBeenRan;
+    private readonly string _EnvironmentNameUsedInFirstTest = TestingConstants.BenchmarkTestsEnvironmentName;
 
     [Order(1)]
     [Test]
     public async Task UniqueContextTestFixtureTestSetUp_Test1SetupContext_HasSpecificEnvironmentName()
     {
         //Arrange, Act & Assert
-        _firstTestHasBeenRan = true;
-        await TestingContext.ResetTestContextAsync(_environmentNameUsedInFirstTest);
-        Assert.That(TestingContext.EnvironmentName, Is.EqualTo(_environmentNameUsedInFirstTest));
+        await TestingContext.ResetTestContextAsync(_EnvironmentNameUsedInFirstTest);
+        Assert.That(TestingContext.EnvironmentName, Is.EqualTo(_EnvironmentNameUsedInFirstTest));
+        _FirstTestHasBeenRan = true;
     }
 
     [Order(2)]
     [Test]
     public async Task UniqueContextTestFixtureTestSetUp_Test2DoNothing_EnvironmentNameIsNotTheSameAsPriorTest()
     {
-        if (_firstTestHasBeenRan)
-        {
-            //Arrange, Act & Assert
-            Assert.That(TestingContext.EnvironmentName, Is.Not.EqualTo(_environmentNameUsedInFirstTest));
+        Assume.That(_FirstTestHasBeenRan, Is.True);
+        //Arrange, Act & Assert
+        Assert.That(TestingContext.EnvironmentName, Is.Not.EqualTo(_EnvironmentNameUsedInFirstTest));
 
-            //The Unique Context should reset on each test run and that defaults to the 'Testing' environment. 
-            Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.TestingEnvironmentName));
-        }
-        else
-        {
-            Assert.Inconclusive($"This test must be ran immediately after {nameof(UniqueContextTestFixtureTestSetUp_Test1SetupContext_HasSpecificEnvironmentName)}.");
-        }
+        //The Unique Context should reset on each test run and that defaults to the 'Testing' environment.
+        Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.TestingEnvironmentName));
+
     }
 }
 
-
-[Category(TestingCategoryConstants.nUnitFrameworkTests)]
+/// <summary>
+/// If all these tests pass, that means that using the uniquecontext test fixture on future tests ensures that the fixture doesn't
+/// try to create a context at any point, and Setup and Teardown calls are called the correct and expected number of times between runs.
+/// </summary>
+[Category(TestingCategoryConstants.NUnitFrameworkTests)]
 public class UniqueContextTestFixtureSetupAndTearDownTests : UniqueContextTestFixture
 {
-    //NOTE: These tests ensure that Testing Setup and Teardown calls are called the correct and expected number of times between runs. 
-    //These are strange tests, and are not good examples of how to write tests, but, we're testing the testing framework. 
-
-    //If all these tests pass, that means that using the uniquecontext test fixture on future tests ensures that the fixture doesn't 
-    //try to create a context at any point, and tears down the context every time without you forgetting to do so manually.  
-    private int _timesContextSetupHasBeenCalled;
-    private int _timesContextTeardownHasBeenCalled;
-    private bool _firstTestHasBeenRan;
-    private bool _secondTestHasBeenRan;
+    private int _TimesContextSetupHasBeenCalled;
+    private int _TimesContextTeardownHasBeenCalled;
+    private bool _FirstTestHasBeenRan;
+    private bool _SecondTestHasBeenRan;
 
     [Order(1)]
     [Test]
     public async Task UniqueContextTestFixtureSetupAndTearDownTests_Test1_DoNothing()
     {
         //Arrange, Act & Assert
-        _timesContextSetupHasBeenCalled = TestingContext.__metadata_NumberOfSetupTestContextCalls;
-        _timesContextTeardownHasBeenCalled = TestingContext.__metadata_NumberOfTearDownTestContextCalls;
+        _TimesContextSetupHasBeenCalled = TestingContext.__metadata_NumberOfSetupTestContextCalls;
+        _TimesContextTeardownHasBeenCalled = TestingContext.__metadata_NumberOfTearDownTestContextCalls;
 
-        _firstTestHasBeenRan = true;
+        _FirstTestHasBeenRan = true;
 
         Assert.Pass();
     }
@@ -76,22 +69,15 @@ public class UniqueContextTestFixtureSetupAndTearDownTests : UniqueContextTestFi
     [Test]
     public async Task UniqueContextTestFixtureSetupAndTearDownTests_Test2_SetupCalledOnce_TearDownCalledOnce()
     {
-
-        if (_firstTestHasBeenRan)
+        Assume.That(_FirstTestHasBeenRan, Is.True);
+        //Arrange, Act & Assert
+        _SecondTestHasBeenRan = true;
+        var numberOfTimesSetupHasBeenCalledSinceFirstTest = TestingContext.__metadata_NumberOfSetupTestContextCalls - _TimesContextSetupHasBeenCalled;
+        var numberOfTimesTearDownHasBeenCalledSinceFirstTest = TestingContext.__metadata_NumberOfTearDownTestContextCalls - _TimesContextTeardownHasBeenCalled;
+        using (Assert.EnterMultipleScope())
         {
-            //Arrange, Act & Assert
-            _secondTestHasBeenRan = true;
-            var numberOfTimesSetupHasBeenCalledSinceFirstTest = TestingContext.__metadata_NumberOfSetupTestContextCalls - _timesContextSetupHasBeenCalled;
-            var numberOfTimesTearDownHasBeenCalledSinceFirstTest = TestingContext.__metadata_NumberOfTearDownTestContextCalls - _timesContextTeardownHasBeenCalled;
-            using (Assert.EnterMultipleScope())
-            {
-                Assert.That(numberOfTimesSetupHasBeenCalledSinceFirstTest, Is.EqualTo(1));
-                Assert.That(numberOfTimesTearDownHasBeenCalledSinceFirstTest, Is.EqualTo(1));
-            }
-        }
-        else
-        {
-            Assert.Inconclusive($"This test must be ran immediately after {nameof(UniqueContextTestFixtureSetupAndTearDownTests_Test1_DoNothing)}.");
+            Assert.That(numberOfTimesSetupHasBeenCalledSinceFirstTest, Is.EqualTo(1));
+            Assert.That(numberOfTimesTearDownHasBeenCalledSinceFirstTest, Is.EqualTo(1));
         }
     }
 
@@ -99,21 +85,15 @@ public class UniqueContextTestFixtureSetupAndTearDownTests : UniqueContextTestFi
     [Test]
     public async Task UniqueContextTestFixtureSetupAndTearDownTests_Test3_SetupCalledTwoTimesAndTearDownCalledTwice()
     {
+        Assume.That(_SecondTestHasBeenRan, Is.True);
+        //Arrange, Act & Assert
+        var numberOfTimesSetupHasBeenCalledSinceFirstTest = TestingContext.__metadata_NumberOfSetupTestContextCalls - _TimesContextSetupHasBeenCalled;
+        var numberOfTimesTearDownHasBeenCalledSinceFirstTest = TestingContext.__metadata_NumberOfTearDownTestContextCalls - _TimesContextTeardownHasBeenCalled;
+        using (Assert.EnterMultipleScope())
+        {
+            Assert.That(numberOfTimesSetupHasBeenCalledSinceFirstTest, Is.EqualTo(2));
+            Assert.That(numberOfTimesTearDownHasBeenCalledSinceFirstTest, Is.EqualTo(2));
+        }
 
-        if (_secondTestHasBeenRan)
-        {
-            //Arrange, Act & Assert
-            var numberOfTimesSetupHasBeenCalledSinceFirstTest = TestingContext.__metadata_NumberOfSetupTestContextCalls - _timesContextSetupHasBeenCalled;
-            var numberOfTimesTearDownHasBeenCalledSinceFirstTest = TestingContext.__metadata_NumberOfTearDownTestContextCalls - _timesContextTeardownHasBeenCalled;
-            using (Assert.EnterMultipleScope())
-            {
-                Assert.That(numberOfTimesSetupHasBeenCalledSinceFirstTest, Is.EqualTo(2));
-                Assert.That(numberOfTimesTearDownHasBeenCalledSinceFirstTest, Is.EqualTo(2));
-            }
-        }
-        else
-        {
-            Assert.Inconclusive($"This test must be ran immediately after {nameof(UniqueContextTestFixtureSetupAndTearDownTests_Test2_SetupCalledOnce_TearDownCalledOnce)}.");
-        }
     }
 }

@@ -12,7 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 internal static class AppSettingConfigurations
 {
     /// <summary>
-    /// Adds AppSetting functionality 
+    /// Adds AppSetting functionality
     /// </summary>
     /// <typeparam name="TAppSettings"></typeparam>
     /// <param name="builder"></param>
@@ -26,7 +26,7 @@ internal static class AppSettingConfigurations
     }
 
     /// <summary>
-    /// Extension method that adds the appsetting JSON files. 
+    /// Extension method that adds the appsetting JSON files.
     /// </summary>
     /// <param name="builder"></param>
     /// <returns></returns>
@@ -37,7 +37,7 @@ internal static class AppSettingConfigurations
 
         //NOTE: This is only used for local development
         //TODO: Explain that this is set from Api/Properties/launchSettings
-        //TODO: Also test to see if we can run the application as a 'unit test user' 
+        //TODO: Also test to see if we can run the application as a 'unit test user'
         if (builder.Environment.EnvironmentName != "Local")
         {
             //Override the default appsettings with the environment version only if we're not running the 'local' version.
@@ -48,7 +48,7 @@ internal static class AppSettingConfigurations
     }
 
     /// <summary>
-    /// Add the 'options pattern' to map the appsetting.json file to the AppSetting.cs class. 
+    /// Add the 'options pattern' to map the appsetting.json file to the AppSetting.cs class.
     /// </summary>
     /// <typeparam name="TAppSettings"></typeparam>
     /// <param name="builder"></param>

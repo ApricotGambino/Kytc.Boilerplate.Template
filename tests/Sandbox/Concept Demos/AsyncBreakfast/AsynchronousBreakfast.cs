@@ -4,7 +4,8 @@ using System.Threading.Tasks;
 using static Sandbox.Concept_Demos.AsyncBreakfast.BreakfastShared;
 
 
-//This comes from: https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/
+//NOTE: This comes from: https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/
+
 public static class AsynchronousBreakfast
 {
     internal static async Task<Breakfast> MakeBreakfastLevel1()
@@ -95,9 +96,9 @@ public static class AsynchronousBreakfast
         //Coffee is ready -> warming the egg pan... -> blah blah blah -> Put Eggs on plate -> eggs are ready
         //Which makes sense.
 
-        //Comment out this line: 
-        //breakfast.Eggs = await eggsTask;
-        //And you'll get: 
+        //Comment out this line:
+        ////  breakfast.Eggs = await eggsTask;
+        //And you'll get:
         //Coffee is ready -> warming the egg pan... -> blah blah blah ->  eggs are ready -> cracking 2 eggs -> cooking the eggs -> [Put Eggs on Plate is missing]
         //It's out of order, because we're not telling our code to await eggs.
         //So we basically just sent that task off to do whatever it wanted, and never cared about when it finished.  In this case,
@@ -148,7 +149,7 @@ public static class AsynchronousBreakfast
         //were ready because the applyButter/Jam methods were called after the await
         //for the hashbrowns.  This effectively means that unless the hashbrowns
         //were finished, we can't put butter and jam on the toast, which makes no sense
-        //becuase for putting butter/jam on toast, we care about the toast being done, not the hashbrowns. 
+        //becuase for putting butter/jam on toast, we care about the toast being done, not the hashbrowns.
 
         var breakfast = new Breakfast();
 
@@ -209,7 +210,7 @@ public static class AsynchronousBreakfast
 
         //This change makes that the case.
         //But in my opinion, this is borderline nonsensical and quite unreadable.
-        //Let's wrap this up, and move onto level 6. 
+        //Let's wrap this up, and move onto level 6.
         var breakfast = new Breakfast();
 
         breakfast.Coffee = breakfast.PourCoffee();//Always start cooking with a drink, here, coffee.
@@ -223,7 +224,7 @@ public static class AsynchronousBreakfast
 
         while (breakfastTasks.Count > 0)
         {
-            Task finishedTask = await Task.WhenAny(breakfastTasks);
+            var finishedTask = await Task.WhenAny(breakfastTasks);
             if (finishedTask == eggsTask)
             {
                 breakfast.Messages.Add("eggs are ready");

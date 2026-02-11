@@ -21,8 +21,20 @@ public static class TestingConstants
 
 public static class TestingCategoryConstants
 {
+    /// <summary>
+    /// Seeing this trait in the test explorer tells you each test is going to rebuild the context, this means it's going to be a slow test.
+    /// </summary>
     public const string ApiStartupTests = "ApiStartupTests";
-    public const string nUnitFrameworkTests = "nUnitFrameworkTests"; //These are weird tests, but are for testing the testing framework.
-    public const string UniqueContextTests = "UniqueContextTests"; //Seeing this trait in the test explorer tells you each test is going to rebuild the context, this means it's going to be a slow test.
-    public const string BenchmarkTests = "BenchmarkTests"; //Seeing this trait in the test explorer tells you each test is going to rebuild the context, and it's also used in performance testing, so it's going to be a VERY slow test.
+    /// <summary>
+    /// These are weird tests, but are for testing the testing framework.
+    /// </summary>
+    public const string NUnitFrameworkTests = "nUnitFrameworkTests";
+    /// <summary>
+    /// Seeing this trait in the test explorer tells you each test is going to rebuild the context, this means it's going to be a slow test.
+    /// </summary>
+    public const string UniqueContextTests = "UniqueContextTests";
+    /// <summary>
+    /// /// Seeing this trait in the test explorer tells you each test is going to rebuild the context, this means it's going to be a slow test.
+    /// </summary>
+    public const string BenchmarkTests = "BenchmarkTests";
 }

@@ -11,11 +11,14 @@ using TestShared.Fixtures;
 public class BaseWebApplicationBuilderTests : BaseTestFixture
 {
 
+
     [Test]
     public async Task GetAppSettings_GetAppSettingObject_FindsExpectedValue()
     {
+
         //Arrange
-        var builder = BaseWebApplicationBuilder.CreateBaseWebApplicationBuilder<TestingDatabaseContext, AppSettings>(new string[] { "--environment=Testing" });
+        var args = new string[] { "--environment=Testing" };
+        var builder = BaseWebApplicationBuilder.CreateBaseWebApplicationBuilder<TestingDatabaseContext, AppSettings>(args);
 
         //Act
         var appSettings = builder.GetAppSettings<TestAppSettings>();

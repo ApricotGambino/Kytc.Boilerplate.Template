@@ -11,7 +11,7 @@ using Serilog.Sinks.MSSqlServer;
 internal static class KernelServiceConfigurations
 {
     /// <summary>
-    /// Adds services defined by the kernel, to the kernel. 
+    /// Adds services defined by the kernel, to the kernel.
     /// </summary>
     /// <param name="builder"></param>
     /// <param name="appSettings"></param>
@@ -34,7 +34,7 @@ internal static class KernelServiceConfigurations
     internal static WebApplicationBuilder AddSerilogConfiguration(this WebApplicationBuilder builder, BaseAppSettings appSettings)
     {
         //TODO: create some tests around Serilog, and logging. Also, tidy this up along with feature enrich.
-        _ = builder.Services.AddSerilog((services, loggerConfiguration) =>
+        builder.Services.AddSerilog((services, loggerConfiguration) =>
         loggerConfiguration
             //.ReadFrom.Configuration(builder.Configuration) //TODO: What is this for?
             //.ReadFrom.Services(services) //TODO: What is this for?
@@ -49,11 +49,11 @@ internal static class KernelServiceConfigurations
             );
 
 
-        //This ensures that the logs get flushed into the DB no matter what, since MSSQL sink is a 'perodic batch' sink. 
+        //This ensures that the logs get flushed into the DB no matter what, since MSSQL sink is a 'perodic batch' sink.
         AppDomain.CurrentDomain.ProcessExit += (s, e) => Log.CloseAndFlush();
 
 
-        //NOTE: You can uncomment this to debug Serilog itself. 
+        //NOTE: You can uncomment this to debug Serilog itself.
         //Serilog.Debugging.SelfLog.Enable(msg =>
         //{
         //    Debug.Print(msg);

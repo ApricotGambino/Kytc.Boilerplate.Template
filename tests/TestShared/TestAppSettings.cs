@@ -7,5 +7,5 @@ using KernelApi;
 /// </summary>
 public class TestAppSettings : BaseAppSettings
 {
-    public string TestKey { get; set; }
+    public required string TestKey { get; set; }
 }

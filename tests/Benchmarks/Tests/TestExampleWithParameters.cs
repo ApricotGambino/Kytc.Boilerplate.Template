@@ -8,24 +8,22 @@ using Benchmarks.Data;
 //Also, we mix benchmarking and testing in this class so you can actually test your code, then run the benchmark.
 //Also, you can copy/paste your results here: https://chartbenchmark.net/ which is pretty nice.
 
-//NOTE: If you're parameterizing your tests 
 [MemoryDiagnoser]
 [DisassemblyDiagnoser]
 [ThreadingDiagnoser]
 [ShortRunJob]
 [Category(TestingCategoryConstants.BenchmarkTests)]
-public class Test_Example_WithParameters
+public class TestExampleWithParameters
 {
     #region Setup
     /// <summary>
     /// This method setups the test and benchmark. Using nUnit's OneTimeSetup and DotNetBenchmark's GlobalSetup
     /// </summary>
-    /// <returns></returns>
     [GlobalSetup]
     [OneTimeSetUp]
     public static Task SetupAsync()
     {
-        //Here you can do some setup, likely seed some data. 
+        //Here you can do some setup, likely seed some data.
         return BenchmarkDbContext.SeedTestEntitiesAsync(1000);
     }
 
@@ -34,7 +32,7 @@ public class Test_Example_WithParameters
     /// and will be executed with expected results in the test explorer, this way you know your benchmark
     /// is at least working as expected when you get your benchmark results.
     /// </summary>
-    public static class nUnitTestCaseSource
+    public static class NUnitTestCaseSource
     {
         public static IEnumerable TestCases
         {
@@ -56,27 +54,27 @@ public class Test_Example_WithParameters
 
     #region Tests
     [Benchmark(Baseline = true)]
-    [TestCaseSource(typeof(nUnitTestCaseSource), nameof(nUnitTestCaseSource.TestCases))]
+    [TestCaseSource(typeof(NUnitTestCaseSource), nameof(NUnitTestCaseSource.TestCases))]
     [ArgumentsSource(nameof(DotNetBenchMarkArgumentSource))]
     public async Task<int> Example_ThingToTest(int parameterUsedInTest)
     {
         //This method is defined as the baseline, which means all other tests in this suite
-        //will be compared against it. 
+        //will be compared against it.
 
         //Do some action using parameterUsedInTest
 
-        //Return some value to be tested against from the 
+        //Return some value to be tested against from the
         return parameterUsedInTest;
     }
 
     [Benchmark]
-    [TestCaseSource(typeof(nUnitTestCaseSource), nameof(nUnitTestCaseSource.TestCases))]
+    [TestCaseSource(typeof(NUnitTestCaseSource), nameof(NUnitTestCaseSource.TestCases))]
     [ArgumentsSource(nameof(DotNetBenchMarkArgumentSource))]
     public async Task<int> Example_AnotherThingToTest(int parameterUsedInTest)
     {
         //Do some action using parameterUsedInTest
 
-        //Return some value to be tested against from the 
+        //Return some value to be tested against from the
         return parameterUsedInTest;
     }
     #endregion Tests

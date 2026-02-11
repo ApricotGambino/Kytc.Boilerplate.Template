@@ -2,64 +2,63 @@ namespace TestingInfrastructureTests;
 
 using TestShared;
 
-//NOTE: These tests ensure that TestingContext Setup/Teardown/Reset all work as expected. 
-//Because the TestingContext is a static class, we need to make sure these actually work, and can't rely on letting the 
-//class become null, or constructors to build it up as expected.  Also, it's static because it's funtionally a singleton
-//that can be shared throughout tests. 
-//Also, these tests are the only ones that don't use any of the established nunit testing fixtures we've created. 
-//We don't want those to influence anything. 
-//These are strange tests, and are not good examples of how to write tests, but, we're testing the testing framework, 
-//And who tests the tests?  This test.
-[Category(TestingCategoryConstants.nUnitFrameworkTests)]
+/// <summary>
+/// NOTE: These tests ensure that TestingContext Setup/Teardown/Reset all work as expected.
+/// Because the TestingContext is a static class, we need to make sure these actually work, and can't rely on letting the
+/// class become null, or constructors to build it up as expected.  Also, it's static because it's funtionally a singleton
+/// that can be shared throughout tests.
+/// Also, these tests are the only ones that don't use any of the established nunit testing fixtures we've created.
+/// We don't want those to influence anything.
+/// If all these test pass, that means the testing context does the following:
+/// 1) Setup populates the context completely.
+/// 2) Teardown makes everything in the context null.
+/// 3) Reset calls the Teardown, then the Setup.
+/// This ensures that the context works as you'd expect throughout all the testing you man do.
+/// </summary>
+[Category(TestingCategoryConstants.NUnitFrameworkTests)]
 [TestFixture]
 public class TestingContextTests
 {
-    private int numberOfTimesTheseTestsHaveCalledSetup;
-    private int numberOfTimesTheseTestsHaveCalledTeardown;
-    private int numberOfTimesTheseTestsHaveCalledReset;
+    private int _NumberOfTimesTheseTestsHaveCalledSetup;
+    private int _NumberOfTimesTheseTestsHaveCalledTeardown;
+    private int _NumberOfTimesTheseTestsHaveCalledReset;
 
-    private int metadataNumberOfSetupTestContextCallsBeforeTestsAreRan;
-    private int metadataNumberOfTearDownTestContextCallsBeforeTestsAreRan;
-    private int metadataNumberOfResetTestContextCallsBeforeTestsAreRan;
+    private int _MetadataNumberOfSetupTestContextCallsBeforeTestsAreRan;
+    private int _MetadataNumberOfTearDownTestContextCallsBeforeTestsAreRan;
+    private int _MetadataNumberOfResetTestContextCallsBeforeTestsAreRan;
 
-    private bool stopTests;
+    private bool _StopTests;
 
-
-    //If all these test pass, that means the testing context does the following: 
-    // 1) Setup populates the context completely. 
-    // 2) Teardown makes everything in the context null. 
-    // 3) Reset calls the Teardown, then the Setup. 
-    //This ensures that the context works as you'd expect throughout all the testing you man do. 
     [OneTimeSetUp]
     public async Task RunBeforeTheseTests()
     {
-        metadataNumberOfSetupTestContextCallsBeforeTestsAreRan = TestingContext.__metadata_NumberOfSetupTestContextCalls;
-        metadataNumberOfTearDownTestContextCallsBeforeTestsAreRan = TestingContext.__metadata_NumberOfTearDownTestContextCalls;
-        metadataNumberOfResetTestContextCallsBeforeTestsAreRan = TestingContext.__metadata_NumberOfResetTestContextCalls;
+        _MetadataNumberOfSetupTestContextCallsBeforeTestsAreRan = TestingContext.__metadata_NumberOfSetupTestContextCalls;
+        _MetadataNumberOfTearDownTestContextCallsBeforeTestsAreRan = TestingContext.__metadata_NumberOfTearDownTestContextCalls;
+        _MetadataNumberOfResetTestContextCallsBeforeTestsAreRan = TestingContext.__metadata_NumberOfResetTestContextCalls;
 
         await TestingContext.TearDownTestContextAsync();
-        numberOfTimesTheseTestsHaveCalledTeardown++;
+        _NumberOfTimesTheseTestsHaveCalledTeardown++;
     }
 
     [TearDown]
     public async Task TestTearDown()
     {
-        //We want to stop running tests if any have failed, since these tests rely on each one before it. 
+        //We want to stop running tests if any have failed, since these tests rely on each one before it.
         if (TestContext.CurrentContext.Result.Outcome.Status != NUnit.Framework.Interfaces.TestStatus.Passed)
         {
-            stopTests = true;
+            _StopTests = true;
         }
 
-        Assume.That(stopTests, Is.False);
+        Assume.That(_StopTests, Is.False);
     }
 
     [Test]
     [Order(1)]
     public async Task TestingContext_Test01ClassStructure_TestingContextCannotHaveFields()
     {
-        //NOTE: This seems odd, but we don't want our testing class to have any fields, only properties. 
-        //This is so that we're able to ensure all 'fields' are actually 'properties' so that we can also force each one has a private setter. 
-        //so that tests can only interact with the context through Setup/Reset/Teardown methods. 
+        //NOTE: This seems odd, but we don't want our testing class to have any fields, only properties.
+        //This is so that we're able to ensure all 'fields' are actually 'properties' so that we can also force each one has a private setter.
+        //so that tests can only interact with the context through Setup/Reset/Teardown methods.
         //I am _CERTAIN_ there's a better way to design this class to make this naturally the case, but instead we'll just throw errors in the test.
         var fields = typeof(TestingContext).GetFields();
         using (Assert.EnterMultipleScope())
@@ -76,8 +75,8 @@ public class TestingContextTests
     public async Task TestingContext_Test02ClassStructure_TestingContextCannotPropertiesWithPublicSetters()
     {
         //NOTE: This seems odd, but we don't want our testing class to have any public setters,
-        //so that tests can only interact with the context through Setup/Reset/Teardown methods. 
-        //I am _CERTAIN_ there's a better way to design this class to make this naturally the case, but instead we'll just throw errors in the test.        
+        //so that tests can only interact with the context through Setup/Reset/Teardown methods.
+        //I am _CERTAIN_ there's a better way to design this class to make this naturally the case, but instead we'll just throw errors in the test.
         var properties = typeof(TestingContext).GetProperties().Where(p => p.GetMethod != null && p.SetMethod != null && p.GetMethod.IsPublic && p.SetMethod.IsPublic);
         using (Assert.EnterMultipleScope())
         {
@@ -94,7 +93,7 @@ public class TestingContextTests
     {
         //Arrange
         await TestingContext.SetupTestContextAsync();
-        numberOfTimesTheseTestsHaveCalledSetup++;
+        _NumberOfTimesTheseTestsHaveCalledSetup++;
 
         //Act & Assert
         Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.TestingEnvironmentName));
@@ -122,7 +121,7 @@ public class TestingContextTests
     {
         //Arrange
         await TestingContext.TearDownTestContextAsync();
-        numberOfTimesTheseTestsHaveCalledTeardown++;
+        _NumberOfTimesTheseTestsHaveCalledTeardown++;
 
         //Act & Assert
         Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.TestingEnvironmentName));
@@ -136,7 +135,7 @@ public class TestingContextTests
     {
         //Arrange
         await TestingContext.SetupTestContextAsync();
-        numberOfTimesTheseTestsHaveCalledSetup++;
+        _NumberOfTimesTheseTestsHaveCalledSetup++;
 
         //Act & Assert
         Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.TestingEnvironmentName));
@@ -148,7 +147,7 @@ public class TestingContextTests
     {
         //Arrange
         await TestingContext.ResetTestContextAsync();
-        numberOfTimesTheseTestsHaveCalledReset++;
+        _NumberOfTimesTheseTestsHaveCalledReset++;
 
         //Act & Assert
         Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.TestingEnvironmentName));
@@ -161,8 +160,8 @@ public class TestingContextTests
         //Arrange
         await TestingContext.TearDownTestContextAsync();
         await TestingContext.ResetTestContextAsync();
-        numberOfTimesTheseTestsHaveCalledTeardown++;
-        numberOfTimesTheseTestsHaveCalledReset++;
+        _NumberOfTimesTheseTestsHaveCalledTeardown++;
+        _NumberOfTimesTheseTestsHaveCalledReset++;
 
         //Act & Assert
         Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.TestingEnvironmentName));
@@ -174,8 +173,8 @@ public class TestingContextTests
         //Arrange
         await TestingContext.TearDownTestContextAsync();
         await TestingContext.SetupTestContextAsync(nameof(TestingContext_Test10SetupContextWithSpecificEnvironmentName_ContextHasSpecificEnvironmentName));
-        numberOfTimesTheseTestsHaveCalledTeardown++;
-        numberOfTimesTheseTestsHaveCalledSetup++;
+        _NumberOfTimesTheseTestsHaveCalledTeardown++;
+        _NumberOfTimesTheseTestsHaveCalledSetup++;
 
         //Act & Assert
         Assert.That(TestingContext.EnvironmentName, Is.EqualTo(nameof(TestingContext_Test10SetupContextWithSpecificEnvironmentName_ContextHasSpecificEnvironmentName)));
@@ -196,7 +195,7 @@ public class TestingContextTests
         //Act & Assert
         Assert.That(TestingContext.EnvironmentName, Is.EqualTo(nameof(TestingContext_Test10SetupContextWithSpecificEnvironmentName_ContextHasSpecificEnvironmentName)));
         await TestingContext.ResetTestContextAsync();
-        numberOfTimesTheseTestsHaveCalledReset++;
+        _NumberOfTimesTheseTestsHaveCalledReset++;
         Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.TestingEnvironmentName));
     }
 
@@ -208,7 +207,7 @@ public class TestingContextTests
         var setupCountBeforeReset = TestingContext.__metadata_NumberOfSetupTestContextCalls;
         var teardownCountBeforeReset = TestingContext.__metadata_NumberOfTearDownTestContextCalls;
         await TestingContext.ResetTestContextAsync();
-        numberOfTimesTheseTestsHaveCalledReset++;
+        _NumberOfTimesTheseTestsHaveCalledReset++;
         var setupCountAfterReset = TestingContext.__metadata_NumberOfSetupTestContextCalls;
         var teardownCountAfterReset = TestingContext.__metadata_NumberOfTearDownTestContextCalls;
         using (Assert.EnterMultipleScope())
@@ -236,21 +235,21 @@ public class TestingContextTests
     public async Task TestingContext_Test15CompareNumberOfTimesMethodsWereCalledInCodeToTestSuiteCounter_CallCountsMatch()
     {
         //First, we'll check our own work by setting these values
-        //to what we believe it should be, by having only read the code (using ctrl+f for the method). 
+        //to what we believe it should be, by having only read the code (using ctrl+f for the method).
 
         //Setup was called technically 5 times, but two of them was an intentional error,
         //so we didn't really initialize, and won't count those, and because of Test: TestingContext_Test14ContextAlreadySetupButCallSetupAgainToError_MetadataSetupCallsShouldNotIncrementFromError,
-        //we know the context won't count it either. 
+        //we know the context won't count it either.
         const int numberOfTimesSetupTestContextWasSuccessfullyCalledInthisTestSuite = 3;
         const int numberOfTimesTearDownTestContextMethodWasCalledInthisTestSuite = 4;
         const int numberOfTimesResetMethodWasCalledInthisTestSuite = 4;
         using (Assert.EnterMultipleScope())
         {
             //This tells us that the number of times we found calls to these methods is the same as the number
-            //of times we incremented the count in this suite. This test isn't great, but it's a sanity check. 
-            Assert.That(numberOfTimesTheseTestsHaveCalledSetup, Is.EqualTo(numberOfTimesSetupTestContextWasSuccessfullyCalledInthisTestSuite));
-            Assert.That(numberOfTimesTheseTestsHaveCalledTeardown, Is.EqualTo(numberOfTimesTearDownTestContextMethodWasCalledInthisTestSuite));
-            Assert.That(numberOfTimesTheseTestsHaveCalledReset, Is.EqualTo(numberOfTimesResetMethodWasCalledInthisTestSuite));
+            //of times we incremented the count in this suite. This test isn't great, but it's a sanity check.
+            Assert.That(_NumberOfTimesTheseTestsHaveCalledSetup, Is.EqualTo(numberOfTimesSetupTestContextWasSuccessfullyCalledInthisTestSuite));
+            Assert.That(_NumberOfTimesTheseTestsHaveCalledTeardown, Is.EqualTo(numberOfTimesTearDownTestContextMethodWasCalledInthisTestSuite));
+            Assert.That(_NumberOfTimesTheseTestsHaveCalledReset, Is.EqualTo(numberOfTimesResetMethodWasCalledInthisTestSuite));
         }
     }
 
@@ -258,15 +257,15 @@ public class TestingContextTests
     [Order(16)]
     public async Task TestingContext_Test16TestSuiteCounterToMetaDataCounts_CallCountsMatch()
     {
-        //NOTE: Each 'reset' will call Setup and Teardown once, so we count those in the final count. 
-        var numberOfTimesResetMethodWasCalledInthisTestSuite = numberOfTimesTheseTestsHaveCalledReset;
-        var numberOfTimesTearDownTestContextMethodWasCalledInthisTestSuite = numberOfTimesTheseTestsHaveCalledReset + numberOfTimesTheseTestsHaveCalledTeardown;
-        var numberOfTimesSetupTestContextWasSuccessfullyCalledInthisTestSuite = numberOfTimesTheseTestsHaveCalledReset + numberOfTimesTheseTestsHaveCalledSetup;
+        //NOTE: Each 'reset' will call Setup and Teardown once, so we count those in the final count.
+        var numberOfTimesResetMethodWasCalledInthisTestSuite = _NumberOfTimesTheseTestsHaveCalledReset;
+        var numberOfTimesTearDownTestContextMethodWasCalledInthisTestSuite = _NumberOfTimesTheseTestsHaveCalledReset + _NumberOfTimesTheseTestsHaveCalledTeardown;
+        var numberOfTimesSetupTestContextWasSuccessfullyCalledInthisTestSuite = _NumberOfTimesTheseTestsHaveCalledReset + _NumberOfTimesTheseTestsHaveCalledSetup;
 
-        //Because this test suite may be ran after other tests, we want to only get the delta of metadata counts since this suite has been ran. 
-        var metadataResetDelta = TestingContext.__metadata_NumberOfResetTestContextCalls - metadataNumberOfResetTestContextCallsBeforeTestsAreRan;
-        var metadataTeardownDelta = TestingContext.__metadata_NumberOfTearDownTestContextCalls - metadataNumberOfTearDownTestContextCallsBeforeTestsAreRan;
-        var metadataStartDelta = TestingContext.__metadata_NumberOfSetupTestContextCalls - metadataNumberOfSetupTestContextCallsBeforeTestsAreRan;
+        //Because this test suite may be ran after other tests, we want to only get the delta of metadata counts since this suite has been ran.
+        var metadataResetDelta = TestingContext.__metadata_NumberOfResetTestContextCalls - _MetadataNumberOfResetTestContextCallsBeforeTestsAreRan;
+        var metadataTeardownDelta = TestingContext.__metadata_NumberOfTearDownTestContextCalls - _MetadataNumberOfTearDownTestContextCallsBeforeTestsAreRan;
+        var metadataStartDelta = TestingContext.__metadata_NumberOfSetupTestContextCalls - _MetadataNumberOfSetupTestContextCallsBeforeTestsAreRan;
 
         using (Assert.EnterMultipleScope())
         {

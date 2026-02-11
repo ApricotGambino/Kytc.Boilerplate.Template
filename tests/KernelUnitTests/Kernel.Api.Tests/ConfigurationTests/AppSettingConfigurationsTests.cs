@@ -1,9 +1,9 @@
+namespace KernelApi.Tests.ConfigurationTests;
+
 using KernelApi.Configurations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using TestShared.Fixtures;
-
-namespace KernelApi.Tests.ConfigurationTests;
 
 [Category(TestingCategoryConstants.ApiStartupTests)]
 public class AppSettingConfigurationsTests : BaseTestFixture
@@ -35,6 +35,7 @@ public class AppSettingConfigurationsTests : BaseTestFixture
         var appSettings = builder.Configuration.GetSection("AppSettings").Get<TestAppSettings>();
 
         //Act
+        Assert.That(appSettings, Is.Not.Null);
         Assert.That(appSettings.TestKey, Is.EqualTo(TestingConstants.TestingAppSettingValue));
     }
 

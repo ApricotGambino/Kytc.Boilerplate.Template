@@ -15,7 +15,6 @@ public static class BaseWebApplicationBuilder
     /// <typeparam name="TDatabaseContext"></typeparam>
     /// <typeparam name="TAppSettings"></typeparam>
     /// <param name="args"></param>
-    /// <param name="environmentName"></param>
     /// <returns></returns>
     public static WebApplicationBuilder CreateBaseWebApplicationBuilder<TDatabaseContext, TAppSettings>(string[] args)
         where TDatabaseContext : DbContext

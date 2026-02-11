@@ -8,30 +8,30 @@ namespace TestShared.Fixtures;
 public abstract class BaseTestFixture
 {
     //NOTE: This class is abstract so we can override methods, since not all tests want to be ran the same way, but most want to be ran a certain way. An example of this would
-    //be the unique contexttestfixture that needs to create and delete the database every test. 
+    //be the unique contexttestfixture that needs to create and delete the database every test.
 
     /// <summary>
-    /// This method is ran before every test. 
+    /// This method is ran before every test.
     /// </summary>
     /// <returns></returns>
     [SetUp]
     public virtual async Task TestSetUpAsync()
     {
-        //Intentionally left blank, feel free to add whatever you like. 
+        //Intentionally left blank, feel free to add whatever you like.
     }
 
     /// <summary>
-    /// This method is ran after every test. 
+    /// This method is ran after every test.
     /// </summary>
     /// <returns></returns>
     [TearDown]
     public virtual async Task TestTearDownAsync()
     {
-        //Intentionally left blank, feel free to add whatever you like.         
+        //Intentionally left blank, feel free to add whatever you like.
     }
 
     /// <summary>
-    /// This method is ran before any test is ran, but only once. 
+    /// This method is ran before any test is ran, but only once.
     /// </summary>
     /// <returns></returns>
     [OneTimeSetUp]
@@ -41,7 +41,7 @@ public abstract class BaseTestFixture
     }
 
     /// <summary>
-    /// This method is ran after any test is ran, but only once. 
+    /// This method is ran after any test is ran, but only once.
     /// </summary>
     /// <returns></returns>
     [OneTimeTearDown]

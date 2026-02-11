@@ -8,10 +8,9 @@ public static class BaseWebApplication
     /// This adds all kernel required web application configurations to the webapplication object.
     /// </summary>
     /// <param name="app"></param>
-    /// <returns></returns>
     public static WebApplication AddKernelWebApplicationConfigurations(this WebApplication app)
     {
-        //TODO: Test that HTTPS redirection actually works. 
+        //TODO: Test that HTTPS redirection actually works.
         app.UseHttpsRedirection();
 
         return app;

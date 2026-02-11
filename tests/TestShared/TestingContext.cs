@@ -5,18 +5,20 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
 /// <summary>
-/// This class allows us to access the context of all testing needs.  
-/// </summary> 
+/// This class allows us to access the context of all testing needs.
+/// </summary>
 
 public static class TestingContext
 {
     /// <summary>
-    /// Metadata values are used for testing analysis, these should not be reset 
+    /// Metadata values are used for testing analysis, these should not be reset
     /// </summary>
+#pragma warning disable IDE1006, CA1707// Naming Styles
     public static int __metadata_NumberOfSetupTestContextCalls { get; private set; }
     public static int __metadata_NumberOfTearDownTestContextCalls { get; private set; }
     public static int __metadata_NumberOfResetTestContextCalls { get; private set; }
     public static bool __metadata_ContextHasBeenSetup { get; private set; }
+#pragma warning restore IDE1006, CA1707 // Naming Styles
 
 
     public static string? EnvironmentName { get; private set; }
@@ -28,7 +30,6 @@ public static class TestingContext
     /// This method will setup the testing context
     /// </summary>
     /// <param name="environmentName"></param>
-    /// <returns></returns>
     /// <exception cref="InvalidOperationException"></exception>
     public static async Task SetupTestContextAsync(string? environmentName = null)
     {
@@ -37,7 +38,7 @@ public static class TestingContext
         if (__metadata_ContextHasBeenSetup)
         {
             //NOTE: We want to make sure that if setup is being called, it's in the context of it being 'fresh', this
-            //helps prevent tests from setting up context without intentionality. 
+            //helps prevent tests from setting up context without intentionality.
             throw new InvalidOperationException($"Testing Context setup was attempted without ensuring teardown, make sure to teardown context prior to setting up, this can be easily done by using the {nameof(ResetTestContextAsync)} method.");
         }
 
@@ -51,7 +52,7 @@ public static class TestingContext
 
             ServiceProvider = ScopeFactory.CreateScope().ServiceProvider;
 
-            //Delete the testing database, then create it so it's always new and fresh. 
+            //Delete the testing database, then create it so it's always new and fresh.
             var context = GetService<TestingDatabaseContext>();
             var databaseConnection = context.Database.GetDbConnection();
 
@@ -80,7 +81,7 @@ public static class TestingContext
     }
 
     /// <summary>
-    /// This method will tear down the testing context.  This normally is ran only after all tests are complete. But can be manually called if wanted. 
+    /// This method will tear down the testing context.  This normally is ran only after all tests are complete. But can be manually called if wanted.
     /// </summary>
     /// <returns></returns>
     public static async Task TearDownTestContextAsync()
@@ -100,7 +101,7 @@ public static class TestingContext
     }
 
     /// <summary>
-    /// This will reset the context by first tearing it down, then creating it again. 
+    /// This will reset the context by first tearing it down, then creating it again.
     /// </summary>
     /// <param name="environmentName"></param>
     /// <returns></returns>

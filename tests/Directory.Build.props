@@ -1,11 +1,11 @@
 <Project>
   <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../src/'))" />
-  
+
   <ItemGroup>
     <AssemblyAttribute Include="System.Diagnostics.CodeAnalysis.ExcludeFromCodeCoverageAttribute" />
   </ItemGroup>
 
-	<PropertyGroup>
-		<NoWarn>VSTHRD200</NoWarn>
-	</PropertyGroup>
+  <PropertyGroup>
+	<NoWarn>VSTHRD200, CA1707</NoWarn>
+  </PropertyGroup>
 </Project>

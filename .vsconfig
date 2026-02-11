@@ -13,5 +13,6 @@
         "https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor2",
         //This ensures that .editorconfig rules are applied to the file upon saving 
         "https://marketplace.visualstudio.com/items?itemName=MadsKristensen.CodeCleanupOnSave"
-    ]
+    ],
+    ""
 }

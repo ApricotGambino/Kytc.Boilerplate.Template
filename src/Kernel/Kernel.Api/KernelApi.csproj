@@ -20,4 +20,8 @@
     <ProjectReference Include="..\Kernel.Infrastructure\KernelInfrastructure.csproj" />
   </ItemGroup>
 
+  <Target Name="InstallRequiredDotNetTools" BeforeTargets="CoreCompile">
+    <Exec Command="dotnet tool update -g docfx" />
+  </Target>
+
 </Project>

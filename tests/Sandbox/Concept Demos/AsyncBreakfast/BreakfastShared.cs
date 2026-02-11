@@ -1,9 +1,10 @@
 namespace Sandbox.Concept_Demos.AsyncBreakfast;
 
-[System.Diagnostics.CodeAnalysis.SuppressMessage("Minor Code Smell", "S2094:Classes should not be empty", Justification = "<Pending>")]
+
+#pragma warning disable
 public static class BreakfastShared
 {
-    internal class Breakfast
+    internal sealed class Breakfast
     {
         internal bool IsDone { get; set; }
         internal List<string> Messages { get; set; } = new List<string>();
@@ -18,8 +19,10 @@ public static class BreakfastShared
             return new Juice();
         }
 
+
         internal void ApplyJam(Toast toast) =>
             Messages.Add("Putting jam on the toast");
+
 
         internal void ApplyButter(Toast toast) =>
             Messages.Add("Putting butter on the toast");
@@ -37,9 +40,10 @@ public static class BreakfastShared
 
             return new Toast();
         }
+
         internal async Task<Toast> ToastBreadAsync(int slices)
         {
-            for (int slice = 0; slice < slices; slice++)
+            for (var slice = 0; slice < slices; slice++)
             {
                 Messages.Add("Putting a slice of bread in the toaster");
             }
@@ -75,7 +79,7 @@ public static class BreakfastShared
             Messages.Add($"putting {patties} hash brown patties in the pan");
             Messages.Add("cooking first side of hash browns...");
             Task.Delay(HashBrown.TimeItTakesToCookSideOfPatty).Wait();
-            for (int patty = 0; patty < patties; patty++)
+            for (var patty = 0; patty < patties; patty++)
             {
                 Messages.Add("flipping a hash brown patty");
             }
@@ -91,7 +95,7 @@ public static class BreakfastShared
             Messages.Add($"putting {patties} hash brown patties in the pan");
             Messages.Add("cooking first side of hash browns...");
             await Task.Delay(HashBrown.TimeItTakesToCookSideOfPatty);
-            for (int patty = 0; patty < patties; patty++)
+            for (var patty = 0; patty < patties; patty++)
             {
                 Messages.Add("flipping a hash brown patty");
             }
@@ -107,7 +111,7 @@ public static class BreakfastShared
             Messages.Add($"putting {patties} hash brown patties in the pan");
             Messages.Add("cooking first side of hash browns...");
             await Task.Delay(HashBrown.TimeItTakesToCookSideOfPatty);
-            for (int patty = 0; patty < patties; patty++)
+            for (var patty = 0; patty < patties; patty++)
             {
                 Messages.Add("flipping a hash brown patty");
             }
@@ -168,6 +172,7 @@ public static class BreakfastShared
     {
         public const int TimeItTakesToCookSideOfPatty = 200;
     }
+
     internal sealed class Coffee;
     internal sealed class Egg
     {

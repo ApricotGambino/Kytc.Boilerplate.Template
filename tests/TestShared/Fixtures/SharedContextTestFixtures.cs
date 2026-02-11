@@ -7,7 +7,7 @@ using NUnit.Framework;
 /// <summary>
 /// This nUnit test fixture is used for tests that use the database, but will share the database for all
 /// tests. This fixture will create the database at the start of any tests ran, but will persist the database
-/// throughout all tests hence the shared name. 
+/// throughout all tests hence the shared name.
 /// </summary>
 public abstract class SharedContextTestFixture : BaseTestFixture
 {
