@@ -5,7 +5,7 @@ https://github.com/othneildrew/Best-README-Template/blob/main/BLANK_README.md
 -->
 
 <!--#if (templateSolutionOnly) -->
-
+asdf
 //TODO: Explain where Nuget packages are installed, an why they are in Domain only.
 
 //TODO: Explain Directory.Packages.props
