@@ -13,5 +13,26 @@
     <ProjectReference Include="..\Kernel\Kernel.Api\KernelApi.csproj" />
   </ItemGroup>
 
-  
+
+  <ItemGroup>
+    <Content Remove="..\..\docs\docs\_site\.attachments\**" />
+    <Content Remove="..\..\docs\docs\_site\.docfx\x-cross\**" />
+    <Content Remove="..\..\docs\docs\_site\general\**" />
+    <Content Remove="..\..\docs\docs\_site\images\**" />
+    <Content Remove="..\..\docs\docs\_site\public\**" />
+    <Content Remove="..\..\docs\docs\_site\reference\**" />
+    <Content Remove="..\..\docs\docs\_site\services\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="..\..\docs\docs\_site\favicon.ico" />
+    <Content Remove="..\..\docs\docs\_site\index.html" />
+    <Content Remove="..\..\docs\docs\_site\index.json" />
+    <Content Remove="..\..\docs\docs\_site\logo.svg" />
+    <Content Remove="..\..\docs\docs\_site\manifest.json" />
+    <Content Remove="..\..\docs\docs\_site\toc.html" />
+    <Content Remove="..\..\docs\docs\_site\toc.json" />
+    <Content Remove="..\..\docs\docs\_site\web.config" />
+    <Content Remove="..\..\docs\docs\_site\xrefmap.yml" />
+  </ItemGroup>
 </Project>

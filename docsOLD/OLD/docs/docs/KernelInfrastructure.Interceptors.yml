@@ -1,0 +1,23 @@
+### YamlMime:ManagedReference
+items:
+- uid: KernelInfrastructure.Interceptors
+  commentId: N:KernelInfrastructure.Interceptors
+  id: KernelInfrastructure.Interceptors
+  children:
+  - KernelInfrastructure.Interceptors.AuditableEntityInterceptor
+  langs:
+  - csharp
+  - vb
+  name: KernelInfrastructure.Interceptors
+  nameWithType: KernelInfrastructure.Interceptors
+  fullName: KernelInfrastructure.Interceptors
+  type: Namespace
+  assemblies:
+  - KernelInfrastructure
+references:
+- uid: KernelInfrastructure.Interceptors.AuditableEntityInterceptor
+  commentId: T:KernelInfrastructure.Interceptors.AuditableEntityInterceptor
+  href: KernelInfrastructure.Interceptors.AuditableEntityInterceptor.html
+  name: AuditableEntityInterceptor
+  nameWithType: AuditableEntityInterceptor
+  fullName: KernelInfrastructure.Interceptors.AuditableEntityInterceptor

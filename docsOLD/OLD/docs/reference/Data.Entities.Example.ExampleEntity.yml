@@ -1,0 +1,809 @@
+### YamlMime:ManagedReference
+items:
+- uid: Data.Entities.Example.ExampleEntity
+  commentId: T:Data.Entities.Example.ExampleEntity
+  id: ExampleEntity
+  parent: Data.Entities.Example
+  children:
+  - Data.Entities.Example.ExampleEntity.ABool
+  - Data.Entities.Example.ExampleEntity.ADateTimeOffset
+  - Data.Entities.Example.ExampleEntity.ANumber
+  - Data.Entities.Example.ExampleEntity.AString
+  - Data.Entities.Example.ExampleEntity.AStringWithNumbers
+  langs:
+  - csharp
+  - vb
+  name: ExampleEntity
+  nameWithType: ExampleEntity
+  fullName: Data.Entities.Example.ExampleEntity
+  type: Class
+  source:
+    remote:
+      path: src/Data/Entities/Example/ExampleEntity.cs
+      branch: master
+      repo: https://github.com/ApricotGambino/Kytc.Boilerplate.Template
+    id: ExampleEntity
+    path: ../../src/Data/Entities/Example/ExampleEntity.cs
+    startLine: 5
+  assemblies:
+  - Data
+  namespace: Data.Entities.Example
+  syntax:
+    content: 'public class ExampleEntity : BaseEntity'
+    content.vb: Public Class ExampleEntity Inherits BaseEntity
+  inheritance:
+  - System.Object
+  - KernelData.Entities.BaseEntity{System.Int32}
+  - KernelData.Entities.BaseEntity
+  inheritedMembers:
+  - KernelData.Entities.BaseEntity{System.Int32}.Id
+  - KernelData.Entities.BaseEntity{System.Int32}.CreatedDateTimeOffset
+  - KernelData.Entities.BaseEntity{System.Int32}.UpdatedDateTimeOffset
+  - KernelData.Entities.BaseEntity{System.Int32}.UpdatedBy
+  - KernelData.Entities.BaseEntity{System.Int32}.CreatedBy
+  - KernelData.Entities.BaseEntity{System.Int32}.IsActive
+  - KernelData.Entities.BaseEntity{System.Int32}.Version
+  - KernelData.Entities.BaseEntity{System.Int32}.SetCreatedDate(System.DateTimeOffset)
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: Data.Entities.Example.ExampleEntity.AString
+  commentId: P:Data.Entities.Example.ExampleEntity.AString
+  id: AString
+  parent: Data.Entities.Example.ExampleEntity
+  langs:
+  - csharp
+  - vb
+  name: AString
+  nameWithType: ExampleEntity.AString
+  fullName: Data.Entities.Example.ExampleEntity.AString
+  type: Property
+  source:
+    remote:
+      path: src/Data/Entities/Example/ExampleEntity.cs
+      branch: master
+      repo: https://github.com/ApricotGambino/Kytc.Boilerplate.Template
+    id: AString
+    path: ../../src/Data/Entities/Example/ExampleEntity.cs
+    startLine: 7
+  assemblies:
+  - Data
+  namespace: Data.Entities.Example
+  syntax:
+    content: public string AString { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property AString As String
+  overload: Data.Entities.Example.ExampleEntity.AString*
+- uid: Data.Entities.Example.ExampleEntity.AStringWithNumbers
+  commentId: P:Data.Entities.Example.ExampleEntity.AStringWithNumbers
+  id: AStringWithNumbers
+  parent: Data.Entities.Example.ExampleEntity
+  langs:
+  - csharp
+  - vb
+  name: AStringWithNumbers
+  nameWithType: ExampleEntity.AStringWithNumbers
+  fullName: Data.Entities.Example.ExampleEntity.AStringWithNumbers
+  type: Property
+  source:
+    remote:
+      path: src/Data/Entities/Example/ExampleEntity.cs
+      branch: master
+      repo: https://github.com/ApricotGambino/Kytc.Boilerplate.Template
+    id: AStringWithNumbers
+    path: ../../src/Data/Entities/Example/ExampleEntity.cs
+    startLine: 8
+  assemblies:
+  - Data
+  namespace: Data.Entities.Example
+  syntax:
+    content: public string AStringWithNumbers { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property AStringWithNumbers As String
+  overload: Data.Entities.Example.ExampleEntity.AStringWithNumbers*
+- uid: Data.Entities.Example.ExampleEntity.ANumber
+  commentId: P:Data.Entities.Example.ExampleEntity.ANumber
+  id: ANumber
+  parent: Data.Entities.Example.ExampleEntity
+  langs:
+  - csharp
+  - vb
+  name: ANumber
+  nameWithType: ExampleEntity.ANumber
+  fullName: Data.Entities.Example.ExampleEntity.ANumber
+  type: Property
+  source:
+    remote:
+      path: src/Data/Entities/Example/ExampleEntity.cs
+      branch: master
+      repo: https://github.com/ApricotGambino/Kytc.Boilerplate.Template
+    id: ANumber
+    path: ../../src/Data/Entities/Example/ExampleEntity.cs
+    startLine: 9
+  assemblies:
+  - Data
+  namespace: Data.Entities.Example
+  syntax:
+    content: public int ANumber { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property ANumber As Integer
+  overload: Data.Entities.Example.ExampleEntity.ANumber*
+- uid: Data.Entities.Example.ExampleEntity.ABool
+  commentId: P:Data.Entities.Example.ExampleEntity.ABool
+  id: ABool
+  parent: Data.Entities.Example.ExampleEntity
+  langs:
+  - csharp
+  - vb
+  name: ABool
+  nameWithType: ExampleEntity.ABool
+  fullName: Data.Entities.Example.ExampleEntity.ABool
+  type: Property
+  source:
+    remote:
+      path: src/Data/Entities/Example/ExampleEntity.cs
+      branch: master
+      repo: https://github.com/ApricotGambino/Kytc.Boilerplate.Template
+    id: ABool
+    path: ../../src/Data/Entities/Example/ExampleEntity.cs
+    startLine: 10
+  assemblies:
+  - Data
+  namespace: Data.Entities.Example
+  syntax:
+    content: public bool ABool { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public Property ABool As Boolean
+  overload: Data.Entities.Example.ExampleEntity.ABool*
+- uid: Data.Entities.Example.ExampleEntity.ADateTimeOffset
+  commentId: P:Data.Entities.Example.ExampleEntity.ADateTimeOffset
+  id: ADateTimeOffset
+  parent: Data.Entities.Example.ExampleEntity
+  langs:
+  - csharp
+  - vb
+  name: ADateTimeOffset
+  nameWithType: ExampleEntity.ADateTimeOffset
+  fullName: Data.Entities.Example.ExampleEntity.ADateTimeOffset
+  type: Property
+  source:
+    remote:
+      path: src/Data/Entities/Example/ExampleEntity.cs
+      branch: master
+      repo: https://github.com/ApricotGambino/Kytc.Boilerplate.Template
+    id: ADateTimeOffset
+    path: ../../src/Data/Entities/Example/ExampleEntity.cs
+    startLine: 11
+  assemblies:
+  - Data
+  namespace: Data.Entities.Example
+  syntax:
+    content: public DateTimeOffset ADateTimeOffset { get; set; }
+    parameters: []
+    return:
+      type: System.DateTimeOffset
+    content.vb: Public Property ADateTimeOffset As DateTimeOffset
+  overload: Data.Entities.Example.ExampleEntity.ADateTimeOffset*
+references:
+- uid: Data.Entities.Example
+  commentId: N:Data.Entities.Example
+  href: Data.html
+  name: Data.Entities.Example
+  nameWithType: Data.Entities.Example
+  fullName: Data.Entities.Example
+  spec.csharp:
+  - uid: Data
+    name: Data
+    href: Data.html
+  - name: .
+  - uid: Data.Entities
+    name: Entities
+    href: Data.Entities.html
+  - name: .
+  - uid: Data.Entities.Example
+    name: Example
+    href: Data.Entities.Example.html
+  spec.vb:
+  - uid: Data
+    name: Data
+    href: Data.html
+  - name: .
+  - uid: Data.Entities
+    name: Entities
+    href: Data.Entities.html
+  - name: .
+  - uid: Data.Entities.Example
+    name: Example
+    href: Data.Entities.Example.html
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: KernelData.Entities.BaseEntity{System.Int32}
+  commentId: T:KernelData.Entities.BaseEntity{System.Int32}
+  parent: KernelData.Entities
+  definition: KernelData.Entities.BaseEntity`1
+  href: KernelData.Entities.BaseEntity-1.html
+  name: BaseEntity<int>
+  nameWithType: BaseEntity<int>
+  fullName: KernelData.Entities.BaseEntity<int>
+  nameWithType.vb: BaseEntity(Of Integer)
+  fullName.vb: KernelData.Entities.BaseEntity(Of Integer)
+  name.vb: BaseEntity(Of Integer)
+  spec.csharp:
+  - uid: KernelData.Entities.BaseEntity`1
+    name: BaseEntity
+    href: KernelData.Entities.BaseEntity-1.html
+  - name: <
+  - uid: System.Int32
+    name: int
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: '>'
+  spec.vb:
+  - uid: KernelData.Entities.BaseEntity`1
+    name: BaseEntity
+    href: KernelData.Entities.BaseEntity-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Int32
+    name: Integer
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.int32
+  - name: )
+- uid: KernelData.Entities.BaseEntity
+  commentId: T:KernelData.Entities.BaseEntity
+  parent: KernelData.Entities
+  href: KernelData.Entities.BaseEntity.html
+  name: BaseEntity
+  nameWithType: BaseEntity
+  fullName: KernelData.Entities.BaseEntity
+- uid: KernelData.Entities.BaseEntity{System.Int32}.Id
+  commentId: P:KernelData.Entities.BaseEntity{System.Int32}.Id
+  parent: KernelData.Entities.BaseEntity{System.Int32}
+  definition: KernelData.Entities.BaseEntity`1.Id
+  href: KernelData.Entities.BaseEntity-1.html#KernelData_Entities_BaseEntity_1_Id
+  name: Id
+  nameWithType: BaseEntity<int>.Id
+  fullName: KernelData.Entities.BaseEntity<int>.Id
+  nameWithType.vb: BaseEntity(Of Integer).Id
+  fullName.vb: KernelData.Entities.BaseEntity(Of Integer).Id
+- uid: KernelData.Entities.BaseEntity{System.Int32}.CreatedDateTimeOffset
+  commentId: P:KernelData.Entities.BaseEntity{System.Int32}.CreatedDateTimeOffset
+  parent: KernelData.Entities.BaseEntity{System.Int32}
+  definition: KernelData.Entities.BaseEntity`1.CreatedDateTimeOffset
+  href: KernelData.Entities.BaseEntity-1.html#KernelData_Entities_BaseEntity_1_CreatedDateTimeOffset
+  name: CreatedDateTimeOffset
+  nameWithType: BaseEntity<int>.CreatedDateTimeOffset
+  fullName: KernelData.Entities.BaseEntity<int>.CreatedDateTimeOffset
+  nameWithType.vb: BaseEntity(Of Integer).CreatedDateTimeOffset
+  fullName.vb: KernelData.Entities.BaseEntity(Of Integer).CreatedDateTimeOffset
+- uid: KernelData.Entities.BaseEntity{System.Int32}.UpdatedDateTimeOffset
+  commentId: P:KernelData.Entities.BaseEntity{System.Int32}.UpdatedDateTimeOffset
+  parent: KernelData.Entities.BaseEntity{System.Int32}
+  definition: KernelData.Entities.BaseEntity`1.UpdatedDateTimeOffset
+  href: KernelData.Entities.BaseEntity-1.html#KernelData_Entities_BaseEntity_1_UpdatedDateTimeOffset
+  name: UpdatedDateTimeOffset
+  nameWithType: BaseEntity<int>.UpdatedDateTimeOffset
+  fullName: KernelData.Entities.BaseEntity<int>.UpdatedDateTimeOffset
+  nameWithType.vb: BaseEntity(Of Integer).UpdatedDateTimeOffset
+  fullName.vb: KernelData.Entities.BaseEntity(Of Integer).UpdatedDateTimeOffset
+- uid: KernelData.Entities.BaseEntity{System.Int32}.UpdatedBy
+  commentId: P:KernelData.Entities.BaseEntity{System.Int32}.UpdatedBy
+  parent: KernelData.Entities.BaseEntity{System.Int32}
+  definition: KernelData.Entities.BaseEntity`1.UpdatedBy
+  href: KernelData.Entities.BaseEntity-1.html#KernelData_Entities_BaseEntity_1_UpdatedBy
+  name: UpdatedBy
+  nameWithType: BaseEntity<int>.UpdatedBy
+  fullName: KernelData.Entities.BaseEntity<int>.UpdatedBy
+  nameWithType.vb: BaseEntity(Of Integer).UpdatedBy
+  fullName.vb: KernelData.Entities.BaseEntity(Of Integer).UpdatedBy
+- uid: KernelData.Entities.BaseEntity{System.Int32}.CreatedBy
+  commentId: P:KernelData.Entities.BaseEntity{System.Int32}.CreatedBy
+  parent: KernelData.Entities.BaseEntity{System.Int32}
+  definition: KernelData.Entities.BaseEntity`1.CreatedBy
+  href: KernelData.Entities.BaseEntity-1.html#KernelData_Entities_BaseEntity_1_CreatedBy
+  name: CreatedBy
+  nameWithType: BaseEntity<int>.CreatedBy
+  fullName: KernelData.Entities.BaseEntity<int>.CreatedBy
+  nameWithType.vb: BaseEntity(Of Integer).CreatedBy
+  fullName.vb: KernelData.Entities.BaseEntity(Of Integer).CreatedBy
+- uid: KernelData.Entities.BaseEntity{System.Int32}.IsActive
+  commentId: P:KernelData.Entities.BaseEntity{System.Int32}.IsActive
+  parent: KernelData.Entities.BaseEntity{System.Int32}
+  definition: KernelData.Entities.BaseEntity`1.IsActive
+  href: KernelData.Entities.BaseEntity-1.html#KernelData_Entities_BaseEntity_1_IsActive
+  name: IsActive
+  nameWithType: BaseEntity<int>.IsActive
+  fullName: KernelData.Entities.BaseEntity<int>.IsActive
+  nameWithType.vb: BaseEntity(Of Integer).IsActive
+  fullName.vb: KernelData.Entities.BaseEntity(Of Integer).IsActive
+- uid: KernelData.Entities.BaseEntity{System.Int32}.Version
+  commentId: P:KernelData.Entities.BaseEntity{System.Int32}.Version
+  parent: KernelData.Entities.BaseEntity{System.Int32}
+  definition: KernelData.Entities.BaseEntity`1.Version
+  href: KernelData.Entities.BaseEntity-1.html#KernelData_Entities_BaseEntity_1_Version
+  name: Version
+  nameWithType: BaseEntity<int>.Version
+  fullName: KernelData.Entities.BaseEntity<int>.Version
+  nameWithType.vb: BaseEntity(Of Integer).Version
+  fullName.vb: KernelData.Entities.BaseEntity(Of Integer).Version
+- uid: KernelData.Entities.BaseEntity{System.Int32}.SetCreatedDate(System.DateTimeOffset)
+  commentId: M:KernelData.Entities.BaseEntity{System.Int32}.SetCreatedDate(System.DateTimeOffset)
+  parent: KernelData.Entities.BaseEntity{System.Int32}
+  definition: KernelData.Entities.BaseEntity`1.SetCreatedDate(System.DateTimeOffset)
+  href: KernelData.Entities.BaseEntity-1.html#KernelData_Entities_BaseEntity_1_SetCreatedDate_System_DateTimeOffset_
+  name: SetCreatedDate(DateTimeOffset)
+  nameWithType: BaseEntity<int>.SetCreatedDate(DateTimeOffset)
+  fullName: KernelData.Entities.BaseEntity<int>.SetCreatedDate(System.DateTimeOffset)
+  nameWithType.vb: BaseEntity(Of Integer).SetCreatedDate(DateTimeOffset)
+  fullName.vb: KernelData.Entities.BaseEntity(Of Integer).SetCreatedDate(System.DateTimeOffset)
+  spec.csharp:
+  - uid: KernelData.Entities.BaseEntity{System.Int32}.SetCreatedDate(System.DateTimeOffset)
+    name: SetCreatedDate
+    href: KernelData.Entities.BaseEntity-1.html#KernelData_Entities_BaseEntity_1_SetCreatedDate_System_DateTimeOffset_
+  - name: (
+  - uid: System.DateTimeOffset
+    name: DateTimeOffset
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetimeoffset
+  - name: )
+  spec.vb:
+  - uid: KernelData.Entities.BaseEntity{System.Int32}.SetCreatedDate(System.DateTimeOffset)
+    name: SetCreatedDate
+    href: KernelData.Entities.BaseEntity-1.html#KernelData_Entities_BaseEntity_1_SetCreatedDate_System_DateTimeOffset_
+  - name: (
+  - uid: System.DateTimeOffset
+    name: DateTimeOffset
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetimeoffset
+  - name: )
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: KernelData.Entities.BaseEntity`1
+  commentId: T:KernelData.Entities.BaseEntity`1
+  href: KernelData.Entities.BaseEntity-1.html
+  name: BaseEntity<TId>
+  nameWithType: BaseEntity<TId>
+  fullName: KernelData.Entities.BaseEntity<TId>
+  nameWithType.vb: BaseEntity(Of TId)
+  fullName.vb: KernelData.Entities.BaseEntity(Of TId)
+  name.vb: BaseEntity(Of TId)
+  spec.csharp:
+  - uid: KernelData.Entities.BaseEntity`1
+    name: BaseEntity
+    href: KernelData.Entities.BaseEntity-1.html
+  - name: <
+  - name: TId
+  - name: '>'
+  spec.vb:
+  - uid: KernelData.Entities.BaseEntity`1
+    name: BaseEntity
+    href: KernelData.Entities.BaseEntity-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TId
+  - name: )
+- uid: KernelData.Entities
+  commentId: N:KernelData.Entities
+  href: KernelData.html
+  name: KernelData.Entities
+  nameWithType: KernelData.Entities
+  fullName: KernelData.Entities
+  spec.csharp:
+  - uid: KernelData
+    name: KernelData
+    href: KernelData.html
+  - name: .
+  - uid: KernelData.Entities
+    name: Entities
+    href: KernelData.Entities.html
+  spec.vb:
+  - uid: KernelData
+    name: KernelData
+    href: KernelData.html
+  - name: .
+  - uid: KernelData.Entities
+    name: Entities
+    href: KernelData.Entities.html
+- uid: KernelData.Entities.BaseEntity`1.Id
+  commentId: P:KernelData.Entities.BaseEntity`1.Id
+  href: KernelData.Entities.BaseEntity-1.html#KernelData_Entities_BaseEntity_1_Id
+  name: Id
+  nameWithType: BaseEntity<TId>.Id
+  fullName: KernelData.Entities.BaseEntity<TId>.Id
+  nameWithType.vb: BaseEntity(Of TId).Id
+  fullName.vb: KernelData.Entities.BaseEntity(Of TId).Id
+- uid: KernelData.Entities.BaseEntity`1.CreatedDateTimeOffset
+  commentId: P:KernelData.Entities.BaseEntity`1.CreatedDateTimeOffset
+  href: KernelData.Entities.BaseEntity-1.html#KernelData_Entities_BaseEntity_1_CreatedDateTimeOffset
+  name: CreatedDateTimeOffset
+  nameWithType: BaseEntity<TId>.CreatedDateTimeOffset
+  fullName: KernelData.Entities.BaseEntity<TId>.CreatedDateTimeOffset
+  nameWithType.vb: BaseEntity(Of TId).CreatedDateTimeOffset
+  fullName.vb: KernelData.Entities.BaseEntity(Of TId).CreatedDateTimeOffset
+- uid: KernelData.Entities.BaseEntity`1.UpdatedDateTimeOffset
+  commentId: P:KernelData.Entities.BaseEntity`1.UpdatedDateTimeOffset
+  href: KernelData.Entities.BaseEntity-1.html#KernelData_Entities_BaseEntity_1_UpdatedDateTimeOffset
+  name: UpdatedDateTimeOffset
+  nameWithType: BaseEntity<TId>.UpdatedDateTimeOffset
+  fullName: KernelData.Entities.BaseEntity<TId>.UpdatedDateTimeOffset
+  nameWithType.vb: BaseEntity(Of TId).UpdatedDateTimeOffset
+  fullName.vb: KernelData.Entities.BaseEntity(Of TId).UpdatedDateTimeOffset
+- uid: KernelData.Entities.BaseEntity`1.UpdatedBy
+  commentId: P:KernelData.Entities.BaseEntity`1.UpdatedBy
+  href: KernelData.Entities.BaseEntity-1.html#KernelData_Entities_BaseEntity_1_UpdatedBy
+  name: UpdatedBy
+  nameWithType: BaseEntity<TId>.UpdatedBy
+  fullName: KernelData.Entities.BaseEntity<TId>.UpdatedBy
+  nameWithType.vb: BaseEntity(Of TId).UpdatedBy
+  fullName.vb: KernelData.Entities.BaseEntity(Of TId).UpdatedBy
+- uid: KernelData.Entities.BaseEntity`1.CreatedBy
+  commentId: P:KernelData.Entities.BaseEntity`1.CreatedBy
+  href: KernelData.Entities.BaseEntity-1.html#KernelData_Entities_BaseEntity_1_CreatedBy
+  name: CreatedBy
+  nameWithType: BaseEntity<TId>.CreatedBy
+  fullName: KernelData.Entities.BaseEntity<TId>.CreatedBy
+  nameWithType.vb: BaseEntity(Of TId).CreatedBy
+  fullName.vb: KernelData.Entities.BaseEntity(Of TId).CreatedBy
+- uid: KernelData.Entities.BaseEntity`1.IsActive
+  commentId: P:KernelData.Entities.BaseEntity`1.IsActive
+  href: KernelData.Entities.BaseEntity-1.html#KernelData_Entities_BaseEntity_1_IsActive
+  name: IsActive
+  nameWithType: BaseEntity<TId>.IsActive
+  fullName: KernelData.Entities.BaseEntity<TId>.IsActive
+  nameWithType.vb: BaseEntity(Of TId).IsActive
+  fullName.vb: KernelData.Entities.BaseEntity(Of TId).IsActive
+- uid: KernelData.Entities.BaseEntity`1.Version
+  commentId: P:KernelData.Entities.BaseEntity`1.Version
+  href: KernelData.Entities.BaseEntity-1.html#KernelData_Entities_BaseEntity_1_Version
+  name: Version
+  nameWithType: BaseEntity<TId>.Version
+  fullName: KernelData.Entities.BaseEntity<TId>.Version
+  nameWithType.vb: BaseEntity(Of TId).Version
+  fullName.vb: KernelData.Entities.BaseEntity(Of TId).Version
+- uid: KernelData.Entities.BaseEntity`1.SetCreatedDate(System.DateTimeOffset)
+  commentId: M:KernelData.Entities.BaseEntity`1.SetCreatedDate(System.DateTimeOffset)
+  isExternal: true
+  href: KernelData.Entities.BaseEntity-1.html#KernelData_Entities_BaseEntity_1_SetCreatedDate_System_DateTimeOffset_
+  name: SetCreatedDate(DateTimeOffset)
+  nameWithType: BaseEntity<TId>.SetCreatedDate(DateTimeOffset)
+  fullName: KernelData.Entities.BaseEntity<TId>.SetCreatedDate(System.DateTimeOffset)
+  nameWithType.vb: BaseEntity(Of TId).SetCreatedDate(DateTimeOffset)
+  fullName.vb: KernelData.Entities.BaseEntity(Of TId).SetCreatedDate(System.DateTimeOffset)
+  spec.csharp:
+  - uid: KernelData.Entities.BaseEntity`1.SetCreatedDate(System.DateTimeOffset)
+    name: SetCreatedDate
+    href: KernelData.Entities.BaseEntity-1.html#KernelData_Entities_BaseEntity_1_SetCreatedDate_System_DateTimeOffset_
+  - name: (
+  - uid: System.DateTimeOffset
+    name: DateTimeOffset
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetimeoffset
+  - name: )
+  spec.vb:
+  - uid: KernelData.Entities.BaseEntity`1.SetCreatedDate(System.DateTimeOffset)
+    name: SetCreatedDate
+    href: KernelData.Entities.BaseEntity-1.html#KernelData_Entities_BaseEntity_1_SetCreatedDate_System_DateTimeOffset_
+  - name: (
+  - uid: System.DateTimeOffset
+    name: DateTimeOffset
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.datetimeoffset
+  - name: )
+- uid: Data.Entities.Example.ExampleEntity.AString*
+  commentId: Overload:Data.Entities.Example.ExampleEntity.AString
+  href: Data.Entities.Example.ExampleEntity.html#Data_Entities_Example_ExampleEntity_AString
+  name: AString
+  nameWithType: ExampleEntity.AString
+  fullName: Data.Entities.Example.ExampleEntity.AString
+- uid: System.String
+  commentId: T:System.String
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string
+  nameWithType: string
+  fullName: string
+  nameWithType.vb: String
+  fullName.vb: String
+  name.vb: String
+- uid: Data.Entities.Example.ExampleEntity.AStringWithNumbers*
+  commentId: Overload:Data.Entities.Example.ExampleEntity.AStringWithNumbers
+  href: Data.Entities.Example.ExampleEntity.html#Data_Entities_Example_ExampleEntity_AStringWithNumbers
+  name: AStringWithNumbers
+  nameWithType: ExampleEntity.AStringWithNumbers
+  fullName: Data.Entities.Example.ExampleEntity.AStringWithNumbers
+- uid: Data.Entities.Example.ExampleEntity.ANumber*
+  commentId: Overload:Data.Entities.Example.ExampleEntity.ANumber
+  href: Data.Entities.Example.ExampleEntity.html#Data_Entities_Example_ExampleEntity_ANumber
+  name: ANumber
+  nameWithType: ExampleEntity.ANumber
+  fullName: Data.Entities.Example.ExampleEntity.ANumber
+- uid: System.Int32
+  commentId: T:System.Int32
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.int32
+  name: int
+  nameWithType: int
+  fullName: int
+  nameWithType.vb: Integer
+  fullName.vb: Integer
+  name.vb: Integer
+- uid: Data.Entities.Example.ExampleEntity.ABool*
+  commentId: Overload:Data.Entities.Example.ExampleEntity.ABool
+  href: Data.Entities.Example.ExampleEntity.html#Data_Entities_Example_ExampleEntity_ABool
+  name: ABool
+  nameWithType: ExampleEntity.ABool
+  fullName: Data.Entities.Example.ExampleEntity.ABool
+- uid: System.Boolean
+  commentId: T:System.Boolean
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.boolean
+  name: bool
+  nameWithType: bool
+  fullName: bool
+  nameWithType.vb: Boolean
+  fullName.vb: Boolean
+  name.vb: Boolean
+- uid: Data.Entities.Example.ExampleEntity.ADateTimeOffset*
+  commentId: Overload:Data.Entities.Example.ExampleEntity.ADateTimeOffset
+  href: Data.Entities.Example.ExampleEntity.html#Data_Entities_Example_ExampleEntity_ADateTimeOffset
+  name: ADateTimeOffset
+  nameWithType: ExampleEntity.ADateTimeOffset
+  fullName: Data.Entities.Example.ExampleEntity.ADateTimeOffset
+- uid: System.DateTimeOffset
+  commentId: T:System.DateTimeOffset
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.datetimeoffset
+  name: DateTimeOffset
+  nameWithType: DateTimeOffset
+  fullName: System.DateTimeOffset

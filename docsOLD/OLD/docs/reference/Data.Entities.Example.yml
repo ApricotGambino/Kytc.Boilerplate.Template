@@ -1,0 +1,23 @@
+### YamlMime:ManagedReference
+items:
+- uid: Data.Entities.Example
+  commentId: N:Data.Entities.Example
+  id: Data.Entities.Example
+  children:
+  - Data.Entities.Example.ExampleEntity
+  langs:
+  - csharp
+  - vb
+  name: Data.Entities.Example
+  nameWithType: Data.Entities.Example
+  fullName: Data.Entities.Example
+  type: Namespace
+  assemblies:
+  - Data
+references:
+- uid: Data.Entities.Example.ExampleEntity
+  commentId: T:Data.Entities.Example.ExampleEntity
+  href: Data.Entities.Example.ExampleEntity.html
+  name: ExampleEntity
+  nameWithType: ExampleEntity
+  fullName: Data.Entities.Example.ExampleEntity

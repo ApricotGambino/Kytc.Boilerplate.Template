@@ -1,0 +1,52 @@
+### YamlMime:ManagedReference
+items:
+- uid: KernelApi
+  commentId: N:KernelApi
+  id: KernelApi
+  children:
+  - KernelApi.BaseAppSettings
+  - KernelApi.BaseWebApplication
+  - KernelApi.BaseWebApplicationBuilder
+  - KernelApi.ConnectionStrings
+  langs:
+  - csharp
+  - vb
+  name: KernelApi
+  nameWithType: KernelApi
+  fullName: KernelApi
+  type: Namespace
+  assemblies:
+  - KernelApi
+references:
+- uid: KernelApi.BaseAppSettings
+  commentId: T:KernelApi.BaseAppSettings
+  parent: KernelApi
+  href: KernelApi.BaseAppSettings.html
+  name: BaseAppSettings
+  nameWithType: BaseAppSettings
+  fullName: KernelApi.BaseAppSettings
+- uid: KernelApi.ConnectionStrings
+  commentId: T:KernelApi.ConnectionStrings
+  parent: KernelApi
+  href: KernelApi.ConnectionStrings.html
+  name: ConnectionStrings
+  nameWithType: ConnectionStrings
+  fullName: KernelApi.ConnectionStrings
+- uid: KernelApi.BaseWebApplication
+  commentId: T:KernelApi.BaseWebApplication
+  href: KernelApi.BaseWebApplication.html
+  name: BaseWebApplication
+  nameWithType: BaseWebApplication
+  fullName: KernelApi.BaseWebApplication
+- uid: KernelApi.BaseWebApplicationBuilder
+  commentId: T:KernelApi.BaseWebApplicationBuilder
+  href: KernelApi.BaseWebApplicationBuilder.html
+  name: BaseWebApplicationBuilder
+  nameWithType: BaseWebApplicationBuilder
+  fullName: KernelApi.BaseWebApplicationBuilder
+- uid: KernelApi
+  commentId: N:KernelApi
+  href: KernelApi.html
+  name: KernelApi
+  nameWithType: KernelApi
+  fullName: KernelApi

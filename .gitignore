@@ -365,3 +365,6 @@ FodyWeavers.xsd
 
 #Ignore TestSolution for templating
 /Asset Library/Root/Solution Template/TestSolution/
+
+#Ignore the generated documentation
+/assets/Assets/root/docfx/generated/

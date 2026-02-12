@@ -1,0 +1,88 @@
+### YamlMime:TableOfContent
+items:
+- uid: Api
+  name: Api
+  type: Namespace
+  items:
+  - uid: Api.AppSettings
+    name: AppSettings
+    type: Class
+- uid: Application.Features.ExampleFeature.Services
+  name: Application.Features.ExampleFeature.Services
+  type: Namespace
+  items:
+  - uid: Application.Features.ExampleFeature.Services.ExampleService
+    name: ExampleService
+    type: Class
+  - uid: Application.Features.ExampleFeature.Services.IExampleService
+    name: IExampleService
+    type: Interface
+- uid: Data.Entities.Example
+  name: Data.Entities.Example
+  type: Namespace
+  items:
+  - uid: Data.Entities.Example.ExampleEntity
+    name: ExampleEntity
+    type: Class
+- uid: Data.EntityFramework
+  name: Data.EntityFramework
+  type: Namespace
+  items:
+  - uid: Data.EntityFramework.ApplicationDbContext
+    name: ApplicationDbContext
+    type: Class
+- uid: KernelApi
+  name: KernelApi
+  type: Namespace
+  items:
+  - uid: KernelApi.BaseAppSettings
+    name: BaseAppSettings
+    type: Class
+  - uid: KernelApi.BaseWebApplication
+    name: BaseWebApplication
+    type: Class
+  - uid: KernelApi.BaseWebApplicationBuilder
+    name: BaseWebApplicationBuilder
+    type: Class
+  - uid: KernelApi.ConnectionStrings
+    name: ConnectionStrings
+    type: Class
+- uid: KernelData.Entities
+  name: KernelData.Entities
+  type: Namespace
+  items:
+  - uid: KernelData.Entities.BaseEntity
+    name: BaseEntity
+    type: Class
+  - uid: KernelData.Entities.BaseEntity`1
+    name: BaseEntity<TId>
+    type: Class
+- uid: KernelData.Entities.Kernel
+  name: KernelData.Entities.Kernel
+  type: Namespace
+  items:
+  - uid: KernelData.Entities.Kernel.Log
+    name: Log
+    type: Class
+- uid: KernelData.EntityFramework
+  name: KernelData.EntityFramework
+  type: Namespace
+  items:
+  - uid: KernelData.EntityFramework.BaseDbContext
+    name: BaseDbContext
+    type: Class
+- uid: KernelInfrastructure.Interceptors
+  name: KernelInfrastructure.Interceptors
+  type: Namespace
+  items:
+  - uid: KernelInfrastructure.Interceptors.AuditableEntityInterceptor
+    name: AuditableEntityInterceptor
+    type: Class
+- uid: KernelInfrastructure.Repositories
+  name: KernelInfrastructure.Repositories
+  type: Namespace
+  items:
+  - uid: KernelInfrastructure.Repositories.ReadOnlyEntityRepo`1
+    name: ReadOnlyEntityRepo<TEntity>
+    type: Class
+memberLayout: SamePage

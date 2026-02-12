@@ -1,0 +1,382 @@
+### YamlMime:ManagedReference
+items:
+- uid: Application.Features.ExampleFeature.Services.IExampleService
+  commentId: T:Application.Features.ExampleFeature.Services.IExampleService
+  id: IExampleService
+  parent: Application.Features.ExampleFeature.Services
+  children:
+  - Application.Features.ExampleFeature.Services.IExampleService.DoSomeExampleAction
+  - Application.Features.ExampleFeature.Services.IExampleService.GetMostRecentEntitiesUsingContextAsync
+  - Application.Features.ExampleFeature.Services.IExampleService.GetMostRecentEntitiesUsingReadOnlyRepoAsync
+  langs:
+  - csharp
+  - vb
+  name: IExampleService
+  nameWithType: IExampleService
+  fullName: Application.Features.ExampleFeature.Services.IExampleService
+  type: Interface
+  source:
+    remote:
+      path: src/Application/Features/ExampleFeature/Services/ExampleService.cs
+      branch: master
+      repo: https://github.com/ApricotGambino/Kytc.Boilerplate.Template
+    id: IExampleService
+    path: ../../src/Application/Features/ExampleFeature/Services/ExampleService.cs
+    startLine: 17
+  assemblies:
+  - Application
+  namespace: Application.Features.ExampleFeature.Services
+  syntax:
+    content: public interface IExampleService
+    content.vb: Public Interface IExampleService
+- uid: Application.Features.ExampleFeature.Services.IExampleService.DoSomeExampleAction
+  commentId: M:Application.Features.ExampleFeature.Services.IExampleService.DoSomeExampleAction
+  id: DoSomeExampleAction
+  parent: Application.Features.ExampleFeature.Services.IExampleService
+  langs:
+  - csharp
+  - vb
+  name: DoSomeExampleAction()
+  nameWithType: IExampleService.DoSomeExampleAction()
+  fullName: Application.Features.ExampleFeature.Services.IExampleService.DoSomeExampleAction()
+  type: Method
+  source:
+    remote:
+      path: src/Application/Features/ExampleFeature/Services/ExampleService.cs
+      branch: master
+      repo: https://github.com/ApricotGambino/Kytc.Boilerplate.Template
+    id: DoSomeExampleAction
+    path: ../../src/Application/Features/ExampleFeature/Services/ExampleService.cs
+    startLine: 19
+  assemblies:
+  - Application
+  namespace: Application.Features.ExampleFeature.Services
+  syntax:
+    content: List<ExampleEntity> DoSomeExampleAction()
+    return:
+      type: System.Collections.Generic.List{Data.Entities.Example.ExampleEntity}
+    content.vb: Function DoSomeExampleAction() As List(Of ExampleEntity)
+  overload: Application.Features.ExampleFeature.Services.IExampleService.DoSomeExampleAction*
+- uid: Application.Features.ExampleFeature.Services.IExampleService.GetMostRecentEntitiesUsingContextAsync
+  commentId: M:Application.Features.ExampleFeature.Services.IExampleService.GetMostRecentEntitiesUsingContextAsync
+  id: GetMostRecentEntitiesUsingContextAsync
+  parent: Application.Features.ExampleFeature.Services.IExampleService
+  langs:
+  - csharp
+  - vb
+  name: GetMostRecentEntitiesUsingContextAsync()
+  nameWithType: IExampleService.GetMostRecentEntitiesUsingContextAsync()
+  fullName: Application.Features.ExampleFeature.Services.IExampleService.GetMostRecentEntitiesUsingContextAsync()
+  type: Method
+  source:
+    remote:
+      path: src/Application/Features/ExampleFeature/Services/ExampleService.cs
+      branch: master
+      repo: https://github.com/ApricotGambino/Kytc.Boilerplate.Template
+    id: GetMostRecentEntitiesUsingContextAsync
+    path: ../../src/Application/Features/ExampleFeature/Services/ExampleService.cs
+    startLine: 20
+  assemblies:
+  - Application
+  namespace: Application.Features.ExampleFeature.Services
+  syntax:
+    content: Task<List<ExampleEntity>> GetMostRecentEntitiesUsingContextAsync()
+    return:
+      type: System.Threading.Tasks.Task{System.Collections.Generic.List{Data.Entities.Example.ExampleEntity}}
+    content.vb: Function GetMostRecentEntitiesUsingContextAsync() As Task(Of List(Of ExampleEntity))
+  overload: Application.Features.ExampleFeature.Services.IExampleService.GetMostRecentEntitiesUsingContextAsync*
+- uid: Application.Features.ExampleFeature.Services.IExampleService.GetMostRecentEntitiesUsingReadOnlyRepoAsync
+  commentId: M:Application.Features.ExampleFeature.Services.IExampleService.GetMostRecentEntitiesUsingReadOnlyRepoAsync
+  id: GetMostRecentEntitiesUsingReadOnlyRepoAsync
+  parent: Application.Features.ExampleFeature.Services.IExampleService
+  langs:
+  - csharp
+  - vb
+  name: GetMostRecentEntitiesUsingReadOnlyRepoAsync()
+  nameWithType: IExampleService.GetMostRecentEntitiesUsingReadOnlyRepoAsync()
+  fullName: Application.Features.ExampleFeature.Services.IExampleService.GetMostRecentEntitiesUsingReadOnlyRepoAsync()
+  type: Method
+  source:
+    remote:
+      path: src/Application/Features/ExampleFeature/Services/ExampleService.cs
+      branch: master
+      repo: https://github.com/ApricotGambino/Kytc.Boilerplate.Template
+    id: GetMostRecentEntitiesUsingReadOnlyRepoAsync
+    path: ../../src/Application/Features/ExampleFeature/Services/ExampleService.cs
+    startLine: 21
+  assemblies:
+  - Application
+  namespace: Application.Features.ExampleFeature.Services
+  syntax:
+    content: Task<List<ExampleEntity>> GetMostRecentEntitiesUsingReadOnlyRepoAsync()
+    return:
+      type: System.Threading.Tasks.Task{System.Collections.Generic.List{Data.Entities.Example.ExampleEntity}}
+    content.vb: Function GetMostRecentEntitiesUsingReadOnlyRepoAsync() As Task(Of List(Of ExampleEntity))
+  overload: Application.Features.ExampleFeature.Services.IExampleService.GetMostRecentEntitiesUsingReadOnlyRepoAsync*
+references:
+- uid: Application.Features.ExampleFeature.Services
+  commentId: N:Application.Features.ExampleFeature.Services
+  href: Application.html
+  name: Application.Features.ExampleFeature.Services
+  nameWithType: Application.Features.ExampleFeature.Services
+  fullName: Application.Features.ExampleFeature.Services
+  spec.csharp:
+  - uid: Application
+    name: Application
+    href: Application.html
+  - name: .
+  - uid: Application.Features
+    name: Features
+    href: Application.Features.html
+  - name: .
+  - uid: Application.Features.ExampleFeature
+    name: ExampleFeature
+    href: Application.Features.ExampleFeature.html
+  - name: .
+  - uid: Application.Features.ExampleFeature.Services
+    name: Services
+    href: Application.Features.ExampleFeature.Services.html
+  spec.vb:
+  - uid: Application
+    name: Application
+    href: Application.html
+  - name: .
+  - uid: Application.Features
+    name: Features
+    href: Application.Features.html
+  - name: .
+  - uid: Application.Features.ExampleFeature
+    name: ExampleFeature
+    href: Application.Features.ExampleFeature.html
+  - name: .
+  - uid: Application.Features.ExampleFeature.Services
+    name: Services
+    href: Application.Features.ExampleFeature.Services.html
+- uid: Application.Features.ExampleFeature.Services.IExampleService.DoSomeExampleAction*
+  commentId: Overload:Application.Features.ExampleFeature.Services.IExampleService.DoSomeExampleAction
+  href: Application.Features.ExampleFeature.Services.IExampleService.html#Application_Features_ExampleFeature_Services_IExampleService_DoSomeExampleAction
+  name: DoSomeExampleAction
+  nameWithType: IExampleService.DoSomeExampleAction
+  fullName: Application.Features.ExampleFeature.Services.IExampleService.DoSomeExampleAction
+- uid: System.Collections.Generic.List{Data.Entities.Example.ExampleEntity}
+  commentId: T:System.Collections.Generic.List{Data.Entities.Example.ExampleEntity}
+  parent: System.Collections.Generic
+  definition: System.Collections.Generic.List`1
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<ExampleEntity>
+  nameWithType: List<ExampleEntity>
+  fullName: System.Collections.Generic.List<Data.Entities.Example.ExampleEntity>
+  nameWithType.vb: List(Of ExampleEntity)
+  fullName.vb: System.Collections.Generic.List(Of Data.Entities.Example.ExampleEntity)
+  name.vb: List(Of ExampleEntity)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Data.Entities.Example.ExampleEntity
+    name: ExampleEntity
+    href: Data.Entities.Example.ExampleEntity.html
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Data.Entities.Example.ExampleEntity
+    name: ExampleEntity
+    href: Data.Entities.Example.ExampleEntity.html
+  - name: )
+- uid: System.Collections.Generic.List`1
+  commentId: T:System.Collections.Generic.List`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  name: List<T>
+  nameWithType: List<T>
+  fullName: System.Collections.Generic.List<T>
+  nameWithType.vb: List(Of T)
+  fullName.vb: System.Collections.Generic.List(Of T)
+  name.vb: List(Of T)
+  spec.csharp:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - name: T
+  - name: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: T
+  - name: )
+- uid: System.Collections.Generic
+  commentId: N:System.Collections.Generic
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Collections.Generic
+  nameWithType: System.Collections.Generic
+  fullName: System.Collections.Generic
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Collections
+    name: Collections
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections
+  - name: .
+  - uid: System.Collections.Generic
+    name: Generic
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic
+- uid: Application.Features.ExampleFeature.Services.IExampleService.GetMostRecentEntitiesUsingContextAsync*
+  commentId: Overload:Application.Features.ExampleFeature.Services.IExampleService.GetMostRecentEntitiesUsingContextAsync
+  href: Application.Features.ExampleFeature.Services.IExampleService.html#Application_Features_ExampleFeature_Services_IExampleService_GetMostRecentEntitiesUsingContextAsync
+  name: GetMostRecentEntitiesUsingContextAsync
+  nameWithType: IExampleService.GetMostRecentEntitiesUsingContextAsync
+  fullName: Application.Features.ExampleFeature.Services.IExampleService.GetMostRecentEntitiesUsingContextAsync
+- uid: System.Threading.Tasks.Task{System.Collections.Generic.List{Data.Entities.Example.ExampleEntity}}
+  commentId: T:System.Threading.Tasks.Task{System.Collections.Generic.List{Data.Entities.Example.ExampleEntity}}
+  parent: System.Threading.Tasks
+  definition: System.Threading.Tasks.Task`1
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<List<ExampleEntity>>
+  nameWithType: Task<List<ExampleEntity>>
+  fullName: System.Threading.Tasks.Task<System.Collections.Generic.List<Data.Entities.Example.ExampleEntity>>
+  nameWithType.vb: Task(Of List(Of ExampleEntity))
+  fullName.vb: System.Threading.Tasks.Task(Of System.Collections.Generic.List(Of Data.Entities.Example.ExampleEntity))
+  name.vb: Task(Of List(Of ExampleEntity))
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: <
+  - uid: Data.Entities.Example.ExampleEntity
+    name: ExampleEntity
+    href: Data.Entities.Example.ExampleEntity.html
+  - name: '>'
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: System.Collections.Generic.List`1
+    name: List
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.collections.generic.list-1
+  - name: (
+  - name: Of
+  - name: " "
+  - uid: Data.Entities.Example.ExampleEntity
+    name: ExampleEntity
+    href: Data.Entities.Example.ExampleEntity.html
+  - name: )
+  - name: )
+- uid: System.Threading.Tasks.Task`1
+  commentId: T:System.Threading.Tasks.Task`1
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  name: Task<TResult>
+  nameWithType: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  nameWithType.vb: Task(Of TResult)
+  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
+  spec.csharp:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: <
+  - name: TResult
+  - name: '>'
+  spec.vb:
+  - uid: System.Threading.Tasks.Task`1
+    name: Task
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks.task-1
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TResult
+  - name: )
+- uid: System.Threading.Tasks
+  commentId: N:System.Threading.Tasks
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
+  fullName: System.Threading.Tasks
+  spec.csharp:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+  spec.vb:
+  - uid: System
+    name: System
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system
+  - name: .
+  - uid: System.Threading
+    name: Threading
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading
+  - name: .
+  - uid: System.Threading.Tasks
+    name: Tasks
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.threading.tasks
+- uid: Application.Features.ExampleFeature.Services.IExampleService.GetMostRecentEntitiesUsingReadOnlyRepoAsync*
+  commentId: Overload:Application.Features.ExampleFeature.Services.IExampleService.GetMostRecentEntitiesUsingReadOnlyRepoAsync
+  href: Application.Features.ExampleFeature.Services.IExampleService.html#Application_Features_ExampleFeature_Services_IExampleService_GetMostRecentEntitiesUsingReadOnlyRepoAsync
+  name: GetMostRecentEntitiesUsingReadOnlyRepoAsync
+  nameWithType: IExampleService.GetMostRecentEntitiesUsingReadOnlyRepoAsync
+  fullName: Application.Features.ExampleFeature.Services.IExampleService.GetMostRecentEntitiesUsingReadOnlyRepoAsync

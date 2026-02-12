@@ -1,0 +1,42 @@
+### YamlMime:ManagedReference
+items:
+- uid: KernelInfrastructure.Repositories
+  commentId: N:KernelInfrastructure.Repositories
+  id: KernelInfrastructure.Repositories
+  children:
+  - KernelInfrastructure.Repositories.ReadOnlyEntityRepo`1
+  langs:
+  - csharp
+  - vb
+  name: KernelInfrastructure.Repositories
+  nameWithType: KernelInfrastructure.Repositories
+  fullName: KernelInfrastructure.Repositories
+  type: Namespace
+  assemblies:
+  - KernelInfrastructure
+references:
+- uid: KernelInfrastructure.Repositories.ReadOnlyEntityRepo`1
+  commentId: T:KernelInfrastructure.Repositories.ReadOnlyEntityRepo`1
+  href: KernelInfrastructure.Repositories.ReadOnlyEntityRepo-1.html
+  name: ReadOnlyEntityRepo<TEntity>
+  nameWithType: ReadOnlyEntityRepo<TEntity>
+  fullName: KernelInfrastructure.Repositories.ReadOnlyEntityRepo<TEntity>
+  nameWithType.vb: ReadOnlyEntityRepo(Of TEntity)
+  fullName.vb: KernelInfrastructure.Repositories.ReadOnlyEntityRepo(Of TEntity)
+  name.vb: ReadOnlyEntityRepo(Of TEntity)
+  spec.csharp:
+  - uid: KernelInfrastructure.Repositories.ReadOnlyEntityRepo`1
+    name: ReadOnlyEntityRepo
+    href: KernelInfrastructure.Repositories.ReadOnlyEntityRepo-1.html
+  - name: <
+  - name: TEntity
+  - name: '>'
+  spec.vb:
+  - uid: KernelInfrastructure.Repositories.ReadOnlyEntityRepo`1
+    name: ReadOnlyEntityRepo
+    href: KernelInfrastructure.Repositories.ReadOnlyEntityRepo-1.html
+  - name: (
+  - name: Of
+  - name: " "
+  - name: TEntity
+  - name: )

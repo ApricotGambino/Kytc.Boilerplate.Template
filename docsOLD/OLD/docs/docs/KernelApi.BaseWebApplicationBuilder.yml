@@ -1,0 +1,474 @@
+### YamlMime:ManagedReference
+items:
+- uid: KernelApi.BaseWebApplicationBuilder
+  commentId: T:KernelApi.BaseWebApplicationBuilder
+  id: BaseWebApplicationBuilder
+  parent: KernelApi
+  children:
+  - KernelApi.BaseWebApplicationBuilder.CreateBaseWebApplicationBuilder``2(System.String[])
+  - KernelApi.BaseWebApplicationBuilder.GetAppSettings``1(Microsoft.AspNetCore.Builder.WebApplicationBuilder)
+  langs:
+  - csharp
+  - vb
+  name: BaseWebApplicationBuilder
+  nameWithType: BaseWebApplicationBuilder
+  fullName: KernelApi.BaseWebApplicationBuilder
+  type: Class
+  source:
+    remote:
+      path: src/Kernel/Kernel.Api/BaseWebApplicationBuilder.cs
+      branch: master
+      repo: https://github.com/ApricotGambino/Kytc.Boilerplate.Template
+    id: BaseWebApplicationBuilder
+    path: ../../src/Kernel/Kernel.Api/BaseWebApplicationBuilder.cs
+    startLine: 8
+  assemblies:
+  - KernelApi
+  namespace: KernelApi
+  syntax:
+    content: public static class BaseWebApplicationBuilder
+    content.vb: Public Module BaseWebApplicationBuilder
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.ToString
+- uid: KernelApi.BaseWebApplicationBuilder.CreateBaseWebApplicationBuilder``2(System.String[])
+  commentId: M:KernelApi.BaseWebApplicationBuilder.CreateBaseWebApplicationBuilder``2(System.String[])
+  id: CreateBaseWebApplicationBuilder``2(System.String[])
+  parent: KernelApi.BaseWebApplicationBuilder
+  langs:
+  - csharp
+  - vb
+  name: CreateBaseWebApplicationBuilder<TDatabaseContext, TAppSettings>(string[])
+  nameWithType: BaseWebApplicationBuilder.CreateBaseWebApplicationBuilder<TDatabaseContext, TAppSettings>(string[])
+  fullName: KernelApi.BaseWebApplicationBuilder.CreateBaseWebApplicationBuilder<TDatabaseContext, TAppSettings>(string[])
+  type: Method
+  source:
+    remote:
+      path: src/Kernel/Kernel.Api/BaseWebApplicationBuilder.cs
+      branch: master
+      repo: https://github.com/ApricotGambino/Kytc.Boilerplate.Template
+    id: CreateBaseWebApplicationBuilder
+    path: ../../src/Kernel/Kernel.Api/BaseWebApplicationBuilder.cs
+    startLine: 18
+  assemblies:
+  - KernelApi
+  namespace: KernelApi
+  summary: >-
+    Initializes a new instance of the <xref href="Microsoft.AspNetCore.Builder.WebApplicationBuilder" data-throw-if-not-resolved="false"></xref> class with preconfigured defaults along with
+
+    kernel configurations, along with a Database context.
+  example: []
+  syntax:
+    content: 'public static WebApplicationBuilder CreateBaseWebApplicationBuilder<TDatabaseContext, TAppSettings>(string[] args) where TDatabaseContext : DbContext where TAppSettings : BaseAppSettings'
+    parameters:
+    - id: args
+      type: System.String[]
+      description: ''
+    typeParameters:
+    - id: TDatabaseContext
+      description: ''
+    - id: TAppSettings
+      description: ''
+    return:
+      type: Microsoft.AspNetCore.Builder.WebApplicationBuilder
+      description: ''
+    content.vb: Public Shared Function CreateBaseWebApplicationBuilder(Of TDatabaseContext As DbContext, TAppSettings As BaseAppSettings)(args As String()) As WebApplicationBuilder
+  overload: KernelApi.BaseWebApplicationBuilder.CreateBaseWebApplicationBuilder*
+  nameWithType.vb: BaseWebApplicationBuilder.CreateBaseWebApplicationBuilder(Of TDatabaseContext, TAppSettings)(String())
+  fullName.vb: KernelApi.BaseWebApplicationBuilder.CreateBaseWebApplicationBuilder(Of TDatabaseContext, TAppSettings)(String())
+  name.vb: CreateBaseWebApplicationBuilder(Of TDatabaseContext, TAppSettings)(String())
+- uid: KernelApi.BaseWebApplicationBuilder.GetAppSettings``1(Microsoft.AspNetCore.Builder.WebApplicationBuilder)
+  commentId: M:KernelApi.BaseWebApplicationBuilder.GetAppSettings``1(Microsoft.AspNetCore.Builder.WebApplicationBuilder)
+  id: GetAppSettings``1(Microsoft.AspNetCore.Builder.WebApplicationBuilder)
+  isExtensionMethod: true
+  parent: KernelApi.BaseWebApplicationBuilder
+  langs:
+  - csharp
+  - vb
+  name: GetAppSettings<TAppSettings>(WebApplicationBuilder)
+  nameWithType: BaseWebApplicationBuilder.GetAppSettings<TAppSettings>(WebApplicationBuilder)
+  fullName: KernelApi.BaseWebApplicationBuilder.GetAppSettings<TAppSettings>(Microsoft.AspNetCore.Builder.WebApplicationBuilder)
+  type: Method
+  source:
+    remote:
+      path: src/Kernel/Kernel.Api/BaseWebApplicationBuilder.cs
+      branch: master
+      repo: https://github.com/ApricotGambino/Kytc.Boilerplate.Template
+    id: GetAppSettings
+    path: ../../src/Kernel/Kernel.Api/BaseWebApplicationBuilder.cs
+    startLine: 40
+  assemblies:
+  - KernelApi
+  namespace: KernelApi
+  summary: Gets the AppSettings object configured and populated with values from appsettings.json
+  example: []
+  syntax:
+    content: 'public static TAppSettings GetAppSettings<TAppSettings>(this WebApplicationBuilder builder) where TAppSettings : BaseAppSettings'
+    parameters:
+    - id: builder
+      type: Microsoft.AspNetCore.Builder.WebApplicationBuilder
+      description: ''
+    typeParameters:
+    - id: TAppSettings
+      description: ''
+    return:
+      type: '{TAppSettings}'
+      description: ''
+    content.vb: Public Shared Function GetAppSettings(Of TAppSettings As BaseAppSettings)(builder As WebApplicationBuilder) As TAppSettings
+  overload: KernelApi.BaseWebApplicationBuilder.GetAppSettings*
+  exceptions:
+  - type: Microsoft.IdentityModel.Protocols.Configuration.InvalidConfigurationException
+    commentId: T:Microsoft.IdentityModel.Protocols.Configuration.InvalidConfigurationException
+    description: ''
+  nameWithType.vb: BaseWebApplicationBuilder.GetAppSettings(Of TAppSettings)(WebApplicationBuilder)
+  fullName.vb: KernelApi.BaseWebApplicationBuilder.GetAppSettings(Of TAppSettings)(Microsoft.AspNetCore.Builder.WebApplicationBuilder)
+  name.vb: GetAppSettings(Of TAppSettings)(WebApplicationBuilder)
+references:
+- uid: KernelApi
+  commentId: N:KernelApi
+  href: KernelApi.html
+  name: KernelApi
+  nameWithType: KernelApi
+  fullName: KernelApi
+- uid: System.Object
+  commentId: T:System.Object
+  parent: System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object
+  name: object
+  nameWithType: object
+  fullName: object
+  nameWithType.vb: Object
+  fullName.vb: Object
+  name.vb: Object
+- uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  name: Equals(object)
+  nameWithType: object.Equals(object)
+  fullName: object.Equals(object)
+  nameWithType.vb: Object.Equals(Object)
+  fullName.vb: Object.Equals(Object)
+  name.vb: Equals(Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  name: Equals(object, object)
+  nameWithType: object.Equals(object, object)
+  fullName: object.Equals(object, object)
+  nameWithType.vb: Object.Equals(Object, Object)
+  fullName.vb: Object.Equals(Object, Object)
+  name.vb: Equals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.equals#system-object-equals(system-object-system-object)
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  name: GetHashCode()
+  nameWithType: object.GetHashCode()
+  fullName: object.GetHashCode()
+  nameWithType.vb: Object.GetHashCode()
+  fullName.vb: Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gethashcode
+  - name: (
+  - name: )
+- uid: System.Object.GetType
+  commentId: M:System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  name: GetType()
+  nameWithType: object.GetType()
+  fullName: object.GetType()
+  nameWithType.vb: Object.GetType()
+  fullName.vb: Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.gettype
+  - name: (
+  - name: )
+- uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  name: MemberwiseClone()
+  nameWithType: object.MemberwiseClone()
+  fullName: object.MemberwiseClone()
+  nameWithType.vb: Object.MemberwiseClone()
+  fullName.vb: Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.memberwiseclone
+  - name: (
+  - name: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  name: ReferenceEquals(object, object)
+  nameWithType: object.ReferenceEquals(object, object)
+  fullName: object.ReferenceEquals(object, object)
+  nameWithType.vb: Object.ReferenceEquals(Object, Object)
+  fullName.vb: Object.ReferenceEquals(Object, Object)
+  name.vb: ReferenceEquals(Object, Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.referenceequals
+  - name: (
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: ','
+  - name: " "
+  - uid: System.Object
+    name: Object
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object
+  - name: )
+- uid: System.Object.ToString
+  commentId: M:System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  name: ToString()
+  nameWithType: object.ToString()
+  fullName: object.ToString()
+  nameWithType.vb: Object.ToString()
+  fullName.vb: Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.object.tostring
+  - name: (
+  - name: )
+- uid: System
+  commentId: N:System
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system
+  name: System
+  nameWithType: System
+  fullName: System
+- uid: Microsoft.AspNetCore.Builder.WebApplicationBuilder
+  commentId: T:Microsoft.AspNetCore.Builder.WebApplicationBuilder
+  parent: Microsoft.AspNetCore.Builder
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder.webapplicationbuilder
+  name: WebApplicationBuilder
+  nameWithType: WebApplicationBuilder
+  fullName: Microsoft.AspNetCore.Builder.WebApplicationBuilder
+- uid: KernelApi.BaseWebApplicationBuilder.CreateBaseWebApplicationBuilder*
+  commentId: Overload:KernelApi.BaseWebApplicationBuilder.CreateBaseWebApplicationBuilder
+  href: KernelApi.BaseWebApplicationBuilder.html#KernelApi_BaseWebApplicationBuilder_CreateBaseWebApplicationBuilder__2_System_String___
+  name: CreateBaseWebApplicationBuilder
+  nameWithType: BaseWebApplicationBuilder.CreateBaseWebApplicationBuilder
+  fullName: KernelApi.BaseWebApplicationBuilder.CreateBaseWebApplicationBuilder
+- uid: System.String[]
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/system.string
+  name: string[]
+  nameWithType: string[]
+  fullName: string[]
+  nameWithType.vb: String()
+  fullName.vb: String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: string
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: '['
+  - name: ']'
+  spec.vb:
+  - uid: System.String
+    name: String
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/system.string
+  - name: (
+  - name: )
+- uid: Microsoft.AspNetCore.Builder
+  commentId: N:Microsoft.AspNetCore.Builder
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft
+  name: Microsoft.AspNetCore.Builder
+  nameWithType: Microsoft.AspNetCore.Builder
+  fullName: Microsoft.AspNetCore.Builder
+  spec.csharp:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.AspNetCore
+    name: AspNetCore
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore
+  - name: .
+  - uid: Microsoft.AspNetCore.Builder
+    name: Builder
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder
+  spec.vb:
+  - uid: Microsoft
+    name: Microsoft
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft
+  - name: .
+  - uid: Microsoft.AspNetCore
+    name: AspNetCore
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore
+  - name: .
+  - uid: Microsoft.AspNetCore.Builder
+    name: Builder
+    isExternal: true
+    href: https://learn.microsoft.com/dotnet/api/microsoft.aspnetcore.builder
+- uid: Microsoft.IdentityModel.Protocols.Configuration.InvalidConfigurationException
+  commentId: T:Microsoft.IdentityModel.Protocols.Configuration.InvalidConfigurationException
+  isExternal: true
+  href: https://learn.microsoft.com/dotnet/api/microsoft.identitymodel.protocols.configuration.invalidconfigurationexception
+  name: InvalidConfigurationException
+  nameWithType: InvalidConfigurationException
+  fullName: Microsoft.IdentityModel.Protocols.Configuration.InvalidConfigurationException
+- uid: KernelApi.BaseWebApplicationBuilder.GetAppSettings*
+  commentId: Overload:KernelApi.BaseWebApplicationBuilder.GetAppSettings
+  href: KernelApi.BaseWebApplicationBuilder.html#KernelApi_BaseWebApplicationBuilder_GetAppSettings__1_Microsoft_AspNetCore_Builder_WebApplicationBuilder_
+  name: GetAppSettings
+  nameWithType: BaseWebApplicationBuilder.GetAppSettings
+  fullName: KernelApi.BaseWebApplicationBuilder.GetAppSettings
+- uid: '{TAppSettings}'
+  commentId: '!:TAppSettings'
+  definition: TAppSettings
+  name: TAppSettings
+  nameWithType: TAppSettings
+  fullName: TAppSettings
+- uid: TAppSettings
+  commentId: '!:TAppSettings'
+  name: TAppSettings
+  nameWithType: TAppSettings
+  fullName: TAppSettings
