@@ -17,7 +17,7 @@
     "content": [
       {
         "files": [
-          "**/*.{md,yml}"
+          "**/*.{md,yml,*.swagger.json}"
         ],
         "exclude": [
           "_site/**"
@@ -34,12 +34,16 @@
     "output": "generated/_site",
     "template": [
       "default",
-      "modern"
+      "modern",
+      "template"
     ],
     "globalMetadata": {
       "_appName": "Kytc.Boilerplate.Template",
       "_appTitle": "Kytc.Boilerplate.Template",
       "_enableSearch": true,
+      "_appLogoPath": "images/logo.png",
+      "_appFaviconPath": "images/favicon.ico",
+      "_gitContribute": null,
       "pdf": false
     }
   }
