@@ -1,5 +1,4 @@
 using Api;
-using Application.Features.ExampleFeature.Services;
 using Data.EntityFramework;
 using KernelApi;
 using Microsoft.EntityFrameworkCore;
@@ -19,7 +18,7 @@ try
 
     var appSettings = builder.GetAppSettings<AppSettings>();
 
-    builder.Services.AddScoped<IExampleService, ExampleService>();
+    //builder.Services.AddScoped<IExampleService, ExampleService>();
 
     var app = builder.Build();
 

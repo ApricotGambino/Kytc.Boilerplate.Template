@@ -1,4 +1,4 @@
-namespace IntegrationTests.SharedContextTests.ApiTests;
+namespace IntegrationTests.ApiTests;
 
 using TestShared.Fixtures;
 

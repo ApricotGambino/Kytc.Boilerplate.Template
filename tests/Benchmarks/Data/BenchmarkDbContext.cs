@@ -5,7 +5,7 @@ using TestShared.TestObjects;
 
 public class BenchmarkDbContext : DbContext
 {
-    public DbSet<TestEntity> TestObjects { get; set; }
+    public DbSet<TestEntity> TestEntities { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.UseSqlServer($"Server=(localdb)\\mssqllocaldb;Database={TestingConstants.BenchmarkTestsDatabaseName};ConnectRetryCount=0");
@@ -39,7 +39,7 @@ public class BenchmarkDbContext : DbContext
     {
         var testObjectsToInsert = TestEntityHelper.CreateTestEntityList(numberOfTestObjectsToCreate);
 
-        await context.TestObjects.AddRangeAsync(testObjectsToInsert);
+        await context.TestEntities.AddRangeAsync(testObjectsToInsert);
         return await context.SaveChangesAsync();
     }
 }

@@ -1,4 +1,4 @@
-namespace FunctionalTests.SharedContextTests.BasicBehaviour;
+namespace FunctionalTests.StartupBasicBehaviour;
 
 using TestShared.Fixtures;
 

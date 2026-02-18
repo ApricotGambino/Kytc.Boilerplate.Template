@@ -3,6 +3,7 @@ namespace TestShared;
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using TestShared.TestObjects;
 
 /// <summary>
 /// This class allows us to access the context of all testing needs.
@@ -53,7 +54,7 @@ public static class TestingContext
             ServiceProvider = ScopeFactory.CreateScope().ServiceProvider;
 
             //Delete the testing database, then create it so it's always new and fresh.
-            var context = GetService<TestingDatabaseContext>();
+            var context = GetTestingDatabaseContext();
             var databaseConnection = context.Database.GetDbConnection();
 
             //NOTE: Not using the TestingConstants names here because I want to make sure that you're really sure if you're going to modify the expected database name for unit tests.
@@ -135,9 +136,33 @@ public static class TestingContext
 
         if (foundService is null)
         {
-            throw new InvalidOperationException($"Could not find the service named {nameof(T)} in the service provider, are you sure this service has been registered?");
+            throw new InvalidOperationException($"Could not find the service requested in the service provider, are you sure this service has been registered? If so, are you requesting the concrete version instead of the interface?");
         }
 
         return foundService;
+    }
+
+
+    /// <summary>
+    /// Adds randomly generated test entities to the testing database
+    /// </summary>
+    /// <param name="numberOfTestObjectsToCreate"></param>
+    /// <returns></returns>
+    public static async Task<int> InsertTestEntitiesIntoDatabaseAsync(int numberOfTestObjectsToCreate)
+    {
+        var context = GetTestingDatabaseContext();
+        var testObjectsToInsert = TestEntityHelper.CreateTestEntityList(numberOfTestObjectsToCreate);
+
+        await context.TestEntities.AddRangeAsync(testObjectsToInsert);
+        return await context.SaveChangesAsync();
+    }
+
+    /// <summary>
+    /// Returns the current test database context
+    /// </summary>
+    /// <returns></returns>
+    public static TestingDatabaseContext GetTestingDatabaseContext()
+    {
+        return GetService<TestingDatabaseContext>();
     }
 }

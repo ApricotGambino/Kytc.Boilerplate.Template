@@ -21,6 +21,8 @@ internal static class KernelServiceConfigurations
         builder.AddSerilogConfiguration(appSettings);
         builder.Services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
 
+        //builder.Services.AddScoped(typeof(IReadOnlyEntityRepo<>), typeof(ReadOnlyEntityRepo<>));
+
 
         return builder;
     }

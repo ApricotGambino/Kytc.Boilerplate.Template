@@ -1,4 +1,4 @@
-namespace IntegrationTests.UniqueContextTests.ApplicationStartTests;
+namespace IntegrationTests.ApplicationStartTests;
 
 using TestShared.Fixtures;
 

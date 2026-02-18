@@ -5,7 +5,7 @@ using TestShared.Fixtures;
 
 /// <summary>
 /// These tests ensure that <see cref="UniqueContextTestFixture"/> creates a TestingContext at the start of each test,
-/// and always shares the context unless intentionally reset.
+/// and always restarts the context for each test ran.
 /// If all these tests pass, that means that using the uniquecontext test fixture on future tests ensures that the fixture doesn't
 /// try to create a context at any point, and always tears the context down.
 /// since that is only established in the setup, which needs to be manually called.

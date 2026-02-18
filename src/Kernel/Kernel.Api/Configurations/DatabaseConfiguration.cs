@@ -1,6 +1,7 @@
 namespace KernelApi.Configurations;
 
 using KernelApi;
+using KernelInfrastructure.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
@@ -23,6 +24,8 @@ internal static class DatabaseConfiguration
             options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
             options.UseSqlServer(appSettings.ConnectionStrings.DefaultConnection);
         });
+
+        builder.Services.AddScoped(typeof(ReadOnlyEntityRepo<,>));
 
         return builder;
     }
