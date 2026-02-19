@@ -7,8 +7,8 @@ using Microsoft.EntityFrameworkCore;
 public interface ITestExampleService
 {
     public List<TestEntity> DoSomeExampleAction();
-    public Task<List<TestEntity>> GetMostRecentEntitiesUsingContextAsync();
-    public Task<List<TestEntity>> GetMostRecentEntitiesUsingReadOnlyRepoAsync();
+    public Task<List<TestEntity>> GetAllEntitiesUsingContextAsync();
+    public Task<List<TestEntity>> GetAllEntitiesUsingReadOnlyRepoAsync();
 }
 
 public class TestExampleService(TestingDatabaseContext context, ReadOnlyEntityRepo<TestEntity, TestingDatabaseContext> readonlyRepo) : ITestExampleService
@@ -20,14 +20,14 @@ public class TestExampleService(TestingDatabaseContext context, ReadOnlyEntityRe
     {
         return [];
     }
-    public Task<List<TestEntity>> GetMostRecentEntitiesUsingContextAsync()
+    public Task<List<TestEntity>> GetAllEntitiesUsingContextAsync()
     {
-        return _Context.TestEntities.OrderByDescending(o => o.Id).ToListAsync();
+        return _Context.TestEntities.ToListAsync();
     }
 
-    public Task<List<TestEntity>> GetMostRecentEntitiesUsingReadOnlyRepoAsync()
+    public Task<List<TestEntity>> GetAllEntitiesUsingReadOnlyRepoAsync()
     {
-        return _ReadonlyRepo.GetEntityQueryable().OrderByDescending(o => o.Id).ToListAsync();
+        return _ReadonlyRepo.GetEntityQueryable().ToListAsync();
     }
 
 }

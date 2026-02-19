@@ -35,7 +35,7 @@
     "template": [
       "default",
       "modern",
-      "template"
+      "templates"
     ],
     "globalMetadata": {
       "_appName": "Kytc.Boilerplate.Template",

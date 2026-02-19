@@ -37,4 +37,10 @@ public static class TestingCategoryConstants
     /// /// Seeing this trait in the test explorer tells you each test is going to rebuild the context, this means it's going to be a slow test.
     /// </summary>
     public const string BenchmarkTests = "BenchmarkTests";
+
+    /// <summary>
+    /// Seeing this trait in the test explorer tells you these tests are just examples, or samples, and can be ignored, they are learning lessons
+    /// just playgrounds for code.
+    /// </summary>
+    public const string SandboxTests = "SandboxTests";
 }

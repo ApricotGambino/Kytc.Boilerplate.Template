@@ -1,6 +1,7 @@
 namespace TestShared;
 
 using System;
+using KernelData.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using TestShared.TestObjects;
@@ -142,21 +143,6 @@ public static class TestingContext
         return foundService;
     }
 
-
-    /// <summary>
-    /// Adds randomly generated test entities to the testing database
-    /// </summary>
-    /// <param name="numberOfTestObjectsToCreate"></param>
-    /// <returns></returns>
-    public static async Task<int> InsertTestEntitiesIntoDatabaseAsync(int numberOfTestObjectsToCreate)
-    {
-        var context = GetTestingDatabaseContext();
-        var testObjectsToInsert = TestEntityHelper.CreateTestEntityList(numberOfTestObjectsToCreate);
-
-        await context.TestEntities.AddRangeAsync(testObjectsToInsert);
-        return await context.SaveChangesAsync();
-    }
-
     /// <summary>
     /// Returns the current test database context
     /// </summary>
@@ -164,5 +150,33 @@ public static class TestingContext
     public static TestingDatabaseContext GetTestingDatabaseContext()
     {
         return GetService<TestingDatabaseContext>();
+    }
+
+    /// <summary>
+    /// Adds randomly generated test entities to the testing database
+    /// </summary>
+    /// <param name="numberOfTestObjectsToCreate"></param>
+    /// <returns>A list of inserted <see cref="TestEntity"/></returns>
+    public static Task<List<TestEntity>> InsertTestEntitiesIntoDatabaseAsync(int numberOfTestObjectsToCreate)
+    {
+        var testObjectsToInsert = TestEntityHelper.CreateTestEntityList(numberOfTestObjectsToCreate);
+        return SeedRangeAsync(testObjectsToInsert);
+    }
+
+    /// <summary>
+    /// This method is used to seed data for tests.  If that seed action fails, we will consider resulting tests inconclusive.
+    /// </summary>
+    /// <typeparam name="TEntity"></typeparam>
+    /// <param name="entitiesToAdd"></param>
+    /// <returns>A list of inserted <see cref="TEntity"/></returns>
+    public static async Task<List<TEntity>> SeedRangeAsync<TEntity>(List<TEntity> entitiesToAdd) where TEntity : BaseEntity
+    {
+        var dbContext = GetTestingDatabaseContext();
+        await dbContext.AddRangeAsync(entitiesToAdd);
+        var addedEntitiesCount = await dbContext.SaveChangesAsync();
+
+        Assume.That(entitiesToAdd, Has.Count.EqualTo(addedEntitiesCount), $"Failed to seed all {entitiesToAdd.Count} {typeof(TEntity)} entities, test result cannot be asserted.");
+
+        return entitiesToAdd;
     }
 }

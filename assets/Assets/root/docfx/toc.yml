@@ -2,3 +2,5 @@
   href: articles/
 - name: API
   href: generated/api/
+- name: Templates
+  href: templates/

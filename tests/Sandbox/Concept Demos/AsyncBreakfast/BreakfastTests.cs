@@ -5,7 +5,7 @@ using NUnit.Framework;
 using Sandbox.Concept_Demos.Async;
 using TestShared.Fixtures;
 
-
+[Category(TestingCategoryConstants.SandboxTests)]
 public class BreakfastTests : BaseTestFixture
 {
     [Test]

@@ -529,3 +529,7 @@ dotnet_naming_rule.private_static_fields_none.severity = none
 # Basically, we're a web app, and we probably want to use .ConfigureAwait(true) which is the default,
 # so we're silencing the helpful warning.
 dotnet_diagnostic.VSTHRD111.severity = none
+
+
+# IDE0021: Use expression body for constructor
+dotnet_diagnostic.IDE0021.severity = none

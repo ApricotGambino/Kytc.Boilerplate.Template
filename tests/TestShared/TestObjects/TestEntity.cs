@@ -2,6 +2,7 @@ namespace TestShared.TestObjects;
 
 using KernelData.Entities;
 
+
 public class TestEntity : BaseEntity
 {
     public string AString { get; set; } = string.Empty;
@@ -9,6 +10,7 @@ public class TestEntity : BaseEntity
     public int ANumber { get; set; }
     public bool ABool { get; set; }
     public DateTimeOffset ADateTimeOffset { get; set; }
+
 }
 
 public static class TestEntityHelper
@@ -24,7 +26,7 @@ public static class TestEntityHelper
             {
                 //The 'AString' code is stole from here: https://codereview.stackexchange.com/questions/148506/incrementing-a-sequence-of-letters-by-one
                 //It just builds up a string like A->B->C...X->Y->Z->AA->BB->CC etc.
-                //So that we can actually have unique values we can test order with. 
+                //So that we can actually have unique values we can test order with.
                 AString = new string((char)('A' + ((i - 1) % 26)), ((i - 1) / 26) + 1),
                 AStringWithNumbers = $"Test String {i}",
                 ANumber = i + 100,

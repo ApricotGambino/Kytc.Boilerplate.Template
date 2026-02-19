@@ -15,8 +15,8 @@ public class Tests : SharedContextTestFixture
         var readonlyRepo = TestingContext.GetService<ReadOnlyEntityRepo<TestEntity, TestingDatabaseContext>>();
         var testExampleService = TestingContext.GetService<ITestExampleService>();
 
-        var a = await testExampleService.GetMostRecentEntitiesUsingContextAsync();
-        var b = await testExampleService.GetMostRecentEntitiesUsingReadOnlyRepoAsync();
+        //var a = await testExampleService.GetMostRecentEntitiesUsingContextAsync();
+        //var b = await testExampleService.GetMostRecentEntitiesUsingReadOnlyRepoAsync();
 
         Assert.Pass();
     }

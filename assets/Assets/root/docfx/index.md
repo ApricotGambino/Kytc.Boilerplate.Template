@@ -5,6 +5,10 @@ _layout: landing
 # This is the **HOMEPAGE**.
 
 
+REally take a look at this
+> * [CSE Playbook docs](https://github.com/microsoft/code-with-engineering-playbook/tree/main/docs)
+
+
 > [!TIP]
 > Here's a tip.
 

@@ -1,8 +1,7 @@
+# Articles Overview
 
-# This is the **OVERVIEW**.
+Why write the code when you can read about it.
 
-## Install
+---
 
-Do a thing. 
-Also, following this:100:
-https://github.com/dotnet/BenchmarkDotNet/blob/master/docs/articles/guides/toc.yml
+Here you're going to find articles that are written to help you understand or work on this project. 

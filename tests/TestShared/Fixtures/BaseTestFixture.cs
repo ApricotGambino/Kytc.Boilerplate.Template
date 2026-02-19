@@ -4,6 +4,7 @@ namespace TestShared.Fixtures;
 /// This is the base fixture for all tests.
 /// https://docs.nunit.org/articles/nunit/writing-tests/attributes/testfixture.html
 /// </summary>
+///
 [TestFixture]
 public abstract class BaseTestFixture
 {
@@ -31,7 +32,7 @@ public abstract class BaseTestFixture
     }
 
     /// <summary>
-    /// This method is ran before any test is ran, but only once.
+    /// This method is ran before any/all tests are ran, only once.
     /// </summary>
     /// <returns></returns>
     [OneTimeSetUp]
@@ -41,7 +42,7 @@ public abstract class BaseTestFixture
     }
 
     /// <summary>
-    /// This method is ran after any test is ran, but only once.
+    /// This method is ran after any/all tests are ran, only once.
     /// </summary>
     /// <returns></returns>
     [OneTimeTearDown]
