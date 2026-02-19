@@ -17,7 +17,18 @@ The complications of Markdown comes from knowning what's supported, and what's n
 For the most part, all markdown renderers support features that Github does, so if it works on Github, it probably works on your renderer. 
 For example, language syntax highlighting [here's what GitHub does]("https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-and-highlighting-code-blocks#syntax-highlighting")
 
+And that's not all!  You can even render diagrams using [Mermaid]("https://mermaid.ai/open-source/syntax/flowchart.html")
+like this: 
+```mermaid
+%%{init: {'themeVariables': {'pie1': '#FFFF00', 'pie2': '#000000'}}}%%
+pie
+  title Pac Man
+  "Body": 100
+  "Mouth": 20
+```
+
 Docfx translates our .md files into HTML, but you can read them just fine on your computer as well, and even within visual studio using an [extension]("https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor2"). 
+
 
 ## Why use .md for documentation?
 Because the alternative is something like .docx, or .pdf.  Both absolutely could work,
