@@ -4,8 +4,8 @@ Don't assume performance, prove it.
 
 ---
 
-For benchmark testing, also known as *Performance Testing*, we're using [BenchmarkDotNet]("https://benchmarkdotnet.org/").
-This is a much better way to test performance over doing comparisons using the [Stopwatch]("https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.stopwatch?view=net-10.0") class. 
+For benchmark testing, also known as *Performance Testing*, we're using [BenchmarkDotNet](https://benchmarkdotnet.org/).
+This is a much better way to test performance over doing comparisons using the [Stopwatch](https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.stopwatch?view=net-10.0) class. 
 All of our benchmark tests can be found in `~/tests/Benchmarks/`  
 
 You can find examples of other tests that have been written there in the `/Tests/` folder, along with a template to get started found in `TestExampleWithParameters.cs`
@@ -19,7 +19,7 @@ So a real example of this is what lead to the decision to use [ReadOnly Repo wit
 ## Writing a benchmark
 When you're ready to write a benchmark, as stated above, take a look at `TestExampleWithParameters.cs` along with already existing examples. 
 
-Something to note is that we write these benchmarks to be ran by [BenchmarkDotNet]("https://benchmarkdotnet.org/"), but to work along side with the [Test Explorer]("https://learn.microsoft.com/en-us/visualstudio/test/run-unit-tests-with-test-explorer?view=visualstudio")
+Something to note is that we write these benchmarks to be ran by [BenchmarkDotNet](https://benchmarkdotnet.org/), but to work along side with the [Test Explorer](https://learn.microsoft.com/en-us/visualstudio/test/run-unit-tests-with-test-explorer?view=visualstudio)
 
 ![Benchmarkdotnet Testexplorer](../../images/benchmarkdotnet_testexplorer.png)
 

@@ -17,7 +17,7 @@ The complications of Markdown comes from knowning what's supported, and what's n
 For the most part, all markdown renderers support features that Github does, so if it works on Github, it probably works on your renderer. 
 For example, language syntax highlighting [here's what GitHub does](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-and-highlighting-code-blocks#syntax-highlighting)
 
-And that's not all!  You can even render diagrams using [Mermaid]("https://mermaid.ai/open-source/syntax/flowchart.html")
+And that's not all!  You can even render diagrams using [Mermaid](https://mermaid.ai/open-source/syntax/flowchart.html)
 like this: 
 ```mermaid
 %%{init: {'themeVariables': {'pie1': '#FFFF00', 'pie2': '#000000'}}}%%
@@ -27,7 +27,7 @@ pie
   "Mouth": 20
 ```
 
-Docfx translates our .md files into HTML, but you can read them just fine on your computer as well, and even within visual studio using an [extension]("https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor2"). 
+Docfx translates our .md files into HTML, but you can read them just fine on your computer as well, and even within visual studio using an [extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor2). 
 
 
 ## Why use .md for documentation?
@@ -47,7 +47,7 @@ into one static site that can be hosted easily.
 
 In addition, it also automatically parses through your code, and generates documentation for it as well. 
 
-If we only needed documentation without generation, then [Mkdocs]("https://www.mkdocs.org/") would probably be better. 
+If we only needed documentation without generation, then [Mkdocs](https://www.mkdocs.org/) would probably be better. 
 
 ## How do I add documentation
 If you need to add code documentation, or the stuff found in [API](/generated/api/Api.html) then nothing! That's all automagic. 
@@ -75,7 +75,7 @@ So if you wanted to your own guide, follow these steps:
 3. Rename the file to whatever you want, EX: `my-guide.md`
 4. Fill that file with whatever content you want.
 5. Edit `~docfx/articles/guides/toc.yml` to this: 
-    ```diff
+    ```yaml
     - name: Overview
       href: overview.md
     - name: Contributing to documentation
@@ -88,7 +88,7 @@ So if you wanted to your own guide, follow these steps:
 
 But you should probably check your work, to do so, you can execute the build batch file to generate and run a local version of the site. 
 > [!IMPORTANT]
-> [Node.js]("https://nodejs.org/") is required to run the local version.
+> [Node.js](https://nodejs.org/) is required to run the local version.
 >
 > Also pay attention to the warnings issued from the build and correct what is reported. (If it's something you actually adjust yourself)
 
