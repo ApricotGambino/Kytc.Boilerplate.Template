@@ -3,7 +3,6 @@ namespace Benchmarks.Tests;
 using System.Collections;
 using BenchmarkDotNet.Attributes;
 using Benchmarks.Data;
-using Microsoft.EntityFrameworkCore;
 using TestShared.TestObjects;
 
 [MemoryDiagnoser]

@@ -1,7 +1,8 @@
 rem **** Installing tools ****
 dotnet tool install Docfx -g
 
-rem **** Removing old documentation from wwwroot ****
+rem **** Removing old documentation ****
+ rm ..\generated\
 
 rem **** Installing tools ****
 docfx ../docfx.json %1 %2

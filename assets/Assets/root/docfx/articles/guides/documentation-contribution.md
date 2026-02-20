@@ -92,9 +92,9 @@ But you should probably check your work, to do so, you can execute the build bat
 >
 > Also pay attention to the warnings issued from the build and correct what is reported. (If it's something you actually adjust yourself)
 
-In a powershell prompt: 
+In a powershell prompt from project folder: 
 ```powershell
-cd "~docfx\build\"
+cd .\assets\Assets\root\docfx\build\
 .\GenerateAndRunLocalDocumentation.bat
 ```
 This batch file will install the required tools to build this documentation, then hosts it on [http://localhost:8080]("http://localhost:8080")

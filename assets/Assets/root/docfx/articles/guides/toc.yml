@@ -2,3 +2,5 @@
   href: overview.md
 - name: Contributing to documentation
   href: documentation-contribution.md
+- name: Benchmark Testing
+  href: benchmark-testing.md

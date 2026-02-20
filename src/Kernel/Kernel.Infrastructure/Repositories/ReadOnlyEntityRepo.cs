@@ -1,5 +1,6 @@
 namespace KernelInfrastructure.Repositories;
 
+using System.Linq.Expressions;
 using KernelData.Entities;
 using KernelData.EntityFramework;
 using KernelData.Extensions.Pagination;
@@ -31,7 +32,7 @@ public class ReadOnlyEntityRepo<TEntity, TDatabaseContext>(TDatabaseContext cont
     /// Gets the an <see cref="IQueryable{TEntity}"/> that is not tracked by EF and is safe to mutate.
     /// </summary>
     /// <remarks>
-    /// WARNING: Make sure to include your own filtering clauses to avoid returning all data from the table into memory.
+    /// WARNING: Make sure to include your own filtering clauses and pagination to avoid returning all data from the table into memory.
     /// Avoid calling .ToList() unless you really need all the data.
     /// </remarks>
     /// <returns></returns>
@@ -40,24 +41,118 @@ public class ReadOnlyEntityRepo<TEntity, TDatabaseContext>(TDatabaseContext cont
         return Context.Set<TEntity>().AsNoTracking().AsQueryable();
     }
 
-    public Task<PagedResults<TEntity>> GetPaginatedEntityOrderedByIdAsync(int pageNumber, int pageSize)
+    /// <summary>
+    /// This returns exactly one entity.  There should be exactly one entity that is found, because we're looking it up by Id.
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    public async Task<TEntity> GetSingleEntityByIdAsync(int id)
     {
-        var results = Context.Set<TEntity>().AsNoTracking().AsQueryable();
-        return results.OrderBy(o => o.Id).ToPaginatedResultsAsync(pageNumber: pageNumber, pageSize: pageSize);
+        return await Context.Set<TEntity>().AsNoTracking().Where(p => p.Id == id).ToAsyncEnumerable().SingleAsync();
     }
 
-    public Task<PagedResults<TEntity>> TEST(Func<TEntity, bool> where, int pageNumber, int pageSize)
+    /// <summary>
+    /// This returns the first or default value based on the provided where clause
+    /// </summary>
+    /// <param name="where"></param>
+    /// <remarks>
+    /// Example use: readonlyRepo.GetFirstOrDefaultEntityByFilterAsync(p => p.AProperty == AValue);
+    /// </remarks>
+    /// <returns></returns>
+    public async Task<TEntity?> GetFirstOrDefaultEntityByFilterAsync(Func<TEntity, bool> where)
     {
-        var results = Context.Set<TEntity>().AsNoTracking().Where(where).AsQueryable();
-        return results.ToPaginatedResultsAsync(pageNumber: pageNumber, pageSize: pageSize);
+        return await Context.Set<TEntity>().AsNoTracking().Where(where).ToAsyncEnumerable().FirstOrDefaultAsync();
+    }
+
+    /// <summary>
+    /// Gets a <see cref="PagedResults{TEntity}"/> of an entity, ordered by Id, which is another way of getting the oldest records first.
+    /// </summary>
+    /// <param name="pageNumber"></param>
+    /// <param name="pageSize"></param>
+    /// <remarks>While entities do have a CreatedDate column, the ID is an auto incremented PK, meaning the bigger the number, the later it was inserted.</remarks>
+    /// <returns></returns>
+    public Task<PagedResults<TEntity>> GetPaginatedEntityOrderedByIdOldestFirstAsync(int pageNumber, int pageSize)
+    {
+        return GetPaginatedEntityWithFilterAndOrderAsync(pageNumber, pageSize, o => o.Id);
+    }
+
+    /// <summary>
+    /// Gets a <see cref="PagedResults{TEntity}"/> of an entity, ordered by Id descending, which is another way of getting the newest records first.
+    /// </summary>
+    /// <param name="pageNumber"></param>
+    /// <param name="pageSize"></param>
+    /// /// <remarks>While entities do have a CreatedDate column, the ID is an auto incremented PK, meaning the bigger the number, the later it was inserted.</remarks>
+    /// <returns></returns>
+    public Task<PagedResults<TEntity>> GetPaginatedEntityOrderedByIdNewestFirstAsync(int pageNumber, int pageSize)
+    {
+        return GetPaginatedEntityWithFilterAndOrderAsync(pageNumber, pageSize, o => o.Id, orderByAscending: false);
+    }
+
+    /// <summary>
+    /// Gets a <see cref="PagedResults{TEntity}"/> of an entity, ordered by provided expression ascending, and accepts an optional where filter.
+    /// </summary>
+    /// <param name="pageNumber"></param>
+    /// <param name="pageSize"></param>
+    /// <param name="order"></param>
+    /// <param name="where"></param>
+    /// <param name="includeEntityName"></param>
+    /// <remarks>
+    /// Example use repo.GetPaginatedEntityAscendingAsync(1, 2, o => o.AProperty, p => p.AProperty == AValue)
+    /// <para />
+    /// WARNING: If using the include, be aware that all related entities will be fetched, included entities are not paginated.
+    /// <para />
+    /// Example use of include repo.GetPaginatedEntityAscendingAsync(1, 2, o => o.AProperty, p => p.AProperty == AValue, nameof(RepoEntity.RepoNavigationProperty))
+    /// </remarks>
+    /// <returns></returns>
+    public Task<PagedResults<TEntity>> GetPaginatedEntityAscendingAsync(int pageNumber, int pageSize, Expression<Func<TEntity, object>> order, Func<TEntity, bool>? where = null, string? includeEntityName = null)
+    {
+        return GetPaginatedEntityWithFilterAndOrderAsync(pageNumber, pageSize, order, orderByAscending: true, where, includeEntityName);
+    }
+
+    /// <summary>
+    /// Gets a <see cref="PagedResults{TEntity}"/> of an entity, ordered by provided expression descending, and accepts an optional where filter.
+    /// </summary>
+    /// <param name="pageNumber"></param>
+    /// <param name="pageSize"></param>
+    /// <param name="order"></param>
+    /// <param name="where"></param>
+    /// <param name="includeEntityName"></param>
+    /// <remarks>
+    /// Example use repo.GetPaginatedEntityDescendingAsync(1, 2, o => o.AProperty, p => p.AProperty == AValue)
+    /// <para />
+    /// WARNING: If using the include, be aware that all related entities will be fetched, included entities are not paginated.
+    /// <para />
+    ///  Example use of include repo.GetPaginatedEntityDescendingAsync(1, 2, o => o.AProperty, p => p.AProperty == AValue, nameof(RepoEntity.RepoNavigationProperty))
+    /// </remarks>
+    /// <returns></returns>
+    public Task<PagedResults<TEntity>> GetPaginatedEntityDescendingAsync(int pageNumber, int pageSize, Expression<Func<TEntity, object>> order, Func<TEntity, bool>? where = null, string? includeEntityName = null)
+    {
+        return GetPaginatedEntityWithFilterAndOrderAsync(pageNumber, pageSize, order, orderByAscending: false, where, includeEntityName);
+    }
+
+    private Task<PagedResults<TEntity>> GetPaginatedEntityWithFilterAndOrderAsync(int pageNumber, int pageSize, Expression<Func<TEntity, object>> order, bool orderByAscending = true, Func<TEntity, bool>? where = null, string? includeEntityName = null)
+    {
+        var query = Context.Set<TEntity>().AsNoTracking().AsQueryable();
+
+        if (where != null)
+        {
+            query = query.Where(where).AsQueryable();
+        }
+
+        if (orderByAscending)
+        {
+            query = query.OrderBy(order);
+        }
+        else
+        {
+            query = query.OrderByDescending(order);
+        }
+
+        if (!string.IsNullOrEmpty(includeEntityName))
+        {
+            return query.Include(includeEntityName).ToPaginatedResultsAsync(pageNumber: pageNumber, pageSize: pageSize);
+        }
+
+        return query.ToPaginatedResultsAsync(pageNumber: pageNumber, pageSize: pageSize);
     }
 }
-
-//public class ReadOnlyEntityRepo<TEntity>() //: IReadOnlyEntityRepo<TEntity>
-//    where TEntity : BaseEntity
-//{
-//    public IQueryable<TEntity> GetEntityQueryable()
-//    {
-//        return new List<TEntity>().AsQueryable();
-//    }
-//}

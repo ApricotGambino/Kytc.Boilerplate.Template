@@ -7,9 +7,9 @@ namespace KernelData.Extensions.Pagination;
 public class PagedResults<T>
 {
     /// <summary>
-    /// Collection of items returned by pagination
+    /// Nullable Collection of items returned by pagination
     /// </summary>
-    public IEnumerable<T> Results { get; set; }
+    public List<T>? Results { get; set; }
     /// <summary>
     /// The maximum number of results to be returned by the pagination
     /// </summary>
@@ -26,9 +26,4 @@ public class PagedResults<T>
     /// The total number of pages based on query and pagesize
     /// </summary>
     public int TotalPages { get; set; }
-
-    public PagedResults()
-    {
-        Results = [];
-    }
 }

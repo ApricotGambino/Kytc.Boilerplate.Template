@@ -4,7 +4,9 @@ using TestShared.Fixtures;
 using TestShared.TestObjects;
 
 /// <summary>
-/// This is showcasing a working example of the ef-relationships concept in the documentation.
+/// This is showcasing a working example of the ef-relationships concept in the documentation. We're not using the Readonly Repo for this example
+/// to not conflate concepts, this is just inserting entities and fetching them directly from the DB context to showcase relationships.
+/// This setup data is used in HowDoIGetData.cs as well, that showcases fetching data using the readonly repo.
 /// </summary>
 [Category(TestingCategoryConstants.SandboxTests)]
 public class EFRelationship : SharedContextTestFixture
@@ -15,47 +17,11 @@ public class EFRelationship : SharedContextTestFixture
     private List<StudentToCourse> CreatedStudentToCourses { get; set; } = [];
 
     [OneTimeSetUp]
-    public Task SeedTestData()
+    public async Task SeedTestData()
     {
-        var db = TestingContext.GetTestingDatabaseContext();
-        var adam = new Student() { Name = "Adam" };
-        var jimmy = new Student() { Name = "Jimmy" };
-        var bimmy = new Student() { Name = "Bimmy" };
-
-        var mrBusy = new Teacher() { Name = "Mr. Busy" };
-        var mrPlop = new Teacher() { Name = "Mr. Plop" };
-        var drLazy = new Teacher() { Name = "Dr. Lazy" };
-
-        var english = new Course() { Name = "English", Teacher = mrBusy };
-        var history = new Course() { Name = "History", Teacher = mrBusy };
-        var math = new Course() { Name = "Math", Teacher = mrPlop };
-
-        CreatedStudents.Add(adam);
-        CreatedStudents.Add(jimmy);
-        CreatedStudents.Add(bimmy);
-
-        CreatedTeachers.Add(mrBusy);
-        CreatedTeachers.Add(mrPlop);
-        CreatedTeachers.Add(drLazy);
-
-        CreatedCourses.Add(english);
-        CreatedCourses.Add(history);
-        CreatedCourses.Add(math);
-
-        CreatedStudentToCourses.Add(new StudentToCourse() { Student = adam, Course = english });
-
-        CreatedStudentToCourses.Add(new StudentToCourse() { Student = jimmy, Course = history });
-        CreatedStudentToCourses.Add(new StudentToCourse() { Student = jimmy, Course = math });
-
-        CreatedStudentToCourses.Add(new StudentToCourse() { Student = bimmy, Course = english });
-        CreatedStudentToCourses.Add(new StudentToCourse() { Student = bimmy, Course = history });
-        CreatedStudentToCourses.Add(new StudentToCourse() { Student = bimmy, Course = math });
-
-        db.AddRange(CreatedStudents);
-        db.AddRange(CreatedTeachers);
-        db.AddRange(CreatedCourses);
-        db.AddRange(CreatedStudentToCourses);
-        return db.SaveChangesAsync();
+        //Resetting the context just in case any other tests influence these results.
+        await TestingContext.ResetTestContextAsync();
+        await SchoolEntityHelper.InsertExampleSchoolSetup();
     }
 
 

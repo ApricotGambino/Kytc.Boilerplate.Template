@@ -17,11 +17,11 @@ public static class PaginationExtensions
     public static async Task<PagedResults<T>> ToPaginatedResultsAsync<T>(this IQueryable<T> query, int pageNumber, int pageSize)
     {
         ArgumentException.ThrowIfNullOrEmpty(nameof(query));
-        ArgumentOutOfRangeException.ThrowIfLessThan(0, pageNumber);
-        ArgumentOutOfRangeException.ThrowIfLessThan(1, pageSize);
+        ArgumentOutOfRangeException.ThrowIfLessThanOrEqual(pageNumber, 0);
+        ArgumentOutOfRangeException.ThrowIfLessThan(pageSize, 1);
 
-        var results = await query.Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
-        var totalItems = await query.CountAsync();
+        var results = await query.ToAsyncEnumerable().Skip((pageNumber - 1) * pageSize).Take(pageSize).ToListAsync();
+        var totalItems = await query.ToAsyncEnumerable().CountAsync();
         var totalPages = (int)Math.Ceiling(totalItems / (double)pageSize);
 
         return new PagedResults<T>

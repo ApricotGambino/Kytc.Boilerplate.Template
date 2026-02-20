@@ -111,6 +111,11 @@ public static class TestingContext
     {
         try
         {
+            if (string.IsNullOrEmpty(environmentName))
+            {
+                //Unless we are specifying what environment we want to reset to, let's assume we want to reset using the previous environment.
+                environmentName = EnvironmentName;
+            }
             await TearDownTestContextAsync();
             await SetupTestContextAsync(environmentName);
         }
