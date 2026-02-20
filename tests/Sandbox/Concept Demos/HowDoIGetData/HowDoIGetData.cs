@@ -5,11 +5,13 @@ using TestShared.Fixtures;
 using TestShared.TestObjects;
 
 
+//TODO: Make sure to do some pagination and stuff with .include and many-to-many
+
 /// <summary>
 /// These tests just show you different ways you can fetch data from the database, and how you SHOULD do it.
 /// </summary>
 [Category(TestingCategoryConstants.SandboxTests)]
-public class HowDoIGetDataTests : SharedContextTestFixture
+public class HowDoIGetData : SharedContextTestFixture
 {
     private List<TestEntity> CreatedEntities { get; set; }
 

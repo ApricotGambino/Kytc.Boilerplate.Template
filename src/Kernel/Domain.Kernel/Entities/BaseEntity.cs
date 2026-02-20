@@ -3,6 +3,15 @@ namespace KernelData.Entities;
 using System;
 using System.ComponentModel.DataAnnotations;
 
+//NOTE: Navigation properties are intentionally nullable, because
+//https://learn.microsoft.com/en-us/ef/core/modeling/relationships/navigations
+//tells us that if we initialize them, we're going to have unexpected results, and because we don't want to
+//supress every warning of uninitialized objects CS618, we make them nullable.
+//Also, they are eager loaded, never lazy, so we'll .include() if we want them.
+
+//Also, you can read more about EF relationships here:
+//https://learn.microsoft.com/en-us/ef/core/modeling/relationships
+
 public abstract class BaseEntity : BaseEntity<int>;
 
 /// <summary>
