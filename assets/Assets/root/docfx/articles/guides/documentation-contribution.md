@@ -15,7 +15,7 @@ There's lot's of resources on markdown formatting, like [Markdown Guide](https:/
 
 The complications of Markdown comes from knowning what's supported, and what's not, as it depends what you're using to view the .md file. 
 For the most part, all markdown renderers support features that Github does, so if it works on Github, it probably works on your renderer. 
-For example, language syntax highlighting [here's what GitHub does]("https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-and-highlighting-code-blocks#syntax-highlighting")
+For example, language syntax highlighting [here's what GitHub does](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/creating-and-highlighting-code-blocks#syntax-highlighting)
 
 And that's not all!  You can even render diagrams using [Mermaid]("https://mermaid.ai/open-source/syntax/flowchart.html")
 like this: 
@@ -75,7 +75,7 @@ So if you wanted to your own guide, follow these steps:
 3. Rename the file to whatever you want, EX: `my-guide.md`
 4. Fill that file with whatever content you want.
 5. Edit `~docfx/articles/guides/toc.yml` to this: 
-    ```yml
+    ```diff
     - name: Overview
       href: overview.md
     - name: Contributing to documentation

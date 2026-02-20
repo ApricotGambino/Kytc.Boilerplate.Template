@@ -53,7 +53,7 @@ Here's an example using one of the generated test's results:
 
 > [!TIP]
 > Based on the results from this benchmark, it became obvious that using 
->```csharp
+>```cs
 >entities.skip().take()
 >```
 >would have huge memory alloction performance gains, the speed difference looked enormous, but really the amounts are already so small, but that's not true for memory. This is directly what lead to the creation of the ReadOnly repo. 

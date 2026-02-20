@@ -4,3 +4,7 @@
   href: documentation-contribution.md
 - name: Benchmark Testing
   href: benchmark-testing.md
+- name: How to insert data into the database
+  href: how-to-insert-data-db.md
+- name: How to fetch data from the database
+  href: how-to-fetch-data-db.md
