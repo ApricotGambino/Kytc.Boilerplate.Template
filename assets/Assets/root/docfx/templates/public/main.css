@@ -188,3 +188,7 @@ code {
 #autocollapse .container-xxl {
   height: 100%;
 }
+
+details {
+  background-color: white;
+}

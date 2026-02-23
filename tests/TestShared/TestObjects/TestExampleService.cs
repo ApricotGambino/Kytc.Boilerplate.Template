@@ -1,8 +1,7 @@
-namespace TestShared.TestObjects;
-
-using System.Collections.Generic;
 using KernelInfrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
+
+namespace TestShared.TestObjects;
 
 public interface ITestExampleService
 {
@@ -13,8 +12,8 @@ public interface ITestExampleService
 
 public class TestExampleService(TestingDatabaseContext context, ReadOnlyEntityRepo<TestEntity, TestingDatabaseContext> readonlyRepo) : ITestExampleService
 {
-    private readonly TestingDatabaseContext _Context = context;
-    private readonly ReadOnlyEntityRepo<TestEntity, TestingDatabaseContext> _ReadonlyRepo = readonlyRepo;
+    private readonly TestingDatabaseContext _context = context;
+    private readonly ReadOnlyEntityRepo<TestEntity, TestingDatabaseContext> _readonlyRepo = readonlyRepo;
 
     public List<TestEntity> DoSomeExampleAction()
     {
@@ -22,12 +21,12 @@ public class TestExampleService(TestingDatabaseContext context, ReadOnlyEntityRe
     }
     public Task<List<TestEntity>> GetAllEntitiesUsingContextAsync()
     {
-        return _Context.TestEntities.ToListAsync();
+        return _context.TestEntities.ToListAsync();
     }
 
     public Task<List<TestEntity>> GetAllEntitiesUsingReadOnlyRepoAsync()
     {
-        return _ReadonlyRepo.GetEntityQueryable().ToListAsync();
+        return _readonlyRepo.GetEntityQueryable().ToListAsync();
     }
 
 }

@@ -1,10 +1,10 @@
-namespace Benchmarks.Tests;
 
 using System.Collections;
 using BenchmarkDotNet.Attributes;
 using Benchmarks.Data;
 using TestShared.TestObjects;
 
+namespace Benchmarks.Tests;
 [MemoryDiagnoser]
 [DisassemblyDiagnoser]
 [ThreadingDiagnoser]

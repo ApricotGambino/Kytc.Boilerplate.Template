@@ -7,14 +7,14 @@
 //using Microsoft.EntityFrameworkCore;
 
 
-////TODO: Create a set of examples inside the Sandbox Test project to illustrate
-////why you should not call the context directly, but instead use the repo, (Because you might forget to
-////use the things that make stuff more efficient)
+//TODO: Create a set of examples inside the Sandbox Test project to illustrate
+//why you should not call the context directly, but instead use the repo, (Because you might forget to
+//use the things that make stuff more efficient)
 
-////TODO: Also, GetMostRecentLogsUsingContextAsync is an example of why we need to use repos instead of
-////services.  Services should be for logic, not fetching data. Explain that too.
+//TODO: Also, GetMostRecentLogsUsingContextAsync is an example of why we need to use repos instead of
+//services.  Services should be for logic, not fetching data. Explain that too.
 
-////TODO: Should services return entities, or DTOs?
+//TODO: Should services return entities, or DTOs?
 //public interface IExampleService
 //{
 //    public List<ExampleEntity> DoSomeExampleAction();

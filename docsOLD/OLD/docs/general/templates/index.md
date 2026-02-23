@@ -1,4 +1,0 @@
-# Templates
-
-* [Templates](README.md)
-

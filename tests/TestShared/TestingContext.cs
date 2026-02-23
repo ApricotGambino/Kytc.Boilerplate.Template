@@ -1,11 +1,9 @@
-namespace TestShared;
-
-using System;
 using KernelData.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using TestShared.TestObjects;
 
+namespace TestShared;
 /// <summary>
 /// This class allows us to access the context of all testing needs.
 /// </summary>
@@ -15,13 +13,10 @@ public static class TestingContext
     /// <summary>
     /// Metadata values are used for testing analysis, these should not be reset
     /// </summary>
-#pragma warning disable IDE1006, CA1707// Naming Styles
     public static int __metadata_NumberOfSetupTestContextCalls { get; private set; }
     public static int __metadata_NumberOfTearDownTestContextCalls { get; private set; }
     public static int __metadata_NumberOfResetTestContextCalls { get; private set; }
     public static bool __metadata_ContextHasBeenSetup { get; private set; }
-#pragma warning restore IDE1006, CA1707 // Naming Styles
-
 
     public static string? EnvironmentName { get; private set; }
     public static TestCustomWebApplicationFactory? WebApplicationFactory { get; private set; }
@@ -142,7 +137,7 @@ public static class TestingContext
 
         if (foundService is null)
         {
-            throw new InvalidOperationException($"Could not find the service requested in the service provider, are you sure this service has been registered? If so, are you requesting the concrete version instead of the interface?");
+            throw new InvalidOperationException("Could not find the service requested in the service provider, are you sure this service has been registered? If so, are you requesting the concrete version instead of the interface?");
         }
 
         return foundService;

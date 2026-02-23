@@ -1,4 +1,3 @@
-namespace KernelApi.Configurations;
 
 using KernelApi;
 using KernelInfrastructure.Repositories;
@@ -7,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
 
+namespace KernelApi.Configurations;
 internal static class DatabaseConfiguration
 {
     /// <summary>

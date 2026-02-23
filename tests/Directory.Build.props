@@ -6,6 +6,6 @@
   </ItemGroup>
 
   <PropertyGroup>
-	<NoWarn>VSTHRD200, CA1707</NoWarn>
+	<NoWarn>VSTHRD200, CA1707, CS8604, S6608, RCS1246, RCS1118</NoWarn>
   </PropertyGroup>
 </Project>

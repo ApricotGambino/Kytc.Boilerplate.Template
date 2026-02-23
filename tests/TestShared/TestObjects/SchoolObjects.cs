@@ -1,11 +1,7 @@
-namespace TestShared.TestObjects;
 
 using KernelData.Entities;
 
-
-
-
-
+namespace TestShared.TestObjects;
 /// <summary>
 /// Parent of StudentToCourse
 /// </summary>
@@ -16,7 +12,7 @@ public class Student : BaseEntity
     /// <summary>
     /// Navigation property, can be loaded with .include()
     /// </summary>
-    public List<Course>? Courses { get; set; }
+    public List<Course> Courses { get; set; } = null!;
 }
 
 /// <summary>
@@ -31,12 +27,12 @@ public class Course : BaseEntity
     /// <summary>
     /// Navigation property, can be loaded with .include()
     /// </summary>
-    public Teacher? Teacher { get; set; }
+    public Teacher Teacher { get; set; } = null!;
 
     /// <summary>
     /// Navigation property, can be loaded with .include()
     /// </summary>
-    public List<Student>? Students { get; set; }
+    public List<Student> Students { get; set; } = null!;
 }
 
 /// <summary>
@@ -51,12 +47,12 @@ public class StudentToCourse : BaseEntity
     /// <summary>
     /// Navigation property, can be loaded with .include()
     /// </summary>
-    public Student? Student { get; set; }
+    public Student Student { get; set; } = null!;
 
     /// <summary>
     /// Navigation property, can be loaded with .include()
     /// </summary>
-    public Course? Course { get; set; }
+    public Course Course { get; set; } = null!;
 }
 
 /// <summary>
@@ -69,7 +65,7 @@ public class Teacher : BaseEntity
     /// <summary>
     /// Navigation property to courses
     /// </summary>
-    public List<Course>? Courses { get; set; }
+    public List<Course> Courses { get; set; } = null!;
 }
 
 

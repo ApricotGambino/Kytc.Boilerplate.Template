@@ -1,8 +1,7 @@
-namespace Sandbox.Concept_Demos.Async;
 
 using static Sandbox.Concept_Demos.AsyncBreakfast.BreakfastShared;
 
-
+namespace Sandbox.Concept_Demos.Async;
 //NOTE: This comes from: https://learn.microsoft.com/en-us/dotnet/csharp/asynchronous-programming/
 
 internal static class SynchronousBreakfast

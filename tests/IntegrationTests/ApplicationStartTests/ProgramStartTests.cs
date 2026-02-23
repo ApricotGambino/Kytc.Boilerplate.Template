@@ -1,7 +1,7 @@
-namespace IntegrationTests.ApplicationStartTests;
 
 using TestShared.Fixtures;
 
+namespace IntegrationTests.ApplicationStartTests;
 [Category(TestingCategoryConstants.ApiStartupTests)]
 //NOTE: These tests focus on the application starting, and are testing the Program class, found in Program.cs
 //There's not a lot of unit testing you can, nor should do for the Program.cs file.

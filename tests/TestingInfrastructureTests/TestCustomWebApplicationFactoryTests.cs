@@ -1,8 +1,8 @@
-namespace TestingInfrastructureTests;
 
 using TestShared;
 using TestShared.Fixtures;
 
+namespace TestingInfrastructureTests;
 /// <summary>
 /// These tests ensure the functionality for <see cref="TestCustomWebApplicationFactory"/>
 /// </summary>

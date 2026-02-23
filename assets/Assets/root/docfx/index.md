@@ -1,126 +1,125 @@
----
-_layout: landing
----
+<br />
+<div align="center">
+    <img src="images/logo.png" height="80" alt="Logo">
+    <h3 align="center">Boilerplate Template</h3>
+    <p align="center">
+        Template project to generate all the resources needed to install the Boilerplate template to get started developing applications.
+        <br />
+        <br />
+        <a href="//TODO: URL TO DEMO SITE">View Demo</a>
+        &middot;
+        <a href="//TODO: URL TO PROJECT">Report Bug</a>
+        &middot;
+        <a href="//TODO: URL TO PROJECT">Request Feature</a>
+    </p>
+</div>
 
-# This is the **HOMEPAGE**.
+<details>
+  <summary>Table of Contents</summary>
+  //TODO: Add ToC
+</details>
 
+## About The Project
 
-REally take a look at this
-> * [CSE Playbook docs](https://github.com/microsoft/code-with-engineering-playbook/tree/main/docs)
+<img src="images/KYTC-Brand-TK-Full-Color-1000x568px.png" alt="kytc-brand">
 
+This solution is responsible for building the template that can be used to create a Boilerplate based solution.
 
-> [!TIP]
-> Here's a tip.
+To understand how this project is meant to be used, we first need to define a few terms:
 
+- **Boilerplate**: A software term referencing reused or copied code
+- **KYTC Boilerplate Demo**: An example application created from this template - [Demo](//TODO: Add link here)
+- **KYTC Boilerplate Based Solution**: An application created from the template, the above `KYTC Boilerplate Demo` or `YourApp` created from this template would be a *KYTC Boilerplate Based Solution*
+- **KYTC Boilerplate Template Solution**: This solution. The code here isn't meant to be modified to create an application, but rather used to create a template which will create a *KYTC Boilerplate Based Solution*
+- **KYTC Boilerplate Template**: The template Visual Studio can use to create a *KYTC Boilerplate Based Solution* which is created from this *KYTC Boilerplate Template Solution*
 
-Refer to [Markdown](http://daringfireball.net/projects/markdown/) for how to write markdown files.
+So the way we'd talk about creating a project here at KYTC, we'd say something like this:
 
-## Quick Start Notes:
+"We have a **Boileplate** project to jump-start creating a project. To get started with creating a new project, we will create a **KYTC Boilerplate Based Solution** called `YourApp`, first Install the **KYTC Boilerplate Template**.
+You can find out how to install that Template by reading the `README.md` found in the **KYTC Boilerplate Template Solution**.  
+If you're curious what a **KYTC Boilerplate Based Solution** looks like out of the box, just create a new project using the **KYTC Boilerplate Template** and run locally.
+For a more fleshed out version of a **KYTC Boilerplate Based Solution** that is modified and running please check out the **KYTC Boilerplate Demo** [here](//TODO: Add link here)"
 
-1. Add images to the *images* folder if the file is referencing an image.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+### Built With
 
-> [!NOTE]
-> Information the user should notice even if skimming.
+- [![Angular][Angular.io]][Angular-url]
+- [![C#][Csharp.io]][Csharp-url]
 
-> [!TIP]
-> Optional information to help a user be more successful.
+<!-- GETTING STARTED -->
 
-> [!IMPORTANT]
-> Essential information required for user success.
+## Getting Started
 
-> [!CAUTION]
-> Negative potential consequences of an action.
+### Prerequisites
 
-> [!WARNING]
-> Dangerous certain consequences of an action.
-To get started with the setup of this website, read the getting started document with the title [Using DocFx and Companion Tools](./general/getting-started/README.md).
+- [Visual Studio](https://visualstudio.microsoft.com/)
+- [Visual Studio Code](https://code.visualstudio.com/)
+    - Not required, but recommended as it's a good editor to run/edit the front-end code leaving Visual Studio for only the C# portion.
+- [Node.js](https://nodejs.org/en)
+- [NPM](https://www.npmjs.com/)
+    - ```sh
+      npm install npm@latest -g
+      ```
+- TODO: Update with any other software needs.
 
-## Style of this website
+### Installation
 
-This documentation website is currently setup with the basics of the [DocFx Material](https://ovasquez.github.io/docfx-material/) style added with the Microsoft logo. The combination can be found in **/QuickStart/docfx/template**. In the template we also enabled diagram support through [Mermaid](https://mermaid.js.org).
+- Build the solution:
+  ```sh
+  dotnet build
+  ```
+- Run the application:
+  ```sh
+  dotnet run --project src/Your.ProjectName.Web
+  ```
+- Update the database (if using EF Core):
+  ```sh
+  dotnet ef database update -c AppDbContext -p src/Your.ProjectName.Infrastructure/Your.ProjectName.Infrastructure.csproj -s src/Your.ProjectName.Web/Your.ProjectName.Web.csproj
+  ```
 
-```csharp
-using System;
+//TODO: Explain how to get the template installed, and how to create a project, then point them to the README.
 
-namespace HelloWorld
-{
-    class Program
-    {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Hello World!");
-        }
-    }
-}
-```
+:warning: Once a project is established, `Asset Library/Root/READMEs/PROJECT LIFECYCLE README.md` should be read and agreed upon by the project team. :warning:
 
-## Mermaid support
+It is recommended that you start reading the [Documentation](#documentation)
+on how the project is structured first.  
+If not, feel free to jump right in and return to them when something isn't clear.
 
-To enable the rendering of [Mermaid](https://mermaid-js.github.io/mermaid/#/) diagrams in the documentation website, the code below can be added to **partials\scripts.tmpl.partial**.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-```html
-<!-- Support for diagrams (Mermaid). See https://mermaid.js.org/intro/n00b-gettingStarted.html -->
-<script type="module">
-    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-    mermaid.initialize({ startOnLoad: true });
-</script>
-```
+## Modifying the template
 
-By adding this, mermaid diagrams are rendered in the website.
+To make changes to the template, you'll want to pull down this project from source control and run and build the solution.
 
-A sample Mermaid diagram could be something like:
+To test your changes to the template, please continue by reading `Asset Library/Root/Solution Template/README.md`
 
-<!-- markdownlint-disable MD040 -->
-````
-gantt
- title Example Gantt diagram with Mermaid
-    dateFormat  YYYY-MM-DD
-    section Team 1
-    Research & requirements :done, a1, 2021-03-08, 2021-04-10
-    Review & documentation : after a1, 20d
-    section Team 2
-    Implementation      :crit, active, 2021-03-25  , 20d
-    Testing      :crit, 20d
-````
-<!-- markdownlint-enable MD040 -->
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-which will be rendered as:
+## Additional Information
 
-```mermaid
-gantt
- title Example Gantt diagram with Mermaid
-    dateFormat  YYYY-MM-DD
-    section Team 1
-    Research & requirements :done, a1, 2021-03-08, 2021-04-10
-    Review & documentation : after a1, 20d
-    section Team 2
-    Implementation      :crit, active, 2021-03-25  , 20d
-    Testing      :crit, 20d
-```
+### Documentation
 
-## 'Copy code'-button
+Documentation for this project can be found in the `Assets Library` project. To get started with documentation you should start with `Asset Library/Root/Documentation/DEV README.md`
 
-It can be desirable to have a copy button on code blocks to copy the contents to the clipboard for easy re-use. We have added this solution to the template for the website. In the **Styles** folder two files were added: **copyCodeButton.css** and **copyCodeButton.js**. In **partials\scripts.tmpl.partial** the JavaScript file is referenced:
+Opening this solution should have prompted you to install this [extension](https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor2) so you can read markdown *(.md)* files directly in Visual Studio
 
-```html
-...
-<script type="text/javascript" src="{{_rel}}styles/copy-code-button.js"></script>
-...
-```
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[Angular.io]: <https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white>
+[Angular-url]: <https://angular.io/>
+[Csharp.io]: <https://img.shields.io/badge/CSharp-99CC00?style=for-the-badge&logo=sharp&logoColor=white>
+[Csharp-url]: <https://learn.microsoft.com/en-us/dotnet/csharp/>
 
-And in **partials\head.tmpl.partial** the CSS file is referenced:
+<!--#endif -->
 
-```html
-...
-  <link rel="stylesheet" href="{{_rel}}styles/copy-code-button.css">
-...
-```
+//TODO: UPDATE
 
-When this is added, code blocks will have a Copy-button like this:
+## Solution Structure
 
-![Copy button](../../.attachments/copy-code-button.png)
+- **Core**: Domain entities, value objects, interfaces
+- **UseCases**: Application logic, CQRS handlers
+- **Infrastructure**: Data access, external services
+- **Web**: API endpoints (FastEndpoints)
 
-When a user clicks the Copy-button, the contents is copied into the clipboard and the icon changes for some time to indicate the copy was succesfull:
-
-![Copy button](../../.attachments/copy-code-button-copied.png)
+For more details, see the documentation or visit the [Clean Architecture Template repository](https://github.com/ardalis/CleanArchitecture).

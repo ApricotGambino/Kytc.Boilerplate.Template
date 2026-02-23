@@ -1,10 +1,10 @@
-namespace Sandbox.Concept_Demos.AsyncBreakfast;
 
 using System;
 using NUnit.Framework;
 using Sandbox.Concept_Demos.Async;
 using TestShared.Fixtures;
 
+namespace Sandbox.Concept_Demos.AsyncBreakfast;
 [Category(TestingCategoryConstants.SandboxTests)]
 public class BreakfastTests : BaseTestFixture
 {

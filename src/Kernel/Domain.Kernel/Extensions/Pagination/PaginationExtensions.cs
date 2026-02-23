@@ -1,7 +1,9 @@
-namespace KernelData.Extensions.Pagination;
+// PaginationExtensions.cs is part of the Boilerplate kernel, modify at your own risk.
+// You can get updates from the BP repository. : warning
 
-using System;
 using Microsoft.EntityFrameworkCore;
+
+namespace KernelData.Extensions.Pagination;
 
 public static class PaginationExtensions
 {

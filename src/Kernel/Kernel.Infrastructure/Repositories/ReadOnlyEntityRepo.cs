@@ -1,4 +1,6 @@
-namespace KernelInfrastructure.Repositories;
+// ReadOnlyEntityRepo.cs is part of the Boilerplate kernel, modify at your own risk.
+// You can get updates from the BP repository. : warning
+
 
 using System.Linq.Expressions;
 using KernelData.Entities;
@@ -6,7 +8,16 @@ using KernelData.EntityFramework;
 using KernelData.Extensions.Pagination;
 using Microsoft.EntityFrameworkCore;
 
+//This file is
+//NOTE: asdfasdf
+//! Big test!
+//? What?
+//TODO: Thing
+//Use '?' for Question.
+//Use "Todo" (Case ignored) for Task.
+////Use 'x', 'X', or double comment for strikethrough (Crossed).
 
+namespace KernelInfrastructure.Repositories;
 //NOTE: There's a much more indepth discussion around why you should use this found in the Sandbox/Concept Demos/HowDoIGetData/HowDoIGetDataTests.cs file.
 
 

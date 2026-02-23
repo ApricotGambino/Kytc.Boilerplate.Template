@@ -1,4 +1,0 @@
-# Services
-
-* [Services](README.md)
-

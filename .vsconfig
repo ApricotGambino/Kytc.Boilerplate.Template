@@ -11,7 +11,22 @@
     "extensions": [
         //This allows us to view markdown (.md) files directly in Visual Studio.
         "https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownEditor2",
+        //This helps enforce linting for .md files
+        "https://marketplace.visualstudio.com/items?itemName=MadsKristensen.MarkdownLint",
+        //This let's us create optimized images (NOTE: This does not handle web assets, only project images used in documentation)
+        "https://marketplace.visualstudio.com/items?itemName=MadsKristensen.ImageOptimizer64bit",
         //This ensures that .editorconfig rules are applied to the file upon saving
-        "https://marketplace.visualstudio.com/items?itemName=MadsKristensen.CodeCleanupOnSave"
+        "https://marketplace.visualstudio.com/items?itemName=MadsKristensen.CodeCleanupOnSave",
+        //Provides full language support for .editorconfig files in Visual Studio, including IntelliSense, validation, and formatting.
+        "https://marketplace.visualstudio.com/items?itemName=MadsKristensen.EditorConfig",
+        //This makes comments better to look at.
+        //NOTE: For XML(Summary) comments, select your preferred mode from the Edit > Comments Studeio or right-click context menu. The active mode is indicated with a checkmark.
+        "https://marketplace.visualstudio.com/items?itemName=MadsKristensen.CommentsVS",
+        //This makes viewing nested {}'s and ()'s easier to visualize.
+        "https://marketplace.visualstudio.com/items?itemName=MadsKristensen.RainbowBraces",
+        //Adds missing file icons in the solution explorer.
+        "https://marketplace.visualstudio.com/items?itemName=MadsKristensen.FileIcons",
+        //Gives the console output some color to make it obvious what went right or wrong
+        "https://marketplace.visualstudio.com/items?itemName=NikolayBalakin.Outputenhancer"
     ]
 }

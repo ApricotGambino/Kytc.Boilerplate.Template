@@ -1,7 +1,7 @@
-namespace IntegrationTests.ApplicationStartTests;
 
 using TestShared.Fixtures;
 
+namespace IntegrationTests.ApplicationStartTests;
 [Category(TestingCategoryConstants.ApiStartupTests)]
 public class DatabaseStartTests : UniqueContextTestFixture
 {

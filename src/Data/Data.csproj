@@ -10,4 +10,8 @@
     <ProjectReference Include="..\Kernel\Domain.Kernel\KernelData.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Entities\" />
+  </ItemGroup>
+
 </Project>

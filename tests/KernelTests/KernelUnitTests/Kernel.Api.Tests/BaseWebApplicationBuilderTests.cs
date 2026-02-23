@@ -1,4 +1,3 @@
-namespace KernelApi.Tests;
 
 using Api;
 using KernelApi;
@@ -7,6 +6,7 @@ using Microsoft.IdentityModel.Protocols.Configuration;
 using TestShared;
 using TestShared.Fixtures;
 
+namespace KernelApi.Tests;
 [Category(TestingCategoryConstants.ApiStartupTests)]
 public class BaseWebApplicationBuilderTests : BaseTestFixture
 {

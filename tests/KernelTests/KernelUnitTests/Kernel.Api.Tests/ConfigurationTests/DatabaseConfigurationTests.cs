@@ -1,4 +1,3 @@
-namespace KernelApi.Tests.ConfigurationTests;
 
 using Data.EntityFramework;
 using KernelApi;
@@ -9,6 +8,7 @@ using Microsoft.Extensions.DependencyInjection;
 using TestShared;
 using TestShared.Fixtures;
 
+namespace KernelApi.Tests.ConfigurationTests;
 [Category(TestingCategoryConstants.ApiStartupTests)]
 public class DatabaseConfigurationTests : BaseTestFixture
 {

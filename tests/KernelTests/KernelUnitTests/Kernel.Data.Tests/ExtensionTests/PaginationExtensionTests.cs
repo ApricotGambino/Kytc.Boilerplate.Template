@@ -26,9 +26,7 @@ namespace KernelData.Tests.ExtensionTests
         {
             //Arrange
             var totalPages = (int)Math.Ceiling(Queryable.Count() / (double)customPageSize);
-            var expectedItems = new List<int>();
-
-            expectedItems = Queryable.OrderBy(o => o).Take(customPageSize).ToList();
+            var expectedItems = Queryable.OrderBy(o => o).Take(customPageSize).ToList();
 
             //Act
             var firstPage = await Queryable.OrderBy(o => o).ToPaginatedResultsAsync(1, customPageSize);
@@ -52,12 +50,10 @@ namespace KernelData.Tests.ExtensionTests
         {
             //Arrange
             var totalPages = (int)Math.Ceiling(Queryable.Count() / (double)customPageSize);
-            var expectedItems = new List<int>();
-            expectedItems = new List<int>();
 
             for (var pageNumber = 1; pageNumber <= totalPages; pageNumber++)
             {
-                expectedItems = Queryable.OrderBy(o => o).Skip((pageNumber - 1) * customPageSize).Take(customPageSize).ToList();
+                var expectedItems = Queryable.OrderBy(o => o).Skip((pageNumber - 1) * customPageSize).Take(customPageSize).ToList();
 
                 //Act
                 var page = await Queryable.OrderBy(o => o).ToPaginatedResultsAsync(pageNumber, customPageSize);
@@ -69,7 +65,7 @@ namespace KernelData.Tests.ExtensionTests
                     Assert.That(page.TotalItems, Is.EqualTo(Queryable.Count()));
                     Assert.That(page.PageSize, Is.EqualTo(customPageSize));
                     Assert.That(page.Page, Is.EqualTo(pageNumber));
-                    Assert.That(page.Results, Has.Count.EqualTo(expectedItems.Count()));
+                    Assert.That(page.Results, Has.Count.EqualTo(expectedItems.Count));
                     Assert.That(page.Results, Is.Ordered.Ascending);
                     Assert.That(page.Results, Is.EqualTo(expectedItems));
                 }
@@ -86,7 +82,8 @@ namespace KernelData.Tests.ExtensionTests
             Assert.ThrowsAsync<ArgumentOutOfRangeException>(() => query.ToPaginatedResultsAsync(pageNumber: 0, pageSize: 0));
 
             query = null;
-            Assert.ThrowsAsync<ArgumentNullException>(() => query.ToPaginatedResultsAsync(1, 1));
+
+            Assert.ThrowsAsync<ArgumentNullException>(code: () => query.ToPaginatedResultsAsync(1, 1));
         }
     }
 
@@ -97,7 +94,8 @@ namespace KernelData.Tests.ExtensionTests
     public static class PaginationTestCases
     {
         /// <summary>
-        /// These cases will provide custom page sizes, to test that no matter what page size we use, we get the results we expect.
+        /// These cases will provide custom page sizes, to test that no matter what page size we use, we get the results
+        /// we expect.
         /// </summary>
         public static readonly object[] CustomPageSizeCases =
         [

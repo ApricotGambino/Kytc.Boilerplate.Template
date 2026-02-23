@@ -1,4 +1,6 @@
-namespace KernelApi.Configurations;
+// KernelServiceConfigurations.cs is part of the Boilerplate kernel, modify at your own risk.
+// You can get updates from the BP repository. : warning
+
 
 using System.Globalization;
 using KernelInfrastructure.Interceptors;
@@ -7,6 +9,8 @@ using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using Serilog.Sinks.MSSqlServer;
+
+namespace KernelApi.Configurations;
 
 internal static class KernelServiceConfigurations
 {
@@ -20,10 +24,6 @@ internal static class KernelServiceConfigurations
     {
         builder.AddSerilogConfiguration(appSettings);
         builder.Services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
-
-        //builder.Services.AddScoped(typeof(IReadOnlyEntityRepo<>), typeof(ReadOnlyEntityRepo<>));
-
-
         return builder;
     }
 
@@ -56,11 +56,14 @@ internal static class KernelServiceConfigurations
 
 
         //NOTE: You can uncomment this to debug Serilog itself.
+#pragma warning disable S125
         //Serilog.Debugging.SelfLog.Enable(msg =>
+        // Sections of code should not be commented out
         //{
         //    Debug.Print(msg);
         //    Debugger.Break();
         //});
+#pragma warning restore S125
 
         return builder;
     }

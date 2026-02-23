@@ -1,4 +1,3 @@
-namespace Sandbox.Concept_Demos.HowDoIGetData;
 
 using KernelData.Extensions.Pagination;
 using KernelInfrastructure.Repositories;
@@ -7,7 +6,7 @@ using NUnit.Framework.Internal;
 using TestShared.Fixtures;
 using TestShared.TestObjects;
 
-
+namespace Sandbox.Concept_Demos.HowDoIGetData;
 //TODO: Make sure to do some pagination and stuff with .include and many-to-many
 
 /// <summary>
@@ -39,7 +38,7 @@ public class HowDoIGetData : SharedContextTestFixture
         var dbContext = TestingContext.GetTestingDatabaseContext();
 
         //From here, we can fetch the data as usual:
-        var fetchedData = dbContext.TestEntities.ToList();
+        var fetchedData = await dbContext.TestEntities.ToListAsync();
 
         //Just as a sanity check, we just want to make sure that the data we fetched contains all the elements of the ones we seeded.
         Assert.That(CreatedEntities.Select(s => s.Id), Is.SubsetOf(fetchedData.Select(s => s.Id)));
@@ -60,7 +59,7 @@ public class HowDoIGetData : SharedContextTestFixture
         //This really doing very little different than directly from the context,
         //it's only really including .AsNoTracking() in the background and returning the queryable.
         //Also, take note of the 'WARNING' in the remarks of the method.
-        var fetchedData = readonlyRepo.GetEntityQueryable().ToList();
+        var fetchedData = await readonlyRepo.GetEntityQueryable().ToListAsync();
 
         //Just as a sanity check, we just want to make sure that the data we fetched contains all the elements of the ones we seeded.
         Assert.That(CreatedEntities.Select(s => s.Id), Is.SubsetOf(fetchedData.Select(s => s.Id)));
@@ -111,9 +110,9 @@ public class HowDoIGetData : SharedContextTestFixture
         var pageSize = 2;
 
         var fetchedData = await readonlyRepo.GetPaginatedEntityOrderedByIdOldestFirstAsync(1, pageSize);
-        var fetchedDataIds = fetchedData.Results.Select(s => s.Id);
-        var recordIdsFromTheDatabaseOrderedById = dbContext.TestEntities.OrderBy(o => o.Id).Take(pageSize).Select(s => s.Id).ToList();
-        var recordIdsFromTheDatabaseOrderedByCreatedDate = dbContext.TestEntities.OrderBy(o => o.CreatedDateTimeOffset).Take(pageSize).Select(s => s.Id).ToList();
+        var fetchedDataIds = fetchedData.Results!.Select(s => s.Id);
+        var recordIdsFromTheDatabaseOrderedById = await dbContext.TestEntities.OrderBy(o => o.Id).Take(pageSize).Select(s => s.Id).ToListAsync();
+        var recordIdsFromTheDatabaseOrderedByCreatedDate = await dbContext.TestEntities.OrderBy(o => o.CreatedDateTimeOffset).Take(pageSize).Select(s => s.Id).ToListAsync();
 
         using (Assert.EnterMultipleScope())
         {
@@ -134,8 +133,8 @@ public class HowDoIGetData : SharedContextTestFixture
 
         var fetchedData = await readonlyRepo.GetPaginatedEntityOrderedByIdNewestFirstAsync(1, pageSize);
         var fetchedDataIds = fetchedData.Results.Select(s => s.Id);
-        var recordIdsFromTheDatabaseOrderedById = dbContext.TestEntities.OrderByDescending(o => o.Id).Take(pageSize).Select(s => s.Id).ToList();
-        var recordIdsFromTheDatabaseOrderedByCreatedDate = dbContext.TestEntities.OrderByDescending(o => o.CreatedDateTimeOffset).Take(pageSize).Select(s => s.Id).ToList();
+        var recordIdsFromTheDatabaseOrderedById = await dbContext.TestEntities.OrderByDescending(o => o.Id).Take(pageSize).Select(s => s.Id).ToListAsync();
+        var recordIdsFromTheDatabaseOrderedByCreatedDate = await dbContext.TestEntities.OrderByDescending(o => o.CreatedDateTimeOffset).Take(pageSize).Select(s => s.Id).ToListAsync();
 
         using (Assert.EnterMultipleScope())
         {
@@ -155,7 +154,7 @@ public class HowDoIGetData : SharedContextTestFixture
 
         var fetchedData = await readonlyRepo.GetPaginatedEntityAscendingAsync(1, pageSize, o => o.AString);
         var fetchedDataStrings = fetchedData.Results.Select(s => s.AString);
-        var recordIdsFromTheDatabaseOrderedByAString = dbContext.TestEntities.OrderBy(o => o.AString).Take(pageSize).Select(s => s.AString).ToList();
+        var recordIdsFromTheDatabaseOrderedByAString = await dbContext.TestEntities.OrderBy(o => o.AString).Take(pageSize).Select(s => s.AString).ToListAsync();
 
         using (Assert.EnterMultipleScope())
         {
@@ -172,10 +171,10 @@ public class HowDoIGetData : SharedContextTestFixture
         var readonlyRepo = TestingContext.GetService<ReadOnlyEntityRepo<TestEntity, TestingDatabaseContext>>();
         var pageSize = 2;
 
-        var fetchedData = await readonlyRepo.GetPaginatedEntityAscendingAsync(1, pageSize, o => o.AString, p => p.ABool == false);
+        var fetchedData = await readonlyRepo.GetPaginatedEntityAscendingAsync(1, pageSize, o => o.AString, p => !p.ABool);
         var fetchedDataStrings = fetchedData.Results.Select(s => s.AString);
         var fetchedDataBools = fetchedData.Results.Select(s => s.ABool);
-        var recordIdsFromTheDatabaseOrderedByAString = dbContext.TestEntities.Where(p => !p.ABool).OrderBy(o => o.AString).Take(pageSize).Select(s => s.AString).ToList();
+        var recordIdsFromTheDatabaseOrderedByAString = await dbContext.TestEntities.Where(p => !p.ABool).OrderBy(o => o.AString).Take(pageSize).Select(s => s.AString).ToListAsync();
 
         using (Assert.EnterMultipleScope())
         {
@@ -195,7 +194,7 @@ public class HowDoIGetData : SharedContextTestFixture
         var dbContext = TestingContext.GetTestingDatabaseContext();
         var readonlyRepo = TestingContext.GetService<ReadOnlyEntityRepo<TestEntity, TestingDatabaseContext>>();
 
-        var firstTestEntity = dbContext.TestEntities.First();
+        var firstTestEntity = await dbContext.TestEntities.FirstAsync();
 
         //Get by Id, if we're doing this, we KNOW the record exists.
         var singleById = await readonlyRepo.GetSingleEntityByIdAsync(firstTestEntity.Id);
@@ -273,13 +272,13 @@ public class HowDoIGetData : SharedContextTestFixture
         var studentQueryable = studentReadonlyRepo.GetEntityQueryable().Include(i => i.Courses);
         var dbContext = TestingContext.GetTestingDatabaseContext();
 
-        var allStudents = dbContext.Students.ToList();
+        var allStudents = await dbContext.Students.ToListAsync();
 
         var firstPageOfStudents = await studentQueryable.ToPaginatedResultsAsync(1, pageSize);
         var secondPageOfStudents = await studentQueryable.ToPaginatedResultsAsync(2, pageSize);
         var thirdPageOfStudents = await studentQueryable.ToPaginatedResultsAsync(3, pageSize);
 
-        var firstStudentOfFirstPage = firstPageOfStudents.Results.First();
+        var firstStudentOfFirstPage = firstPageOfStudents.Results![0];
         var firstStudentOfFirstPageCourses = await dbContext.StudentToCourses.Where(p => p.StudentId == firstStudentOfFirstPage.Id).Select(s => s.Course).ToListAsync();
 
 

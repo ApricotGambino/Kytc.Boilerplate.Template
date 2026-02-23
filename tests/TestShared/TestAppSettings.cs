@@ -1,7 +1,7 @@
-namespace TestShared;
 
 using KernelApi;
 
+namespace TestShared;
 /// <summary>
 /// AppSettings specific to your application, inherits from  <see cref="BaseAppSettings"/>
 /// </summary>

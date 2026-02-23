@@ -1,7 +1,7 @@
-namespace TestShared.Fixtures;
 
 using System.Threading.Tasks;
 
+namespace TestShared.Fixtures;
 /// <summary>
 /// This nUnit test fixture is used for tests that use the database, and will share the database for all
 /// tests. This fixture will create the database at the start of any tests ran, but will persist the database

@@ -1,8 +1,8 @@
-namespace TestingInfrastructureTests;
 
 using TestShared;
 using TestShared.Fixtures;
 
+namespace TestingInfrastructureTests;
 /// <summary>
 /// These tests ensure that <see cref="SharedContextTestFixture"/> creates a TestingContext at the start,
 ///  and always shares the context unless intentionally reset.
@@ -10,7 +10,7 @@ using TestShared.Fixtures;
 [Category(TestingCategoryConstants.NUnitFrameworkTests)]
 public class SharedContextTestFixturesTest : SharedContextTestFixture
 {
-    private bool _FirstTestHasBeenRan;
+    private bool _firstTestHasBeenRan;
 
     [OneTimeSetUp]
     public Task RunBeforeTheseTestsAsync()
@@ -26,14 +26,14 @@ public class SharedContextTestFixturesTest : SharedContextTestFixture
 
         await TestingContext.SetupTestContextAsync(TestingConstants.TestingEnvironmentName);
         Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.TestingEnvironmentName));
-        _FirstTestHasBeenRan = true;
+        _firstTestHasBeenRan = true;
     }
 
     [Order(2)]
     [Test]
     public async Task SharedContextTestFixtureTestSetUpTestSetUp_Test2DoNothing_EnvironmentNameIsStillTheSameAsPriorTest()
     {
-        Assume.That(_FirstTestHasBeenRan, Is.True);
+        Assume.That(_firstTestHasBeenRan, Is.True);
 
         //Arrange, Act & Assert
         Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.TestingEnvironmentName));
@@ -50,41 +50,41 @@ public class SharedContextTestFixturesTest : SharedContextTestFixture
 [Category(TestingCategoryConstants.NUnitFrameworkTests)]
 public class SharedContextTestFixtureSetupAndTearDownTests : SharedContextTestFixture
 {
-    private int _TimesContextSetupHasBeenCalled;
-    private int _TimesContextTeardownHasBeenCalled;
-    private int _TimesContextResetHasBeenCalled;
-    private bool _FirstTestHasBeenRan;
-    private bool _SecondTestHasBeenRan;
-    private bool _ThirdTestHasBeenRan;
+    private int _timesContextSetupHasBeenCalled;
+    private int _timesContextTeardownHasBeenCalled;
+    private int _timesContextResetHasBeenCalled;
+    private bool _firstTestHasBeenRan;
+    private bool _secondTestHasBeenRan;
+    private bool _thirdTestHasBeenRan;
 
     [Order(1)]
     [Test]
     public async Task SharedContextTestFixtureSetupAndTearDownTests_Test1_ContextShouldHaveBeenSetupAtLeastOnceByTheTimeThisTestIsRan()
     {
         //Arrange, Act & Assert
-        _TimesContextSetupHasBeenCalled = TestingContext.__metadata_NumberOfSetupTestContextCalls;
-        _TimesContextTeardownHasBeenCalled = TestingContext.__metadata_NumberOfTearDownTestContextCalls;
-        _TimesContextResetHasBeenCalled = TestingContext.__metadata_NumberOfResetTestContextCalls;
+        _timesContextSetupHasBeenCalled = TestingContext.__metadata_NumberOfSetupTestContextCalls;
+        _timesContextTeardownHasBeenCalled = TestingContext.__metadata_NumberOfTearDownTestContextCalls;
+        _timesContextResetHasBeenCalled = TestingContext.__metadata_NumberOfResetTestContextCalls;
 
         Assert.That(TestingContext.__metadata_NumberOfSetupTestContextCalls, Is.GreaterThanOrEqualTo(1));
-        _FirstTestHasBeenRan = true;
+        _firstTestHasBeenRan = true;
     }
 
     [Order(2)]
     [Test]
     public async Task SharedContextTestFixtureSetupAndTearDownTests_Test2_SetupAndTearDownShouldNotHaveBeenCalled()
     {
-        Assume.That(_FirstTestHasBeenRan, Is.True);
+        Assume.That(_firstTestHasBeenRan, Is.True);
         //Arrange, Act & Assert
-        var numberOfTimesSetupHasBeenCalledSinceFirstTest = TestingContext.__metadata_NumberOfSetupTestContextCalls - _TimesContextSetupHasBeenCalled;
-        var numberOfTimesTearDownHasBeenCalledSinceFirstTest = TestingContext.__metadata_NumberOfTearDownTestContextCalls - _TimesContextTeardownHasBeenCalled;
-        var numberOfTimesResetHasBeenCalledSinceFirstTest = TestingContext.__metadata_NumberOfResetTestContextCalls - _TimesContextResetHasBeenCalled;
+        var numberOfTimesSetupHasBeenCalledSinceFirstTest = TestingContext.__metadata_NumberOfSetupTestContextCalls - _timesContextSetupHasBeenCalled;
+        var numberOfTimesTearDownHasBeenCalledSinceFirstTest = TestingContext.__metadata_NumberOfTearDownTestContextCalls - _timesContextTeardownHasBeenCalled;
+        var numberOfTimesResetHasBeenCalledSinceFirstTest = TestingContext.__metadata_NumberOfResetTestContextCalls - _timesContextResetHasBeenCalled;
         using (Assert.EnterMultipleScope())
         {
             Assert.That(numberOfTimesSetupHasBeenCalledSinceFirstTest, Is.Zero);
             Assert.That(numberOfTimesTearDownHasBeenCalledSinceFirstTest, Is.Zero);
             Assert.That(numberOfTimesResetHasBeenCalledSinceFirstTest, Is.Zero);
-            _SecondTestHasBeenRan = true;
+            _secondTestHasBeenRan = true;
         }
     }
 
@@ -92,31 +92,31 @@ public class SharedContextTestFixtureSetupAndTearDownTests : SharedContextTestFi
     [Test]
     public async Task SharedContextTestFixtureSetupAndTearDownTests_Test3_SetupAndTearDownStillShouldNotHaveBeenCalled()
     {
-        Assume.That(_SecondTestHasBeenRan, Is.True);
+        Assume.That(_secondTestHasBeenRan, Is.True);
         //NOTE: This test makes sure that nothing has changed between the first, and third test.
         //Arrange, Act & Assert
-        var numberOfTimesSetupHasBeenCalledSinceFirstTest = TestingContext.__metadata_NumberOfSetupTestContextCalls - _TimesContextSetupHasBeenCalled;
-        var numberOfTimesTearDownHasBeenCalledSinceFirstTest = TestingContext.__metadata_NumberOfTearDownTestContextCalls - _TimesContextTeardownHasBeenCalled;
-        var numberOfTimesResetHasBeenCalledSinceFirstTest = TestingContext.__metadata_NumberOfResetTestContextCalls - _TimesContextResetHasBeenCalled;
+        var numberOfTimesSetupHasBeenCalledSinceFirstTest = TestingContext.__metadata_NumberOfSetupTestContextCalls - _timesContextSetupHasBeenCalled;
+        var numberOfTimesTearDownHasBeenCalledSinceFirstTest = TestingContext.__metadata_NumberOfTearDownTestContextCalls - _timesContextTeardownHasBeenCalled;
+        var numberOfTimesResetHasBeenCalledSinceFirstTest = TestingContext.__metadata_NumberOfResetTestContextCalls - _timesContextResetHasBeenCalled;
         using (Assert.EnterMultipleScope())
         {
             Assert.That(numberOfTimesSetupHasBeenCalledSinceFirstTest, Is.Zero);
             Assert.That(numberOfTimesTearDownHasBeenCalledSinceFirstTest, Is.Zero);
             Assert.That(numberOfTimesResetHasBeenCalledSinceFirstTest, Is.Zero);
-            _ThirdTestHasBeenRan = true;
+            _thirdTestHasBeenRan = true;
         }
     }
     [Order(4)]
     [Test]
     public async Task SharedContextTestFixtureSetupAndTearDownTests_Test4CallsReset_ResetAndSetupAndTeardownShouldHaveBeenCalledOnce()
     {
-        Assume.That(_ThirdTestHasBeenRan, Is.True);
+        Assume.That(_thirdTestHasBeenRan, Is.True);
         //NOTE: ResetTest should call teardown and setup, along with the base test calling setup
         //Arrange, Act & Assert
         await TestingContext.ResetTestContextAsync(TestingContext.EnvironmentName);
-        var numberOfTimesSetupHasBeenCalledSinceFirstTest = TestingContext.__metadata_NumberOfSetupTestContextCalls - _TimesContextSetupHasBeenCalled;
-        var numberOfTimesTearDownHasBeenCalledSinceFirstTest = TestingContext.__metadata_NumberOfTearDownTestContextCalls - _TimesContextTeardownHasBeenCalled;
-        var numberOfTimesResetHasBeenCalledSinceFirstTest = TestingContext.__metadata_NumberOfResetTestContextCalls - _TimesContextResetHasBeenCalled;
+        var numberOfTimesSetupHasBeenCalledSinceFirstTest = TestingContext.__metadata_NumberOfSetupTestContextCalls - _timesContextSetupHasBeenCalled;
+        var numberOfTimesTearDownHasBeenCalledSinceFirstTest = TestingContext.__metadata_NumberOfTearDownTestContextCalls - _timesContextTeardownHasBeenCalled;
+        var numberOfTimesResetHasBeenCalledSinceFirstTest = TestingContext.__metadata_NumberOfResetTestContextCalls - _timesContextResetHasBeenCalled;
         using (Assert.EnterMultipleScope())
         {
             Assert.That(numberOfTimesSetupHasBeenCalledSinceFirstTest, Is.EqualTo(1));

@@ -3,10 +3,10 @@ Welcome to your new project generated with the Clean Architecture template!
 
 <br />
 <div align="center">  
-    <img src="Asset%20Library/Root/Assets/Images/logo.png" height="80" alt="Logo"> 
+    <img src="Asset%20Library/Root/Assets/Images/logo.png" height="80" alt="Logo">
     <h3 align="center">Kytc.Boilerplate.Template</h3>
     <p align="center">
-        This is the template project to generate all the resources needed to install the Boilerplate template to get started developing applications. 
+        This is the template project to generate all the resources needed to install the Boilerplate template to get started developing applications.
         <br />
         <br />
         <a href="//TODO: URL TO DEMO SITE">View Demo</a>
@@ -14,7 +14,7 @@ Welcome to your new project generated with the Clean Architecture template!
         <a href="//TODO: URL TO PROJECT">Report Bug</a>
         &middot;
         <a href="//TODO: URL TO PROJECT">Request Feature</a>
-        
+
     </p>
 </div>
 

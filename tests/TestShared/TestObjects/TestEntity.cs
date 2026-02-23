@@ -1,7 +1,7 @@
-namespace TestShared.TestObjects;
 
 using KernelData.Entities;
 
+namespace TestShared.TestObjects;
 
 public class TestEntity : BaseEntity
 {

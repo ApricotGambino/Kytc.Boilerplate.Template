@@ -1,7 +1,7 @@
-namespace FunctionalTests.BasicBehaviour;
 
 using TestShared.Fixtures;
 
+namespace FunctionalTests.BasicBehaviour;
 public class LoginTests : SharedContextTestFixture
 {
     [Test]

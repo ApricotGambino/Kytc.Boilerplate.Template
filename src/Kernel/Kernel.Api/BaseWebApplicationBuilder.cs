@@ -1,10 +1,14 @@
-namespace KernelApi;
+// BaseWebApplicationBuilder.cs is part of the Boilerplate kernel, modify at your own risk.
+// You can get updates from the BP repository. : warning
+
 
 using KernelApi.Configurations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Protocols.Configuration;
+
+namespace KernelApi;
 
 public static class BaseWebApplicationBuilder
 {

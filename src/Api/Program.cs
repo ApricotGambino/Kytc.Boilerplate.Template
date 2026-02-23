@@ -10,6 +10,7 @@ using Serilog;
 //and only configururations specific to your application.
 
 
+
 //TODO: Get started with docfx, seems pretty powerful.
 
 try

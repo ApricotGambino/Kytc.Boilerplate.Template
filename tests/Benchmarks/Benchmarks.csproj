@@ -31,8 +31,4 @@
     <Using Include="TestShared" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="BenchmarkDotNet.Artifacts\results\" />
-  </ItemGroup>
-
 </Project>

@@ -1,7 +1,7 @@
-namespace IntegrationTests.ApiTests;
 
 using TestShared.Fixtures;
 
+namespace IntegrationTests.ApiTests;
 public class ApiRequestTests : SharedContextTestFixture
 {
     [Test]

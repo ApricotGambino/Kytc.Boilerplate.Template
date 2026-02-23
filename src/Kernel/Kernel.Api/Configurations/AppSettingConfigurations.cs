@@ -1,4 +1,3 @@
-namespace KernelApi.Configurations;
 
 using KernelApi;
 
@@ -6,9 +5,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-
-
-
+namespace KernelApi.Configurations;
 internal static class AppSettingConfigurations
 {
     /// <summary>

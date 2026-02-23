@@ -1,8 +1,8 @@
-namespace Sandbox.Concept_Demos.EFRelationship;
 
 using TestShared.Fixtures;
 using TestShared.TestObjects;
 
+namespace Sandbox.Concept_Demos.EFRelationship;
 /// <summary>
 /// This is showcasing a working example of the ef-relationships concept in the documentation. We're not using the Readonly Repo for this example
 /// to not conflate concepts, this is just inserting entities and fetching them directly from the DB context to showcase relationships.
@@ -11,10 +11,6 @@ using TestShared.TestObjects;
 [Category(TestingCategoryConstants.SandboxTests)]
 public class EFRelationship : SharedContextTestFixture
 {
-    private List<Student> CreatedStudents { get; set; } = [];
-    private List<Teacher> CreatedTeachers { get; set; } = [];
-    private List<Course> CreatedCourses { get; set; } = [];
-    private List<StudentToCourse> CreatedStudentToCourses { get; set; } = [];
 
     [OneTimeSetUp]
     public async Task SeedTestData()

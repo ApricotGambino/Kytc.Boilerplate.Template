@@ -1,5 +1,7 @@
 - name: Overview
   href: overview.md
+- name: Markdown Cheatsheet
+  href: markdown-cheatsheet.md
 - name: Basic overview template
   href: overview-template.md
 - name: Basic .md template

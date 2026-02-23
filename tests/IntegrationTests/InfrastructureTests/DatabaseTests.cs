@@ -1,7 +1,7 @@
-namespace IntegrationTests.InfrastructureTests;
 
 using TestShared.Fixtures;
 
+namespace IntegrationTests.InfrastructureTests;
 public class DatabaseTests : SharedContextTestFixture
 {
     [Test]

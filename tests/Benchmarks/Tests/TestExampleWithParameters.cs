@@ -1,9 +1,9 @@
-namespace Benchmarks.Tests;
 
 using System.Collections;
 using BenchmarkDotNet.Attributes;
 using Benchmarks.Data;
 
+namespace Benchmarks.Tests;
 //TODO: Explain how to run these tests, you need to be in this directory and run 'dotnet run -c Release'
 //Also, we mix benchmarking and testing in this class so you can actually test your code, then run the benchmark.
 //Also, you can copy/paste your results here: https://chartbenchmark.net/ which is pretty nice.

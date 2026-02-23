@@ -1,7 +1,12 @@
-namespace KernelData.EntityFramework;
+// BaseDbContext.cs is part of the Boilerplate kernel, modify at your own risk.
+// You can get updates from the BP repository. : warning
 
+
+using KernelData.Entities;
 using KernelData.Entities.Kernel;
 using Microsoft.EntityFrameworkCore;
+
+namespace KernelData.EntityFramework;
 
 public abstract class BaseDbContext : DbContext
 {
@@ -13,9 +18,14 @@ public abstract class BaseDbContext : DbContext
     public DbSet<Log> Logs => Set<Log>();
 
 
-    //protected override void OnModelCreating(ModelBuilder builder)
-    //{
-    //    base.OnModelCreating(builder);
-    //    builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
-    //}
+
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+
+        modelBuilder.Entity<BaseEntity>()
+            .Property(b => b.Version)
+            .IsRowVersion();
+    }
 }

@@ -1,3 +1,7 @@
+// <1copyright file="BaseAppSettings.cs" company="PROJECT-AUTHOR">
+// © PROJECT-AUTHOR
+// </copyright>
+
 namespace KernelApi;
 /// <summary>
 /// This is the base app settings in which all the application must inherit from,
@@ -15,5 +19,4 @@ public class BaseAppSettings
 public class ConnectionStrings
 {
     public required string DefaultConnection { get; set; }
-
 }

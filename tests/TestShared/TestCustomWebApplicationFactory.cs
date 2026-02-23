@@ -1,4 +1,3 @@
-namespace TestShared;
 
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
@@ -7,7 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using TestShared.TestObjects;
 
-
+namespace TestShared;
 /// <summary>
 /// This is a custom web application factory, this calls our program.cs, but has the ability to modified outside normal execution that may be useful for running tests.
 /// </summary>

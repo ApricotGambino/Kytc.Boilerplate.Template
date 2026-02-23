@@ -1,8 +1,8 @@
-namespace Sandbox.Concept_Demos.HowDoIAddData;
 
 using TestShared.Fixtures;
 using TestShared.TestObjects;
 
+namespace Sandbox.Concept_Demos.HowDoIAddData;
 /// <summary>
 /// These tests just show you different ways you can add data to the database.
 /// </summary>

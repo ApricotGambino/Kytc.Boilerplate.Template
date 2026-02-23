@@ -1,10 +1,11 @@
-namespace KernelInfrastructure.Interceptors;
+// AuditableEntityInterceptor.cs is part of the Boilerplate kernel, modify at your own risk.
+// You can get updates from the BP repository. : warning
 
 using KernelData.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
-
+namespace KernelInfrastructure.Interceptors;
 /// <summary>
 /// This interceptor is responsible for enriching audit data when entities are saved
 /// </summary>

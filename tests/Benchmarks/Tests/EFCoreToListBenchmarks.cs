@@ -1,10 +1,10 @@
-namespace Benchmarks.Tests;
 
 using System.Collections;
 using BenchmarkDotNet.Attributes;
 using Benchmarks.Data;
 using Microsoft.EntityFrameworkCore;
 
+namespace Benchmarks.Tests;
 //Results as of 2/18/2026:
 // * Summary *
 
