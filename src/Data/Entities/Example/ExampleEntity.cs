@@ -1,4 +1,4 @@
-using KernelData.Entities;
+using Kernel.Data.Entities;
 
 namespace Data.Entities.Example;
 

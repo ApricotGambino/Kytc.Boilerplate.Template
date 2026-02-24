@@ -2,11 +2,10 @@
 // You can get updates from the BP repository. : warning
 
 
-using KernelData.Entities;
-using KernelData.Entities.Kernel;
+using Kernel.Data.Entities.Kernel;
 using Microsoft.EntityFrameworkCore;
 
-namespace KernelData.EntityFramework;
+namespace Kernel.Data.EntityFramework;
 
 public abstract class BaseDbContext : DbContext
 {
@@ -17,15 +16,10 @@ public abstract class BaseDbContext : DbContext
     protected BaseDbContext(DbContextOptions<BaseDbContext> options) : base(options) { }
     public DbSet<Log> Logs => Set<Log>();
 
-
-
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
-
-        modelBuilder.Entity<BaseEntity>()
-            .Property(b => b.Version)
-            .IsRowVersion();
+        modelBuilder.ApplyBaseEntityConfiguration();
     }
 }
+

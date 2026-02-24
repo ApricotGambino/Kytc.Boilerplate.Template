@@ -65,7 +65,7 @@ Not all projects are identical in structure, but generally adhere to the followi
 Once you've created a project based off this template, you'll need to coordinate with a development lead to organize getting your project in source control
 and configured for the different environments as part of the project lifecycle.
 
-### Environments
+### Environments1
 
 Not all projects are identical in structure, but generally adhere to the following structure and flow:
 

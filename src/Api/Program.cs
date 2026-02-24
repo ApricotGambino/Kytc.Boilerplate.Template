@@ -1,6 +1,6 @@
 using Api;
 using Data.EntityFramework;
-using KernelApi;
+using Kernel.Api;
 using Microsoft.EntityFrameworkCore;
 using Serilog;
 

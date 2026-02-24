@@ -1,7 +1,7 @@
 // BaseEntity.cs is part of the Boilerplate kernel, modify at your own risk.
 // You can get updates from the BP repository. : warning
 
-namespace KernelData.Entities;
+namespace Kernel.Data.Entities;
 //NOTE:
 //For Entities, we never initialize navigation properties.
 //This can cause unexpected results, and is discussed here: https://learn.microsoft.com/en-us/ef/core/modeling/relationships/navigations
@@ -74,3 +74,5 @@ public abstract class BaseEntity<TId> where TId : struct, IEquatable<TId>
     /// </summary>
     public byte[] Version { get; set; } = null!;
 }
+
+

@@ -3,21 +3,12 @@
 
 
 using System.Linq.Expressions;
-using KernelData.Entities;
-using KernelData.EntityFramework;
-using KernelData.Extensions.Pagination;
+using Kernel.Data.Entities;
+using Kernel.Data.EntityFramework;
+using Kernel.Infrastructure.Extensions.Pagination;
 using Microsoft.EntityFrameworkCore;
 
-//This file is
-//NOTE: asdfasdf
-//! Big test!
-//? What?
-//TODO: Thing
-//Use '?' for Question.
-//Use "Todo" (Case ignored) for Task.
-////Use 'x', 'X', or double comment for strikethrough (Crossed).
-
-namespace KernelInfrastructure.Repositories;
+namespace Kernel.Infrastructure.Repositories;
 //NOTE: There's a much more indepth discussion around why you should use this found in the Sandbox/Concept Demos/HowDoIGetData/HowDoIGetDataTests.cs file.
 
 

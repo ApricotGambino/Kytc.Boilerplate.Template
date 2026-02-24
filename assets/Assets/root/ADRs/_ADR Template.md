@@ -22,4 +22,4 @@ What becomes easier or more difficult to do because of this change?
 
 ## References
 
-- [Any References]("https://www.google.com")
+- [Any References](https://www.google.com)

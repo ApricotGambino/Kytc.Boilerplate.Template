@@ -2,13 +2,13 @@
 // You can get updates from the BP repository. : warning
 
 
-using KernelApi.Configurations;
+using Kernel.Api.Configurations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Protocols.Configuration;
 
-namespace KernelApi;
+namespace Kernel.Api;
 
 public static class BaseWebApplicationBuilder
 {

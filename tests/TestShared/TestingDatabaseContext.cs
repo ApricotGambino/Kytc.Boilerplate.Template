@@ -21,6 +21,8 @@ public class TestingDatabaseContext(DbContextOptions<ApplicationDbContext> optio
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        base.OnModelCreating(modelBuilder);
+
         modelBuilder.Entity<Course>()
             .HasMany(e => e.Students)
             .WithMany(e => e.Courses)

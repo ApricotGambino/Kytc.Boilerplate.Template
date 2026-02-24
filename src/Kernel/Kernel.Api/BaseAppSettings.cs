@@ -1,8 +1,7 @@
-// <1copyright file="BaseAppSettings.cs" company="PROJECT-AUTHOR">
-// © PROJECT-AUTHOR
-// </copyright>
+// BaseAppSettings.cs is part of the Boilerplate kernel, modify at your own risk.
+// You can get updates from the BP repository. : warning
 
-namespace KernelApi;
+namespace Kernel.Api;
 /// <summary>
 /// This is the base app settings in which all the application must inherit from,
 /// these are the configurations that the kernel depends on.

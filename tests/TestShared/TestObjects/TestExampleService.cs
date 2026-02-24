@@ -1,4 +1,4 @@
-using KernelInfrastructure.Repositories;
+using Kernel.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 namespace TestShared.TestObjects;

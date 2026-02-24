@@ -1,4 +1,3 @@
-
 using TestShared.Fixtures;
 using TestShared.TestObjects;
 

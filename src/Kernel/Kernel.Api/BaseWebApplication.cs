@@ -3,7 +3,7 @@
 
 using Microsoft.AspNetCore.Builder;
 
-namespace KernelApi;
+namespace Kernel.Api;
 
 public static class BaseWebApplication
 {

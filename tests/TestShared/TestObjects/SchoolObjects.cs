@@ -1,5 +1,5 @@
 
-using KernelData.Entities;
+using Kernel.Data.Entities;
 
 namespace TestShared.TestObjects;
 /// <summary>

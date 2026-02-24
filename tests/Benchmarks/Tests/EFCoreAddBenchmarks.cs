@@ -5,6 +5,7 @@ using Benchmarks.Data;
 using TestShared.TestObjects;
 
 namespace Benchmarks.Tests;
+
 [MemoryDiagnoser]
 [DisassemblyDiagnoser]
 [ThreadingDiagnoser]

@@ -1,12 +1,13 @@
-
-using KernelApi;
+// AppSettingConfigurations.cs is part of the Boilerplate kernel, modify at your own risk.
+// You can get updates from the BP repository. : warning
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace KernelApi.Configurations;
-internal static class AppSettingConfigurations
+namespace Kernel.Api.Configurations;
+
+public static class AppSettingConfigurations
 {
     /// <summary>
     /// Adds AppSetting functionality
@@ -14,7 +15,7 @@ internal static class AppSettingConfigurations
     /// <typeparam name="TAppSettings"></typeparam>
     /// <param name="builder"></param>
     /// <returns></returns>
-    internal static WebApplicationBuilder AddAppSettings<TAppSettings>(this WebApplicationBuilder builder)
+    public static WebApplicationBuilder AddAppSettings<TAppSettings>(this WebApplicationBuilder builder)
         where TAppSettings : BaseAppSettings
     {
         builder.AddAppSettingsJsonFile();

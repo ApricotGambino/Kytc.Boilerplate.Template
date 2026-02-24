@@ -1,5 +1,5 @@
 
-using KernelApi;
+using Kernel.Api;
 
 namespace TestShared;
 /// <summary>

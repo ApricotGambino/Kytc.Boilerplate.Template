@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using TestShared.TestObjects;
 
 namespace Benchmarks.Data;
+
 public class BenchmarkDbContext : DbContext
 {
     public DbSet<TestEntity> TestEntities { get; set; }

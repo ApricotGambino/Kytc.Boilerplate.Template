@@ -1,13 +1,15 @@
+// DatabaseConfiguration.cs is part of the Boilerplate kernel, modify at your own risk.
+// You can get updates from the BP repository. : warning
 
-using KernelApi;
-using KernelInfrastructure.Repositories;
+using Kernel.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace KernelApi.Configurations;
-internal static class DatabaseConfiguration
+namespace Kernel.Api.Configurations;
+
+public static class DatabaseConfiguration
 {
     /// <summary>
     /// Adds the DB context with configurations
@@ -16,7 +18,7 @@ internal static class DatabaseConfiguration
     /// <param name="builder"></param>
     /// <param name="appSettings"></param>
     /// <returns></returns>
-    internal static WebApplicationBuilder AddDbContextConfiguration<TDatabaseContext>(this WebApplicationBuilder builder, BaseAppSettings appSettings)
+    public static WebApplicationBuilder AddDbContextConfiguration<TDatabaseContext>(this WebApplicationBuilder builder, BaseAppSettings appSettings)
     where TDatabaseContext : DbContext
     {
         builder.Services.AddDbContext<TDatabaseContext>((sp, options) =>

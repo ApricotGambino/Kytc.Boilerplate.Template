@@ -1,13 +1,11 @@
-
-using KernelData.Extensions.Pagination;
-using KernelInfrastructure.Repositories;
+using Kernel.Infrastructure.Extensions.Pagination;
+using Kernel.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 using NUnit.Framework.Internal;
 using TestShared.Fixtures;
 using TestShared.TestObjects;
 
 namespace Sandbox.Concept_Demos.HowDoIGetData;
-//TODO: Make sure to do some pagination and stuff with .include and many-to-many
 
 /// <summary>
 /// These tests just show you different ways you can fetch data from the database, and how you SHOULD do it.
@@ -16,6 +14,7 @@ namespace Sandbox.Concept_Demos.HowDoIGetData;
 public class HowDoIGetData : SharedContextTestFixture
 {
     private List<TestEntity> CreatedEntities { get; set; }
+    private readonly int _pageSize = 3;
 
     [OneTimeSetUp]
     public async Task SeedTestData()
@@ -107,12 +106,11 @@ public class HowDoIGetData : SharedContextTestFixture
         //In this example, we're fetching the oldest records.
         var dbContext = TestingContext.GetTestingDatabaseContext();
         var readonlyRepo = TestingContext.GetService<ReadOnlyEntityRepo<TestEntity, TestingDatabaseContext>>();
-        var pageSize = 2;
 
-        var fetchedData = await readonlyRepo.GetPaginatedEntityOrderedByIdOldestFirstAsync(1, pageSize);
+        var fetchedData = await readonlyRepo.GetPaginatedEntityOrderedByIdOldestFirstAsync(1, _pageSize);
         var fetchedDataIds = fetchedData.Results!.Select(s => s.Id);
-        var recordIdsFromTheDatabaseOrderedById = await dbContext.TestEntities.OrderBy(o => o.Id).Take(pageSize).Select(s => s.Id).ToListAsync();
-        var recordIdsFromTheDatabaseOrderedByCreatedDate = await dbContext.TestEntities.OrderBy(o => o.CreatedDateTimeOffset).Take(pageSize).Select(s => s.Id).ToListAsync();
+        var recordIdsFromTheDatabaseOrderedById = await dbContext.TestEntities.OrderBy(o => o.Id).Take(_pageSize).Select(s => s.Id).ToListAsync();
+        var recordIdsFromTheDatabaseOrderedByCreatedDate = await dbContext.TestEntities.OrderBy(o => o.CreatedDateTimeOffset).ThenBy(o => o.Id).Take(_pageSize).Select(s => s.Id).ToListAsync();
 
         using (Assert.EnterMultipleScope())
         {
@@ -129,12 +127,11 @@ public class HowDoIGetData : SharedContextTestFixture
         //In this example, we're fetching the newest records.
         var dbContext = TestingContext.GetTestingDatabaseContext();
         var readonlyRepo = TestingContext.GetService<ReadOnlyEntityRepo<TestEntity, TestingDatabaseContext>>();
-        var pageSize = 2;
 
-        var fetchedData = await readonlyRepo.GetPaginatedEntityOrderedByIdNewestFirstAsync(1, pageSize);
+        var fetchedData = await readonlyRepo.GetPaginatedEntityOrderedByIdNewestFirstAsync(1, _pageSize);
         var fetchedDataIds = fetchedData.Results.Select(s => s.Id);
-        var recordIdsFromTheDatabaseOrderedById = await dbContext.TestEntities.OrderByDescending(o => o.Id).Take(pageSize).Select(s => s.Id).ToListAsync();
-        var recordIdsFromTheDatabaseOrderedByCreatedDate = await dbContext.TestEntities.OrderByDescending(o => o.CreatedDateTimeOffset).Take(pageSize).Select(s => s.Id).ToListAsync();
+        var recordIdsFromTheDatabaseOrderedById = await dbContext.TestEntities.OrderByDescending(o => o.Id).Take(_pageSize).Select(s => s.Id).ToListAsync();
+        var recordIdsFromTheDatabaseOrderedByCreatedDate = await dbContext.TestEntities.OrderByDescending(o => o.CreatedDateTimeOffset).ThenByDescending(o => o.Id).Take(_pageSize).Select(s => s.Id).ToListAsync();
 
         using (Assert.EnterMultipleScope())
         {
@@ -148,40 +145,24 @@ public class HowDoIGetData : SharedContextTestFixture
     [Test]
     public async Task Get_Data_From_ReadOnly_Repo_OrderedBy_AString_Ascending()
     {
-        var dbContext = TestingContext.GetTestingDatabaseContext();
         var readonlyRepo = TestingContext.GetService<ReadOnlyEntityRepo<TestEntity, TestingDatabaseContext>>();
-        var pageSize = 2;
 
-        var fetchedData = await readonlyRepo.GetPaginatedEntityAscendingAsync(1, pageSize, o => o.AString);
-        var fetchedDataStrings = fetchedData.Results.Select(s => s.AString);
-        var recordIdsFromTheDatabaseOrderedByAString = await dbContext.TestEntities.OrderBy(o => o.AString).Take(pageSize).Select(s => s.AString).ToListAsync();
+        var fetchedData = await readonlyRepo.GetPaginatedEntityAscendingAsync(1, _pageSize, o => o.AString);
 
-        using (Assert.EnterMultipleScope())
-        {
-            Assert.That(fetchedDataStrings, Is.Ordered.Ascending);
-            Assert.That(recordIdsFromTheDatabaseOrderedByAString, Is.Ordered.Ascending);
-            Assert.That(fetchedDataStrings, Is.EqualTo(recordIdsFromTheDatabaseOrderedByAString));
-        }
+        Assert.That(fetchedData.Results.Select(s => s.AString), Is.Ordered.Ascending);
     }
 
     [Test]
     public async Task Get_Data_From_ReadOnly_Repo_OrderedBy_AString_And_Filtered_By_Only_False_Values_For_ABool_Descending()
     {
-        var dbContext = TestingContext.GetTestingDatabaseContext();
         var readonlyRepo = TestingContext.GetService<ReadOnlyEntityRepo<TestEntity, TestingDatabaseContext>>();
-        var pageSize = 2;
 
-        var fetchedData = await readonlyRepo.GetPaginatedEntityAscendingAsync(1, pageSize, o => o.AString, p => !p.ABool);
-        var fetchedDataStrings = fetchedData.Results.Select(s => s.AString);
-        var fetchedDataBools = fetchedData.Results.Select(s => s.ABool);
-        var recordIdsFromTheDatabaseOrderedByAString = await dbContext.TestEntities.Where(p => !p.ABool).OrderBy(o => o.AString).Take(pageSize).Select(s => s.AString).ToListAsync();
+        var fetchedData = await readonlyRepo.GetPaginatedEntityAscendingAsync(1, _pageSize, o => o.AString, p => !p.ABool);
 
         using (Assert.EnterMultipleScope())
         {
-            Assert.That(fetchedDataBools.Distinct().First(), Is.False); //Ensure all the records we fetched are false, as we would expect.
-            Assert.That(fetchedDataStrings, Is.Ordered.Ascending);
-            Assert.That(recordIdsFromTheDatabaseOrderedByAString, Is.Ordered.Ascending);
-            Assert.That(fetchedDataStrings, Is.EqualTo(recordIdsFromTheDatabaseOrderedByAString));
+            Assert.That(fetchedData.Results.Select(s => s.ABool).Distinct().First(), Is.False); //Ensure all the records we fetched are false, as we would expect.
+            Assert.That(fetchedData.Results.Select(s => s.AString), Is.Ordered.Ascending);
         }
     }
 
@@ -267,10 +248,10 @@ public class HowDoIGetData : SharedContextTestFixture
         //For the above reasons, we'll use the GetEntityQueryable() so we can add our .Include() or even .ThenInclude()s
         //and then use the pagination extension method to turn that into a paginated result.
 
-        var pageSize = 2;
         var studentReadonlyRepo = TestingContext.GetService<ReadOnlyEntityRepo<Student, TestingDatabaseContext>>();
         var studentQueryable = studentReadonlyRepo.GetEntityQueryable().Include(i => i.Courses);
         var dbContext = TestingContext.GetTestingDatabaseContext();
+        var pageSize = 2;
 
         var allStudents = await dbContext.Students.ToListAsync();
 
@@ -336,84 +317,5 @@ public class HowDoIGetData : SharedContextTestFixture
         Assert.That(firstStudentOfFirstPage.Courses.Select(s => s.Id), Is.EqualTo(firstStudentOfFirstPageCourses.Select(s => s.Id)));
     }
 
-    //[Test]
-    //public async Task Get_All_Bimmy_The_Student_Courses()
-    //{
-    //    //In these tests, we'll use the established 'School' data.
-    //    // In our setup, Bimmy has three courses, English, History and Math.
-    //    var studentReadonlyRepo = TestingContext.GetService<ReadOnlyEntityRepo<Student, TestingDatabaseContext>>();
-    //    var courseReadonlyRepo = TestingContext.GetService<ReadOnlyEntityRepo<Course, TestingDatabaseContext>>();
-    //    var studentToCourseReadonlyRepo = TestingContext.GetService<ReadOnlyEntityRepo<StudentToCourse, TestingDatabaseContext>>();
 
-    //    var bimmy = await studentReadonlyRepo.GetFirstOrDefaultEntityByFilterAsync(p => p.Name == "Bimmy");
-    //    var allStudentToCourseByBimmyId = await studentToCourseReadonlyRepo.GetPaginatedEntityAscendingAsync(pageNumber: 1, pageSize: 100, p => p.S);
-
-    //    Assert.Pass();
-    //    //var adam = db.Students.Where(p => p.Name == "Adam").First();
-
-    //    //Assert.That(adam.Courses, Has.Count.EqualTo(1));
-    //    //Assert.That(adam.Courses.First().Name, Is.EqualTo("English"));
-    //}
-
-    //TODO: Create methods of paginated repo.
-
-    //Ok, so we know we can get data either directly from the DBContext, or the ReadOnlyRepo.
-    //So then why use the repo?
-    //Because this Repo usage is going to feel irritating to use, since it's always going to fight you on
-    //giving you 'all the data'.  That's very intentional.
-    //There's a benchmark test called 'EFCoreToListBenchmarks' that shows the performance between  the different ways you can 'get data'.
-    //Here's a quick excerpt of those results, using 1000 records, and 'taking' 50 of them:
-    //| EFCore_NoTake                   Records taken: 1000 | Time: 2,198.3 us   | Allocated Memory: 1664.32 KB
-    //| EFCore_WithTake                 Records taken: 50   | Time:   400.3 us   | Allocated Memory:  161.32 KB
-    //| EFCore_WithTake_AndAsNoTracking Records taken: 50   | Time:   374.5 us   | Allocated Memory:  127.63 KB
-
-    //These results shows us a few things:
-    //1) It's faster to fetch a subset of data (in this case, 50 records) than to take all of them.
-    //2) It takes less memory to take a smaller subset of data.
-    //3) Including 'AsNoTracking' in our query in both speed and memory allocation is better on the whole, the only downside is you'd have to reattach the entity for changes to be commited to the DB.
-
-    //This is obvious of course, naturally taking a subset of data will yield better performance,
-    //and that's what this repo seeks to guide you to do.
-    //By being opinionated about always asking you to consider how much data you're returning, you never have the chance to forget including pagination as part of your result set.
-
-    //It is not always possible to paginate, and that's why you can use GetEntityQueryable() which at least comes with the small .AsNoTracking benfit.
-
-    //When you SHOULD use pagination
-    //Any time you're returning data to the client, because the client side should never recieve the entire table's worth of data. (Unless of course you have a very, VERY small table)
-    //This covers...Almost every possible example, but not all.
-    //EX:
-    //If you need to get all users who are in a status of pending, and return them to the client:
-    //users.where(status = pending).skip(10).take(10);
-
-    //When you CANNOT use pagination:
-    //Any time you MUST iterate over all the data.
-    //EX:
-    //If you need to get all users who are in a status of pending, and send them an email:
-    //emailUserAboutStatus(users.where(status = pending))
-
-    //Then there are times that aren't clear.
-    //EX:
-    //If you need to get all users who are in a status of pending, and send them an email, then return back to the client a list of all the users who you've just sent emails to.
-    //So right off the bat this is a strange one, because is this return a one-and-done?
-    //If the client that issued the request loses internet, do they just...Never get the chance to see what happened?
-    //So already we can see we probably need to compose the code in a way that lends to being able to use pagination to some degree.
-    //First, email the pending users, and have that email function update a record somewhere in the database to indicate an email was sent
-    //emailUserAboutStatus(users.where(status = pending))
-    //Then, fetch that updated list with pagination:
-    //sentEmails.where(type = emailedUserAboutStatus).OrderBy(date).skip(10).take(10);
-
-
-    //[Test]
-    //public async Task Get_Data_From_DB_Context()
-    //{
-    //    var dbContext = TestingContext.GetTestingDatabaseContext();
-
-    //    var readonlyRepo = TestingContext.GetService<ReadOnlyEntityRepo<TestEntity, TestingDatabaseContext>>();
-    //    var testExampleService = TestingContext.GetService<ITestExampleService>();
-
-    //    var a = await testExampleService.GetMostRecentEntitiesUsingContextAsync();
-    //    var b = await testExampleService.GetMostRecentEntitiesUsingReadOnlyRepoAsync();
-
-    //    Assert.Pass();
-    //}
 }

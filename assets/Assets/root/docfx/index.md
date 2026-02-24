@@ -19,7 +19,7 @@
   //TODO: Add ToC
 </details>
 
-## About The Project
+# About The Project
 
 <img src="images/KYTC-Brand-TK-Full-Color-1000x568px.png" alt="kytc-brand">
 

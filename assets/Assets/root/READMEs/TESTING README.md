@@ -8,13 +8,14 @@
 </details>
 
 ## Getting Started
+
 //TODO: Explain code coverage
 
 unit: duh
 
 functiona: what can a user do? assumes the system is 'done' and you're calling api endpoints.
 
-integration: non-functional, the workings of the methods. 
+integration: non-functional, the workings of the methods.
 
 should go: unit -> integration -> functional
 
@@ -50,12 +51,13 @@ Hope this helped you.
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Information
-//TODO: Add information here
 
+//TODO: Add information here
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Project Files
+
 //TODO: Add project file descriptions here.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>

@@ -3,14 +3,14 @@
 
 
 using System.Globalization;
-using KernelInfrastructure.Interceptors;
+using Kernel.Infrastructure.Interceptors;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
 using Serilog;
 using Serilog.Sinks.MSSqlServer;
 
-namespace KernelApi.Configurations;
+namespace Kernel.Api.Configurations;
 
 internal static class KernelServiceConfigurations
 {
@@ -23,6 +23,7 @@ internal static class KernelServiceConfigurations
     internal static WebApplicationBuilder AddKernelServices(this WebApplicationBuilder builder, BaseAppSettings appSettings)
     {
         builder.AddSerilogConfiguration(appSettings);
+        builder.Services.AddSingleton<TimeProvider>(TimeProvider.System);
         builder.Services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
         return builder;
     }

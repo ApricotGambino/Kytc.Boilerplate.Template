@@ -4,6 +4,8 @@ If you like reading documentation, you're going to LOVE writing it!
 
 ---
 
+## What's the point of documentation?
+
 Documentation takes time to write, it takes time to read, and worst - it takes time to maintain.
 That's why we're using [docfx](https://dotnet.github.io/docfx) to auto-generate our code's documentation.
 While this particular documentation is geared towards the developers of the application, it would be trivial to extend
@@ -67,7 +69,7 @@ If we only needed documentation without generation, then [Mkdocs](https://www.mk
 
 ## How do I add documentation?
 
-If you need to add code documentation, or the stuff found in [API](/generated/api/Api.html) then nothing! That's all automagic.
+If you need to add code documentation, or the stuff found in [API](/generated/api/Api.html) then nothing! That's all automagic. <!-- markdownlint-disable-line MD061 -->
 
 For everything else, you'll want to follow the structure of how everything else is written, which is generally this:
 

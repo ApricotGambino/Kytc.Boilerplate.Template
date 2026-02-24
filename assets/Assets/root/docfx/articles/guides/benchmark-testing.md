@@ -4,6 +4,10 @@ Don't assume performance, prove it.
 
 ---
 
+## What's benchmarking?
+
+Benchmark testing allows us to verify or prove approaches in code with regards to either speed, or memory allocation (or even more!)
+
 For benchmark testing, also known as *Performance Testing*, we're using [BenchmarkDotNet](https://benchmarkdotnet.org/).
 This is a much better way to test performance over doing comparisons using the [Stopwatch](https://learn.microsoft.com/en-us/dotnet/api/system.diagnostics.stopwatch?view=net-10.0) class.
 All of our benchmark tests can be found in `~/tests/Benchmarks/`  
@@ -15,7 +19,7 @@ You can find examples of other tests that have been written there in the `/Tests
 Because you can quickly determine how you should do something. Sometimes speed matters, sometimes memory matters, but without verification,
 you'll never know for sure if you're doing something that could be better.
 
-So a real example of this is what lead to the decision to use [ReadOnly Repo with Pagination](xref:KernelInfrastructure.Repositories.ReadOnlyEntityRepo`2)
+So a real example of this is what lead to the decision to use [ReadOnly Repo with Pagination](xref:KernelInfrastructure.Repositories.ReadOnlyEntityRepo`2) <!-- markdownlint-disable-line MD061 -->
 
 ## Writing a benchmark
 
@@ -58,9 +62,5 @@ Here's an example using one of the generated test's results:
 
 > [!TIP]
 > Based on the results from this benchmark, it became obvious that using
-
->```cs
->entities.skip().take()
->```
-
+>```entities.skip().take()```
 >would have huge memory alloction performance gains, the speed difference looked enormous, but really the amounts are already so small, but that's not true for memory. This is directly what lead to the creation of the ReadOnly repo.

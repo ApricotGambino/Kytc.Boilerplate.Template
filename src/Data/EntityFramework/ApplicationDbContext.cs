@@ -1,6 +1,6 @@
 
 using Data.Entities.Example;
-using KernelData.EntityFramework;
+using Kernel.Data.EntityFramework;
 using Microsoft.EntityFrameworkCore;
 
 namespace Data.EntityFramework;

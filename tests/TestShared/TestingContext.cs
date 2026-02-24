@@ -1,4 +1,4 @@
-using KernelData.Entities;
+using Kernel.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using TestShared.TestObjects;
