@@ -25,6 +25,14 @@ internal static class KernelServiceConfigurations
         builder.AddSerilogConfiguration(appSettings);
         builder.Services.AddSingleton<TimeProvider>(TimeProvider.System);
         builder.Services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
+
+
+        //TODO: Is this needed?
+        builder.Services.AddEndpointsApiExplorer();
+
+        //TODO: Test OpenAPI
+        // builder.Services.AddOpenApi();
+
         return builder;
     }
 
