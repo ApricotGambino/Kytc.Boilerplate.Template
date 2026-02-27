@@ -1,4 +1,18 @@
 - name: Overview
   href: overview.md
-- name: Nuget Packages
-  href: nuget-packages.md
+- name: Included Tools/Features
+  href: included-features.md
+- name: Articles
+  href: articles/toc.yml
+- name: Guides
+  href: guides/toc.yml
+- name: ADRs
+  href: ADRs/toc.yml
+- name: Solution Projects
+  href: solution-projects/toc.yml
+- name: Supporting Files
+  href: supporting-files/toc.yml
+
+
+- name: Generated Code Documentation
+  href: ../generated/api/

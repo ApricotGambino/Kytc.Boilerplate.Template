@@ -30,8 +30,9 @@ internal static class KernelServiceConfigurations
         //TODO: Is this needed?
         builder.Services.AddEndpointsApiExplorer();
 
-        //TODO: Test OpenAPI
-        // builder.Services.AddOpenApi();
+        //This adds OpenAPI services, which is used by app.MapOpenApi() to create the openapi/v1.json that exposes
+        //the API endpoints. To be used in Scalar, which is a UI replacement of SwaggerUI.
+        builder.Services.AddOpenApi();
 
         return builder;
     }

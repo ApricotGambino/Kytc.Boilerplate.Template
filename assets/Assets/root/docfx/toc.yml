@@ -1,10 +1,6 @@
-- name: Articles
-  href: articles/
-- name: Architecture
+- name: Features
+  href: features/
+- name: Technical Documentation
   href: architecture/
-- name: API
-  href: generated/api/
-- name: Templates
-  href: templates/
 - name: TODO
   href: todo.md

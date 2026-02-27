@@ -1,8 +1,8 @@
 <br />
 <div align="center">
-    <img src="images/logo.png" height="80" alt="Logo">
-    <h3 align="center">Boilerplate Template</h3>
-    <p align="center">
+    <img src="images/logo.png" alt="Logo">
+    <h3>Kytc.Boilerplate.Template</h3>
+    <p>
         Template project to generate all the resources needed to install the Boilerplate template to get started developing applications.
         <br />
         <br />
@@ -12,16 +12,14 @@
         &middot;
         <a href="//TODO: URL TO PROJECT">Request Feature</a>
     </p>
+        <img style="height: 80px; box-shadow: none;" src="images/KYTC-Brand-TK-Full-Color-1000x568px.png" alt="Logo">
 </div>
 
-<details>
-  <summary>Table of Contents</summary>
-  //TODO: Add ToC
-</details>
+# Kytc.Boilerplate.Template
 
-# About The Project
-
-<img src="images/KYTC-Brand-TK-Full-Color-1000x568px.png" alt="kytc-brand">
+>[!WARNING]
+>All the text and formatting past this point in this readme will be adjusted, this is just a **VERY** rough draft.
+>What's here is out of date, and won't be really updated until this solution is completely done.
 
 This solution is responsible for building the template that can be used to create a Boilerplate based solution.
 
@@ -39,8 +37,6 @@ So the way we'd talk about creating a project here at KYTC, we'd say something l
 You can find out how to install that Template by reading the `README.md` found in the **KYTC Boilerplate Template Solution**.  
 If you're curious what a **KYTC Boilerplate Based Solution** looks like out of the box, just create a new project using the **KYTC Boilerplate Template** and run locally.
 For a more fleshed out version of a **KYTC Boilerplate Based Solution** that is modified and running please check out the **KYTC Boilerplate Demo** [here](//TODO: Add link here)"
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Built With
 
@@ -86,15 +82,11 @@ It is recommended that you start reading the [Documentation](#documentation)
 on how the project is structured first.  
 If not, feel free to jump right in and return to them when something isn't clear.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 ## Modifying the template
 
 To make changes to the template, you'll want to pull down this project from source control and run and build the solution.
 
 To test your changes to the template, please continue by reading `Asset Library/Root/Solution Template/README.md`
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 ## Additional Information
 

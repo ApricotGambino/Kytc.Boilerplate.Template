@@ -1,0 +1,15 @@
+- name: Overview
+  href: overview.md
+- name: Contributing to documentation
+  href: how-to-document.md
+- name: How to add an endpoint
+  href: how-to-add-an-endpoint.md
+- name: How to insert data into the database
+  href: how-to-insert-data-db.md
+- name: How to fetch data from the database
+  href: how-to-fetch-data-db.md
+- name: How to seed data
+  href: how-to-seed-data.md
+- name: How add a Type in the Type Tables
+  href: how-to-add-a-type-in-the-type-tables.md
+

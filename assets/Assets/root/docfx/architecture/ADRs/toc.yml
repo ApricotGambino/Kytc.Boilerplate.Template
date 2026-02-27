@@ -1,0 +1,6 @@
+- name: Overview
+  href: overview.md
+- name: ADR001 - MinimalApi instead of Controllers
+  href: ADR001-MinimalApi.md
+- name: ADR002 - OpenAPI instead of Swagger
+  href: ADR002-OpenApi.md

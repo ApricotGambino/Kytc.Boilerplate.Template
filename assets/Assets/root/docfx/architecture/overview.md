@@ -1,23 +1,16 @@
-# Template Overview
+# Architecture Overview
 
-A list of templates
+Why write code when you can read about it?
 
 ---
 
-Here you're going to find a listing of document templates.  These templates
-do not need to be strictly followed, but they are a way to get started with whatever you're needing it for.
+Here you're going to find ideas about how the solution is architected.  The documentation here is written to be presented to a technical audience.
+
+>Example:
+>
+>If you've read the [Type Tables eature article](../features/type-tables.md) and want to know how they work in the project, check out the [Technical Type Table Article](articles/type-table.md), or [How To Add A Type In The Type Tables](guides/how-to-add-a-type-in-the-type-tables.md).  These articles will link to other relevant articles.
+
+You can also find the generated code documentation [here](xref:Api). <!-- markdownlint-disable-line MD061 -->
 
 > [!TIP]
->//TODO: Add these
->
-> Good templates can be found on [CSE Playbook](https://github.com/microsoft/code-with-engineering-playbook), for instance:
->
-
-> * [CSE Playbook - pull request template](https://github.com/microsoft/code-with-engineering-playbook/tree/main/docs/code-reviews/pull-request-template)
-
-> * [CSE Playbook - automated testing templates](https://github.com/microsoft/code-with-engineering-playbook/tree/main/docs/automated-testing/templates)
-> * [CSE Playbook - decision log](https://github.com/microsoft/code-with-engineering-playbook/tree/main/docs/design/design-reviews/decision-log)
-
-## *.md templates
-These are templates used in this documentation, if you need to add a new piece of documentation, check these out.
-
+> You may also want to investigate the `/src/tests/Sandbox` project for even more coding examples.
