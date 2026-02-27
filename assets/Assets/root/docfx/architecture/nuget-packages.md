@@ -1,10 +1,8 @@
-# DOCUMENT_NAME
+A# DOCUMENT_NAME
 
 QUICK_DESCRIPTION_OF_TOPIC
 
 ---
-
-//TODO: Complete this after security and CreatedByUser is possible. along with unit tests for every property.
 
 ## TOP_LEVEL_DISCUSSION
 

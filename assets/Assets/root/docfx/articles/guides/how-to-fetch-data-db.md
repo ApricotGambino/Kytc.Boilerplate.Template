@@ -116,7 +116,7 @@ Any time you MUST iterate over all the data.
 >
 >You need to get all users who are in a status of pending, and send them an email:
 
-### [ReadOnlyRepo](#tab/ReadOnlyRepo)
+### [ReadOnlyRepo](#tab/ReadOnlyRepo) <!-- markdownlint-disable-line MD024 MD051 -->
 
 ```csharp
 emailService.EmailUserAboutStatus(readonlyRepo<User>.GetEntityQueryable().Where(p.Status == pending).ToList())

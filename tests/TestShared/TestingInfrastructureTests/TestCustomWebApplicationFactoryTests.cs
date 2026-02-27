@@ -1,4 +1,3 @@
-using TestShared;
 using TestShared.Fixtures;
 
 namespace TestShared.TestingInfrastructureTests;

@@ -64,3 +64,5 @@ LoggingTests
 //TODO: Explain extensions, like comments: <https://github.com/madskristensen/CommentsVS>
 
 //TODO: Should write a test to scan all entities to ensure they both inherit from BaseEntity, and also don't contain DateTime
+
+//Configure SCALAR

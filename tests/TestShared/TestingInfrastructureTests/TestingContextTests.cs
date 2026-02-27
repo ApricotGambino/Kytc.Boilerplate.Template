@@ -1,5 +1,3 @@
-using TestShared;
-
 namespace TestShared.TestingInfrastructureTests;
 /// <summary>
 /// NOTE: These tests ensure that TestingContext Setup/Teardown/Reset all work as expected.
@@ -221,8 +219,8 @@ public class TestingContextTests
     [Order(14)]
     public async Task TestingContext_Test14ContextAlreadySetupButCallSetupAgainToError_MetadataSetupCallsShouldNotIncrementFromError()
     {
-        ////Arrange, Act & Assert
-        ////NOTE: At this point the context should still be active, so setting it up again should fail.
+        //Arrange, Act & Assert
+        //NOTE: At this point the context should still be active, so setting it up again should fail.
         var setupCallsPriorToError = TestingContext.__metadata_NumberOfSetupTestContextCalls;
         Assert.ThrowsAsync<InvalidOperationException>(() => TestingContext.SetupTestContextAsync());
         Assert.That(setupCallsPriorToError, Is.EqualTo(TestingContext.__metadata_NumberOfSetupTestContextCalls));

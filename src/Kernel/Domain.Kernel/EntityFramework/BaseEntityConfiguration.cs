@@ -28,16 +28,18 @@ public static class BaseEntityConfiguration
         var method = typeof(BaseEntityConfiguration).GetTypeInfo().DeclaredMethods
             .Single(m => m.Name == nameof(Configure));
 
-        foreach (var entityType in modelBuilder.Model.GetEntityTypes())
+        foreach (var entityClrType in modelBuilder.Model.GetEntityTypes().Select(s => s.ClrType))
         {
-            if (entityType.ClrType.IsBaseEntity(out var T))
-                method.MakeGenericMethod(entityType.ClrType, T).Invoke(null, new[] { modelBuilder });
+            if (entityClrType.IsBaseEntity(out var T) && T != null)
+            {
+                method.MakeGenericMethod(entityClrType, T).Invoke(null, new[] { modelBuilder });
+            }
         }
 
         return modelBuilder;
     }
 
-    static bool IsBaseEntity(this Type type, out Type T)
+    static bool IsBaseEntity(this Type type, out Type? T)
     {
         for (var baseType = type.BaseType; baseType != null; baseType = baseType.BaseType)
         {

@@ -27,6 +27,8 @@
         //Adds missing file icons in the solution explorer.
         "https://marketplace.visualstudio.com/items?itemName=MadsKristensen.FileIcons",
         //Gives the console output some color to make it obvious what went right or wrong
-        "https://marketplace.visualstudio.com/items?itemName=NikolayBalakin.Outputenhancer"
+        "https://marketplace.visualstudio.com/items?itemName=NikolayBalakin.Outputenhancer",
+        //This lets you open from command line from the right-click menu, and makes running .bat files easier.
+        "https://marketplace.visualstudio.com/items?itemName=MadsKristensen.OpenCommandLine64"
     ]
 }

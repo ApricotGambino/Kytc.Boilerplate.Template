@@ -31,7 +31,8 @@ public static class TestEntityHelper
                 AStringWithNumbers = $"Test String {i}",
                 ANumber = i + 100,
                 ABool = i % 2 == 0,
-                ADateTimeOffset = now.AddDays(i - numberOfRecordsToCreate)
+                ADateTimeOffset = now.AddDays(i - numberOfRecordsToCreate),
+                Version = new byte[] { (byte)i }
             });
         }
 

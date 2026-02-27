@@ -42,7 +42,7 @@ For a more fleshed out version of a **KYTC Boilerplate Based Solution** that is 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-### Built With
+## Built With
 
 - [![Angular][Angular.io]][Angular-url]
 - [![C#][Csharp.io]][Csharp-url]

@@ -3,7 +3,7 @@
     "Api (Local)": {
       "commandName": "Project",
       "launchBrowser": true,
-      "launchUrl": "appsettings",
+      "launchUrl": "scalar",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Local",
         "SECRET": "LocalSecret"
@@ -14,7 +14,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "appsettings",
+      "launchUrl": "scalar",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

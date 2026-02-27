@@ -1,18 +1,12 @@
 using Api;
 using Data.EntityFramework;
 using Kernel.Api;
-using Microsoft.EntityFrameworkCore;
 using Serilog;
 
 //NOTE:
 //This is the entry point for your application's API.  Common functionality is isolated to the
 //Kernel section of the source code.  This endpoint should call the Kernel base configuration,
 //and only configururations specific to your application.
-
-
-
-//TODO: Get started with docfx, seems pretty powerful.
-
 try
 {
     var builder = BaseWebApplicationBuilder.CreateBaseWebApplicationBuilder<ApplicationDbContext, AppSettings>(args);
