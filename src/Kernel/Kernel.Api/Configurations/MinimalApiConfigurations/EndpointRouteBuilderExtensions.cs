@@ -3,7 +3,9 @@
 
 using System.Diagnostics.CodeAnalysis;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
+using Scalar.AspNetCore;
 
 namespace Kernel.Api.Configurations.MinimalApiConfigurations;
 
@@ -13,8 +15,13 @@ public static class EndpointRouteBuilderExtensions
     {
         //Guard.Against.AnonymousMethod(handler);
 
-        return builder.MapGet(pattern, handler)
+        return builder.MapGet(handler.Method.Name, handler)
+            .WithDescription("Test Description") //TODO: update this
+
         .WithName(handler.Method.Name);
+
+        //return builder.MapGet(pattern, handler)
+        //.WithName(handler.Method.Name);
     }
 
     //public static RouteHandlerBuilder MapPost(this IEndpointRouteBuilder builder, Delegate handler, [StringSyntax("Route")] string pattern = "")

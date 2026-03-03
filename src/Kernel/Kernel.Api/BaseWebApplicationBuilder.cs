@@ -54,6 +54,4 @@ public static class BaseWebApplicationBuilder
 
         return appSettings;
     }
-
-
 }

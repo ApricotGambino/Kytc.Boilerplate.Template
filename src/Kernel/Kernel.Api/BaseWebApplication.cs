@@ -13,20 +13,22 @@ public static class BaseWebApplication
     /// This adds all kernel required web application configurations to the webapplication object.
     /// </summary>
     /// <param name="app"></param>
-    public static WebApplication AddKernelWebApplicationConfigurations(this WebApplication app)
+    public static WebApplication AddKernelWebApplicationConfigurations(this WebApplication app, BaseAppSettings baseAppSettings)
     {
-        //TODO: Test that HTTPS redirection actually works.
+        //We always assume our applications to be hosted under HTTPS.
+        //We can prove this works by taking the configured launchsettings.json applicationUrls: https://localhost:7236;http://localhost:5031
+        //Attempting to access http://localhost:5031 will result in being immediately redirected to https://localhost:7236
         app.UseHttpsRedirection();
+
+
         app.MapEndpoints();
 
+        if (baseAppSettings.EnableApiDiscovery)
+        {
+            app.MapOpenApi();
+            app.MapScalarApiReference(options => options.DisableAgent());
+        }
 
-        //TODO: Should this be in development?  Also, test mapopenapi
-        //https://localhost:44341/openapi/v1.json
-        //if (app.Environment.IsDevelopment())
-        //{
-        app.MapOpenApi();
-        app.MapScalarApiReference();
-        //}
         return app;
     }
 }

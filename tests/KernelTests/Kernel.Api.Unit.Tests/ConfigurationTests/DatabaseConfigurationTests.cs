@@ -1,4 +1,5 @@
 
+using Api;
 using Data.EntityFramework;
 using Kernel.Api.Configurations;
 using Microsoft.AspNetCore.Builder;
@@ -17,8 +18,8 @@ public class DatabaseConfigurationTests : BaseTestFixture
         //Arrange
         var builder = WebApplication.CreateBuilder();
         builder.Environment.EnvironmentName = TestingConstants.TestingEnvironmentName;
-        builder.AddAppSettings<TestAppSettings>();
-        var appSettings = builder.GetAppSettings<TestAppSettings>();
+        builder.AddAppSettings<AppSettings>();
+        var appSettings = builder.GetAppSettings<AppSettings>();
 
         //Act
         builder.AddDbContextConfiguration<ApplicationDbContext>(appSettings);

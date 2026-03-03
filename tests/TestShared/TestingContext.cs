@@ -1,6 +1,8 @@
+using Api;
 using Kernel.Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
 using TestShared.TestObjects;
 
 namespace TestShared;
@@ -23,12 +25,13 @@ public static class TestingContext
     public static IServiceScopeFactory? ScopeFactory { get; private set; }
     public static IServiceProvider? ServiceProvider { get; private set; }
 
+
     /// <summary>
     /// This method will setup the testing context
     /// </summary>
     /// <param name="environmentName"></param>
     /// <exception cref="InvalidOperationException"></exception>
-    public static async Task SetupTestContextAsync(string? environmentName = null)
+    public static async Task SetupTestContextAsync(string? environmentName = null, Action<AppSettings>? appSettingConfigurationAction = null)
     {
         ArgumentException.ThrowIfNullOrWhiteSpace(environmentName);
 
@@ -43,7 +46,7 @@ public static class TestingContext
         {
             EnvironmentName = environmentName;
 
-            WebApplicationFactory = new TestCustomWebApplicationFactory(EnvironmentName);
+            WebApplicationFactory = new TestCustomWebApplicationFactory(EnvironmentName, appSettingConfigurationAction);
 
             ScopeFactory = WebApplicationFactory.Services.GetRequiredService<IServiceScopeFactory>();
 
@@ -85,6 +88,7 @@ public static class TestingContext
     {
         try
         {
+            WebApplicationFactory.Dispose();
             EnvironmentName = string.Empty;
             WebApplicationFactory = null;
             ScopeFactory = null;
@@ -102,7 +106,7 @@ public static class TestingContext
     /// </summary>
     /// <param name="environmentName"></param>
     /// <returns></returns>
-    public static async Task ResetTestContextAsync(string? environmentName = null)
+    public static async Task ResetTestContextAsync(string? environmentName = null, Action<AppSettings>? appSettingConfigurationAction = null)
     {
         try
         {
@@ -112,7 +116,7 @@ public static class TestingContext
                 environmentName = EnvironmentName;
             }
             await TearDownTestContextAsync();
-            await SetupTestContextAsync(environmentName);
+            await SetupTestContextAsync(environmentName, appSettingConfigurationAction);
         }
         finally
         {
@@ -150,6 +154,21 @@ public static class TestingContext
     public static TestingDatabaseContext GetTestingDatabaseContext()
     {
         return GetService<TestingDatabaseContext>();
+    }
+
+    //Returns the populated TestAppSettings object based on the current context.
+    public static AppSettings GetAppSettings()
+    {
+        return GetService<IOptions<AppSettings>>().Value;
+    }
+
+    /// <summary>
+    /// Gets an HTTP client based on the current context.
+    /// </summary>
+    /// <returns></returns>
+    public static HttpClient GetHttpClient()
+    {
+        return WebApplicationFactory!.CreateClient();
     }
 
     /// <summary>

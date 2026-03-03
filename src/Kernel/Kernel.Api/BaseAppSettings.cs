@@ -10,12 +10,27 @@ public class BaseAppSettings
 {
     public required ConnectionStrings ConnectionStrings { get; set; }
     public required string ApplicationName { get; set; }
+    public required string ApplicationBaseUrl { get; set; }
+    public Uri GetApplicationBaseUrlAsUri
+    {
+        get
+        {
+            return new Uri(ApplicationBaseUrl);
+        }
+    }
     public int MaxUsers { get; set; }
     public required string Secret { get; set; }
     public required string Password { get; set; }
+
+    /// <summary>
+    /// Configures if OpenAPI and Scalar are enabled.
+    /// </summary>
+    public bool EnableApiDiscovery { get; set; } = true;
 }
 
 public class ConnectionStrings
 {
     public required string DefaultConnection { get; set; }
 }
+
+

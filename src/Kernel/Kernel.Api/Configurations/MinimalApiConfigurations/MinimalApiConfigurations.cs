@@ -10,6 +10,12 @@ namespace Kernel.Api.Configurations.MinimalApiConfigurations;
 
 public static class MinimalApiConfigurations
 {
+    /// <summary>
+    /// Creates a <see cref="RouteGroupBuilder"/> based on the provided <see cref="BaseEndpointGroup"/>
+    /// </summary>
+    /// <param name="app"></param>
+    /// <param name="group"></param>
+    /// <returns></returns>
     private static RouteGroupBuilder MapGroup(this WebApplication app, BaseEndpointGroup group)
     {
         var groupName = group.GroupName ?? group.GetType().Name;
@@ -20,6 +26,16 @@ public static class MinimalApiConfigurations
         //.WithTags(groupName); TODO: This is for swagger, test this.
     }
 
+
+    /// <summary>
+    /// This method finds all exposed methods in any endpoint group which inherit from <see cref="BaseEndpointGroup"/>
+    /// and creates and maps a RouteGroupBuilder to the endpoint.
+    /// </summary>
+    /// <remarks>
+    /// EX: Will create and map LoggingEndpoint.GetLogs() to /api/LoggingEndpoint/
+    /// </remarks>
+    /// <param name="app"></param>
+    /// <returns></returns>
     public static WebApplication MapEndpoints(this WebApplication app)
     {
         var endpointGroupType = typeof(BaseEndpointGroup);

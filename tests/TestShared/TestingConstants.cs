@@ -13,10 +13,6 @@ public static class TestingConstants
 
 
     public const string AlternativeUnitTestEnvironmentName = "AlternativeUnitTest";
-
-
-    public const string TestingAppSettingKey = "TestKey";
-    public const string TestingAppSettingValue = "I am a testing key.";
 }
 
 public static class TestingCategoryConstants
@@ -33,6 +29,7 @@ public static class TestingCategoryConstants
     /// Seeing this trait in the test explorer tells you each test is going to rebuild the context, this means it's going to be a slow test.
     /// </summary>
     public const string UniqueContextTests = "UniqueContextTests";
+
     /// <summary>
     /// /// Seeing this trait in the test explorer tells you each test is going to rebuild the context, this means it's going to be a slow test.
     /// </summary>

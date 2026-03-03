@@ -1,3 +1,5 @@
+using Api;
+
 namespace TestShared.Fixtures;
 /// <summary>
 /// This nUnit test fixture is used for tests that use the database, and will share the database for all
@@ -24,6 +26,18 @@ public abstract class SharedContextTestFixture : BaseTestFixture
     public override Task RunAfterAnyTestsAsync()
     {
         return TestingContext.TearDownTestContextAsync();
+    }
+
+    /// <summary>
+    /// This will reset the context by providing custom AppSetting values for unit testing.
+    /// </summary>
+    /// <param name="appSettingConfigurationAction"></param>
+    /// <param name="environmentName"></param>
+    /// <returns></returns>
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Structure", "NUnit1028:The non-test method is public", Justification = "<Pending>")]
+    public static Task ResetContextWithSpecificAppSettingAsync(Action<AppSettings>? appSettingConfigurationAction, string? environmentName = TestingConstants.TestingEnvironmentName)
+    {
+        return TestingContext.ResetTestContextAsync(environmentName, appSettingConfigurationAction);
     }
 }
 

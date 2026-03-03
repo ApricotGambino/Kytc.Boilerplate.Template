@@ -1,6 +1,7 @@
 using Api;
 using Data.EntityFramework;
 using Kernel.Api;
+using Microsoft.Extensions.Options;
 using Serilog;
 
 //NOTE:
@@ -11,13 +12,21 @@ try
 {
     var builder = BaseWebApplicationBuilder.CreateBaseWebApplicationBuilder<ApplicationDbContext, AppSettings>(args);
 
-    var appSettings = builder.GetAppSettings<AppSettings>();
+    //var appSettings = builder.GetAppSettings<AppSettings>();
+
+
 
     //builder.Services.AddScoped<IExampleService, ExampleService>();
 
     var app = builder.Build();
 
-    app.AddKernelWebApplicationConfigurations();
+    //NOTE: Not using builder.GetAppSettings<AppSettings>() and instead resolving the IOptions DI for AppSettings
+    //because at this point in the pipeline we can modify those appsettings (Such as dynamically modifying the appsettings based on logic, or unit testing)
+    //whereas with the builder.GetAppSettings<AppSettings>() example
+    //that is ONLY driven by the Configuration object which draws from the actual appsetting.json file.
+    var appSettings = app.Services.GetService<IOptions<AppSettings>>()!.Value;
+
+    app.AddKernelWebApplicationConfigurations(appSettings);
 
     app.MapGet("/appsettings", () =>
     {

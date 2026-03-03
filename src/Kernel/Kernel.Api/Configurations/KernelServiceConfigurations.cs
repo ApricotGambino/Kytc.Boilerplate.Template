@@ -27,12 +27,12 @@ internal static class KernelServiceConfigurations
         builder.Services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
 
 
-        //TODO: Is this needed?
-        builder.Services.AddEndpointsApiExplorer();
-
-        //This adds OpenAPI services, which is used by app.MapOpenApi() to create the openapi/v1.json that exposes
-        //the API endpoints. To be used in Scalar, which is a UI replacement of SwaggerUI.
-        builder.Services.AddOpenApi();
+        if (appSettings.EnableApiDiscovery)
+        {
+            //This adds OpenAPI services, which is used by app.MapOpenApi() to create the openapi/v1.json that exposes
+            //the API endpoints. To be used in Scalar, which is a UI replacement of SwaggerUI, further reading can be found in ADR002-OpenApi.md
+            builder.Services.AddOpenApi();
+        }
 
         return builder;
     }

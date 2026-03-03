@@ -34,6 +34,8 @@
 
 //TODO: Explain `<!--#if (templateSolutionOnly) -->`
 
+//TODO: Do an ADR on DateTimeOffset
+
 //TODO: Explain the testing setup for infrastruction.
 //The execution works like this:
 
@@ -64,5 +66,7 @@ LoggingTests
 //TODO: Explain extensions, like comments: <https://github.com/madskristensen/CommentsVS>
 
 //TODO: Should write a test to scan all entities to ensure they both inherit from BaseEntity, and also don't contain DateTime
+
+//TODO: Add authorization policy visibility to Scalar, maybe have to use Badges?
 
 //Configure SCALAR

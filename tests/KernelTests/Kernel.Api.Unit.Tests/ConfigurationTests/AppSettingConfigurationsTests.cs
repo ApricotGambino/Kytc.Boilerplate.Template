@@ -1,3 +1,4 @@
+using Api;
 using Kernel.Api.Configurations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
@@ -16,11 +17,11 @@ public class AppSettingConfigurationsTests : BaseTestFixture
         builder.Environment.EnvironmentName = TestingConstants.TestingEnvironmentName;
 
         //Act
-        builder.AddAppSettings<BaseAppSettings>();
-        var configuration = builder.Configuration.GetSection($"AppSettings:{TestingConstants.TestingAppSettingKey}").Value;
+        builder.AddAppSettings<AppSettings>();
+        var configuration = builder.Configuration.GetSection($"AppSettings:{nameof(TestingConstants.ApplicationName)}").Value;
 
         //Act
-        Assert.That(configuration, Is.EqualTo(TestingConstants.TestingAppSettingValue));
+        Assert.That(configuration, Is.EqualTo(TestingConstants.ApplicationName));
     }
 
     [Test]
@@ -31,31 +32,12 @@ public class AppSettingConfigurationsTests : BaseTestFixture
         builder.Environment.EnvironmentName = TestingConstants.TestingEnvironmentName;
 
         //Act
-        builder.AddAppSettings<TestAppSettings>();
-        var appSettings = builder.Configuration.GetSection("AppSettings").Get<TestAppSettings>();
+        builder.AddAppSettings<AppSettings>();
+        var appSettings = builder.Configuration.GetSection("AppSettings").Get<AppSettings>();
 
         //Act
         Assert.That(appSettings, Is.Not.Null);
-        Assert.That(appSettings.TestKey, Is.EqualTo(TestingConstants.TestingAppSettingValue));
-    }
-
-    [Test]
-    public async Task AddAppSettings_NoProvidedEnvironmentName_BaseAppSettingIsNotOverriden()
-    {
-        //Arrange
-        var builder = WebApplication.CreateBuilder();
-
-        //Act
-        builder.AddAppSettings<BaseAppSettings>();
-        var applicationNameConfiguration = builder.Configuration.GetSection($"AppSettings:{TestingConstants.ApplicationName}").Value;
-        var testingAppSettingKeyConfiguration = builder.Configuration.GetSection($"AppSettings:{TestingConstants.TestingAppSettingKey}").Value;
-        using (Assert.EnterMultipleScope())
-        {
-
-            //Act
-            Assert.That(applicationNameConfiguration, Is.Not.EqualTo(TestingConstants.ApplicationName));
-            Assert.That(testingAppSettingKeyConfiguration, Is.Null);
-        }
+        Assert.That(appSettings.ApplicationName, Is.EqualTo(TestingConstants.ApplicationName));
     }
 
     [Test]
@@ -68,7 +50,7 @@ public class AppSettingConfigurationsTests : BaseTestFixture
 
         //Act & Assert
         Assert.Throws<FileNotFoundException>(
-            () => builder.AddAppSettings<TestAppSettings>());
+            () => builder.AddAppSettings<AppSettings>());
     }
 
 }

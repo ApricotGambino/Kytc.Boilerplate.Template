@@ -1,6 +1,6 @@
 - name: Overview
   href: overview.md
-- name: Contributing to documentation
+- name: how-to-contribute-to-documentation
   href: how-to-document.md
 - name: How to add an endpoint
   href: how-to-add-an-endpoint.md

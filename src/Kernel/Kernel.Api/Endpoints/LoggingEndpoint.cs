@@ -15,9 +15,18 @@ public class LoggingEndpoint : BaseEndpointGroup
         //groupBuilder.RequireAuthorization();
 
         groupBuilder.MapGet(GetLogs);
+        groupBuilder.MapGet(GetLogsAgain);
     }
 
     public async Task<Ok<List<string>>> GetLogs()
+    {
+        //https://localhost:44341/api/LoggingEndpoint/
+        var logs = new List<string>() { "A", "B", "C" };
+
+        return TypedResults.Ok(logs);
+    }
+
+    public async Task<Ok<List<string>>> GetLogsAgain()
     {
         //https://localhost:44341/api/LoggingEndpoint/
         var logs = new List<string>() { "A", "B", "C" };

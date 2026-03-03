@@ -20,10 +20,10 @@ public class BaseWebApplicationBuilderTests : BaseTestFixture
         var builder = BaseWebApplicationBuilder.CreateBaseWebApplicationBuilder<TestingDatabaseContext, AppSettings>(args);
 
         //Act
-        var appSettings = builder.GetAppSettings<TestAppSettings>();
+        var appSettings = builder.GetAppSettings<AppSettings>();
 
         //Act
-        Assert.That(appSettings.TestKey, Is.EqualTo(TestingConstants.TestingAppSettingValue));
+        Assert.That(appSettings.ApplicationName, Is.EqualTo(TestingConstants.ApplicationName));
     }
 
     [Test]
@@ -34,7 +34,7 @@ public class BaseWebApplicationBuilderTests : BaseTestFixture
         builder.Configuration.Sources.Clear();
         //Act & Assert
         Assert.Throws<InvalidConfigurationException>(
-            () => builder.GetAppSettings<TestAppSettings>());
+            () => builder.GetAppSettings<AppSettings>());
     }
 
 }
