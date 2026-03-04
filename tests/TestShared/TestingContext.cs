@@ -33,50 +33,49 @@ public static class TestingContext
     /// <exception cref="InvalidOperationException"></exception>
     public static async Task SetupTestContextAsync(string? environmentName = null, Action<AppSettings>? appSettingConfigurationAction = null)
     {
-        ArgumentException.ThrowIfNullOrWhiteSpace(environmentName);
-
-        if (__metadata_ContextHasBeenSetup)
+        if (String.IsNullOrEmpty(environmentName))
         {
-            //NOTE: We want to make sure that if setup is being called, it's in the context of it being 'fresh', this
-            //helps prevent tests from setting up context without intentionality.
-            throw new InvalidOperationException($"Testing Context setup was attempted without ensuring teardown, make sure to teardown context prior to setting up, this can be easily done by using the {nameof(ResetTestContextAsync)} method.");
+            environmentName = TestingConstants.TestingEnvironmentName;
         }
 
-        try
+        if (!__metadata_ContextHasBeenSetup)
         {
-            EnvironmentName = environmentName;
-
-            WebApplicationFactory = new TestCustomWebApplicationFactory(EnvironmentName, appSettingConfigurationAction);
-
-            ScopeFactory = WebApplicationFactory.Services.GetRequiredService<IServiceScopeFactory>();
-
-            ServiceProvider = ScopeFactory.CreateScope().ServiceProvider;
-
-            //Delete the testing database, then create it so it's always new and fresh.
-            var context = GetTestingDatabaseContext();
-            var databaseConnection = context.Database.GetDbConnection();
-
-            //NOTE: Not using the TestingConstants names here because I want to make sure that you're really sure if you're going to modify the expected database name for unit tests.
-            if (databaseConnection.Database != "Kytc.Boilerplate.Template.Testing"
-                && databaseConnection.Database != "Kytc.Boilerplate.Template.BenchmarkTests")
+            try
             {
-                //This is only a santity check, since we're about to delete the configured database, we want to make doubly sure that we're only
-                //deleting the testing database.
-                throw new InvalidOperationException($"While setting up the testing context, the database {databaseConnection.Database} was set to be deleted instead of an exepected Testing database. You're welcome for the catch.");
-            }
+                EnvironmentName = environmentName;
 
-            await context.Database.EnsureDeletedAsync();
-            await context.Database.EnsureCreatedAsync();
-        }
-        catch (Exception)
-        {
-            await TearDownTestContextAsync();
-            throw;
-        }
-        finally
-        {
-            __metadata_NumberOfSetupTestContextCalls++;
-            __metadata_ContextHasBeenSetup = true;
+                WebApplicationFactory = new TestCustomWebApplicationFactory(EnvironmentName, appSettingConfigurationAction);
+
+                ScopeFactory = WebApplicationFactory.Services.GetRequiredService<IServiceScopeFactory>();
+
+                ServiceProvider = ScopeFactory.CreateScope().ServiceProvider;
+
+                //Delete the testing database, then create it so it's always new and fresh.
+                var context = GetTestingDatabaseContext();
+                var databaseConnection = context.Database.GetDbConnection();
+
+                //NOTE: Not using the TestingConstants names here because I want to make sure that you're really sure if you're going to modify the expected database name for unit tests.
+                if (databaseConnection.Database != "Kytc.Boilerplate.Template.Testing"
+                    && databaseConnection.Database != "Kytc.Boilerplate.Template.BenchmarkTests")
+                {
+                    //This is only a santity check, since we're about to delete the configured database, we want to make doubly sure that we're only
+                    //deleting the testing database.
+                    throw new InvalidOperationException($"While setting up the testing context, the database {databaseConnection.Database} was set to be deleted instead of an exepected Testing database. You're welcome for the catch.");
+                }
+
+                await context.Database.EnsureDeletedAsync();
+                await context.Database.EnsureCreatedAsync();
+            }
+            catch (Exception)
+            {
+                await TearDownTestContextAsync();
+                throw;
+            }
+            finally
+            {
+                __metadata_NumberOfSetupTestContextCalls++;
+                __metadata_ContextHasBeenSetup = true;
+            }
         }
     }
 
@@ -88,7 +87,6 @@ public static class TestingContext
     {
         try
         {
-            WebApplicationFactory.Dispose();
             EnvironmentName = string.Empty;
             WebApplicationFactory = null;
             ScopeFactory = null;

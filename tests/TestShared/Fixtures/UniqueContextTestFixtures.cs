@@ -4,6 +4,7 @@ namespace TestShared.Fixtures;
 /// This fixture will reset the database at the start of all tests ran.
 /// </summary>
 [Category(TestingCategoryConstants.UniqueContextTests)]
+[NonParallelizable]
 public abstract class UniqueContextTestFixture : BaseTestFixture
 {
     /// <summary>
@@ -17,13 +18,13 @@ public abstract class UniqueContextTestFixture : BaseTestFixture
         return TestingContext.ResetTestContextAsync(TestingConstants.TestingEnvironmentName);
     }
 
-    /// <summary>
-    /// <inheritdoc />
-    /// This will tear down the context using <see cref="TearDownTestContextAsync"/>
-    /// </summary>
-    /// <returns></returns>
-    public override Task RunAfterAnyTestsAsync()
-    {
-        return TestingContext.TearDownTestContextAsync();
-    }
+    ///// <summary>
+    ///// <inheritdoc />
+    ///// This will tear down the context using <see cref="TearDownTestContextAsync"/>
+    ///// </summary>
+    ///// <returns></returns>
+    //public override Task RunAfterAnyTestsAsync()
+    //{
+    //    return TestingContext.TearDownTestContextAsync();
+    //}
 }

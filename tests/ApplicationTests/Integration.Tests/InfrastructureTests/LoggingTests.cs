@@ -7,11 +7,11 @@ public class LoggingTests : SharedContextTestFixture
     [Test]
     public async Task LoggingTests1()
     {
-        Assert.Pass();
+        Assert.That(1 == 1);
     }
     [Test]
     public async Task LoggingTests2()
     {
-        Assert.Pass();
+        Assert.That(1 == 1);
     }
 }

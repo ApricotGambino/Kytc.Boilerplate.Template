@@ -20,7 +20,6 @@ public static class BaseWebApplication
         //Attempting to access http://localhost:5031 will result in being immediately redirected to https://localhost:7236
         app.UseHttpsRedirection();
 
-
         app.MapEndpoints();
 
         if (baseAppSettings.EnableApiDiscovery)

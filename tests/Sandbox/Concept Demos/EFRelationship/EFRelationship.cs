@@ -8,6 +8,7 @@ namespace Sandbox.Concept_Demos.EFRelationship;
 /// This setup data is used in HowDoIGetData.cs as well, that showcases fetching data using the readonly repo.
 /// </summary>
 [Category(TestingCategoryConstants.SandboxTests)]
+[NonParallelizable]
 public class EFRelationship : SharedContextTestFixture
 {
 

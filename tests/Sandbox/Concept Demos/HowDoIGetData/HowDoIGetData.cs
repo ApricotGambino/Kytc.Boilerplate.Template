@@ -11,6 +11,7 @@ namespace Sandbox.Concept_Demos.HowDoIGetData;
 /// These tests just show you different ways you can fetch data from the database, and how you SHOULD do it.
 /// </summary>
 [Category(TestingCategoryConstants.SandboxTests)]
+[NonParallelizable]
 public class HowDoIGetData : SharedContextTestFixture
 {
     private List<TestEntity> CreatedEntities { get; set; }

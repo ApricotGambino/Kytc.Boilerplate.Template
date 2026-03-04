@@ -5,6 +5,7 @@ using TestShared.TestObjects;
 
 namespace Kernel.Integration.Tests.RepositoryTests;
 
+[NonParallelizable]
 public class ReadOnlyEntityRepoTests : SharedContextTestFixture
 {
     private List<TestEntity> _createdEntities { get; set; }

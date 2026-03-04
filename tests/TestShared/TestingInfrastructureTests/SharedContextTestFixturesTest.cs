@@ -6,6 +6,7 @@ namespace TestShared.TestingInfrastructureTests;
 ///  and always shares the context unless intentionally reset.
 /// </summary>
 [Category(TestingCategoryConstants.NUnitFrameworkTests)]
+[NonParallelizable]
 public class SharedContextTestFixturesTest : SharedContextTestFixture
 {
     private bool _firstTestHasBeenRan;
@@ -38,14 +39,12 @@ public class SharedContextTestFixturesTest : SharedContextTestFixture
     }
 }
 
-
-
-
 /// <summary>
 /// These tests ensure that <see cref="SharedContextTestFixture"></> Setup and Teardown calls are called the correct and expected number of times between runs.
 ///  and always shares the context unless intentionally reset.
 /// </summary>
 [Category(TestingCategoryConstants.NUnitFrameworkTests)]
+[NonParallelizable]
 public class SharedContextTestFixtureSetupAndTearDownTests : SharedContextTestFixture
 {
     private int _timesContextSetupHasBeenCalled;

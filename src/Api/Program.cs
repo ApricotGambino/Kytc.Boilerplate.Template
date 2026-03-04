@@ -12,10 +12,6 @@ try
 {
     var builder = BaseWebApplicationBuilder.CreateBaseWebApplicationBuilder<ApplicationDbContext, AppSettings>(args);
 
-    //var appSettings = builder.GetAppSettings<AppSettings>();
-
-
-
     //builder.Services.AddScoped<IExampleService, ExampleService>();
 
     var app = builder.Build();

@@ -7,11 +7,11 @@ public class ApiRequestTests : SharedContextTestFixture
     [Test]
     public async Task ApiRequestTests1()
     {
-        Assert.Pass();
+        Assert.That(1 == 1);
     }
     [Test]
     public async Task ApiRequestTests2()
     {
-        Assert.Pass();
+        Assert.That(1 == 1);
     }
 }

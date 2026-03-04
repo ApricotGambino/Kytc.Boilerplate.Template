@@ -167,22 +167,22 @@ public static class BreakfastShared
         }
     }
 
-
+    //NOTE: Feel free to increase these time values by 100x or more to get a better idea of how they work.
     internal sealed class HashBrown
     {
-        public const int TimeItTakesToCookSideOfPatty = 200;
+        public const int TimeItTakesToCookSideOfPatty = 2;
     }
 
     internal sealed class Coffee;
     internal sealed class Egg
     {
-        public const int TimeItTakesToHeatTheEggPan = 100;
-        public const int TimeItTakesToCookTheEggs = 600;
+        public const int TimeItTakesToHeatTheEggPan = 1;
+        public const int TimeItTakesToCookTheEggs = 6;
     }
     internal sealed class Juice;
     internal sealed class Toast
     {
-        public const int TimeItTakesToToastBread = 300;
+        public const int TimeItTakesToToastBread = 3;
     }
 }
 

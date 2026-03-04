@@ -5,7 +5,7 @@ namespace TestShared.TestingInfrastructureTests;
 /// These tests ensure the functionality for <see cref="TestCustomWebApplicationFactory"/>
 /// </summary>
 [Category(TestingCategoryConstants.NUnitFrameworkTests)]
-public class TestCustomWebApplicationFactoryTests : UniqueContextTestFixture
+public class TestCustomWebApplicationFactoryTests : BaseTestFixture
 {
     [Test]
     public void TestCustomWebApplicationFactoryConstructor_EmptyEnvironmentName_ThrowsError()

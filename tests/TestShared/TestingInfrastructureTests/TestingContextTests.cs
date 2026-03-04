@@ -13,6 +13,7 @@ namespace TestShared.TestingInfrastructureTests;
 /// This ensures that the context works as you'd expect throughout all the testing you man do.
 /// </summary>
 [Category(TestingCategoryConstants.NUnitFrameworkTests)]
+[NonParallelizable]
 [TestFixture]
 public class TestingContextTests
 {
@@ -44,6 +45,7 @@ public class TestingContextTests
         if (TestContext.CurrentContext.Result.Outcome.Status != NUnit.Framework.Interfaces.TestStatus.Passed)
         {
             _stopTests = true;
+
         }
 
         Assume.That(_stopTests, Is.False);
@@ -105,23 +107,15 @@ public class TestingContextTests
     }
 
     [Test]
-    [Order(5)]
-    public async Task TestingContext_Test05AttemptToSetupContextAgainWithoutTeardown_ThrowsError()
-    {
-        //Arrange, Act & Assert
-        Assert.ThrowsAsync<InvalidOperationException>(() => TestingContext.SetupTestContextAsync());
-    }
-
-    [Test]
     [Order(6)]
-    public async Task TestingContext_Test06TearsDownContext_ContextHasDefaultEnvironmentName()
+    public async Task TestingContext_Test06TearsDownContext_ContextHasNoDefaultEnvironmentName()
     {
         //Arrange
         await TestingContext.TearDownTestContextAsync();
         _numberOfTimesTheseTestsHaveCalledTeardown++;
 
         //Act & Assert
-        Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.TestingEnvironmentName));
+        Assert.That(TestingContext.EnvironmentName, Is.EqualTo(String.Empty));
     }
 
     [Test]
@@ -163,18 +157,19 @@ public class TestingContextTests
         //Act & Assert
         Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.TestingEnvironmentName));
     }
+
     [Test]
     [Order(10)]
     public async Task TestingContext_Test10SetupContextWithSpecificEnvironmentName_ContextHasSpecificEnvironmentName()
     {
         //Arrange
         await TestingContext.TearDownTestContextAsync();
-        await TestingContext.SetupTestContextAsync(nameof(TestingContext_Test10SetupContextWithSpecificEnvironmentName_ContextHasSpecificEnvironmentName));
+        await TestingContext.SetupTestContextAsync(TestingConstants.BenchmarkTestsEnvironmentName);
         _numberOfTimesTheseTestsHaveCalledTeardown++;
         _numberOfTimesTheseTestsHaveCalledSetup++;
 
         //Act & Assert
-        Assert.That(TestingContext.EnvironmentName, Is.EqualTo(nameof(TestingContext_Test10SetupContextWithSpecificEnvironmentName_ContextHasSpecificEnvironmentName)));
+        Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.BenchmarkTestsEnvironmentName));
     }
 
     [Test]
@@ -182,7 +177,7 @@ public class TestingContextTests
     public async Task TestingContext_Test11DoNothing_ContextStillHasSpecificEnvironmentName()
     {
         //Act & Assert
-        Assert.That(TestingContext.EnvironmentName, Is.EqualTo(nameof(TestingContext_Test10SetupContextWithSpecificEnvironmentName_ContextHasSpecificEnvironmentName)));
+        Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.BenchmarkTestsEnvironmentName));
     }
 
     [Test]
@@ -190,8 +185,8 @@ public class TestingContextTests
     public async Task TestingContext_Test12Resets_ContextHasDefaultEnvironmentName()
     {
         //Act & Assert
-        Assert.That(TestingContext.EnvironmentName, Is.EqualTo(nameof(TestingContext_Test10SetupContextWithSpecificEnvironmentName_ContextHasSpecificEnvironmentName)));
-        await TestingContext.ResetTestContextAsync();
+        Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.BenchmarkTestsEnvironmentName));
+        await TestingContext.ResetTestContextAsync(TestingConstants.TestingEnvironmentName);
         _numberOfTimesTheseTestsHaveCalledReset++;
         Assert.That(TestingContext.EnvironmentName, Is.EqualTo(TestingConstants.TestingEnvironmentName));
     }
@@ -213,18 +208,6 @@ public class TestingContextTests
             Assert.That(setupCountAfterReset - setupCountBeforeReset, Is.EqualTo(1));
             Assert.That(teardownCountAfterReset - teardownCountBeforeReset, Is.EqualTo(1));
         }
-    }
-
-    [Test]
-    [Order(14)]
-    public async Task TestingContext_Test14ContextAlreadySetupButCallSetupAgainToError_MetadataSetupCallsShouldNotIncrementFromError()
-    {
-        //Arrange, Act & Assert
-        //NOTE: At this point the context should still be active, so setting it up again should fail.
-        var setupCallsPriorToError = TestingContext.__metadata_NumberOfSetupTestContextCalls;
-        Assert.ThrowsAsync<InvalidOperationException>(() => TestingContext.SetupTestContextAsync());
-        Assert.That(setupCallsPriorToError, Is.EqualTo(TestingContext.__metadata_NumberOfSetupTestContextCalls));
-
     }
 
     [Test]

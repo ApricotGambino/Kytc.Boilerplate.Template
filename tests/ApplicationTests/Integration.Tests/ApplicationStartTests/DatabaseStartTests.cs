@@ -9,13 +9,13 @@ public class DatabaseStartTests : UniqueContextTestFixture
     [Test]
     public async Task DatabaseStartTests1()
     {
-        Assert.Pass();
+        Assert.That(1 == 1);
     }
 
     [Order(2)]
     [Test]
     public async Task DatabaseStartTests2()
     {
-        Assert.Pass();
+        Assert.That(1 == 1);
     }
 }

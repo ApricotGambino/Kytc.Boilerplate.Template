@@ -7,11 +7,11 @@ public class DatabaseTests : SharedContextTestFixture
     [Test]
     public async Task DatabaseTests1()
     {
-        Assert.Pass();
+        Assert.That(1 == 1);
     }
     [Test]
     public async Task DatabaseTests2()
     {
-        Assert.Pass();
+        Assert.That(1 == 1);
     }
 }
