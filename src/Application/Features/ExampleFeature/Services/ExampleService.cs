@@ -1,10 +1,10 @@
-//namespace Application.Features.ExampleFeature.Services;
+namespace Application.Features.ExampleFeature.Services;
 
-//using System.Collections.Generic;
-//using Data.Entities.Example;
-//using Data.EntityFramework;
-//using KernelInfrastructure.Repositories;
-//using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using Data.Entities.Example;
+using Data.EntityFramework;
+using Kernel.Infrastructure.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 
 //TODO: Create a set of examples inside the Sandbox Test project to illustrate
@@ -12,33 +12,43 @@
 //use the things that make stuff more efficient)
 
 //TODO: Also, GetMostRecentLogsUsingContextAsync is an example of why we need to use repos instead of
-//services.  Services should be for logic, not fetching data. Explain that too.
+//services.Services should be for logic, not fetching data.Explain that too.
 
 //TODO: Should services return entities, or DTOs?
-//public interface IExampleService
-//{
-//    public List<ExampleEntity> DoSomeExampleAction();
-//    public Task<List<ExampleEntity>> GetMostRecentEntitiesUsingContextAsync();
-//    public Task<List<ExampleEntity>> GetMostRecentEntitiesUsingReadOnlyRepoAsync();
-//}
+public interface IExampleService
+{
+    public Task<List<ExampleEntity>> GetMostRecentExampleEntitiesUsingContextAsync();
+    public Task<List<ExampleEntity>> GetMostRecentExampleEntitiesUsingReadOnlyRepoAsync();
+    public Task<ExampleEntity> GetExampleEntitiesByIdAsync(int id);
+    public Task<ExampleEntity> AddExampleEntityAsync(ExampleEntity exampleEntityToAdd);
+}
 
-//public class ExampleService(ApplicationDbContext context) : IExampleService
-//{
-//    private readonly ApplicationDbContext _Context = context;
+public class ExampleService(ApplicationDbContext context) : IExampleService
+{
+    private readonly ApplicationDbContext _context = context;
 
-//    public List<ExampleEntity> DoSomeExampleAction()
-//    {
-//        return [];
-//    }
-//    public Task<List<ExampleEntity>> GetMostRecentEntitiesUsingContextAsync()
-//    {
-//        return _Context.ExampleEntities.OrderByDescending(o => o.Id).ToListAsync();
-//    }
+    public Task<List<ExampleEntity>> GetMostRecentExampleEntitiesUsingContextAsync()
+    {
+        return _context.ExampleEntities.OrderByDescending(o => o.Id).ToListAsync();
+    }
 
-//    public Task<List<ExampleEntity>> GetMostRecentEntitiesUsingReadOnlyRepoAsync()
-//    {
-//        var logContext = new ReadOnlyEntityRepo<ExampleEntity>(_Context);
-//        return logContext.GetEntityQueryable().OrderByDescending(o => o.Id).ToListAsync();
-//    }
+    public Task<List<ExampleEntity>> GetMostRecentExampleEntitiesUsingReadOnlyRepoAsync()
+    {
+        var repo = new ReadOnlyEntityRepo<ExampleEntity, ApplicationDbContext>(_context);
+        return repo.GetEntityQueryable().OrderByDescending(o => o.Id).ToListAsync();
+    }
 
-//}
+    public async Task<ExampleEntity> AddExampleEntityAsync(ExampleEntity exampleEntityToAdd)
+    {
+        await _context.ExampleEntities.AddAsync(exampleEntityToAdd);
+        await _context.SaveChangesAsync();
+        return exampleEntityToAdd;
+    }
+
+    public Task<ExampleEntity> GetExampleEntitiesByIdAsync(int id)
+    {
+        var repo = new ReadOnlyEntityRepo<ExampleEntity, ApplicationDbContext>(_context);
+        return repo.GetSingleEntityByIdAsync(id);
+    }
+
+}

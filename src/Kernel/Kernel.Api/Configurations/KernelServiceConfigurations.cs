@@ -56,6 +56,7 @@ internal static class KernelServiceConfigurations
                     sinkOptions: new MSSqlServerSinkOptions { TableName = "Logs", SchemaName = "dbo" },
                     formatProvider: new CultureInfo("en-US")
                     )
+            .WriteTo.Console()
             //.MinimumLevel.Warning()
             //.Enrich.FromLogContext() //TODO: What is this for?
             );

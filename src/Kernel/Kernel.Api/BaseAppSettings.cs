@@ -9,8 +9,18 @@ namespace Kernel.Api;
 public class BaseAppSettings
 {
     public required ConnectionStrings ConnectionStrings { get; set; }
+    /// <summary>
+    /// This is the name of the application
+    /// </summary>
     public required string ApplicationName { get; set; }
+    /// <summary>
+    /// This is the base URL of the application ///
+    /// </summary>
+    /// <remarks>EX: www.website.com</remarks>
     public required string ApplicationBaseUrl { get; set; }
+    /// <summary>
+    /// This returns a properly formatted Uri object of the <see cref="ApplicationBaseUrl"/>
+    /// </summary>
     public Uri GetApplicationBaseUrlAsUri
     {
         get
@@ -18,18 +28,29 @@ public class BaseAppSettings
             return new Uri(ApplicationBaseUrl);
         }
     }
-    public int MaxUsers { get; set; }
-    public required string Secret { get; set; }
-    public required string Password { get; set; }
-
     /// <summary>
     /// Configures if OpenAPI and Scalar are enabled.
     /// </summary>
     public bool EnableApiDiscovery { get; set; } = true;
+
+    /// <summary>
+    /// Configures if the application should perform an Entity Framework migration automatically on start.
+    /// </summary>
+    public bool EnableAutomaticMigrations { get; set; } = true;
+
+
+    public int MaxUsers { get; set; }
+    public required string Secret { get; set; }
+    public required string Password { get; set; }
+
+
 }
 
 public class ConnectionStrings
 {
+    /// <summary>
+    /// This is the connection string used for the database.
+    /// </summary>
     public required string DefaultConnection { get; set; }
 }
 

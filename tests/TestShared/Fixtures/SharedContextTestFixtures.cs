@@ -7,7 +7,7 @@ namespace TestShared.Fixtures;
 [Parallelizable(ParallelScope.Fixtures)]
 public abstract class SharedContextTestFixture : BaseTestFixture
 {
-    private static bool FirstInitializationFlag = true;
+    private static bool s_isInitialized = false;
 
     /// <summary>
     /// <inheritdoc />
@@ -16,9 +16,9 @@ public abstract class SharedContextTestFixture : BaseTestFixture
     /// <returns></returns>
     public override Task RunBeforeAnyTestsAsync()
     {
-        if (FirstInitializationFlag)
+        if (!s_isInitialized)
         {
-            FirstInitializationFlag = false;
+            s_isInitialized = false;
 
             return TestingContext.SetupTestContextAsync(TestingConstants.TestingEnvironmentName);
         }

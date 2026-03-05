@@ -12,9 +12,10 @@ namespace Kernel.Infrastructure.Interceptors;
 /// </summary>
 public class AuditableEntityInterceptor(
     //IUser user,
-    //TODO: Explain why we're using TimeProvider
     TimeProvider dateTime) : SaveChangesInterceptor
 {
+
+    //TODO: Write tests for these, because we're using TimeProvider, we can actually test these around time.
     private readonly TimeProvider _dateTime = dateTime;
 
     public override InterceptionResult<int> SavingChanges(DbContextEventData eventData, InterceptionResult<int> result)

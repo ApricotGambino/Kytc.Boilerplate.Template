@@ -1,7 +1,6 @@
 ﻿// MinimalApiConfigurations.cs is part of the Boilerplate kernel, modify at your own risk.
 // You can get updates from the BP repository. : warning
 
-using System.Reflection;
 using Kernel.Api.Configurations.MinimalApiConfigurations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
@@ -22,8 +21,6 @@ public static class MinimalApiConfigurations
 
         return app
             .MapGroup($"/api/{groupName}");
-        //.WithGroupName(groupName);
-        //.WithTags(groupName); TODO: This is for swagger, test this.
     }
 
 
@@ -40,10 +37,10 @@ public static class MinimalApiConfigurations
     {
         var endpointGroupType = typeof(BaseEndpointGroup);
 
-        var assembly = Assembly.GetExecutingAssembly();
+        var assemblies = AppDomain.CurrentDomain.GetAssemblies();
 
-        var endpointGroupTypes = assembly.GetExportedTypes()
-            .Where(t => t.IsSubclassOf(endpointGroupType));
+        var endpointGroupTypes = assemblies.SelectMany(s => s.GetExportedTypes()
+            .Where(t => t.IsSubclassOf(endpointGroupType)));
 
         foreach (var type in endpointGroupTypes)
         {
