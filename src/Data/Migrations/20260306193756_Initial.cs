@@ -17,11 +17,12 @@ namespace Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    AString = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    AString = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AStringWithNumbers = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ANumber = table.Column<int>(type: "int", nullable: false),
                     ABool = table.Column<bool>(type: "bit", nullable: false),
                     ADateTimeOffset = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    AFutureDate = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     CreatedDateTimeOffset = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
                     UpdatedDateTimeOffset = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
                     CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),

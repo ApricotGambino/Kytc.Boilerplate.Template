@@ -19,7 +19,7 @@ try
 
     builder.AddApiServices(appSettingsFromFile);
 
-    //NOTE: This shows endpoint binding errors.
+    //NOTE: This shows endpoint binding errors. This can be removed.
     builder.Services.Configure<RouteHandlerOptions>(o => o.ThrowOnBadRequest = true);
 
     //NOTE: This is the point at which we've configured services, and after things are built, we'll be able to use those services.

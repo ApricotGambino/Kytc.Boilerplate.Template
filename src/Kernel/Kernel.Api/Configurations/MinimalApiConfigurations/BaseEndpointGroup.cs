@@ -11,3 +11,6 @@ public abstract class BaseEndpointGroup
     public virtual string? GroupName { get; }
     public abstract void Map(RouteGroupBuilder groupBuilder);
 }
+
+
+

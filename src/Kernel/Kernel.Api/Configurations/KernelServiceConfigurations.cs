@@ -3,6 +3,7 @@
 
 
 using System.Globalization;
+using FluentValidation;
 using Kernel.Infrastructure.Interceptors;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore.Diagnostics;
@@ -26,6 +27,13 @@ internal static class KernelServiceConfigurations
         builder.Services.AddSingleton<TimeProvider>(TimeProvider.System);
         builder.Services.AddScoped<ISaveChangesInterceptor, AuditableEntityInterceptor>();
 
+
+        //TODO: Test to see if this is needed.
+        builder.Services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
+
+        ////TODO: Test this.
+        //builder.Services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
+        //builder.Services.AddValidation();
 
         if (appSettings.EnableApiDiscovery)
         {

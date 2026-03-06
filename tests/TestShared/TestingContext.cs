@@ -63,6 +63,10 @@ public static class TestingContext
                     throw new InvalidOperationException($"While setting up the testing context, the database {databaseConnection.Database} was set to be deleted instead of an exepected Testing database. You're welcome for the catch.");
                 }
 
+
+                //NOTE: EnsureCreated is mutually exclusive with context.Database.Migrate() EnsureCreated does not use migrations
+                //to create the database and therefore the database that is created cannot be later updated using migrations.
+                //We're using this instead of migrations because for testing, the database is ALWAYS meant to be destroyed and rebuilt for testing.
                 await context.Database.EnsureDeletedAsync();
                 await context.Database.EnsureCreatedAsync();
             }

@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260304191902_Initial")]
+    [Migration("20260306193756_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -39,11 +39,13 @@ namespace Data.Migrations
                     b.Property<DateTimeOffset>("ADateTimeOffset")
                         .HasColumnType("datetimeoffset");
 
+                    b.Property<DateTimeOffset?>("AFutureDate")
+                        .HasColumnType("datetimeoffset");
+
                     b.Property<int>("ANumber")
                         .HasColumnType("int");
 
                     b.Property<string>("AString")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AStringWithNumbers")

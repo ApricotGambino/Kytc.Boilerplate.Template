@@ -4,6 +4,7 @@
 using Kernel.Api.Configurations.MinimalApiConfigurations;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace Kernel.Api.Configurations.MinimalApiConfigurations;
 
@@ -33,7 +34,7 @@ public static class MinimalApiConfigurations
     /// </remarks>
     /// <param name="app"></param>
     /// <returns></returns>
-    public static WebApplication MapEndpoints(this WebApplication app)
+    public static WebApplication MapEndpoints(this WebApplication app, IServiceProvider serviceProvider)
     {
         var endpointGroupType = typeof(BaseEndpointGroup);
 
@@ -44,7 +45,11 @@ public static class MinimalApiConfigurations
 
         foreach (var type in endpointGroupTypes)
         {
-            if (Activator.CreateInstance(type) is BaseEndpointGroup instance)
+            //var test = ActivatorUtilities.CreateInstance(serviceProvider, type);
+
+
+            //if (Activator.CreateInstance(type) is BaseEndpointGroup instance)
+            if (ActivatorUtilities.CreateInstance(serviceProvider, type) is BaseEndpointGroup instance)
             {
                 instance.Map(app.MapGroup(instance));
             }

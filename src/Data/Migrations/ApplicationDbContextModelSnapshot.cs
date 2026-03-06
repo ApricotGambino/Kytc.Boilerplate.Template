@@ -36,11 +36,13 @@ namespace Data.Migrations
                     b.Property<DateTimeOffset>("ADateTimeOffset")
                         .HasColumnType("datetimeoffset");
 
+                    b.Property<DateTimeOffset?>("AFutureDate")
+                        .HasColumnType("datetimeoffset");
+
                     b.Property<int>("ANumber")
                         .HasColumnType("int");
 
                     b.Property<string>("AString")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AStringWithNumbers")

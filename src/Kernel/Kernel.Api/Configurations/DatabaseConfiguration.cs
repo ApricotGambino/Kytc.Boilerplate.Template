@@ -80,16 +80,28 @@ public static class DatabaseConfiguration
 
 
 
+        //To drop the database: dotnet ef database drop -f --verbose --project src/Data/Data.csproj --startup-project src/Api/Api.csproj
+        //To remove the last migration: dotnet ef migrations remove --verbose --project src/Data/Data.csproj --startup-project src/Api/Api.csproj
 
         //Add: dotnet ef --verbose --project src/Data/Data.csproj --startup-project src/Api/Api.csproj migrations add Initial -- --environment Local
         //Update: dotnet ef --verbose --project src/Data/Data.csproj --startup-project src/Api/Api.csproj database update -- --environment Local
 
+        //To drop the database, and reset all migrations back to an initial:
+        /* 
+        dotnet ef database drop -f --verbose --project src/Data/Data.csproj --startup-project src/Api/Api.csproj
+        dotnet ef migrations remove --verbose --project src/Data/Data.csproj --startup-project src/Api/Api.csproj
+        dotnet ef --verbose --project src/Data/Data.csproj --startup-project src/Api/Api.csproj migrations add Initial -- --environment Local
+        dotnet ef --verbose --project src/Data/Data.csproj --startup-project src/Api/Api.csproj database update -- --environment Local
+        */
+
         //TODO: Document and unit test this.
         var context = services.GetRequiredService<TDatabaseContext>();
 
-        if (!context.Database.GetMigrations().Any())
+        var migrations = context.Database.GetMigrations();
+
+        if (!migrations.Any())
         {
-            //TODO: Update this message.
+            //TODO: Update this message
             throw new Exception("No migrations found, add an initial migration using 'Add-Migration Initial -Context ApplicationDbContext'.  " +
                 "If using Visual Studio, set the Web project as the startup one, and in the package manager console, select the DataAccess project in the 'default projects' section.");
         }
