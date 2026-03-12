@@ -13,8 +13,7 @@ namespace Kernel.Data.Entities;
 //Also, you can read more about EF relationships here:
 //https://learn.microsoft.com/en-us/ef/core/modeling/relationships
 
-
-public interface IPrimaryKey<TId>
+public interface IPrimaryKey<out TId>
 {
     /// <summary>
     /// The Primary Key (PK) of the entity.
@@ -23,7 +22,7 @@ public interface IPrimaryKey<TId>
     /// Entity Framework will assign a value based on the PK generation strategy of the underlying database provider. is
     /// a great candidate to filter or order on cronologically.
     /// </remarks>
-    public TId Id { get; set; }
+    public TId Id { get; }
 }
 
 public interface IBaseEntityAuditProperties
@@ -86,3 +85,12 @@ public abstract class BaseEntity<TId> : IPrimaryKey<TId>, IBaseEntityAuditProper
 }
 
 
+/// <summary>
+/// This is an attribute that decorates the interface that represents the entity's properties. This is used in source
+/// code generation, and validation.
+/// </summary>
+[AttributeUsage(AttributeTargets.Interface)]
+public class EntityFieldsAttribute : Attribute
+{
+
+}

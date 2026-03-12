@@ -45,13 +45,11 @@ public static class MinimalApiConfigurations
 
         foreach (var type in endpointGroupTypes)
         {
-            //var test = ActivatorUtilities.CreateInstance(serviceProvider, type);
-
-
-            //if (Activator.CreateInstance(type) is BaseEndpointGroup instance)
+            //This will create an instance of the endpoint group and by providing the serviceProvider, will handle the dependency injection for us.
             if (ActivatorUtilities.CreateInstance(serviceProvider, type) is BaseEndpointGroup instance)
             {
                 instance.Map(app.MapGroup(instance));
+                //groupBuilder.RequireAuthorization();
             }
         }
 

@@ -10,13 +10,15 @@ namespace Data.Entities.Example;
 //Unless you're certain of what you're doing, you shouldn't modify or add anything to the Kernel section of the source code.
 //Which is why following this ExampleEntity is going to represent what you need to do for your application.
 
-public class ExampleEntity : BaseEntity
+//NOTE: Don't use DataAnnotations (The baked in .net validation solution)
+//They seem easy to use, because they are, but they don't work (or at least without some SEVERE changes that require
+//pramga statements to silence 'internal usage' errors at the time of writing.
+//They work out of the box if you're using them to validate on savechanges(), but not for MinimalApi
+//validations, even though Microsoft says they should work, they just don't.  Don't use them, use FluentValidation
+
+[EntityFields]
+public interface IExampleEntityFields
 {
-    //NOTE: Don't use DataAnnotations (The baked in .net validation solution)
-    //They seem easy to use, because they are, but they don't work (or at least without some SEVERE changes that require
-    //pramga statements to silence 'internal usage' errors at the time of writing.
-    //They work out of the box if you're using them to validate on savechanges(), but not for MinimalApi
-    //validations, even though Microsoft says they should work, they just don't.  Don't use them, use FluentValidation
     /// <summary>
     /// This is just a string, it can be null, or string.Empty, this will make DB column of (nvarchar(max), null)
     /// </summary>
@@ -25,7 +27,7 @@ public class ExampleEntity : BaseEntity
     /// This is a string that we assume to have numbers. because it is denoted as <see cref="required"/>, it will
     /// create a DB column of (nvarchar(max, not null)
     /// </summary>
-    public required string AStringWithNumbers { get; set; }
+    public string AStringWithNumbers { get; set; }
     public int ANumber { get; set; }
     public bool ABool { get; set; }
     public DateTimeOffset ADateTimeOffset { get; set; }
@@ -36,7 +38,17 @@ public class ExampleEntity : BaseEntity
     public DateTimeOffset? AFutureDate { get; set; }
 }
 
-public class ExampleEntityValidator : AbstractValidator<ExampleEntity>
+public class ExampleEntity : BaseEntity, IExampleEntityFields
+{
+    public string? AString { get; set; }
+    public required string AStringWithNumbers { get; set; }
+    public int ANumber { get; set; }
+    public bool ABool { get; set; }
+    public DateTimeOffset ADateTimeOffset { get; set; }
+    public DateTimeOffset? AFutureDate { get; set; }
+}
+
+public class ExampleEntityValidator : AbstractValidator<IExampleEntityFields>
 {
     public ExampleEntityValidator()
     {

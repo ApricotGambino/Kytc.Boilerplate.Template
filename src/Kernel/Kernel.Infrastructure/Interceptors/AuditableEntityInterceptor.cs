@@ -65,8 +65,7 @@ public class AuditableEntityInterceptor(
     }
 
     /// <summary>
-    /// Creates an instance of the fluentvalidation validator if found for the given entity, and if the entity is not
-    /// valid based on the rules, will throw a <see cref="FluentValidation.ValidationException"/> .
+    /// Will attempt to validate using <see cref="TryValidateWithFluentValidation"/> and throw any errors found.
     /// </summary>
     /// <remarks>
     /// This method is not a replacement for model validation for incoming API requests, this is a last chance moment to
@@ -77,39 +76,9 @@ public class AuditableEntityInterceptor(
     /// <exception cref="InvalidOperationException"></exception>
     private static void ValidateWithFluentValidation(BaseEntity entity)
     {
-        ArgumentNullException.ThrowIfNull(entity);
-
-        var abstractValidatorType = typeof(AbstractValidator<>);
-
-        var entityType = entity.GetType();
-
-        var genericAbstractValidatorType = abstractValidatorType.MakeGenericType(entityType);
-
-        var assemblies = AppDomain.CurrentDomain.GetAssemblies();
-
-        var validatorType = assemblies.SelectMany(s => s.GetTypes().Where(t => t.IsSubclassOf(genericAbstractValidatorType))).FirstOrDefault();
-
-        if (validatorType != null)
+        if (!Data.Helpers.ValidationHelper.TryValidateWithFluentValidation(entity, out var validationResult))
         {
-            //There may or may not be a fluentvalidation configuration for the entity we're working with.
-
-            var validatorInstance = Activator.CreateInstance(validatorType) as IValidator;
-
-            if (validatorInstance != null)
-            {
-                var validationContext = new ValidationContext<object>(entity);
-                var results = validatorInstance.Validate(validationContext);
-                if (!results.IsValid)
-                {
-                    throw new FluentValidation.ValidationException(results.Errors);
-                }
-            }
-            else
-            {
-                //NOTE: I'm not sure what exactly would or could cause this, but if this happens, we probably need to stop
-                //any inserts because at very least, our validation won't work.
-                throw new InvalidOperationException($"Tried to create an instance of {validatorType.Name}, but could not.");
-            }
+            throw new FluentValidation.ValidationException(validationResult!.Errors);
         }
     }
 

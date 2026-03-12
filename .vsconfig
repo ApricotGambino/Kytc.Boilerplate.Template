@@ -29,6 +29,9 @@
         //Gives the console output some color to make it obvious what went right or wrong
         "https://marketplace.visualstudio.com/items?itemName=NikolayBalakin.Outputenhancer",
         //This lets you open from command line from the right-click menu, and makes running .bat files easier.
-        "https://marketplace.visualstudio.com/items?itemName=MadsKristensen.OpenCommandLine64"
+        "https://marketplace.visualstudio.com/items?itemName=MadsKristensen.OpenCommandLine64",
+        //This is the extension to work with the Sonar analyzer nuget package installed.
+        //NOTE: Once this quits being free (Which I think WILL happen) we're dropping it.
+        "https://marketplace.visualstudio.com/items?itemName=SonarSource.SonarLintforVisualStudio2022"
     ]
 }

@@ -19,7 +19,7 @@ public interface IExampleService
 {
     public Task<List<ExampleEntity>> GetMostRecentExampleEntitiesUsingContextAsync();
     public Task<List<ExampleEntity>> GetMostRecentExampleEntitiesUsingReadOnlyRepoAsync();
-    public Task<ExampleEntity> GetExampleEntitiesByIdAsync(int id);
+    public Task<ExampleEntity> GetExampleEntityByIdAsync(int id);
     public Task<ExampleEntity> AddExampleEntityAsync(ExampleEntity exampleEntityToAdd);
 }
 
@@ -45,7 +45,7 @@ public class ExampleService(ApplicationDbContext context) : IExampleService
         return exampleEntityToAdd;
     }
 
-    public Task<ExampleEntity> GetExampleEntitiesByIdAsync(int id)
+    public Task<ExampleEntity> GetExampleEntityByIdAsync(int id)
     {
         var repo = new ReadOnlyEntityRepo<ExampleEntity, ApplicationDbContext>(_context);
         return repo.GetSingleEntityByIdAsync(id);
