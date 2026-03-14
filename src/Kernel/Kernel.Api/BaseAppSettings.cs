@@ -38,6 +38,14 @@ public class BaseAppSettings
     /// </summary>
     public bool EnableAutomaticMigrations { get; set; } = true;
 
+    /// <summary>
+    /// Configures if exception stack traces should be surfaced through the API exception handler.
+    /// </summary>
+    /// <remarks>
+    /// NOTE: Only enable this in production if you're troubleshooting, otherwise this can expose information
+    /// </remarks>
+    public bool EnableDetailedExceptionMessages { get; set; } = false;
+
 
     public int MaxUsers { get; set; }
     public required string Secret { get; set; }

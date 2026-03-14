@@ -19,6 +19,12 @@ public static class AppSettingConfigurations
         where TAppSettings : BaseAppSettings
     {
         builder.AddAppSettingsJsonFile();
+
+        //NOTE: We need to register the BaseAppSettings for services in the Kernel that need those values.
+        builder.AddAppSettingsClassBinding<BaseAppSettings>();
+
+        //NOTE: Here we bind the generic AppSetting that is used in your application, kernel services
+        //are not aware of any changes here, which is why we have to bind both this and the baseappsettings.
         builder.AddAppSettingsClassBinding<TAppSettings>();
         return builder;
     }

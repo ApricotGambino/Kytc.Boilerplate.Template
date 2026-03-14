@@ -3,6 +3,7 @@ namespace Application.Features.ExampleFeature.Services;
 using System.Collections.Generic;
 using Data.Entities.Example;
 using Data.EntityFramework;
+using Kernel.Infrastructure.Extensions.Pagination;
 using Kernel.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,6 +22,7 @@ public interface IExampleService
     public Task<List<ExampleEntity>> GetMostRecentExampleEntitiesUsingReadOnlyRepoAsync();
     public Task<ExampleEntity> GetExampleEntityByIdAsync(int id);
     public Task<ExampleEntity> AddExampleEntityAsync(ExampleEntity exampleEntityToAdd);
+    public Task<PagedResults<ExampleEntity>> GetMostRecentExampleEntitiesPaginatedAsync(int pageNumber, int pageSize);
 }
 
 public class ExampleService(ApplicationDbContext context) : IExampleService
@@ -36,6 +38,13 @@ public class ExampleService(ApplicationDbContext context) : IExampleService
     {
         var repo = new ReadOnlyEntityRepo<ExampleEntity, ApplicationDbContext>(_context);
         return repo.GetEntityQueryable().OrderByDescending(o => o.Id).ToListAsync();
+    }
+
+    public async Task<PagedResults<ExampleEntity>> GetMostRecentExampleEntitiesPaginatedAsync(int pageNumber, int pageSize)
+    {
+        var repo = new ReadOnlyEntityRepo<ExampleEntity, ApplicationDbContext>(_context);
+        var entities = await repo.GetPaginatedEntityOrderedByIdNewestFirstAsync(pageNumber, pageSize);
+        return entities;
     }
 
     public async Task<ExampleEntity> AddExampleEntityAsync(ExampleEntity exampleEntityToAdd)

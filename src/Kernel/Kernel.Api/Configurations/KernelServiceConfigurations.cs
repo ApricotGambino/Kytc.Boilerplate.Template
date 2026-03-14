@@ -4,6 +4,7 @@
 
 using System.Globalization;
 using FluentValidation;
+using Kernel.Api.Configurations.MinimalApiConfigurations.Exceptions;
 using Kernel.Infrastructure.Interceptors;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore.Diagnostics;
@@ -30,6 +31,10 @@ internal static class KernelServiceConfigurations
 
         //TODO: Test to see if this is needed.
         builder.Services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
+
+        //TODO: Test this. Probably won't use 'AddProblemDetails'
+        builder.Services.AddExceptionHandler<ExceptionHandler>();
+        //builder.Services.AddProblemDetails();
 
         ////TODO: Test this.
         //builder.Services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());

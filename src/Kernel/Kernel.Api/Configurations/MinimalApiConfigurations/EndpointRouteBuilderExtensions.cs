@@ -11,6 +11,7 @@ using Scalar.AspNetCore;
 
 namespace Kernel.Api.Configurations.MinimalApiConfigurations;
 
+
 public static class EndpointRouteBuilderExtensions
 {
     public static RouteHandlerBuilder MapGet(this IEndpointRouteBuilder builder, Delegate handler, [StringSyntax("Route")] string pattern = "")

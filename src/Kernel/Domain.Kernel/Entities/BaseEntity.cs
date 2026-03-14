@@ -30,14 +30,14 @@ public interface IBaseEntityAuditProperties
     /// <summary>
     /// An audit value that represents the creation date of the record.
     /// </summary>
-    /// <remarks><see cref="DateTimeOffset"/> is used to help avoid timezone issues</remarks>
     /// <remarks>
-    /// Do not use or rely on this property for anything other than the date this record was created.
+    /// <para> Do not use or rely on this property for anything other than the date this record was created. </para>
+    ///
+    /// <para><see cref="DateTimeOffset"/> is used to help avoid timezone issues</para>
     /// </remarks>
     DateTimeOffset CreatedDateTimeOffset { get; set; }
     /// <summary>
-    /// An audit value that represents the date this record was updated. if the value is null the record has never been
-    /// updated.
+    /// An audit value that represents the date this record was updated. if the value is null the record has never been updated.
     /// </summary>
     /// <remarks><see cref="DateTimeOffset"/> is used to help avoid timezone issues</remarks>
     DateTimeOffset? UpdatedDateTimeOffset { get; set; }

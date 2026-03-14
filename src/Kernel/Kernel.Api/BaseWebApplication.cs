@@ -20,6 +20,13 @@ public static class BaseWebApplication
     {
         app.AddDbContextStartupActions<TDatabaseContext>(baseAppSettings, serviceProvider);
 
+        //TODO: Test this
+        app.UseExceptionHandler(options => { });
+
+        //TODO: Test these two (Probably won't use these.
+        //app.UseExceptionHandler();
+        //app.UseStatusCodePages();
+
         //We always assume our applications to be hosted under HTTPS.
         //We can prove this works by taking the configured launchsettings.json applicationUrls: https://localhost:7236;http://localhost:5031
         //Attempting to access http://localhost:5031 will result in being immediately redirected to https://localhost:7236
