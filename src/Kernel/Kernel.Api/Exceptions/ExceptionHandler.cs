@@ -1,17 +1,15 @@
 ﻿// ExceptionHandler.cs is part of the Boilerplate kernel, modify at your own risk.
 // You can get updates from the BP repository. : warning
 
-//using Microsoft.AspNetCore.Diagnostics;
-//using Microsoft.AspNetCore.Http;
-//using Microsoft.AspNetCore.Mvc;
-
 using System.Net;
 using Kernel.Api.Configurations.MinimalApiConfigurations.ApiResponses;
+using Kernel.Api.Exceptions.ExceptionTypes;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 
-namespace Kernel.Api.Configurations.MinimalApiConfigurations.Exceptions;
+
+namespace Kernel.Api.Exceptions;
 
 //TODO: Document this.
 public class ExceptionHandler : IExceptionHandler
@@ -29,7 +27,8 @@ public class ExceptionHandler : IExceptionHandler
         _exceptionHandlers = new()
         {
             {typeof(BadHttpRequestException), HandleBadHttpRequestExceptionAsync },
-            {typeof(ApiPresentedException), HandleApiPresentedExceptionAsync }
+            {typeof(ApiPresentedException), HandleApiPresentedExceptionAsync },
+            {typeof(ValidationException), HandleValidationExceptionAsync }
 
             //{ typeof(ValidationException), HandleValidationExceptionAsync },
             //{ typeof(NotFoundException), HandleNotFoundExceptionAsync },
@@ -44,7 +43,6 @@ public class ExceptionHandler : IExceptionHandler
     public async ValueTask<bool> TryHandleAsync(HttpContext httpContext, Exception exception, CancellationToken cancellationToken)
     {
         var exceptionType = exception.GetType();
-        //BadHttpRequestException
 
         if (_exceptionHandlers.ContainsKey(exceptionType))
         {
@@ -61,7 +59,7 @@ public class ExceptionHandler : IExceptionHandler
     private static Task HandleBadHttpRequestExceptionAsync(HttpContext httpContext, Exception ex)
     {
         var exception = (BadHttpRequestException)ex;
-        var error = new ApiError(title: "Invalid request format", message: exception.Message, traceIdentifier: httpContext.TraceIdentifier, HttpStatusCode.BadRequest);
+        var error = new ApiError(title: "Invalid request format", message: exception.GetBaseException().Message, traceIdentifier: httpContext.TraceIdentifier, HttpStatusCode.BadRequest);
         return httpContext.Response.WriteAsJsonAsync(ApiResponse.Failure(error));
     }
 
@@ -77,11 +75,19 @@ public class ExceptionHandler : IExceptionHandler
     private static Task HandleApiPresentedExceptionAsync(HttpContext httpContext, Exception ex)
     {
         //_logger.Log();
-        var errorTitle = "An expected error has occurred";
-        var errorMessage = $"{ex.Message}";
-        var error = new ApiError(title: errorTitle, message: errorMessage, traceIdentifier: httpContext.TraceIdentifier, HttpStatusCode.OK);
+        var exception = (ApiPresentedException)ex;
+        var errorTitle = "An expected error has occurred.";
+        var error = new ApiError(title: errorTitle, message: exception.Message, traceIdentifier: httpContext.TraceIdentifier, HttpStatusCode.OK);
         return httpContext.Response.WriteAsJsonAsync(ApiResponse.Failure(error));
     }
+    private static Task HandleValidationExceptionAsync(HttpContext httpContext, Exception ex)
+    {
+        var exception = (ValidationException)ex;
+        var errorTitle = "One or more validation failures have occurred.";
+        var error = new ApiError(title: errorTitle, messages: exception.ValidationErrors, traceIdentifier: httpContext.TraceIdentifier, HttpStatusCode.OK);
+        return httpContext.Response.WriteAsJsonAsync(ApiResponse.ValidationFailure(error));
+    }
+
 
 
 

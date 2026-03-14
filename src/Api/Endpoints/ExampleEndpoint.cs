@@ -1,9 +1,10 @@
-﻿using Application.Features.ExampleFeature.Services;
+﻿using System.Diagnostics;
+using Application.Features.ExampleFeature.Services;
 using Data.Entities.Example;
 using FluentValidation;
 using Kernel.Api.Configurations.MinimalApiConfigurations;
 using Kernel.Api.Configurations.MinimalApiConfigurations.ApiResponses;
-using Kernel.Api.Configurations.MinimalApiConfigurations.Exceptions;
+using Kernel.Api.Exceptions.ExceptionTypes;
 using Kernel.Data.Entities;
 using Kernel.Infrastructure.Extensions.Pagination;
 using Microsoft.AspNetCore.Http.HttpResults;
@@ -28,6 +29,8 @@ namespace Api.Endpoints
 
             groupBuilder.MapGet(ThrowExpectedExceptionAsync);
             groupBuilder.MapGet(ThrowUnexpectedExceptionAsync);
+            groupBuilder.MapGet(ReturnApiErrorAsync);
+
 
 
             groupBuilder.MapPost(AddExampleEntityAsync);
@@ -127,6 +130,19 @@ namespace Api.Endpoints
         public static async Task<Ok<ExampleEntityGeneratedDto>> ThrowExpectedExceptionAsync()
         {
             throw new ApiPresentedException("Something went wrong that wasn't quite validation, and also not quite an internal error like a NullReferenceException, but we did stop the execution, and wanted this message to surface back to the API.");
+        }
+
+        public static async Task<Ok<ApiResponse>> ReturnApiErrorAsync()
+        {
+            var apiMessages = new Dictionary<string, string[]>();
+
+            apiMessages.Add("This is some error topic", ["This is more information about the topic", "And look!  We can even have more."]);
+            apiMessages.Add("This is another error topic, not the same as the other.", ["but this one only only has one item"]);
+            apiMessages.Add("and finally", ["look at the source, and notice how this string is formatted automatically on response"]);
+
+            var apiError = new ApiError("This is an example of returning a failure manually.", apiMessages, Activity.Current?.Id ?? string.Empty, System.Net.HttpStatusCode.Unused);
+
+            return TypedResults.Ok(ApiResponse.Failure(apiError));
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Major Code Smell", "S112:General or reserved exceptions should never be thrown", Justification = "<Pending>")]

@@ -1,4 +1,3 @@
-
 using Kernel.Api;
 
 namespace Api;

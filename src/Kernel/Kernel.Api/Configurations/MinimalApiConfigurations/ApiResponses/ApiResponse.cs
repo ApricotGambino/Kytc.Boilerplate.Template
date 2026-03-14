@@ -31,6 +31,8 @@ public class ApiResponse
     public static ApiResponse<T> Success<T>(T data) => new(true, ApiError.None, data);
     public static ApiResponse Failure(ApiError error) => new(false, error);
     public static ApiResponse<T> Failure<T>(ApiError error) => new(false, error, default);
+    public static ApiResponse ValidationFailure(ApiError error) => new(false, error);
+
 
     public static Ok<ApiResponse<T>> Ok<T>(T data)
     {

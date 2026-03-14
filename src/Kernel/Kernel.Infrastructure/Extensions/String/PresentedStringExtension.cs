@@ -15,6 +15,7 @@ namespace Kernel.Infrastructure.Extensions.String
 
             return inputString.TrimAndReduce().FirstLetterToUpperCase().AppendPeriodToEndIfMissing();
         }
+
         public static string TrimAndReduce(this string inputString)
         {
             if (string.IsNullOrEmpty(inputString))
@@ -48,6 +49,17 @@ namespace Kernel.Infrastructure.Extensions.String
 
             if (!inputString.EndsWith('.'))
                 return inputString + ".";
+
+            return inputString;
+        }
+
+        public static string RemoveAllPeriodsFromEndIfFound(this string inputString)
+        {
+            if (string.IsNullOrEmpty(inputString))
+                return string.Empty;
+
+            if (inputString.EndsWith('.'))
+                return inputString.TrimEnd('.');
 
             return inputString;
         }

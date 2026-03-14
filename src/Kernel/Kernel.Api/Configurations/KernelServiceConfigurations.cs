@@ -4,7 +4,7 @@
 
 using System.Globalization;
 using FluentValidation;
-using Kernel.Api.Configurations.MinimalApiConfigurations.Exceptions;
+using Kernel.Api.Exceptions;
 using Kernel.Infrastructure.Interceptors;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore.Diagnostics;
