@@ -1,10 +1,11 @@
 // PaginationExtensions.cs is part of the Boilerplate kernel, modify at your own risk.
 // You can get updates from the BP repository. : warning
 
+using Kernel.Data.Mapping;
 using Microsoft.EntityFrameworkCore;
 
 namespace Kernel.Infrastructure.Extensions.Pagination;
-
+//TODO: Document this.
 public static class PaginationExtensions
 {
 
@@ -103,8 +104,3 @@ public static class GenericCollectionExtensions
 }
 
 
-//TODO: Put this somewhere it should go.
-public interface IMap<in TFrom, out TTo>
-{
-    static abstract TTo MapFrom(TFrom entity);
-}

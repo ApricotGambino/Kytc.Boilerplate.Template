@@ -16,7 +16,9 @@ namespace Data.Entities.Example;
 //They work out of the box if you're using them to validate on savechanges(), but not for MinimalApi
 //validations, even though Microsoft says they should work, they just don't.  Don't use them, use FluentValidation
 
-[EntityFields]
+//TODO: Show all the different types of analyzer errors that can happen.
+
+[DomainEntityFields]
 public interface IExampleEntityFields
 {
     /// <summary>
@@ -38,6 +40,7 @@ public interface IExampleEntityFields
     public DateTimeOffset? AFutureDate { get; set; }
 }
 
+[DomainEntity]
 public class ExampleEntity : BaseEntity, IExampleEntityFields
 {
     public string? AString { get; set; }
@@ -63,10 +66,23 @@ public class ExampleEntityValidator : AbstractValidator<IExampleEntityFields>
     }
 }
 
-[GenerateCRUD]
-public class Test
-{
-    public Guid Id { get; set; }
-    public string Name { get; set; }
-}
+//[DomainEntity]
+//public class TestThing : BaseEntity, ITestThingFields
+//{
+//    public string? Name { get; set; }
+//}
+
+//[DomainEntityFields]
+//public interface ITestThingFields
+//{
+//    /// <summary>
+//    /// Hi
+//    /// </summary>
+//    public string? Name { get; set; }
+//}
+
+//public class Thing
+//{
+//    public TestService
+//}
 

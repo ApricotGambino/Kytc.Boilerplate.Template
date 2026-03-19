@@ -31,9 +31,9 @@ namespace Kernel.Data.Helpers
             var objectType = objectToValidate.GetType();
             var assemblies = AppDomain.CurrentDomain.GetAssemblies();
 
-            //First, try to get a validator by the object being presented, then look for a validator by the EntityFieldsAttribute interface.
+            //First, try to get a validator by the object being presented, then look for a validator by the DomainEntityFieldsAttribute interface.
             if (TryGetValidatorByObject(objectType, assemblies, abstractValidatorType, out validatorType)
-                || TryGetValidatorByEntityFieldsInterface(objectType, assemblies, abstractValidatorType, out validatorType))
+                || TryGetValidatorByDomainEntityFieldsInterface(objectType, assemblies, abstractValidatorType, out validatorType))
             {
                 if (validatorType != null && Activator.CreateInstance(validatorType) is IValidator validatorInstance)
                 {
@@ -77,17 +77,17 @@ namespace Kernel.Data.Helpers
 
         /// <summary>
         /// Will attempt to get the validator by searching the object's interfaces for an attribute of
-        /// <see cref="EntityFieldsAttribute"/>
+        /// <see cref="DomainEntityFieldsAttribute"/>
         /// </summary>
         /// <param name="objectType"></param>
         /// <param name="assemblies"></param>
         /// <param name="abstractValidatorType"></param>
         /// <param name="validator"></param>
         /// <returns></returns>
-        private static bool TryGetValidatorByEntityFieldsInterface(Type objectType, Assembly[] assemblies, Type abstractValidatorType, out Type? validator)
+        private static bool TryGetValidatorByDomainEntityFieldsInterface(Type objectType, Assembly[] assemblies, Type abstractValidatorType, out Type? validator)
         {
             validator = null;
-            var entityFieldInterface = objectType.GetInterfaces().FirstOrDefault(p => p.GetCustomAttribute<EntityFieldsAttribute>() != null);
+            var entityFieldInterface = objectType.GetInterfaces().FirstOrDefault(p => p.GetCustomAttribute<DomainEntityFieldsAttribute>() != null);
             if (entityFieldInterface != null)
             {
                 var genericAbstractValidatorType = abstractValidatorType.MakeGenericType(entityFieldInterface);

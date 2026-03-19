@@ -18,10 +18,10 @@ using Microsoft.EntityFrameworkCore;
 //TODO: Should services return entities, or DTOs?
 public interface IExampleService
 {
-    public Task<List<ExampleEntity>> GetMostRecentExampleEntitiesUsingContextAsync();
-    public Task<List<ExampleEntity>> GetMostRecentExampleEntitiesUsingReadOnlyRepoAsync();
     public Task<ExampleEntity> GetExampleEntityByIdAsync(int id);
     public Task<ExampleEntity> AddExampleEntityAsync(ExampleEntity exampleEntityToAdd);
+    public Task<PagedResults<ExampleEntity>> GetMostRecentExampleEntitiesUsingContextAsync(int pageNumber, int pageSize);
+    public Task<PagedResults<ExampleEntity>> GetMostRecentExampleEntitiesUsingReadOnlyRepoAsync(int pageNumber, int pageSize);
     public Task<PagedResults<ExampleEntity>> GetMostRecentExampleEntitiesPaginatedAsync(int pageNumber, int pageSize);
 }
 
@@ -29,22 +29,10 @@ public class ExampleService(ApplicationDbContext context) : IExampleService
 {
     private readonly ApplicationDbContext _context = context;
 
-    public Task<List<ExampleEntity>> GetMostRecentExampleEntitiesUsingContextAsync()
-    {
-        return _context.ExampleEntities.OrderByDescending(o => o.Id).ToListAsync();
-    }
-
     public Task<List<ExampleEntity>> GetMostRecentExampleEntitiesUsingReadOnlyRepoAsync()
     {
         var repo = new ReadOnlyEntityRepo<ExampleEntity, ApplicationDbContext>(_context);
         return repo.GetEntityQueryable().OrderByDescending(o => o.Id).ToListAsync();
-    }
-
-    public async Task<PagedResults<ExampleEntity>> GetMostRecentExampleEntitiesPaginatedAsync(int pageNumber, int pageSize)
-    {
-        var repo = new ReadOnlyEntityRepo<ExampleEntity, ApplicationDbContext>(_context);
-        var entities = await repo.GetPaginatedEntityOrderedByIdNewestFirstAsync(pageNumber, pageSize);
-        return entities;
     }
 
     public async Task<ExampleEntity> AddExampleEntityAsync(ExampleEntity exampleEntityToAdd)
@@ -60,4 +48,21 @@ public class ExampleService(ApplicationDbContext context) : IExampleService
         return repo.GetSingleEntityByIdAsync(id);
     }
 
+    public Task<PagedResults<ExampleEntity>> GetMostRecentExampleEntitiesUsingContextAsync(int pageNumber, int pageSize)
+    {
+        return _context.ExampleEntities.OrderByDescending(o => o.Id).ToPaginatedResultsAsync(pageNumber, pageSize);
+    }
+
+    public Task<PagedResults<ExampleEntity>> GetMostRecentExampleEntitiesUsingReadOnlyRepoAsync(int pageNumber, int pageSize)
+    {
+        var repo = new ReadOnlyEntityRepo<ExampleEntity, ApplicationDbContext>(_context);
+        return repo.GetEntityQueryable().OrderByDescending(o => o.Id).ToPaginatedResultsAsync(pageNumber, pageSize);
+    }
+
+    public async Task<PagedResults<ExampleEntity>> GetMostRecentExampleEntitiesPaginatedAsync(int pageNumber, int pageSize)
+    {
+        var repo = new ReadOnlyEntityRepo<ExampleEntity, ApplicationDbContext>(_context);
+        var entities = await repo.GetPaginatedEntityOrderedByIdNewestFirstAsync(pageNumber, pageSize);
+        return entities;
+    }
 }

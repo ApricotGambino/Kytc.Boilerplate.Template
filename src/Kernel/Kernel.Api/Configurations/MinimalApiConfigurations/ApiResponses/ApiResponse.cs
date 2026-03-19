@@ -1,6 +1,8 @@
 ﻿// ApiResponse.cs is part of the Boilerplate kernel, modify at your own risk.
 // You can get updates from the BP repository. : warning
 
+using Kernel.Data.Mapping;
+using Kernel.Infrastructure.Extensions.Pagination;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Http.HttpResults;
 
@@ -28,19 +30,33 @@ public class ApiResponse
     public ApiError Error { get; }
 
     public static ApiResponse Success() => new(true, ApiError.None);
-    public static ApiResponse<T> Success<T>(T data) => new(true, ApiError.None, data);
+    public static ApiResponse<T> Success<T>(T data) where T : IDto => new(true, ApiError.None, data);
     public static ApiResponse Failure(ApiError error) => new(false, error);
-    public static ApiResponse<T> Failure<T>(ApiError error) => new(false, error, default);
+    public static ApiResponse<T> Failure<T>(ApiError error) where T : IDto => new(false, error, default);
     public static ApiResponse ValidationFailure(ApiError error) => new(false, error);
 
+    public static Ok<ApiResponse<TDto>> Ok<TEntity, TDto>(TEntity data)
+        where TDto : IDto, IMap<TEntity, TDto>
+    {
+        var mappedEntity = TDto.MapFrom(data);
+        return TypedResults.Ok(Success(mappedEntity));
+    }
 
     public static Ok<ApiResponse<T>> Ok<T>(T data)
+        where T : IDto
     {
         return TypedResults.Ok(Success(data));
+    }
+
+    public static Ok<ApiResponse<ApiPagedResults<T>>> Ok<T>(PagedResults<T> data)
+        where T : IDto
+    {
+        return TypedResults.Ok(Success((ApiPagedResults<T>)data));
     }
 }
 
 public class ApiResponse<T> : ApiResponse
+    where T : IDto
 {
     public T? Data { get; }
 
@@ -50,3 +66,28 @@ public class ApiResponse<T> : ApiResponse
     }
 }
 
+
+public static class MapperExtensions
+{
+    public sealed class Mapper<T>
+    {
+        private readonly T _source;
+
+        public Mapper(T source)
+        {
+            _source = source;
+        }
+
+        public TTo To1<TTo>()
+        where TTo : IMap<T, TTo>
+        {
+            return TTo.MapFrom(_source);
+        }
+    }
+
+    //TODO: Rename this.
+    public static Mapper<T> Convert1<T>(this T entity)
+    {
+        return new Mapper<T>(entity);
+    }
+}

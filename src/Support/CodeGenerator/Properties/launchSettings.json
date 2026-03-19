@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Debug Code Generator on Data Project": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "..\\..\\Data\\Data.csproj"
+    }
+  }
+}

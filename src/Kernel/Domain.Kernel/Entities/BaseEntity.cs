@@ -85,12 +85,13 @@ public abstract class BaseEntity<TId> : IPrimaryKey<TId>, IBaseEntityAuditProper
 }
 
 
+//TODO: Move this where it should god.
 /// <summary>
 /// This is an attribute that decorates the interface that represents the entity's properties. This is used in source
 /// code generation, and validation.
 /// </summary>
 [AttributeUsage(AttributeTargets.Interface)]
-public class EntityFieldsAttribute : Attribute
+public class DomainEntityFieldsAttribute : Attribute
 {
 
 }

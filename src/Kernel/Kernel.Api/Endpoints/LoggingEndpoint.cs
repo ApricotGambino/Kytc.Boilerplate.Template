@@ -14,8 +14,8 @@ public class LoggingEndpoint : BaseEndpointGroup
     {
         //groupBuilder.RequireAuthorization();
 
-        groupBuilder.MapGet(GetLogs);
-        groupBuilder.MapGet(GetLogsAgain);
+        //groupBuilder.MapGet(GetLogs);
+        //groupBuilder.MapGet(GetLogsAgain);
     }
 
     public async Task<Ok<List<string>>> GetLogs()

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Debug Analyzer on Data Project": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "..\\..\\..\\Data\\Data.csproj"
+    }
+  }
+}
