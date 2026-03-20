@@ -1,12 +1,17 @@
 ﻿using Application.Features.ExampleFeature.Services;
-using Data.Entities.Example;
+using Data.Entities.ADifferentExampleSchema;
+using Data.Entities.ExampleSchema;
 using FluentValidation;
+using GeneratedDtos;
 using Kernel.Api.Configurations.MinimalApiConfigurations;
 using Kernel.Api.Configurations.MinimalApiConfigurations.ApiResponses;
 using Kernel.Data.Entities;
 using Kernel.Data.Mapping;
 using Microsoft.AspNetCore.Http.HttpResults;
 //TODO: Explain why we used 'TypedResults'
+//TODO: Explain why use records instead of classes.
+//TODO: Explain that we're adding 'required' on each property so that any DTOs that use this DTO can't accidently forget to initialize the value.
+//TODO: Explain why we have a constructor that takes itself?
 namespace Api.Endpoints
 {
     public class ExampleEndpoint : BaseEndpointGroup
@@ -18,6 +23,12 @@ namespace Api.Endpoints
         public override void Map(RouteGroupBuilder groupBuilder)
         {
             groupBuilder.MapGet(GetExampleEntityGeneratedDtoByIdAsync);
+            groupBuilder.MapGet(GetExampleEntityGeneratedFullDtoByIdAsync);
+            groupBuilder.MapGet(GetADifferentExampleEntityGeneratedDtoByExampleEntityIdAsync);
+
+            groupBuilder.MapPost(AddExampleEntityAsync);
+            groupBuilder.MapPost(AddADifferentExampleEntityAsync);
+
 
             //groupBuilder.MapGet(asdfasdfasdf);
 
@@ -38,10 +49,60 @@ namespace Api.Endpoints
         }
 
 
-        public async Task<Ok<ApiResponse<ExampleEntityGeneratedDto>>> GetExampleEntityGeneratedDtoByIdAsync(int id)
+
+        public async Task<Ok<ApiResponse<ExampleEntityResponse>>> GetExampleEntityGeneratedDtoByIdAsync(int id)
         {
             var entity = await _exampleService.GetExampleEntityByIdAsync(id);
-            return ApiResponse.Ok(ExampleEntityGeneratedDto.MapFrom(entity));
+            ExampleEntityResponse dto = ExampleEntityResponse.MapFrom(entity);
+            ExampleEntity dtoToEntityExample = ExampleEntityResponse.MapFrom(dto);
+            return ApiResponse.Ok(dto);
+        }
+
+        public async Task<Ok<ApiResponse<ADifferentExampleEntityResponse>>> GetADifferentExampleEntityGeneratedDtoByExampleEntityIdAsync(int exampleEntityId)
+        {
+            var entity = await _exampleService.GetADifferentExampleEntityByExampleEntityIdAsync(exampleEntityId);
+            ADifferentExampleEntityResponse dto = ADifferentExampleEntityResponse.MapFrom(entity);
+            ADifferentExampleEntity dtoToEntityExample = ADifferentExampleEntityResponse.MapFrom(dto);
+            return ApiResponse.Ok(dto);
+        }
+
+        public async Task<Ok<ApiResponse<ExampleEntityFullResponse>>> GetExampleEntityGeneratedFullDtoByIdAsync(int id)
+        {
+            var entity = await _exampleService.GetExampleEntityByIdAsync(id);
+            ExampleEntityFullResponse dto = ExampleEntityFullResponse.MapFrom(entity);
+            return ApiResponse.Ok(dto);
+        }
+
+        public async Task<Ok<ApiResponse<ExampleEntityResponse>>> AddExampleEntityAsync(ExampleEntityCreateRequest createRequest)
+        {
+            var entityToCreate = ExampleEntityCreateRequest.MapFrom(createRequest);
+
+            var createdEntity = await _exampleService.AddExampleEntityAsync(entityToCreate);
+
+            var createdEntityDto = ExampleEntityResponse.MapFrom(createdEntity);
+
+            return ApiResponse.Ok(createdEntityDto);
+        }
+        public async Task<Ok<ApiResponse<ADifferentExampleEntityResponse>>> AddADifferentExampleEntityAsync(ADifferentExampleEntityCreateRequest createRequest)
+        {
+            var entityToCreate = ADifferentExampleEntityCreateRequest.MapFrom(createRequest);
+
+            var createdEntity = await _exampleService.AddADifferentExampleEntityAsync(entityToCreate);
+
+            var createdEntityDto = ADifferentExampleEntityResponse.MapFrom(createdEntity);
+
+            return ApiResponse.Ok(createdEntityDto);
+        }
+
+        public async Task<Ok<ApiResponse<ExampleEntityResponse>>> UpdateExampleEntityAsync(ExampleEntityUpdateRequest updateRequest)
+        {
+            var entityToUpdate = ExampleEntityUpdateRequest.MapFrom(updateRequest);
+
+            var updatedEntity = await _exampleService.UpdateExampleEntityAsync(entityToUpdate);
+
+            var updatedEntityDto = ExampleEntityResponse.MapFrom(updatedEntity);
+
+            return ApiResponse.Ok(updatedEntityDto);
         }
 
         //public async Task<Ok<ApiResponse<ApiPagedResults<ExampleEntityGeneratedDto>>>> GetMostRecentExampleEntitiesAsync(int pageNumber, int pageSize)
@@ -101,14 +162,7 @@ namespace Api.Endpoints
         //    return ApiResponse.Ok(generatedDto);
         //}
 
-        //public async Task<Ok<ExampleEntityGeneratedDto>> AddExampleEntityAsync(ExampleEntityGeneratedCreateRequestDto createRequest)
-        //{
-        //    var entityToCreate = createRequest.MapToEntity();
 
-        //    var createdEntity = await _exampleService.AddExampleEntityAsync(entityToCreate);
-
-        //    return TypedResults.Ok(ExampleEntityGeneratedDto.MapFrom(createdEntity));
-        //}
 
         //public async Task<Ok<ExampleEntityCustomDto>> AddExampleEntityWithCustomDtoAsync(ExampleEntityCustomCreateRequestDto createRequest)
         //{
@@ -170,7 +224,7 @@ namespace Api.Endpoints
     /// <summary>
     /// This is an example of a custom made DTO.
     /// </summary>
-    public record ExampleEntityCustomDto : ExampleEntityGeneratedDto, IMap<ExampleEntity, ExampleEntityCustomDto>
+    public record ExampleEntityCustomDto : ExampleEntityResponse, IMap<ExampleEntity, ExampleEntityCustomDto>
     {
         public required string ACompletelyNewValueNotFromTheEntity { get; set; }
         public string AStringJoinedWithANumber
@@ -226,116 +280,8 @@ namespace Api.Endpoints
         }
     }
 
-    //TODO: Move this where it should go.
-    //public class Error
-    //{
-    //    public Error(string message)
-    //    {
-    //        Message = message;
-    //    }
 
-    //    public string Message { get; }
-
-    //    public static Error None => new(string.Empty);
-
-    //    public static implicit operator Error(string message) => new(message);
-
-    //    public static implicit operator string(Error error) => error.Message;
-    //}
-    //public class Result<T> : Result
-    //{
-    //    public T? Data { get; }
-
-    //    public Result(bool isSuccess, Error error, T? data) : base(isSuccess, error)
-    //    {
-    //        Data = data;
-    //    }
-    //}
-    //public class Result
-    //{
-    //    public Result(bool isSuccess, Error error)
-    //    {
-    //        IsSuccess = isSuccess;
-    //        Error = error;
-    //    }
-
-    //    public bool IsSuccess { get; }
-    //    public Error Error { get; }
-
-    //    public static Result Success() => new(true, Error.None);
-
-    //    public static Result Failure(Error error) => new(false, error);
-
-    //    public static Result<T> Success<T>(T data) => new(true, Error.None, data);
-
-    //    public static Result<T> Failure<T>(Error error) => new(false, error, default);
-
-    //    public static Ok<Result<T>> TEST<T>(T data)
-    //    {
-    //        return TypedResults.Ok(Success(data));
-    //    }
-    //}
-    //public record ApiResponse<T>
-    //    where T : new()
-    //{
-    //    public bool IsSuccess { get; set; }
-
-    //    public HttpStatusCode StatusCode { get; set; }
-
-    //    public string Message { get; set; }
-
-    //    public T? Data { get; set; }
-
-    //    public Exception? Exception { get; set; }
-
-
-    //    public ApiResponse(T data)
-    //    {
-    //        IsSuccess = true;
-    //        StatusCode = HttpStatusCode.OK;
-    //        Message = "Operation completed successfully";
-
-    //    }
-    //}
-
-
-    //TODO: Explain why use records instead of classes.
-    //TODO: Explain that we're adding 'required' on each property so that any DTOs that use this DTO can't accidently forget to initialize the value.
-    //TODO: Explain why we have a constructor that takes itself?
-    //public record ExampleEntityGeneratedDto() : IExampleEntityFields, IPrimaryKey<int>, IMap<ExampleEntity, ExampleEntityGeneratedDto>, IDto
-    //{
-    //    public required int Id { get; set; }
-    //    public required string? AString { get; set; }
-    //    public required string AStringWithNumbers { get; set; }
-    //    public required int ANumber { get; set; }
-    //    public required bool ABool { get; set; }
-    //    public required DateTimeOffset ADateTimeOffset { get; set; }
-    //    public required DateTimeOffset? AFutureDate { get; set; }
-
-    //    public static ExampleEntityGeneratedDto MapFrom(ExampleEntity entity)
-    //    {
-    //        return new ExampleEntityGeneratedDto()
-    //        {
-    //            Id = entity.Id,
-    //            AString = entity.AString,
-    //            AStringWithNumbers = entity.AStringWithNumbers,
-    //            ANumber = entity.ANumber,
-    //            ABool = entity.ABool,
-    //            ADateTimeOffset = entity.ADateTimeOffset,
-    //            AFutureDate = entity.AFutureDate,
-    //        };
-    //    }
-    //}
-    public record ExampleEntityGeneratedCreateRequestDto() : IExampleEntityFields
-    {
-        public required string? AString { get; set; }
-        public required string AStringWithNumbers { get; set; }
-        public required int ANumber { get; set; }
-        public required bool ABool { get; set; }
-        public required DateTimeOffset ADateTimeOffset { get; set; }
-        public required DateTimeOffset? AFutureDate { get; set; }
-    }
-    public record ExampleEntityGeneratedFullDto() : ExampleEntityGeneratedDto, IBaseEntityAuditProperties
+    public record ExampleEntityGeneratedFullDto() : ExampleEntityResponse, IBaseEntityAuditProperties
     {
         public DateTimeOffset CreatedDateTimeOffset { get; set; }
         public DateTimeOffset? UpdatedDateTimeOffset { get; set; }
@@ -343,56 +289,5 @@ namespace Api.Endpoints
         public Guid? UpdatedBy { get; set; }
         public bool IsSoftDeleted { get; set; }
     }
-    public static class ExampleEntityGeneratedMappingExtensions
-    {
-        //public static ExampleEntityGeneratedDto MapToDto(this ExampleEntity entity)
-        //{
-        //    return new ExampleEntityGeneratedDto()
-        //    {
-        //        Id = entity.Id,
-        //        AString = entity.AString,
-        //        AStringWithNumbers = entity.AStringWithNumbers,
-        //        ANumber = entity.ANumber,
-        //        ABool = entity.ABool,
-        //        ADateTimeOffset = entity.ADateTimeOffset,
-        //        AFutureDate = entity.AFutureDate,
-        //    };
-        //}
-
-        public static ExampleEntity MapToEntity(this ExampleEntityGeneratedDto generatedDto)
-        {
-            return new ExampleEntity()
-            {
-                Id = generatedDto.Id,
-                AString = generatedDto.AString,
-                AStringWithNumbers = generatedDto.AStringWithNumbers,
-                ANumber = generatedDto.ANumber,
-                ABool = generatedDto.ABool,
-                ADateTimeOffset = generatedDto.ADateTimeOffset,
-                AFutureDate = generatedDto.AFutureDate,
-            };
-        }
-
-        public static ExampleEntity MapToEntity(this ExampleEntityGeneratedCreateRequestDto generatedDto)
-        {
-            return new ExampleEntity()
-            {
-                AString = generatedDto.AString,
-                AStringWithNumbers = generatedDto.AStringWithNumbers,
-                ANumber = generatedDto.ANumber,
-                ABool = generatedDto.ABool,
-                ADateTimeOffset = generatedDto.ADateTimeOffset,
-                AFutureDate = generatedDto.AFutureDate,
-            };
-        }
-    }
-
-    //public class test()
-    //{
-    //    public void test1()
-    //    {
-    //        var a = ExampleEntityService
-    //    }
-    //}
 }
 

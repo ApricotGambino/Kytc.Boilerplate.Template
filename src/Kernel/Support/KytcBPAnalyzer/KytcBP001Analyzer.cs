@@ -1,4 +1,7 @@
-﻿using System.Collections.Immutable;
+﻿// KytcBP001Analyzer.cs is part of the Boilerplate kernel, modify at your own risk.
+// You can get updates from the BP repository.
+
+using System.Collections.Immutable;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;

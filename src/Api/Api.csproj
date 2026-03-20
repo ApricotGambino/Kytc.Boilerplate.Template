@@ -1,5 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
-
   <PropertyGroup>
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
@@ -14,7 +13,7 @@
   </ItemGroup>
 
 
-  <ItemGroup>
+  <!--<ItemGroup>
     <Content Remove="..\..\docs\docs\_site\.attachments\**" />
     <Content Remove="..\..\docs\docs\_site\.docfx\x-cross\**" />
     <Content Remove="..\..\docs\docs\_site\general\**" />
@@ -34,5 +33,5 @@
     <Content Remove="..\..\docs\docs\_site\toc.json" />
     <Content Remove="..\..\docs\docs\_site\web.config" />
     <Content Remove="..\..\docs\docs\_site\xrefmap.yml" />
-  </ItemGroup>
+  </ItemGroup>-->
 </Project>

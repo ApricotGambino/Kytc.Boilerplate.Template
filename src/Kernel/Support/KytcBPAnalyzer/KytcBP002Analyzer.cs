@@ -1,4 +1,7 @@
-﻿using System.Collections.Immutable;
+﻿// KytcBP002Analyzer.cs is part of the Boilerplate kernel, modify at your own risk.
+// You can get updates from the BP repository.
+
+using System.Collections.Immutable;
 using System.Linq;
 using Microsoft.CodeAnalysis;
 using Microsoft.CodeAnalysis.Diagnostics;
@@ -10,9 +13,9 @@ using Microsoft.CodeAnalysis.Diagnostics;
 namespace KytcBPAnalyzer
 {
     [DiagnosticAnalyzer(LanguageNames.CSharp)]
-    public class KytcBP003Analyzer : DiagnosticAnalyzer
+    public class KytcBP002Analyzer : DiagnosticAnalyzer
     {
-        private static readonly DiagnosticDescriptor Rule = KytcBPDiagnosticDescriptors.KYTCBP003;
+        private static readonly DiagnosticDescriptor Rule = KytcBPDiagnosticDescriptors.KYTCBP002;
 
         public override ImmutableArray<DiagnosticDescriptor> SupportedDiagnostics { get { return ImmutableArray.Create(Rule); } }
 
@@ -27,17 +30,20 @@ namespace KytcBPAnalyzer
         {
             var namedTypeSymbol = (INamedTypeSymbol)context.Symbol;
 
-            if (namedTypeSymbol.TypeKind == TypeKind.Interface
-                && namedTypeSymbol.Name.EndsWith("Fields"))
+            if (namedTypeSymbol.TypeKind == TypeKind.Class
+                && namedTypeSymbol.BaseType != null
+                && namedTypeSymbol.BaseType.Name == "BaseEntity")
             {
-                var attributes = namedTypeSymbol.GetAttributes();
-                if (attributes == null || !attributes.Any(p => p.AttributeClass.Name == "DomainEntityFieldsAttribute"))
+                var interfaces = namedTypeSymbol.Interfaces;
+                var expectedInterfaceName = $"I{namedTypeSymbol.Name}Fields";
+                if (interfaces.IsDefaultOrEmpty || !interfaces.Any(p => p.Name == expectedInterfaceName))
                 {
                     var diagnostic = Diagnostic.Create(Rule, namedTypeSymbol.Locations[0], namedTypeSymbol.Name);
 
                     context.ReportDiagnostic(diagnostic);
                 }
             }
+
         }
     }
 }

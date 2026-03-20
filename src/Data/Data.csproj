@@ -13,8 +13,4 @@
     <ProjectReference Include="..\Kernel\Domain.Kernel\Kernel.Data.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Entities\" />
-  </ItemGroup>
-
 </Project>

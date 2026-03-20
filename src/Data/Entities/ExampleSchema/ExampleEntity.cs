@@ -2,7 +2,7 @@ using CodeGenerator;
 using FluentValidation;
 using Kernel.Data.Entities;
 
-namespace Data.Entities.Example;
+namespace Data.Entities.ExampleSchema;
 
 //NOTE: This example entity showcases how to create your own entity, and how that flows all the way up through
 //the service layer, into an endpoint. You're welcome to remove this whenever you feel you have a grasp on how to do things
@@ -65,24 +65,3 @@ public class ExampleEntityValidator : AbstractValidator<IExampleEntityFields>
             .When(p => p.AFutureDate != null);
     }
 }
-
-//[DomainEntity]
-//public class TestThing : BaseEntity, ITestThingFields
-//{
-//    public string? Name { get; set; }
-//}
-
-//[DomainEntityFields]
-//public interface ITestThingFields
-//{
-//    /// <summary>
-//    /// Hi
-//    /// </summary>
-//    public string? Name { get; set; }
-//}
-
-//public class Thing
-//{
-//    public TestService
-//}
-

@@ -27,12 +27,12 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\Support\KytcBPAnalyzer\KytcBPAnalyzer.csproj">
+        <ProjectReference Include="..\Kernel\Support\KytcBPAnalyzer\KytcBPAnalyzer.csproj">
             <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
             <OutputItemType>Analyzer</OutputItemType>
         </ProjectReference>
 
-        <ProjectReference Include="..\Support\CodeGenerator\CodeGenerator.csproj">
+        <ProjectReference Include="..\Kernel\Support\CodeGenerator\CodeGenerator.csproj">
             <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
             <OutputItemType>Analyzer</OutputItemType>
         </ProjectReference>

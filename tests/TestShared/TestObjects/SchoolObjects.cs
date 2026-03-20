@@ -24,6 +24,8 @@ public class Course : BaseEntity
     public string Name { get; set; } = string.Empty;
     public int TeacherId { get; set; }
 
+    //TODO: Write an analyzer to force = null, explain why.
+
     /// <summary>
     /// Navigation property, can be loaded with .include()
     /// </summary>

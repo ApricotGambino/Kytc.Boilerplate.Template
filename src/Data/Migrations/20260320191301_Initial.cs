@@ -59,16 +59,50 @@ namespace Data.Migrations
                 {
                     table.PrimaryKey("PK_Logs", x => x.Id);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "ADifferentExampleEntites",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ExampleEntityId = table.Column<int>(type: "int", nullable: false),
+                    CreatedDateTimeOffset = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    UpdatedDateTimeOffset = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: true),
+                    CreatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UpdatedBy = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    IsSoftDeleted = table.Column<bool>(type: "bit", nullable: false),
+                    Version = table.Column<byte[]>(type: "rowversion", rowVersion: true, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ADifferentExampleEntites", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ADifferentExampleEntites_ExampleEntities_ExampleEntityId",
+                        column: x => x.ExampleEntityId,
+                        principalTable: "ExampleEntities",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ADifferentExampleEntites_ExampleEntityId",
+                table: "ADifferentExampleEntites",
+                column: "ExampleEntityId");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "ExampleEntities");
+                name: "ADifferentExampleEntites");
 
             migrationBuilder.DropTable(
                 name: "Logs");
+
+            migrationBuilder.DropTable(
+                name: "ExampleEntities");
         }
     }
 }

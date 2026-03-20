@@ -1,3 +1,4 @@
+# Suppress: EC104
 
 # See http://EditorConfig.org for more information about .editorconfig files.
 # These settings are from .net's actual runtime editorconfig: https://github.com/dotnet/runtime/blob/main/.editorconfig
@@ -35,7 +36,7 @@ indent_size = 2
 
 # Kernel files
 [src/Kernel/**/*.{cs}]
-file_header_template = {fileName} is part of the Boilerplate kernel, modify at your own risk.\nYou can get updates from the BP repository. : warning
+file_header_template = {fileName} is part of the Boilerplate kernel, modify at your own risk.\nYou can get updates from the BP repository.
 
 # C# files
 [*.cs]

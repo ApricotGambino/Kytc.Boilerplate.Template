@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20260306193756_Initial")]
+    [Migration("20260320191301_Initial")]
     partial class Initial
     {
         /// <inheritdoc />
@@ -25,7 +25,50 @@ namespace Data.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("Data.Entities.Example.ExampleEntity", b =>
+            modelBuilder.Entity("Data.Entities.ADifferentExampleSchema.ADifferentExampleEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<Guid>("CreatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTimeOffset>("CreatedDateTimeOffset")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<int>("ExampleEntityId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsSoftDeleted")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("UpdatedBy")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTimeOffset?>("UpdatedDateTimeOffset")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<byte[]>("Version")
+                        .IsConcurrencyToken()
+                        .IsRequired()
+                        .ValueGeneratedOnAddOrUpdate()
+                        .HasColumnType("rowversion");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ExampleEntityId");
+
+                    b.ToTable("ADifferentExampleEntites");
+                });
+
+            modelBuilder.Entity("Data.Entities.ExampleSchema.ExampleEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -134,6 +177,17 @@ namespace Data.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Logs");
+                });
+
+            modelBuilder.Entity("Data.Entities.ADifferentExampleSchema.ADifferentExampleEntity", b =>
+                {
+                    b.HasOne("Data.Entities.ExampleSchema.ExampleEntity", "ExampleEntity")
+                        .WithMany()
+                        .HasForeignKey("ExampleEntityId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ExampleEntity");
                 });
 #pragma warning restore 612, 618
         }

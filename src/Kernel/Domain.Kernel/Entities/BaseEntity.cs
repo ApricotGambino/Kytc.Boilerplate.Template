@@ -1,5 +1,8 @@
 // BaseEntity.cs is part of the Boilerplate kernel, modify at your own risk.
-// You can get updates from the BP repository. : warning
+// You can get updates from the BP repository.
+
+
+//TODO: Write an anlyzer to check if each kernel method is in a unit test
 
 namespace Kernel.Data.Entities;
 //NOTE:
