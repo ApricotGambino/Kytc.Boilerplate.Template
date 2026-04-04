@@ -1,11 +1,10 @@
 ﻿// EndpointRouteBuilderExtensions.cs is part of the Boilerplate kernel, modify at your own risk.
-// You can get updates from the BP repository. : warning
+// You can get updates from the BP repository.
 
 using System.Diagnostics.CodeAnalysis;
 using FluentValidation;
 using Kernel.Api.Configurations.MinimalApiConfigurations.ApiResponses;
 using Kernel.Api.Configurations.MinimalApiConfigurations.EndpointFilters;
-using Kernel.Infrastructure.Extensions.Pagination;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
@@ -47,9 +46,9 @@ public static class EndpointRouteBuilderExtensions
         {
             var dataReturnType = handler.Method.ReturnType.GenericTypeArguments[0].GenericTypeArguments[0].GenericTypeArguments[0];
 
-            if (dataReturnType.IsGenericType && dataReturnType != typeof(PagedResults<>))
+            if (dataReturnType != null && dataReturnType.IsGenericType && dataReturnType?.BaseType?.Name != typeof(ApiPagedResults<>)?.BaseType?.Name)
             {
-                throw new ArgumentException($"{handler.Method.Name} must return either a single DTO object, or a collection of objects as a {nameof(PagedResults<>)}. Lists are not permitted as they do not sufficiently limit the results being returned to the client.");
+                throw new ArgumentException($"{handler.Method.Name} must return either a single DTO object, or a collection of objects as a {nameof(ApiPagedResults<>)}. Lists are not permitted as they do not sufficiently limit the results being returned to the client.");
             }
 
             //if (!dataReturnType.Name.ToLower().Contains("dto"))

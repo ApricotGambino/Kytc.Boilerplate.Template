@@ -1,6 +1,7 @@
 ﻿// ApiResponse.cs is part of the Boilerplate kernel, modify at your own risk.
-// You can get updates from the BP repository. : warning
+// You can get updates from the BP repository.
 
+using Kernel.Data.Entities;
 using Kernel.Data.Mapping;
 using Kernel.Infrastructure.Extensions.Pagination;
 using Microsoft.AspNetCore.Http;
@@ -48,15 +49,35 @@ public class ApiResponse
         return TypedResults.Ok(Success(data));
     }
 
-    public static Ok<ApiResponse<ApiPagedResults<T>>> Ok<T>(PagedResults<T> data)
-        where T : IDto
+    public static Ok<ApiResponse<ApiPagedResults<TDto>>> Ok<TDto, TBaseEntity>(PagedResults<TBaseEntity> data)
+        where TDto : IDto, IMap<TBaseEntity, TDto>
+        where TBaseEntity : BaseEntity
     {
-        return TypedResults.Ok(Success((ApiPagedResults<T>)data));
+
+        var test = data.Convert2().To2<ApiPagedResults<TDto>>();
+
+
+
+        var pagedDto = new ApiPagedResults<TDto>();
+        pagedDto.PageSize = data.PageSize;
+        pagedDto.TotalPages = data.TotalPages;
+        pagedDto.Page = data.Page;
+        pagedDto.TotalItems = data.TotalItems;
+        pagedDto.Results = new List<TDto>();
+
+        foreach (var entity in data.Results)
+        {
+            var uh = TDto.MapFrom(entity);
+            pagedDto.Results.Add(uh);
+        }
+
+        return TypedResults.Ok(Success(pagedDto));
     }
+
 }
 
 public class ApiResponse<T> : ApiResponse
-    where T : IDto
+where T : IDto
 {
     public T? Data { get; }
 
@@ -65,7 +86,6 @@ public class ApiResponse<T> : ApiResponse
         Data = data;
     }
 }
-
 
 public static class MapperExtensions
 {
@@ -83,6 +103,26 @@ public static class MapperExtensions
         {
             return TTo.MapFrom(_source);
         }
+
+        public ApiPagedResults<TDto1> To2<TDto1>()
+        where TDto1 : IMap<T, TDto1>, IDto
+        {
+            var pagedResults = _source as PagedResults<T>;
+            var pagedDto = new ApiPagedResults<TDto1>();
+            pagedDto.PageSize = pagedResults.PageSize;
+            pagedDto.TotalPages = pagedResults.TotalPages;
+            pagedDto.Page = pagedResults.Page;
+            pagedDto.TotalItems = pagedResults.TotalItems;
+            pagedDto.Results = new List<TDto1>();
+
+            foreach (var entity in pagedResults.Results)
+            {
+                var uh = TDto1.MapFrom(entity);
+                pagedDto.Results.Add(uh);
+            }
+
+            return pagedDto;
+        }
     }
 
     //TODO: Rename this.
@@ -90,4 +130,15 @@ public static class MapperExtensions
     {
         return new Mapper<T>(entity);
     }
+
+    public static Mapper<PagedResults<T>> Convert2<T>(this PagedResults<T> entity)
+    {
+        return new Mapper<PagedResults<T>>(entity);
+    }
+
+    public static Mapper<PagedResults<T>> Convert3<T>(this PagedResults<T> entity)
+    {
+        return new Mapper<PagedResults<T>>(entity);
+    }
+
 }

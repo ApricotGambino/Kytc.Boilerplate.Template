@@ -1,5 +1,5 @@
 // PagedResults.cs is part of the Boilerplate kernel, modify at your own risk.
-// You can get updates from the BP repository. : warning
+// You can get updates from the BP repository.
 
 namespace Kernel.Infrastructure.Extensions.Pagination;
 
