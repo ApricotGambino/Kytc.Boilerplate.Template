@@ -22,6 +22,7 @@ public interface IExampleService
     public Task<ExampleEntity> GetExampleEntityByIdAsync(int id);
     public Task<ExampleEntity> AddExampleEntityAsync(ExampleEntity entityToAdd);
     public Task<ExampleEntity> UpdateExampleEntityAsync(ExampleEntity entityToUpdate);
+    public Task<ExampleEntity> DeleteExampleEntityAsync(int id);
     public Task<PagedResults<ExampleEntity>> GetMostRecentExampleEntitiesUsingContextAsync(int pageNumber, int pageSize);
     public Task<PagedResults<ExampleEntity>> GetMostRecentExampleEntitiesUsingReadOnlyRepoAsync(int pageNumber, int pageSize);
     public Task<PagedResults<ExampleEntity>> GetMostRecentExampleEntitiesPaginatedAsync(int pageNumber, int pageSize);
@@ -93,5 +94,13 @@ public class ExampleService(ApplicationDbContext context) : IExampleService
         //TODO: Why do I have to include here?
         var differentExample = await _context.ADifferentExampleEntites.Include(p => p.ExampleEntity).Where(p => p.ExampleEntityId == id).FirstOrDefaultAsync();
         return differentExample;
+    }
+
+    public async Task<ExampleEntity> DeleteExampleEntityAsync(int id)
+    {
+        var entityToDelete = await _context.ExampleEntities.SingleAsync(p => p.Id == id);
+        _context.Remove(entityToDelete);
+        await _context.SaveChangesAsync();
+        return entityToDelete;
     }
 }

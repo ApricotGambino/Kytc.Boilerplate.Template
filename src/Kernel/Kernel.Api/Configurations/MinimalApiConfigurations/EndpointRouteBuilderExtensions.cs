@@ -12,7 +12,7 @@ using Scalar.AspNetCore;
 
 namespace Kernel.Api.Configurations.MinimalApiConfigurations;
 
-//TODO: Document.
+//TODO: Document and tidy
 
 public static class EndpointRouteBuilderExtensions
 {
@@ -81,19 +81,22 @@ public static class EndpointRouteBuilderExtensions
                 .AddEndpointFilter<ValidationFilter>();
     }
 
-    //public static RouteHandlerBuilder MapPut(this IEndpointRouteBuilder builder, Delegate handler, [StringSyntax("Route")] string pattern)
-    //{
-    //    Guard.Against.AnonymousMethod(handler);
+    public static RouteHandlerBuilder MapPut(this IEndpointRouteBuilder builder, Delegate handler, [StringSyntax("Route")] string pattern = "")
+    {
+        ArgumentNullException.ThrowIfNull(handler);
 
-    //    return builder.MapPut(pattern, handler)
-    //        .WithName(handler.Method.Name);
-    //}
+        return builder
+            .MapPut(handler.Method.Name, handler)
+            .WithName(handler.Method.Name)
+            .AddEndpointFilter<ValidationFilter>();
+    }
 
-    //public static RouteHandlerBuilder MapDelete(this IEndpointRouteBuilder builder, Delegate handler, [StringSyntax("Route")] string pattern)
-    //{
-    //    Guard.Against.AnonymousMethod(handler);
+    public static RouteHandlerBuilder MapDelete(this IEndpointRouteBuilder builder, Delegate handler, [StringSyntax("Route")] string pattern = "")
+    {
+        ArgumentNullException.ThrowIfNull(handler);
 
-    //    return builder.MapDelete(pattern, handler)
-    //        .WithName(handler.Method.Name);
-    //}
+        return builder
+            .MapPost(handler.Method.Name, handler)
+            .WithName(handler.Method.Name);
+    }
 }
