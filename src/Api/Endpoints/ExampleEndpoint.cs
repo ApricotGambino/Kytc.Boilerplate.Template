@@ -1,5 +1,4 @@
 ﻿using Application.Features.ExampleFeature.Services;
-using Data.Entities.ExampleSchema;
 using GeneratedDtos;
 using Kernel.Api.Configurations.MinimalApiConfigurations;
 using Kernel.Api.Configurations.MinimalApiConfigurations.ApiResponses;
@@ -108,7 +107,8 @@ namespace Api.Endpoints
             //var pagedDto = entities.Convert1().To1<ApiPagedResults<ExampleEntityResponse>>();
             var test = entities.Convert2().To2<ExampleEntityResponse>();
             //var a = entities.Convert1().To1<ApiPagedResults<ExampleEntityResponse, ExampleEntity>>();
-            return ApiResponse.Ok<ExampleEntityResponse, ExampleEntity>(entities);
+            //return ApiResponse.Ok<ExampleEntityResponse, ExampleEntity>(entities);
+            return ApiResponse.Ok(test);
         }
 
         //public async Task<Ok<ApiResponse<ApiPagedResults<ExampleEntityGeneratedDto>>>> GetMostRecentExampleEntitiesUsingReadOnlyRepoAsync(int pageNumber, int pageSize)

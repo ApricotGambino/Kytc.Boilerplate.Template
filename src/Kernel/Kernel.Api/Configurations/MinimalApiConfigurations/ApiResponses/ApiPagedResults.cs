@@ -16,6 +16,6 @@ public class ApiPagedResults<TDto, T> : PagedResults<T>, IDto, IMap<PagedResults
     public static ApiResponses.ApiPagedResults<TDto> MapFrom(PagedResults<T> entity) => throw new NotImplementedException();
 }
 
-public class ApiPagedResults<T> : PagedResults<T>
+public class ApiPagedResults<T> : PagedResults<T>, IDto
 {
 }
